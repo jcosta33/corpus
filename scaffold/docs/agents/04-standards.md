@@ -92,10 +92,10 @@ These appear in task-file headers above the `> **PERSONA:**` blockquote.
 A conditioned task file may suggest a persona:
 
 ```markdown
-> **PERSONA:** Suggested — **The <Name>**. Load `.agents/skills/persona-<slug>/SKILL.md` if one of the seven persona skills fits; otherwise the matching workflow skill carries this mindset.
+> **PERSONA:** Suggested — **The <Name>**. Load `.agents/skills/persona-<slug>/SKILL.md` if one of the eight persona skills fits; otherwise the matching workflow skill carries this mindset.
 ```
 
-After reading the task file, the agent loads the persona skill when one of the seven (`persona-architect`, `persona-auditor`, `persona-janitor`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`) matches. For the other mindsets — Builder, Bug Hunter, Documentarian, Lead Engineer, Researcher, Test Author — the matching workflow skill (`write-feature`, `write-bug-report`, `write-documentation`, `write-research`, `write-testing`; Lead Engineer is orchestration with no skill) carries the persona. The persona is a **suggested default**: when the work in front of you doesn't match, load the skill whose `description` fits and record the divergence in `## Decisions`. Whichever persona is in play, its hard constraints supersede default helpfulness for the entire session.
+After reading the task file, the agent loads the persona skill when one of the eight (`persona-architect`, `persona-auditor`, `persona-janitor`, `persona-lead-engineer`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`) matches. For the other five mindsets — Builder, Bug Hunter, Documentarian, Researcher, Test Author — the matching workflow skill (`write-feature`, `write-bug-report`, `write-documentation`, `write-research`, `write-testing`) carries the persona. Lead Engineer ships as `persona-lead-engineer` because orchestration has no *workflow* skill, so its coordination mindset is itself the discipline. The persona is a **suggested default**: when the work in front of you doesn't match, load the skill whose `description` fits and record the divergence in `## Decisions`. Whichever persona is in play, its hard constraints supersede default helpfulness for the entire session.
 
 ---
 

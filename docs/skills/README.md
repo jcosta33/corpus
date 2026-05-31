@@ -16,7 +16,7 @@ A skill is a Markdown file with YAML frontmatter that the agent loads on demand 
 
 ## 🧭 The catalogue
 
-Swarm ships **23 skills**, in four groups. Each loads independently when its `description` matches the task; none depends on another being installed.
+Swarm ships **24 skills**, in four groups. Each loads independently when its `description` matches the task; none depends on another being installed.
 
 ### 🚦 Quality gates (3)
 
@@ -57,15 +57,16 @@ One skill per kind of work. Each codifies the failure modes its deliverable is b
 
 > Each skill name above links to its documentation page in this directory; the actual `SKILL.md` body ships in [`/scaffold/.agents/skills/`](../../scaffold/.agents/skills/) and is the runtime source of truth.
 
-### 🎭 Personas (7)
+### 🎭 Personas (8)
 
-Mindset-conditioning skills for role-shaped work. Each is a standalone, self-contained profile (~70 lines); load the one whose `description` matches the task. See [`personas.md`](personas.md) for the split model and why seven standalone skills beat one consolidated file.
+Mindset-conditioning skills for role-shaped work. Each is a standalone, self-contained profile (~70 lines); load the one whose `description` matches the task. See [`personas.md`](personas.md) for the split model and why standalone skills beat one consolidated file. Of the 13 persona mindsets, these 8 ship as skills; the other 5 (Builder, Bug Hunter, Documentarian, Researcher, Test Author) are carried by their matching `write-*` workflow skill.
 
 | Skill | Mindset |
 | ----- | ------- |
 | [`persona-architect`](../../scaffold/.agents/skills/persona-architect/SKILL.md) | Structural rigour for spec / requirements / design authoring. |
 | [`persona-auditor`](../../scaffold/.agents/skills/persona-auditor/SKILL.md) | Observation-not-prescription for present-state audits. |
 | [`persona-janitor`](../../scaffold/.agents/skills/persona-janitor/SKILL.md) | Behaviour preservation for refactor and dead-code work. |
+| [`persona-lead-engineer`](../../scaffold/.agents/skills/persona-lead-engineer/SKILL.md) | Coordinate multiple agents to a merged, verified result — orchestration ships no workflow skill, so the coordination mindset is the discipline (see [`../adrs/0025-orchestration-coordination-artifact.md`](../adrs/0025-orchestration-coordination-artifact.md)). |
 | [`persona-migrator`](../../scaffold/.agents/skills/persona-migrator/SKILL.md) | Wave-by-wave precision for API migrations and version upgrades. |
 | [`persona-performance-surgeon`](../../scaffold/.agents/skills/persona-performance-surgeon/SKILL.md) | Measure-first discipline for optimisation under a target. |
 | [`persona-skeptic`](../../scaffold/.agents/skills/persona-skeptic/SKILL.md) | Hostile-to-plausible-explanations review of another agent's work. |
@@ -150,6 +151,8 @@ The empirical reason this works — directive descriptions hitting ~100 % activa
 - [`building/README.md`](building/README.md) — the science behind every structural choice in the skill layer
 - [`building/activation.md`](building/activation.md) — why descriptions take the directive form; the no-always-load rule
 - [`building/body-anatomy.md`](building/body-anatomy.md) — numbered rules, length budgets, progressive disclosure
-- [`personas.md`](personas.md) — the seven persona skills and the split model
+- [`personas.md`](personas.md) — the eight persona skills and the split model
+- [`../adrs/0024-confidence-tiers.md`](../adrs/0024-confidence-tiers.md) — the self-reviewed (floor) vs independently-reviewed confidence tiers a skill's output can reach
+- [`../adrs/0025-orchestration-coordination-artifact.md`](../adrs/0025-orchestration-coordination-artifact.md) — the orchestration artifact fields `persona-lead-engineer` coordinates against (owned/forbidden paths, hand-off contract, liveness/stall/re-plan, per-conflict intent-preserved proof)
 - [`../guides/writing-skills.md`](../guides/writing-skills.md) — how to write project-specific skills
 - [`../reference/flow-graph.md`](../reference/flow-graph.md) — the recommended routing graph (source-doc → task → persona → skills)

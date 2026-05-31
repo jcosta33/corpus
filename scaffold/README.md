@@ -27,7 +27,7 @@ scaffold/
 │       └── 05-flow-graph.md               ← the recommended routing graph
 │
 └── .agents/
-    ├── skills/                            ← 23 self-activating skills, one dir each (SKILL.md + references/)
+    ├── skills/                            ← 24 self-activating skills, one dir each (SKILL.md + references/)
     │   │  # quality gates (3) — cross-cutting disciplines
     │   ├── adversarial-review/
     │   ├── distillation-discipline/
@@ -47,10 +47,11 @@ scaffold/
     │   ├── write-rewrite/
     │   ├── write-spec/
     │   ├── write-testing/
-    │   │  # personas (7) — role mindsets that ship as skills
+    │   │  # personas (8) — role mindsets that ship as skills
     │   ├── persona-architect/
     │   ├── persona-auditor/
     │   ├── persona-janitor/
+    │   ├── persona-lead-engineer/
     │   ├── persona-migrator/
     │   ├── persona-performance-surgeon/
     │   ├── persona-skeptic/
@@ -116,7 +117,7 @@ You must:
 ### Verify
 
 ```bash
-ls -1 .agents/skills/                   # should list 23 skill directories
+ls -1 .agents/skills/                   # should list 24 skill directories
 ls -1 .agents/templates/                # should list 8 files (4 source-doc + skill.md + task-base.md + task-orchestration.md + task-review.md)
 ls .agents/skills/write-feature/references/task-template.md   # per-skill task templates live here, not in templates/
 grep -c "TODO" AGENTS.md                 # should be 0 after you've bound the placeholders
@@ -171,19 +172,22 @@ A runner (the Swarm CLI or any other) is **Swarm-compliant** if it substitutes e
 
 ## 🎭 The persona catalogue
 
-Personas condition mindset for role-shaped work. The framework's catalogue (in the upstream Swarm framework repo's `/docs/personas/`, not copied here) describes **13 mindsets**, but only **7 ship as standalone skills** in this scaffold — each in its own `persona-<slug>/SKILL.md`, self-activating when its `description` matches the task:
+Personas condition mindset for role-shaped work. The framework's catalogue (in the upstream Swarm framework repo's `/docs/personas/`, not copied here) describes **13 mindsets**, of which **8 ship as standalone skills** in this scaffold — each in its own `persona-<slug>/SKILL.md`, self-activating when its `description` matches the task:
 
 | Persona skill                | Primary tasks                |
 | ---------------------------- | ---------------------------- |
 | `persona-architect`          | spec-writing                 |
 | `persona-auditor`            | audit-writing                |
 | `persona-janitor`            | refactor                     |
+| `persona-lead-engineer`      | orchestration — coordinate multiple agents to a merged, verified result |
 | `persona-migrator`           | migration, upgrade           |
 | `persona-performance-surgeon` | performance                 |
 | `persona-skeptic`            | review, deepen-audit, fix    |
 | `persona-surveyor`           | research-writing (UX/market) |
 
-The other **6 mindsets do not ship as separate skills** — each is carried by the matching workflow (authoring) skill, so loading the skill brings the mindset with it:
+`persona-lead-engineer` ships even though orchestration has no workflow skill: the coordination mindset *is* the discipline, so it self-activates as the orchestration surface. It coordinates against the `task-orchestration.md` template, which records per-worker owned/forbidden paths, the expected-deliverable/acceptance-bar hand-off contract (mirrored in each worker's `## Parent contract` in `task-base.md`), a liveness marker + stalled status + re-plan trigger, and per-conflict intent-preserved proof.
+
+The other **5 mindsets do not ship as separate skills** — each is carried by the matching workflow (authoring) skill, so loading the skill brings the mindset with it:
 
 | Mindset           | Carried by             |
 | ----------------- | ---------------------- |
@@ -192,7 +196,6 @@ The other **6 mindsets do not ship as separate skills** — each is carried by t
 | The Documentarian | `write-documentation`  |
 | The Researcher    | `write-research`       |
 | The Test Author   | `write-testing`        |
-| The Lead Engineer | (orchestration — no skill; flat `task-orchestration.md` template + Lead Engineer mindset in the docs) |
 
 Open any `persona-<slug>/SKILL.md` for the full profile. Project-specific overlay personas (e.g., a TypeSurgeon for a TS-heavy shop) should live alongside as their own `persona-<slug>/SKILL.md` directories.
 

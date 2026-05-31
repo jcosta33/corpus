@@ -1,6 +1,6 @@
 # Persona (documentation): The Lead Engineer
 
-> **Runtime profile:** ships no persona skill and no workflow skill. The Lead Engineer mindset is the orchestration stance itself — carried by the flat orchestration task template ([`scaffold/.agents/templates/task-orchestration.md`](../../scaffold/.agents/templates/task-orchestration.md)) rather than a loadable skill.
+> **Runtime profile:** ships [`persona-lead-engineer`](../../scaffold/.agents/skills/persona-lead-engineer/SKILL.md) — the orchestration self-activation surface. Orchestration has no workflow skill, so the coordination mindset is itself the discipline ([ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)); the flat orchestration task template ([`scaffold/.agents/templates/task-orchestration.md`](../../scaffold/.agents/templates/task-orchestration.md)) remains the task template. Orchestration runs at the **independently-reviewed** confidence tier ([ADR 0024](../adrs/0024-confidence-tiers.md)): the lead re-runs validation per worker and on the merge.
 
 ---
 

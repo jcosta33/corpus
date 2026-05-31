@@ -56,7 +56,7 @@ Skills live in `.agents/skills/<name>/SKILL.md` and **self-activate**: each carr
 
 - **Workflow skills** carry the discipline for a kind of work: `write-{spec,audit,research,bug-report,feature,fix,refactor,rewrite,migration,performance,testing,documentation}`, plus `fix-flaky-test`.
 - **Quality gates** are cross-cutting disciplines that surface inside whatever task is in play: `empirical-proof`, `adversarial-review`, `distillation-discipline`.
-- **Personas** condition mindset for role-shaped work: `persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}`. Load the one whose description matches the task; they have no dependency on each other or any other skill.
+- **Personas** condition mindset for role-shaped work: `persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor,lead-engineer}`. Load the one whose description matches the task; they have no dependency on each other or any other skill. `persona-lead-engineer` is the orchestration self-activation surface — orchestration has no workflow skill, so the coordination mindset itself is the discipline.
 
 Project-specific skills under `.agents/skills/domain/` self-activate the same way when their `description` matches. See `.agents/templates/skill.md` (the skill meta-template) for how skills are authored and why.
 

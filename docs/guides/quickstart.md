@@ -55,7 +55,7 @@ mkdir -p .agents/{tasks,specs,audits,bugs,research}
 Verify the structure:
 
 ```bash
-ls -1 .agents/skills/                   # 23 skill directories
+ls -1 .agents/skills/                   # 24 skill directories
 ls -la .agents/templates/               # 8 flat templates
 ls -la docs/agents/                     # 5 process docs
 grep -F ".agents/tasks/" .gitignore     # should match
@@ -170,7 +170,7 @@ If you have an agent CLI installed (Claude Code, Codex, Cursor, Aider, etc.):
 
 The agent will:
 
-- Load `write-feature` — the workflow skill that carries The Builder mindset (there's no standalone `persona-builder`; the six mindset-only personas ride in their matching workflow skill)
+- Load `write-feature` — the workflow skill that carries The Builder mindset (there's no standalone `persona-builder`; the five mindset-only personas ride in their matching workflow skill)
 - Adopt The Builder stance
 - Read the spec at `.agents/specs/example-greet.md`
 - Plan, then implement `greet`
@@ -188,7 +188,7 @@ You now have:
 
 - A Swarm-conformant `.agents/` directory
 - An `AGENTS.md` with a `## Commands` section binding the command contract to your project's commands
-- The 23 shipped skills installed: 3 quality gates, 1 specialised, 12 authoring, 7 persona skills
+- The 24 shipped skills installed: 3 quality gates, 1 specialised, 12 authoring, 8 persona skills
 - The 8 flat templates ready to use (per-skill task templates live in each skill's `references/task-template.md`)
 - One spec (`example-greet.md`)
 - One conditioned task file (gitignored)

@@ -134,7 +134,7 @@ All 18 task types extend a common base. The base sections are present in every t
 - Slug · Agent · Branch · Base · Worktree · Created · Status · Type
 
 > 🔒 / ⚠️ / (no marker) **<TASK TYPE> SESSION** — short descriptor of constraints
-> **PERSONA:** Suggested **<Persona>** — load `.agents/skills/persona-<slug>/SKILL.md` (for the 7 shipped personas) or rely on the workflow skill that carries the mindset; re-assess and record any divergence in `## Decisions`
+> **PERSONA:** Suggested **<Persona>** — load `.agents/skills/persona-<slug>/SKILL.md` (for the 8 shipped personas) or rely on the workflow skill that carries the mindset; re-assess and record any divergence in `## Decisions`
 
 ## Objective
 One paragraph; what is true when this task is done.
@@ -147,7 +147,7 @@ One paragraph; what is true when this task is done.
 ## Skills
 - (workflow skill, e.g. write-<type>)
 - (quality-gate skills whose description matches: empirical-proof / adversarial-review / distillation-discipline)
-- (persona-<slug> skill, for the 7 shipped personas, when role-shaped)
+- (persona-<slug> skill, for the 8 shipped personas, when role-shaped)
 
 ## Domain skills
 Project-specific skills that self-activate by description-matching.

@@ -21,7 +21,7 @@ The `.agents/` directory typically lives at the repo root and is shared. Per-wor
 ├── .agents/
 │   ├── tasks/                           # gitignored
 │   ├── templates/                       # shared flat templates (8)
-│   ├── skills/                          # shared skills (23: quality gates + specialised + authoring + 7 persona skills)
+│   ├── skills/                          # shared skills (24: quality gates + specialised + authoring + 8 persona skills)
 │   ├── specs/                           # shared specs (or per-workspace; see below)
 │   ├── audits/
 │   ├── bugs/
@@ -138,7 +138,7 @@ This workspace overrides the root `AGENTS.md` for the following:
 
 ## Workspace-specific overlay personas
 
-This workspace uses **The Integrator** overlay for SDK-wiring tasks. The overlay is a self-contained persona skill at `.agents/skills/persona-integrator/SKILL.md` (beside the shipped seven); note the standing preference in this workspace's `AGENTS.md > Routing`.
+This workspace uses **The Integrator** overlay for SDK-wiring tasks. The overlay is a self-contained persona skill at `.agents/skills/persona-integrator/SKILL.md` (beside the shipped eight); note the standing preference in this workspace's `AGENTS.md > Routing`.
 ```
 
 The Rust workspace has different bindings:

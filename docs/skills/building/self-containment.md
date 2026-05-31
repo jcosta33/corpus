@@ -48,7 +48,7 @@ Cross-skill links exist only in the *meta* docs (this `docs/skills/building/` di
 
 ## Personas: the canonical worked example
 
-The persona discipline is where the self-containment principle does its loudest work. Swarm ships seven persona skills — `persona-architect`, `persona-auditor`, `persona-janitor`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor` — each a fully standalone skill. Copying `write-audit` does not pull in `persona-auditor`.
+The persona discipline is where the self-containment principle does its loudest work. Swarm ships eight persona skills — `persona-architect`, `persona-auditor`, `persona-janitor`, `persona-lead-engineer`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor` — each a fully standalone skill. Copying `write-audit` does not pull in `persona-auditor`.
 
 ```mermaid
 flowchart TD
@@ -69,7 +69,7 @@ flowchart TD
 
 > A consumer who vendors only `write-audit` and `persona-auditor` gets the same behaviour they'd get with the full set copied in — neither file mentions the other.
 
-> Swarm's persona catalogue documents 13 mindsets, but only these 7 ship as runtime skills. The other 6 (Builder, Bug Hunter, Documentarian, Lead Engineer, Researcher, Test Author) are carried by the matching workflow skill (Builder→`write-feature`, Bug Hunter→`write-bug-report`, Documentarian→`write-documentation`, Researcher→`write-research`, Test Author→`write-testing`; Lead Engineer is orchestration, no skill). The same self-containment rule applies: those workflow skills do not link the persona docs either.
+> Swarm's persona catalogue documents 13 mindsets, but only these 8 ship as runtime skills. The other 5 (Builder, Bug Hunter, Documentarian, Researcher, Test Author) are carried by the matching workflow skill (Builder→`write-feature`, Bug Hunter→`write-bug-report`, Documentarian→`write-documentation`, Researcher→`write-research`, Test Author→`write-testing`). Lead Engineer ships `persona-lead-engineer` *because* orchestration has no workflow skill to carry its coordination mindset — the discipline lives in the persona skill instead, with the flat `task-orchestration.md` as its task template. The same self-containment rule applies: those workflow skills do not link the persona docs either.
 
 ---
 

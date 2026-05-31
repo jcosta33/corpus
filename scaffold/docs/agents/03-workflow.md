@@ -114,7 +114,7 @@ After Self-review passes:
 When a fresh session starts in an existing worktree (status `active`):
 
 1. **Read the task file.** This is the standing convention in `AGENTS.md` — the task file is always the first read.
-2. **Re-load the skills the work needs.** Re-adopt the suggested persona: load `persona-<slug>/SKILL.md` if one of the seven persona skills fits, else the matching workflow skill carries the mindset. Re-load any workflow and quality-gate skills the task calls for.
+2. **Re-load the skills the work needs.** Re-adopt the suggested persona: load `persona-<slug>/SKILL.md` if one of the eight persona skills fits, else the matching workflow skill carries the mindset. Re-load any workflow and quality-gate skills the task calls for.
 3. **Read the linked source docs in full.** Don't trust the previous session's summarisation.
 4. **Read `## Decisions`, `## Findings`, `## Assumptions`, `## Next steps`** in that order.
 5. **Re-run any verification commands** `## Next steps` flags. Confirm worktree state matches.

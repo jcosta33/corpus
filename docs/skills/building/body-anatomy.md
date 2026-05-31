@@ -109,7 +109,7 @@ flowchart LR
 - The body is sized for the U-curve: short enough that nothing important sits in the middle's attention trough.
 - `references/` files are kept one hop away so the on-demand load is reliable.
 
-The persona discipline is the canonical example: Swarm ships seven persona skills (`persona-architect`, `persona-auditor`, `persona-janitor`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`), each its own ~60–70-line `persona-<name>/SKILL.md`. Only the persona that the agent actually adopts loads — total context cost is *lower* than a single monolithic personas index would have been.
+The persona discipline is the canonical example: Swarm ships eight persona skills (`persona-architect`, `persona-auditor`, `persona-janitor`, `persona-lead-engineer`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`), each its own ~60–70-line `persona-<name>/SKILL.md`. Only the persona that the agent actually adopts loads — total context cost is *lower* than a single monolithic personas index would have been.
 
 ---
 

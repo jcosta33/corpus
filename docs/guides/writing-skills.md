@@ -241,5 +241,5 @@ Before committing a skill:
 - [`skills/building/body-anatomy.md`](../skills/building/body-anatomy.md) — body structure + length budget
 - [`skills/building/self-containment.md`](../skills/building/self-containment.md) — no cross-skill links; the AGENTS.md command contract
 - [`skills/building/task-files.md`](../skills/building/task-files.md) — when a skill ships a `references/task-template.md`
-- [`skills/README.md`](../skills/README.md) — the shipped skill catalogue (23 skills)
+- [`skills/README.md`](../skills/README.md) — the shipped skill catalogue (24 skills)
 - [`reference/agents-md.md`](../reference/agents-md.md) — the `## Commands` contract and when to put rules there instead

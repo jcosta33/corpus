@@ -4,7 +4,7 @@
 
 This document is reference material — agents consult it when deciding what to do. A launcher (the Swarm CLI or any compatible tool) **may** apply this graph deterministically when it scaffolds a task file, and the directive skill `description`s reproduce the routing in-session. But none of it is gatekeeper-enforced: when the task doesn't match the suggested default, load the skill whose `description` fits and record the divergence in your task file's `## Decisions`.
 
-For the personas referenced here, see the `persona-<slug>` skills under `.agents/skills/` (seven ship as skills). For the documentation tiers, see `01-process.md`. For document types and their structure, see `02-file-types.md`.
+For the personas referenced here, see the `persona-<slug>` skills under `.agents/skills/` (eight ship as skills). For the documentation tiers, see `01-process.md`. For document types and their structure, see `02-file-types.md`.
 
 ---
 
@@ -81,7 +81,7 @@ These aren't gatekeeper-enforced, but the routing model treats them as anti-patt
 
 Each task type has a **suggested** primary persona. Some have secondary personas for handoff (e.g. a feature task ends with a Skeptic review; a refactor task ends the same way). These are defaults, not assignments — the agent adopts the suggested mindset unless the work calls for a different one.
 
-Of the persona mindsets named below, **seven ship as standalone skills**: Architect, Auditor, Janitor, Migrator, Performance Surgeon, Skeptic, Surveyor (`.agents/skills/persona-<slug>/SKILL.md`). The other lead personas are **mindsets carried by the matching workflow skill**, not separate skills: Builder by `write-feature`, Bug Hunter by `write-bug-report`, Documentarian by `write-documentation`, Test Author by `write-testing`, Researcher by `write-research`. Lead Engineer is an orchestration stance with no skill of its own.
+Of the persona mindsets named below, **eight ship as standalone skills**: Architect, Auditor, Janitor, Migrator, Performance Surgeon, Skeptic, Surveyor, and Lead Engineer (`.agents/skills/persona-<slug>/SKILL.md`). The other five lead personas are **mindsets carried by the matching workflow skill**, not separate skills: Builder by `write-feature`, Bug Hunter by `write-bug-report`, Documentarian by `write-documentation`, Test Author by `write-testing`, Researcher by `write-research`. Lead Engineer ships as `persona-lead-engineer` precisely because orchestration has **no** workflow skill — so the coordination mindset is itself the discipline, and `persona-lead-engineer` carries it.
 
 | Task type                    | Primary persona                                               | Secondary (handoff)                                                                                                           |
 | ---------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -270,4 +270,4 @@ A launcher may run this routing for you when it scaffolds the task file; the age
 - `02-file-types.md` — what each document type contains
 - `03-workflow.md` — step-by-step session flow
 - `04-standards.md` — writing and execution standards
-- `.agents/skills/persona-<slug>/SKILL.md` — the seven shipped persona skills (Architect, Auditor, Janitor, Migrator, Performance Surgeon, Skeptic, Surveyor)
+- `.agents/skills/persona-<slug>/SKILL.md` — the eight shipped persona skills (Architect, Auditor, Janitor, Migrator, Performance Surgeon, Skeptic, Surveyor, Lead Engineer)

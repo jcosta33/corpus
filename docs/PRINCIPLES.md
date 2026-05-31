@@ -50,6 +50,8 @@ Determinism is **recommended routing, not framework enforcement**. The flow grap
 
 Every persona's `## Self-review` is a hard gate. Every claim is backed by pasted command output. Paraphrase is not proof. "Tests passed" is not proof; the last two lines of the test runner is proof. This applies regardless of persona — Builders, Skeptics, Researchers, and Architects all paste output.
 
+The gate is **self-attested**: the pasted block makes omission conspicuous (an empty `[Paste output]` is visible where a free-text "✅" is not), but the markdown layer cannot re-run a check or block a close — that *enforcement* is a compliant runtime's job ([ADR 0023](adrs/0023-harness-enforcement-contract.md)). The principle's force at this layer is discipline + conspicuousness, not mechanical enforcement; claim it as such.
+
 > **Tiebreaker.** When a persona resists pasting output ("the test passed; trust me"): the framework's response is to refuse. The cost of pasting two lines is trivial. The cost of trusting an unverified claim compounds. See [`concepts/09-empirical-proof.md`](concepts/09-empirical-proof.md).
 
 ---

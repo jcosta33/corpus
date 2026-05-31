@@ -34,6 +34,19 @@ What is true when this task is done. One paragraph maximum.
 
 ---
 
+## Parent contract
+
+(Present **only when an orchestration spawned this task** — the Lead Engineer fills it from the worker-tracker row before hand-off; it is this worker's lane. Omit for top-level tasks.)
+
+- **Owned paths:** `<paths this worker may modify>`
+- **Forbidden paths:** `<paths owned by sibling workers — do not touch>`
+- **Expected deliverable:** `<what this worker must produce>`
+- **Acceptance bar:** `<what the parent will review the result against>`
+
+Stay inside the owned paths. If the work requires touching a forbidden path, halt and surface it to the orchestration — do not silently widen scope; that is how parallel writers collide.
+
+---
+
 ## Skills to load
 
 Skills self-activate by description match — load the ones whose `description` fits the work in front of you:

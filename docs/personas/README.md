@@ -2,13 +2,13 @@
 
 > The 13 mindsets that condition agents in Swarm. Each persona has its own page; this README is the catalogue and the index.
 
-> 📦 **`/docs/personas/` is conceptual — routing wedges, contrasts, hazards.** Of the 13 mindsets, **7 ship as executable persona skills** (constraints, forbiddances, proofs, red flags) under [`/scaffold/.agents/skills/persona-<slug>/SKILL.md`](../../scaffold/.agents/skills/); the other 6 are carried by the matching workflow skill (see the routing table below).
+> 📦 **`/docs/personas/` is conceptual — routing wedges, contrasts, hazards.** Of the 13 mindsets, **8 ship as executable persona skills** (constraints, forbiddances, proofs, red flags) under [`/scaffold/.agents/skills/persona-<slug>/SKILL.md`](../../scaffold/.agents/skills/); the other 5 are carried by the matching workflow skill (see the routing table below).
 
 ---
 
 ## ⚡ TL;DR
 
-A persona is a **mindset, not a role**. Same agent, same model — different stance, different output. Each task type has a **suggested default persona**; the agent may re-assess when the task in front of it doesn't match (the 1-to-1 mapping is now a default, not a lock — see [ADR 0002](../adrs/0002-personas-1-to-1-with-task-types.md)). Personas have hard rules, forbidden actions, required empirical proofs, and "red flags" — the rationalisations they refuse to accept. Of the 13 mindsets, **7 ship as standalone persona skills**; the other 6 ride along inside the matching workflow skill.
+A persona is a **mindset, not a role**. Same agent, same model — different stance, different output. Each task type has a **suggested default persona**; the agent may re-assess when the task in front of it doesn't match (the 1-to-1 mapping is now a default, not a lock — see [ADR 0002](../adrs/0002-personas-1-to-1-with-task-types.md)). Personas have hard rules, forbidden actions, required empirical proofs, and "red flags" — the rationalisations they refuse to accept. Of the 13 mindsets, **8 ship as standalone persona skills**; the other 5 ride along inside the matching workflow skill.
 
 For the conceptual framing, see [`concepts/04-personas.md`](../concepts/04-personas.md).
 
@@ -108,11 +108,11 @@ These are **suggested defaults**, not a lock. A launcher may apply them determin
 | documentation        | The Documentarian             | 🔵 `write-documentation`                          | The Skeptic (review)                      |
 | review               | The Skeptic                   | 🟢 `persona-skeptic`                              | —                                         |
 | deepen-audit         | The Skeptic                   | 🟢 `persona-skeptic`                              | —                                         |
-| orchestration        | The Lead Engineer             | — (no skill; flat `task-orchestration.md` template) | The Skeptic (the merge-gate review pass)  |
+| orchestration        | The Lead Engineer             | 🟢 `persona-lead-engineer` (flat `task-orchestration.md` is the task template) | The Skeptic (the merge-gate review pass)  |
 | integration          | The Builder                   | 🔵 `write-feature` (Builder mindset)              | The Skeptic (review)                      |
 | kickback             | (original persona)            | (carrier of the original persona)                 | The Skeptic (re-review after fix)         |
 
-**Carrier legend.** 🟢 shipped persona skill at `scaffold/.agents/skills/persona-<slug>/SKILL.md` (7: architect, auditor, janitor, migrator, performance-surgeon, skeptic, surveyor). 🔵 mindset carried by a workflow skill — Builder→`write-feature`, Bug Hunter→`write-bug-report`, Documentarian→`write-documentation`, Researcher→`write-research`, Test Author→`write-testing`. Lead Engineer ships no skill at all: the orchestration stance lives in the flat `task-orchestration.md` template.
+**Carrier legend.** 🟢 shipped persona skill at `scaffold/.agents/skills/persona-<slug>/SKILL.md` (8: architect, auditor, janitor, lead-engineer, migrator, performance-surgeon, skeptic, surveyor). 🔵 mindset carried by a workflow skill — Builder→`write-feature`, Bug Hunter→`write-bug-report`, Documentarian→`write-documentation`, Researcher→`write-research`, Test Author→`write-testing`. Lead Engineer ships `persona-lead-engineer` — orchestration has no workflow skill, so the coordination mindset is the discipline ([ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)); the flat `task-orchestration.md` remains the task template. That orchestration artifact records per-worker owned/forbidden paths, an expected-deliverable/acceptance-bar hand-off contract, a liveness marker + stalled status + re-plan trigger, and per-conflict intent-preserved proof. Orchestration runs at the **independently-reviewed** confidence tier ([ADR 0024](../adrs/0024-confidence-tiers.md)): the lead re-runs validation per worker and on the merge.
 
 ---
 
@@ -128,13 +128,13 @@ A project can add overlay personas that the framework doesn't ship — for stack
 | **The Security Reviewer**    | (project-defined)                              | Regulated codebase requiring per-PR security audit            |
 | **The Accessibility Auditor** | (project-defined)                              | UI codebase with WCAG conformance requirements                |
 
-Overlays ship in consumer repos as their own persona skills under `.agents/skills/persona-<name>/` (beside the shipped seven) — see [`guides/customizing-personas.md`](../guides/customizing-personas.md). They inherit the iron-law pattern but remain project-owned artefacts.
+Overlays ship in consumer repos as their own persona skills under `.agents/skills/persona-<name>/` (beside the shipped eight) — see [`guides/customizing-personas.md`](../guides/customizing-personas.md). They inherit the iron-law pattern but remain project-owned artefacts.
 
 ---
 
 ## 📐 Profile shape (conceptual — full headings live in `/scaffold`)
 
-Canonical personas embed **constraints, forbiddances, routing tables, proofs, adversarial Self-review deltas, iron-law red-flag tables**. For the 7 shipped personas that literal outline lives in each [`scaffold/.agents/skills/persona-<slug>/SKILL.md`](../../scaffold/.agents/skills/); for the other 6 the same shape is folded into the matching workflow skill so loaders still ingest a uniform stance.
+Canonical personas embed **constraints, forbiddances, routing tables, proofs, adversarial Self-review deltas, iron-law red-flag tables**. For the 8 shipped personas that literal outline lives in each [`scaffold/.agents/skills/persona-<slug>/SKILL.md`](../../scaffold/.agents/skills/); for the other 5 the same shape is folded into the matching workflow skill so loaders still ingest a uniform stance.
 
 Consult [ADR 0013](../adrs/0013-iron-law-red-flags-pattern.md) for why the iron-law + rationalisation refusal table anchors reliability more than motivational blurbs ever could.
 

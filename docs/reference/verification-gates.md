@@ -136,7 +136,7 @@ Every Self-review section in every task template includes:
 
 > **Hard gate.** The task is not complete until every question below has a written answer directly beneath it. An unanswered question is a skipped check.
 
-The hard gate is the framework's structural defence against hallucinated completion. The agent cannot mark `status: done` without filling in every `[Paste output]` placeholder with verbatim verification output.
+The hard gate is the framework's structural defence against hallucinated completion — *structural* because an empty `[Paste output]` placeholder is **conspicuous**, not because the markdown layer can stop a close. It is **self-attested**: the agent is expected to fill every `[Paste output]` placeholder with verbatim output before marking `status: done`, but nothing here re-runs the command or blocks promotion. Mechanical enforcement (re-run in a clean checkout, block on failure or empty paste) is a compliant runtime's job — the [harness-enforcement contract, ADR 0023](../adrs/0023-harness-enforcement-contract.md) — and a checker can validate the *completeness* of the gate via the [conformance contract, ADR 0026](../adrs/0026-conformance-contract.md).
 
 See [`concepts/09-empirical-proof.md`](../concepts/09-empirical-proof.md) and [`skills/empirical-proof.md`](../skills/empirical-proof.md).
 

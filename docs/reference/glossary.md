@@ -208,7 +208,7 @@ A marker for an open question worth recording but not blocking the doc. Distinct
 A task type for the Lead Engineer pattern — decomposing complex asks into independent sub-tasks. See [`tasks/orchestration.md`](../tasks/orchestration.md).
 
 ### overlay persona
-A project-specific persona added beyond the framework's catalogue. Ships as its own `.agents/skills/persona-<slug>/SKILL.md` skill (self-activating on its `description`), the same shape as the 7 framework persona skills. See [`guides/customizing-personas.md`](../guides/customizing-personas.md).
+A project-specific persona added beyond the framework's catalogue. Ships as its own `.agents/skills/persona-<slug>/SKILL.md` skill (self-activating on its `description`), the same shape as the 8 framework persona skills. See [`guides/customizing-personas.md`](../guides/customizing-personas.md).
 
 ---
 
@@ -221,10 +221,10 @@ Markers for assumptions in a task file. Every assumption starts as `[pending]`; 
 A task type for optimising a specific bottleneck under a measured target. Lead persona: The Performance Surgeon. See [`tasks/performance.md`](../tasks/performance.md).
 
 ### persona
-A *mindset*, not a role. The flow graph names a **suggested** lead persona per task type; the agent may re-assess (ADR 0002's 1:1 mapping is superseded). The `docs/personas/` catalogue describes 13 mindsets, but only **7 ship as skills** (`persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}`); the other 6 (Builder, Bug Hunter, Documentarian, Lead Engineer, Researcher, Test Author) are mindsets carried by the matching workflow skill (or, for Lead Engineer, the orchestration template). See [`concepts/04-personas.md`](../concepts/04-personas.md). Distinct from *role* (which implies a job title) and *agent* (the model+CLI running the work).
+A *mindset*, not a role. The flow graph names a **suggested** lead persona per task type; the agent may re-assess (ADR 0002's 1:1 mapping is superseded). The `docs/personas/` catalogue describes 13 mindsets, but only **8 ship as skills** (`persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor,lead-engineer}`); the other 5 (Builder, Bug Hunter, Documentarian, Researcher, Test Author) are mindsets carried by the matching workflow skill. See [`concepts/04-personas.md`](../concepts/04-personas.md). Distinct from *role* (which implies a job title) and *agent* (the model+CLI running the work).
 
 ### persona skill
-A self-activating skill at `.agents/skills/persona-<slug>/SKILL.md` that conditions a mindset for role-shaped work. Loads on its own directive `description` when the task matches; no dependency on any other skill. Seven ship: `persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}`. The remaining 6 catalogued mindsets do not have a persona skill — they ride along with the matching workflow skill.
+A self-activating skill at `.agents/skills/persona-<slug>/SKILL.md` that conditions a mindset for role-shaped work. Loads on its own directive `description` when the task matches; no dependency on any other skill. Eight ship: `persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor,lead-engineer}`. (`persona-lead-engineer` ships *because* orchestration has no workflow skill, so its coordination mindset is the discipline — see [ADR 0025](../adrs/0025-orchestration-coordination-artifact.md).) The remaining 5 catalogued mindsets do not have a persona skill — they ride along with the matching workflow skill.
 
 ### placeholder
 A `{{name}}` token in a task or doc template, resolved by the launcher per task. See [`reference/template-placeholders.md`](template-placeholders.md).

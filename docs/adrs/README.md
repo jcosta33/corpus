@@ -29,4 +29,6 @@ Numbers **0011 and 0012 are intentionally vacant** — they were vacated during 
 | [0021](./0021-verification-contract.md) | Verification contract — required validations bind through `AGENTS.md > Commands` |
 | [0022](./0022-acceptance-criteria-are-executable-checks.md) | Acceptance criteria are expressible as runnable checks |
 | [0023](./0023-harness-enforcement-contract.md) | Harness-enforcement contract (what a compliant runtime must honour) |
+| [0024](./0024-confidence-tiers.md) | Self-reviewed vs independently-reviewed confidence tiers |
+| [0025](./0025-orchestration-coordination-artifact.md) | Orchestration coordination artifact (ownership / hand-off / liveness / merge-intent) |
 | [0026](./0026-conformance-contract.md) | Machine-readable conformance contract + fixtures |

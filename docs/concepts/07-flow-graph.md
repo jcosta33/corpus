@@ -81,7 +81,7 @@ Swarm discourages certain "tempting" edges because they violate the distillation
 | `one source doc → multiple task types`        | One suggested route per source. Split the work.                                      |
 | `multiple source docs → one task`             | One source per task. Multiple sources = multiple tasks (or use orchestration).      |
 | `task file authored after implementation begins` | The task file is step one. Conditioning before action.                            |
-| `persona invented per session`                | Personas are catalogued (13 mindsets; 7 ship as skills).                            |
+| `persona invented per session`                | Personas are catalogued (13 mindsets; 8 ship as skills).                            |
 | `durable findings left only in the task file` | Task files are gitignored. Migrate findings to audits/specs/research.                |
 
 These are recommended routing, not gatekeeper-enforced. The old always-loaded `documentation-gatekeeper` skill that blocked forbidden flows has been removed; its rules now live here as framework guidance, and each `write-<type>` workflow skill prevents its own type's failure modes. The discipline that keeps these edges honest — pasting empirical proof of what changed — is carried by the `empirical-proof` and `adversarial-review` quality-gate skills, which self-activate on matching work.
@@ -98,14 +98,14 @@ Highlights worth understanding:
 
 - **`fix → The Skeptic`** (ships as `persona-skeptic`). The framework's convention is that fix sessions adopt the Skeptic mindset because root-causing demands hostility toward the most plausible-sounding explanation. See [ADR 0006](../adrs/0006-skeptic-owns-fix-tasks.md).
 - **`refactor → The Janitor`** (ships as `persona-janitor`). Behaviour preservation is the contract; the Janitor is the mindset built around safety-of-change.
-- **`orchestration → The Lead Engineer`** (a mindset, no skill). The only mindset that doesn't write code. Becomes the Skeptic for each review pass.
+- **`orchestration → The Lead Engineer`** (ships as `persona-lead-engineer`). The only mindset that doesn't write code; it self-activates this skill because orchestration has no workflow skill to carry its discipline (see [ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)). Becomes the Skeptic for each review pass — re-validating a worker's branch in a separate worktree promotes it from **self-reviewed** to **independently-reviewed** ([ADR 0024](../adrs/0024-confidence-tiers.md)).
 - **`kickback → original persona`.** When a Skeptic kicks back a Builder's branch, the kickback is itself a task — assigned to the *original* Builder (or a fresh agent in the same mindset) with the Skeptic's notes attached.
 
 ---
 
 ## 🛠️ Task type → skills
 
-There is **no always-loaded skill**. Each skill self-activates when its directive `description` matches the work; the table below is the recommended set per task type (workflow skill + quality gates + the `persona-<slug>` skill where the suggested persona ships as one). For the 6 mindsets carried by a workflow skill, the persona discipline is already inside that skill — there is no separate skill to load.
+There is **no always-loaded skill**. Each skill self-activates when its directive `description` matches the work; the table below is the recommended set per task type (workflow skill + quality gates + the `persona-<slug>` skill where the suggested persona ships as one). For the 5 mindsets carried by a workflow skill, the persona discipline is already inside that skill — there is no separate skill to load.
 
 | Task type          | Skills worth loading                                                          |
 | ------------------ | ----------------------------------------------------------------------------- |
@@ -123,7 +123,7 @@ There is **no always-loaded skill**. Each skill self-activates when its directiv
 | documentation      | `write-documentation` (carries Documentarian), `distillation-discipline`, `empirical-proof` |
 | review             | `persona-skeptic`, `adversarial-review`, `empirical-proof`                    |
 | deepen-audit       | `write-audit`, `persona-skeptic`, `adversarial-review`, `empirical-proof`     |
-| orchestration      | `adversarial-review`, `empirical-proof` (Lead Engineer is a mindset, no skill) |
+| orchestration      | `persona-lead-engineer`, `adversarial-review`, `empirical-proof`              |
 
 Project-specific skills self-activate in addition, by the same rule: a skill whose `description` field semantically matches the task's objective fires on its own.
 

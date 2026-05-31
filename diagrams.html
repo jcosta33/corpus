@@ -179,19 +179,21 @@ flowchart LR
       <section>
         <h2>3. Thirteen persona mindsets, two delivery shapes</h2>
         <p class="caption">
-          Seven personas ship as standalone <code>persona-&lt;slug&gt;</code>
-          skills; the other six are mindsets carried by a matching workflow
-          skill, and Lead Engineer has none.
+          Eight personas ship as standalone <code>persona-&lt;slug&gt;</code>
+          skills; the other five are mindsets carried by a matching workflow
+          skill. Lead Engineer ships as <code>persona-lead-engineer</code>
+          because orchestration has no workflow skill of its own.
         </p>
         <pre class="mermaid">
 flowchart TD
     ROOT["13 persona mindsets"]
-    ROOT --&gt; STANDALONE["7 standalone persona skills"]
-    ROOT --&gt; CARRIED["6 carried by another skill"]
+    ROOT --&gt; STANDALONE["8 standalone persona skills"]
+    ROOT --&gt; CARRIED["5 carried by another skill"]
 
     STANDALONE --&gt; PA["The Architect<br/>persona-architect"]
     STANDALONE --&gt; PAU["The Auditor<br/>persona-auditor"]
     STANDALONE --&gt; PJ["The Janitor<br/>persona-janitor"]
+    STANDALONE --&gt; PL["The Lead Engineer<br/>persona-lead-engineer"]
     STANDALONE --&gt; PM["The Migrator<br/>persona-migrator"]
     STANDALONE --&gt; PP["The Performance Surgeon<br/>persona-performance-surgeon"]
     STANDALONE --&gt; PS["The Skeptic<br/>persona-skeptic"]
@@ -202,7 +204,6 @@ flowchart TD
     CARRIED --&gt; CD["The Documentarian<br/>write-documentation"]
     CARRIED --&gt; CR["The Researcher<br/>write-research"]
     CARRIED --&gt; CT["The Test Author<br/>write-testing"]
-    CARRIED --&gt; CL["The Lead Engineer<br/>orchestration, no skill"]
 
     classDef root fill:#ede9fe,stroke:#6d28d9,color:#2c1a55;
     classDef group fill:#fef3c7,stroke:#a16207,color:#3d2f08;
@@ -210,31 +211,36 @@ flowchart TD
     classDef mindset fill:#fce7f3,stroke:#be185d,color:#4a1230;
     class ROOT root;
     class STANDALONE,CARRIED group;
-    class PA,PAU,PJ,PM,PP,PS,PSU shipped;
-    class CB,CBH,CD,CR,CT,CL mindset;
+    class PA,PAU,PJ,PL,PM,PP,PS,PSU shipped;
+    class CB,CBH,CD,CR,CT mindset;
         </pre>
         <p>
           A persona is a mindset, not a role. The standalone skills load when
           the work is role-shaped; the carried mindsets arrive with their
-          workflow skill. The catalogue stays at 13 mindsets even though
-          projects may add overlay personas of their own.
+          workflow skill. Lead Engineer ships as
+          <code>persona-lead-engineer</code> because orchestration has no
+          workflow skill, so the coordination mindset is the discipline — it
+          records per-worker owned/forbidden paths, hand-off contracts, a
+          liveness marker with a stalled status and re-plan trigger, and
+          per-conflict intent-preserved proof. The catalogue stays at 13
+          mindsets even though projects may add overlay personas of their own.
         </p>
       </section>
 
       <section>
-        <h2>4. The 23-skill catalogue</h2>
+        <h2>4. The 24-skill catalogue</h2>
         <p class="caption">
-          Twenty-three shipped skills in four groups — quality gates,
+          Twenty-four shipped skills in four groups — quality gates,
           specialised, authoring, and personas — each self-activating on its
           directive <code>description</code> with no always-loaded skill.
         </p>
         <pre class="mermaid">
 flowchart TD
-    CAT["23 shipped skills"]
+    CAT["24 shipped skills"]
     CAT --&gt; QG["Quality gates (3)"]
     CAT --&gt; SP["Specialised (1)"]
     CAT --&gt; AU["Authoring (12)"]
-    CAT --&gt; PE["Personas (7)"]
+    CAT --&gt; PE["Personas (8)"]
 
     QG --&gt; QG1["adversarial-review"]
     QG --&gt; QG2["distillation-discipline"]
@@ -244,7 +250,7 @@ flowchart TD
 
     AU --&gt; AUL["write-spec, write-audit,<br/>write-research, write-bug-report,<br/>write-feature, write-fix,<br/>write-refactor, write-rewrite,<br/>write-migration, write-performance,<br/>write-testing, write-documentation"]
 
-    PE --&gt; PEL["persona-architect, persona-auditor,<br/>persona-janitor, persona-migrator,<br/>persona-performance-surgeon,<br/>persona-skeptic, persona-surveyor"]
+    PE --&gt; PEL["persona-architect, persona-auditor,<br/>persona-janitor, persona-lead-engineer,<br/>persona-migrator, persona-performance-surgeon,<br/>persona-skeptic, persona-surveyor"]
 
     classDef root fill:#ede9fe,stroke:#6d28d9,color:#2c1a55;
     classDef gate fill:#fef3c7,stroke:#a16207,color:#3d2f08;
@@ -289,8 +295,11 @@ stateDiagram-v2
         <p>
           The self-review is a hard gate: it refuses incomplete answers and
           unsupported claims, so an agent cannot declare done by assertion.
-          Task files are gitignored; durable findings migrate upstream before
-          the worktree is deleted.
+          Passing it earns the self-reviewed confidence tier — the floor; a
+          code-producing task should reach independently-reviewed, where a
+          separate Skeptic re-runs validation in its own worktree, before
+          merge. Task files are gitignored; durable findings migrate upstream
+          before the worktree is deleted.
         </p>
       </section>
 

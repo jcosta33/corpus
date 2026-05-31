@@ -73,7 +73,7 @@ These edges are **routing smells**, not hard blocks. No skill enforces them — 
 
 ## 🎯 Task type → suggested persona
 
-Each row is a **suggested default**, not a binding. The `docs/personas/` catalogue describes 13 mindsets, but only **7 ship as skills** (`persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}`). The other 6 mindsets are carried by the matching workflow skill: Builder → `write-feature`, Bug Hunter → `write-bug-report`, Documentarian → `write-documentation`, Test Author → `write-testing`, Researcher → `write-research`, and Lead Engineer = orchestration (no skill; flat `task-orchestration.md` template + mindset). The "Persona skill?" column says how the suggested mindset is delivered.
+Each row is a **suggested default**, not a binding. The `docs/personas/` catalogue describes 13 mindsets, but only **8 ship as skills** (`persona-{architect,auditor,janitor,lead-engineer,migrator,performance-surgeon,skeptic,surveyor}`). The other 5 mindsets are carried by the matching workflow skill: Builder → `write-feature`, Bug Hunter → `write-bug-report`, Documentarian → `write-documentation`, Test Author → `write-testing`, Researcher → `write-research`. Lead Engineer ships as `persona-lead-engineer` because orchestration has no workflow skill to carry its discipline — the coordination mindset is the discipline ([ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)). The "Persona skill?" column says how the suggested mindset is delivered.
 
 | Task type                       | Suggested persona       | Persona skill?                                          | Secondary (handoff)             |
 | ------------------------------- | ----------------------- | ------------------------------------------------------- | ------------------------------- |
@@ -93,7 +93,7 @@ Each row is a **suggested default**, not a binding. The `docs/personas/` catalog
 | `documentation`                 | The Documentarian       | mindset in `write-documentation`                        | The Skeptic (review)            |
 | `review`                        | The Skeptic             | `persona-skeptic`                                       | —                               |
 | `deepen-audit`                  | The Skeptic             | `persona-skeptic`                                       | —                               |
-| `orchestration`                 | The Lead Engineer       | no skill (orchestration mindset; flat template)         | The Skeptic (merge-gate pass)   |
+| `orchestration`                 | The Lead Engineer       | `persona-lead-engineer` (no workflow skill; flat template) | The Skeptic (merge-gate pass)   |
 | `integration`                   | The Builder             | mindset in `write-feature`                              | The Skeptic (review)            |
 | `kickback`                      | (original persona)      | (whichever delivered the original mindset)              | The Skeptic (re-review)         |
 
@@ -103,7 +103,7 @@ The project may override the suggested persona for any task type (a launcher con
 
 ## 🛠️ Task type → skills worth loading
 
-There is **no always-loaded skill**. Each row lists the skills whose `description`s typically match the work; they self-activate when their triggers fire. The three quality gates (`empirical-proof`, `adversarial-review`, `distillation-discipline`) are cross-cutting — they surface inside whatever task is in play whenever their trigger is present (a verifiable claim, a review pass, an upstream-doc transformation). A suggested `persona-<slug>` skill loads on its own `description` for the 7 personas that ship as skills; the other mindsets ride along with their workflow skill.
+There is **no always-loaded skill**. Each row lists the skills whose `description`s typically match the work; they self-activate when their triggers fire. The three quality gates (`empirical-proof`, `adversarial-review`, `distillation-discipline`) are cross-cutting — they surface inside whatever task is in play whenever their trigger is present (a verifiable claim, a review pass, an upstream-doc transformation). A suggested `persona-<slug>` skill loads on its own `description` for the 8 personas that ship as skills; the other mindsets ride along with their workflow skill.
 
 | Task type             | Skills worth loading                                          |
 | --------------------- | ------------------------------------------------------------- |
@@ -122,7 +122,7 @@ There is **no always-loaded skill**. Each row lists the skills whose `descriptio
 | `documentation`       | `write-documentation`, `distillation-discipline`, `empirical-proof` |
 | `review`              | `adversarial-review`, `empirical-proof`                       |
 | `deepen-audit`        | `write-audit`, `adversarial-review`, `empirical-proof`        |
-| `orchestration`       | `adversarial-review`, `empirical-proof` (no workflow skill; flat template) |
+| `orchestration`       | `persona-lead-engineer`, `adversarial-review`, `empirical-proof` (no workflow skill; flat template) |
 | `integration`         | `write-feature`, `empirical-proof`                            |
 | `kickback`            | (same workflow skill as the original task type) + `adversarial-review` |
 
@@ -169,6 +169,15 @@ Toolchain slots above prove form; these augment the Self-review hard gate to ver
 | `spec-writing` | acceptance criteria carry check bindings (the deliverable itself, not a run) |
 | `review` | validation + tests re-run **by the reviewer** in their own worktree (independent of the worker's paste) |
 | `fix` | `regression-test` fails before the fix, passes after (already a validated oracle) |
+
+### Confidence tiers ([ADR 0024](../adrs/0024-confidence-tiers.md))
+
+The pasted proofs above carry a confidence tier. There are two:
+
+- **self-reviewed** — the producing agent ran the required commands and pasted them in its own Self-review hard gate. This is the floor; all solo work reaches it.
+- **independently-reviewed** — a separate Skeptic re-ran validation in its own worktree (the `review` row above), independent of the worker's paste.
+
+Code-producing tasks **should** reach *independently-reviewed* before merge; solo work is explicitly *self-reviewed*-tier. In the Lead Engineer pattern, the orchestrator becomes the Skeptic and re-validates each worker's branch, recording the per-worker review outcome and the coordination fields (owned/forbidden paths, hand-off contract, liveness/stalled markers, per-conflict intent-preserved proof) in `task-orchestration.md` ([ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)).
 
 ---
 

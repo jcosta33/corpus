@@ -42,7 +42,7 @@
 
 ## 🛠️ Skills directory
 
-The 23 shipped skills are flat siblings under `.agents/skills/`. There is **no always-loaded skill** and no consolidated `personas/SKILL.md` — each persona is its own self-activating skill. Each non-persona skill carries a `references/` folder (most hold a `task-template.md`).
+The 24 shipped skills are flat siblings under `.agents/skills/`. There is **no always-loaded skill** and no consolidated `personas/SKILL.md` — each persona is its own self-activating skill. Each non-persona skill carries a `references/` folder (most hold a `task-template.md`).
 
 ```
 .agents/skills/
@@ -76,7 +76,7 @@ The 23 shipped skills are flat siblings under `.agents/skills/`. There is **no a
     ├── write-testing/
     ├── write-documentation/
     │
-    │ # Personas (7) — self-activating mindset skills
+    │ # Personas (8) — self-activating mindset skills
     ├── persona-architect/SKILL.md
     ├── persona-auditor/SKILL.md
     ├── persona-janitor/SKILL.md
@@ -84,12 +84,13 @@ The 23 shipped skills are flat siblings under `.agents/skills/`. There is **no a
     ├── persona-performance-surgeon/SKILL.md
     ├── persona-skeptic/SKILL.md
     ├── persona-surveyor/SKILL.md
+    ├── persona-lead-engineer/SKILL.md
     │
     └── domain/                         # project-specific skills accumulate here
         └── (e.g., architecture-violations, testing-file-layout, etc.)
 ```
 
-The other 6 catalogued mindsets (Builder, Bug Hunter, Documentarian, Lead Engineer, Researcher, Test Author) do **not** ship as persona skills — they are carried by the matching workflow skill (Builder → `write-feature`, Bug Hunter → `write-bug-report`, Documentarian → `write-documentation`, Test Author → `write-testing`, Researcher → `write-research`; Lead Engineer = orchestration, no skill).
+The other 5 catalogued mindsets (Builder, Bug Hunter, Documentarian, Researcher, Test Author) do **not** ship as persona skills — they are carried by the matching workflow skill (Builder → `write-feature`, Bug Hunter → `write-bug-report`, Documentarian → `write-documentation`, Test Author → `write-testing`, Researcher → `write-research`). Lead Engineer ships `persona-lead-engineer` *because* orchestration has no workflow skill to carry its coordination mindset (ADR 0025); the flat `task-orchestration.md` remains its task template.
 
 Skills can be:
 
@@ -153,7 +154,7 @@ A repo is Swarm-conformant if:
 - [ ] `.gitignore` includes `.agents/tasks/`
 - [ ] `.agents/tasks/` exists (and is empty in the committed state)
 - [ ] `.agents/templates/` contains the shared `task-base.md`, the two skill-less task templates (`task-orchestration.md`, `task-review.md`), the four source-doc templates (`spec.md`, `audit.md`, `bug-report.md`, `research.md`), and the `skill.md` meta-template
-- [ ] `.agents/skills/` contains the 7 persona skills (`persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}/SKILL.md`)
+- [ ] `.agents/skills/` contains the 8 persona skills (`persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor,lead-engineer}/SKILL.md`)
 - [ ] `.agents/skills/` contains the 3 quality-gate skills (`empirical-proof`, `adversarial-review`, `distillation-discipline`)
 - [ ] `.agents/skills/` contains the 12 workflow skills (`write-{spec,audit,research,bug-report,feature,fix,refactor,rewrite,migration,performance,testing,documentation}`) plus `fix-flaky-test`
 - [ ] Each non-persona skill ships a `references/` folder (a `task-template.md`, except `distillation-discipline`=`worked-example.md` and `empirical-proof`=`evasions.md`)

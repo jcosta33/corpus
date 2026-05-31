@@ -29,7 +29,7 @@ The framework asks every project to write down a small set of things — short d
 
 - **Source documents** ground the work: a spec describes what to build, an audit describes what's there, a bug report describes what's broken, research describes what's been learned externally.
 - **Task files** condition the agent: the task is the unit of work; the file links the source doc, names the persona, attaches the skills, and lists the verification gates.
-- **Personas** condition the mindset: each task type has one suggested default persona, with a written profile, hard rules, and forbidden actions (the agent may re-assess; 7 of the 13 mindsets ship as standalone persona skills).
+- **Personas** condition the mindset: each task type has one suggested default persona, with a written profile, hard rules, and forbidden actions (the agent may re-assess; 8 of the 13 mindsets ship as standalone persona skills).
 - **Skills** carry domain knowledge: progressively disclosed, loaded on demand, written in the format adopted by Claude Code, OpenAI Codex, and others.
 - **The flow graph** ties it all together: pick a source doc, the rest follows as recommended routing a launcher can apply.
 
@@ -118,7 +118,7 @@ Swarm sits in a small, well-defined space among 2025–2026 frameworks:
 | [Superpowers](https://github.com/obra/superpowers)          | Skill-driven tasks                                       | None (skills are the discipline)    | Medium (Anthropic-format-only) |
 | Cognition / Devin                                           | Single-threaded agent session                            | None                                | Devin-only                     |
 | Anthropic Research                                          | Orchestrator + worker subagents                          | None                                | Anthropic-only                 |
-| **Swarm**                                                   | **Task-as-source-of-truth + deterministic conditioning** | **Mid (13 mindsets (7 ship as skills), 1:1 suggested)** | **Tool-agnostic by design**    |
+| **Swarm**                                                   | **Task-as-source-of-truth + deterministic conditioning** | **Mid (13 mindsets (8 ship as skills), 1:1 suggested)** | **Tool-agnostic by design**    |
 
 Swarm leads with the **task** and arranges everything else around it. Most other frameworks lead with the spec or the persona. The task-first stance is closer to how Cognition's Devin operates internally and matches the "talk to your lead agent" framing IndyDevDan recommends for 2026.
 

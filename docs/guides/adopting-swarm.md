@@ -74,14 +74,14 @@ What this gives you:
 - `CLAUDE.md`, `GEMINI.md` (cross-tool aliases)
 - `.gitignore` includes `.agents/tasks/` and `.worktrees/`
 - `docs/agents/01-process.md` through `05-flow-graph.md` (process docs every project ships)
-- `.agents/skills/` with all 23 shipped skills: 3 quality gates, 1 specialised, 12 authoring, and 7 individual `persona-<slug>` skills — each a self-contained `<name>/SKILL.md`. There is **no always-loaded skill**; each self-activates on its directive `description`.
+- `.agents/skills/` with all 24 shipped skills: 3 quality gates, 1 specialised, 12 authoring, and 8 individual `persona-<slug>` skills — each a self-contained `<name>/SKILL.md`. There is **no always-loaded skill**; each self-activates on its directive `description`.
 - `.agents/templates/` with the 8 flat templates (4 source-doc templates, the `skill.md` meta-template, the shared `task-base.md`, and the two skill-less task types `task-orchestration.md` / `task-review.md`). Per-skill task templates live in each skill's `references/task-template.md`.
 - Empty `.agents/{tasks,specs,audits,bugs,research}/` directories ready for content
 
 Verify:
 
 ```bash
-ls -1 .agents/skills/             # should list 23 skill directories
+ls -1 .agents/skills/             # should list 24 skill directories
 ls -la .agents/templates/         # should list 8 flat templates
 ls -la docs/agents/               # should list 5 process docs
 grep -F ".agents/tasks/" .gitignore  # should match
@@ -145,9 +145,9 @@ Manual checklist (when the conformance checker ships, automates these):
 - [ ] `AGENTS.md` exists at repo root, with a `## Commands` section
 - [ ] `AGENTS.md` no longer contains `TODO` markers (`grep -c TODO AGENTS.md` → 0)
 - [ ] `.gitignore` includes `.agents/tasks/` and `.worktrees/`
-- [ ] `.agents/skills/` contains 23 skill directories (`ls -1 .agents/skills/ | wc -l` → 23)
+- [ ] `.agents/skills/` contains 24 skill directories (`ls -1 .agents/skills/ | wc -l` → 24)
 - [ ] The 3 quality gates exist: `adversarial-review/`, `distillation-discipline/`, `empirical-proof/`
-- [ ] The 7 persona skills exist: `persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}/`
+- [ ] The 8 persona skills exist: `persona-{architect,auditor,janitor,lead-engineer,migrator,performance-surgeon,skeptic,surveyor}/`
 - [ ] The 12 authoring skills exist: `write-{spec,audit,research,bug-report,feature,fix,refactor,rewrite,migration,performance,testing,documentation}/`
 - [ ] `fix-flaky-test/SKILL.md` exists
 - [ ] `.agents/templates/` contains the 8 flat templates
@@ -182,7 +182,7 @@ Over time:
 
 - **Promote durable findings** to audits / specs / research (the promotion protocol; see `docs/agents/01-process.md` in your installed scaffold)
 - **Add project-specific skills** under `.agents/skills/domain/` as you encounter patterns. Use `.agents/templates/skill.md` as the meta-template, and the [writing-skills guide](writing-skills.md) for the authoring discipline.
-- **Add overlay personas** if the seven shipped persona skills miss recurring local discipline. An overlay is a new self-contained persona skill at `.agents/skills/persona-<name>/SKILL.md`, beside the shipped seven (see [`customizing-personas.md`](customizing-personas.md)). There's no central `personas/SKILL.md` to fork.
+- **Add overlay personas** if the eight shipped persona skills miss recurring local discipline. An overlay is a new self-contained persona skill at `.agents/skills/persona-<name>/SKILL.md`, beside the shipped eight (see [`customizing-personas.md`](customizing-personas.md)). There's no central `personas/SKILL.md` to fork.
 - **Add ADRs** as you make structurally significant decisions. There's no canonical scaffold ADR template (yet); use the format documented in `docs/documents/extended.md` of this Swarm repo.
 - **Update the constitution** as architectural invariants emerge.
 
@@ -238,12 +238,12 @@ your-project/
 └── .agents/
     ├── tasks/                         # gitignored, worktree-local
     ├── templates/                     # 8 flat templates (source-doc + skill meta + task-base + 2 skill-less task types)
-    ├── skills/                        # 23 self-contained skills, each <name>/SKILL.md
+    ├── skills/                        # 24 self-contained skills, each <name>/SKILL.md
     │   ├── adversarial-review/        # quality gates (3)
     │   ├── distillation-discipline/
     │   ├── empirical-proof/
     │   ├── fix-flaky-test/            # specialised (1)
-    │   ├── persona-{architect,auditor,janitor,migrator,performance-surgeon,skeptic,surveyor}/  # personas (7)
+    │   ├── persona-{architect,auditor,janitor,lead-engineer,migrator,performance-surgeon,skeptic,surveyor}/  # personas (8)
     │   └── write-{spec,audit,research,bug-report,feature,fix,refactor,rewrite,migration,performance,testing,documentation}/  # authoring (12); each ships references/task-template.md
     ├── specs/                         # populate as your project authors specs
     ├── audits/                        # populate as your project audits areas

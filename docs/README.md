@@ -60,12 +60,12 @@ swarm/
     │   ├── 01-process.md ··· 05-flow-graph.md
     │
     └── .agents/
-        ├── skills/                ← the 23 shipped skills, each <name>/SKILL.md (+ references/)
+        ├── skills/                ← the 24 shipped skills, each <name>/SKILL.md (+ references/)
         │   ├── adversarial-review/, distillation-discipline/, empirical-proof/   (3 quality gates)
         │   ├── fix-flaky-test/                                                   (1 specialised)
         │   ├── write-{spec,audit,research,bug-report,feature,fix,refactor,      (12 authoring)
         │   │           rewrite,migration,performance,testing,documentation}/
-        │   └── persona-{architect,auditor,janitor,migrator,                     (7 personas)
+        │   └── persona-{architect,auditor,janitor,lead-engineer,migrator,       (8 personas)
         │                 performance-surgeon,skeptic,surveyor}/
         └── templates/             ← 8 flat templates with {{placeholders}}
             ├── {spec,audit,bug-report,research}.md  (4 source-doc templates)
@@ -109,10 +109,10 @@ Reading order depends on who you are and why you're here:
 
 | Dimension          | Cardinality | Where                                                       |
 | ------------------ | ----------- | ----------------------------------------------------------- |
-| 🎭 Persona mindsets | 13 (7 ship as skills) | [`personas/`](personas/) — 7 ship as `persona-*` skills; the other 6 are mindsets carried by the matching workflow skill |
+| 🎭 Persona mindsets | 13 (8 ship as skills) | [`personas/`](personas/) — 8 ship as `persona-*` skills (incl. `persona-lead-engineer`, the orchestration coordination mindset); the other 5 are mindsets carried by the matching workflow skill |
 | 📋 Task types      | 18          | [`tasks/`](tasks/)                                          |
 | 📄 Core doc types  | 4           | [`documents/`](documents/) (+ extended variants)            |
-| 🛠️ Skills          | 23          | [`skills/`](skills/) — 3 quality gates (`adversarial-review`, `distillation-discipline`, `empirical-proof`), 1 specialised (`fix-flaky-test`), 12 authoring (`write-*`), 7 personas (`persona-*`) |
+| 🛠️ Skills          | 24          | [`skills/`](skills/) — 3 quality gates (`adversarial-review`, `distillation-discipline`, `empirical-proof`), 1 specialised (`fix-flaky-test`), 12 authoring (`write-*`), 8 personas (`persona-*`) |
 
 ---
 
@@ -141,12 +141,12 @@ See [`NON-GOALS.md`](NON-GOALS.md) for the full list of what Swarm explicitly is
 
 | Surface                                  | Status     |
 | ---------------------------------------- | ---------- |
-| Persona catalogue (13 mindsets, 7 ship as skills) | 🟢 Stable  |
+| Persona catalogue (13 mindsets, 8 ship as skills) | 🟢 Stable  |
 | Task type catalogue (18 task types)      | 🟢 Stable  |
 | Core doc types (4)                       | 🟢 Stable  |
 | Flow graph (document → task → persona)   | 🟢 Stable — recommended routing, not gatekeeper-enforced |
 | Template placeholder contract            | 🟢 Stable  |
-| Skill set (23 skills)                    | 🟡 Evolving — see [`skills/README.md`](skills/README.md) |
+| Skill set (24 skills)                    | 🟡 Evolving — see [`skills/README.md`](skills/README.md) |
 | Subagent strategy                        | 🟡 Evolving — see [`concepts/10-subagent-strategy.md`](concepts/10-subagent-strategy.md) |
 | Project-level overlays (constitution, ADR) | 🟠 Recommended, not required |
 

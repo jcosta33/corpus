@@ -34,7 +34,7 @@ The launcher (CLI or human) creates the conditioned task file at `.agents/tasks/
 - Metadata is filled in (slug, branch, base, worktree path, created timestamp, status `active`)
 - The suggested persona is named in the `> **PERSONA:**` blockquote
 - Source doc(s) are linked
-- The skills worth loading are listed (workflow skill, quality-gate skills, the `persona-<slug>` skill for the 7 shipped personas, project-specific skills matched by description) — each self-activates by its directive `description`; there is no always-loaded skill
+- The skills worth loading are listed (workflow skill, quality-gate skills, the `persona-<slug>` skill for the 8 shipped personas, project-specific skills matched by description) — each self-activates by its directive `description`; there is no always-loaded skill
 - Verification gate slots are bound to project commands from `AGENTS.md > Commands`
 - Constraints include the persona's forbidden actions
 - Self-review checklist is pre-written with empty answer slots

@@ -47,7 +47,7 @@ Skills self-activate by description match — load the ones whose `description` 
 
 - The **workflow skill** for this task type (e.g. `write-feature`, `write-fix`, `write-audit`).
 - The **quality gates** whose descriptions match (`empirical-proof` on any task with verifiable claims, `adversarial-review` on review/audit passes, `distillation-discipline` when transforming an upstream doc).
-- The **suggested persona**: a `persona-<slug>` skill if one matches the work (7 ship as skills); otherwise the mindset is carried by the workflow skill itself. Record the choice — and any divergence from the suggested default — in `## Decisions`.
+- The **suggested persona**: a `persona-<slug>` skill if one matches the work (8 ship as skills); otherwise the mindset is carried by the workflow skill itself. Record the choice — and any divergence from the suggested default — in `## Decisions`.
 
 ---
 

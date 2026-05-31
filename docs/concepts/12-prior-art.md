@@ -144,7 +144,7 @@ The frontier research surfaced six gaps in earlier Swarm drafts. The current doc
 | -------------------------- | ---------------- | -------------------- | --------------------------- | ------------------ | --------------------- | ---------------------------------- |
 | Primary unit of work       | Spec command     | Story file           | Skill-driven task           | Devin session      | Lead Researcher query | **Task file**                      |
 | Spec required for features | ✅ Yes           | ✅ Yes (PRD + arch)  | ✅ Yes (after brainstorming) | ⚠️ Implicit (plan.md) | n/a (research)        | ✅ **Yes**                         |
-| Personas                   | None             | 21+ named characters | None (skill-based)          | None               | Lead + Subagents      | **13 mindsets (7 ship as skills), 1:1 suggested** |
+| Personas                   | None             | 21+ named characters | None (skill-based)          | None               | Lead + Subagents      | **13 mindsets (8 ship as skills), 1:1 suggested** |
 | Skills format              | n/a              | YAML workflows       | SKILL.md (Anthropic format) | n/a                | SKILL.md              | **SKILL.md**                       |
 | Subagent strategy          | n/a              | Persona-handoff      | Subagent-per-task           | Read-only only     | Orchestrator-worker   | **Read-side parallel; write-side single-threaded** |
 | Validation enforcement     | Manual           | QA agent phase       | TDD iron law                | CI before merge    | Citation agent        | **Named gate slots + Self-review hard gate** |

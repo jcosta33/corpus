@@ -28,7 +28,7 @@ The bar quantitatively: at least 3 independent projects (different teams, differ
 
 Process:
 
-1. **Try the existing personas first.** Spend 5+ sessions trying to make the work fit one of the thirteen catalogued mindsets (seven ship as `persona-<slug>` skills; the other six ride in their matching workflow skill). Often the existing persona, used properly, suffices.
+1. **Try the existing personas first.** Spend 5+ sessions trying to make the work fit one of the thirteen catalogued mindsets (eight ship as `persona-<slug>` skills; the other five ride in their matching workflow skill). Often the existing persona, used properly, suffices.
 2. **Try an overlay first.** If your project genuinely needs the new persona, add it as an overlay persona skill (per [`customizing-personas.md`](customizing-personas.md)). Use it for a few months.
 3. **Cite multiple projects.** Your project + at least 2 others must independently want the same persona.
 4. **Draft the ADR.** Use the ADR template ([`documents/extended.md`](../documents/extended.md#-adr)). The ADR enumerates the alternatives considered (folding into an existing persona or workflow skill) and the reason they were rejected.

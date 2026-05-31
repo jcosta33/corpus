@@ -1,6 +1,6 @@
 # 09 · Empirical proof
 
-> **TL;DR.** Every persona's `## Self-review` is a hard gate. Every claim is backed by **pasted command output** — verbatim, the actual lines from the actual run. Paraphrase is not proof. "Tests passed" is not proof; the last two lines of the test runner is proof. This applies regardless of persona — Builders, Skeptics, Researchers, and Architects all paste output. The discipline defeats the framework's most insidious failure mode: hallucinated completion.
+> **TL;DR.** Every persona's `## Self-review` is a hard gate. Every claim is backed by **pasted command output** — verbatim, the actual lines from the actual run. Paraphrase is not proof. "Tests passed" is not proof; the last two lines of the test runner is proof. This applies regardless of persona — Builders, Skeptics, Researchers, and Architects all paste output. The discipline targets the framework's most insidious failure mode — hallucinated completion — by making missing evidence *conspicuous*. Be precise about what that buys: pasted output is **agent-self-attested** (conspicuousness, not enforcement); mechanical enforcement is a runtime's job ([ADR 0023](../adrs/0023-harness-enforcement-contract.md)).
 
 ---
 
@@ -10,7 +10,9 @@ Coding agents are pattern-completers. The pattern of "successful task" includes 
 
 This is **hallucinated completion**. It is not deceit; the agent is not "lying". It is a probabilistic system completing the most likely continuation. But in production, the result is identical to a lie: code ships that doesn't work, tests are claimed but never run, the build is "good" until CI tells you it isn't.
 
-Empirical proof is the framework's structural defence. The agent cannot complete the pattern of "task complete" without first pasting evidence that the task is, in fact, complete.
+Empirical proof is the framework's structural defence — *structural* in the precise sense that an empty `[Paste output]` block is **conspicuous** where a free-text "✅ done" is not. Omission becomes visible.
+
+Be honest about the ceiling, though. This is **self-attestation, not enforcement**: the agent pastes its *own* output, and the discipline concedes it is "still gameable with fabricated output" and selective tail-paste ([`skills/empirical-proof.md`](../skills/empirical-proof.md)). The markdown layer cannot re-run a command or block `status: done` (Swarm has no runtime — [PRINCIPLES.md](../PRINCIPLES.md) #1). Mechanical enforcement — re-running the bound commands in a clean checkout and blocking promotion on failure or empty paste — is the job of a **compliant runtime**, specified by [ADR 0023](../adrs/0023-harness-enforcement-contract.md), not of this layer. And whether the discipline actually *reduces* hallucinated completion is an empirical hypothesis Swarm has **not yet measured** (it is grounded in the activation/Reflexion evidence, not a Swarm-specific benchmark — see [`.agents/research/empirical-evidence.md`](../../.agents/research/empirical-evidence.md)). The honest claim is: conspicuousness + a defined enforcement target, not compiler-grade enforcement.
 
 ---
 

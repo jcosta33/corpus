@@ -1,0 +1,62 @@
+# Swarm conformance contract (ADR 0026). Inert data — Swarm runs nothing.
+# A checker reads this to validate a consuming repo / task file. The prose
+# sources of truth are the framework's /docs/reference/*; this mirrors them
+# and fixtures/ guards against drift.
+version: 0.1.0
+
+# --- A well-formed task file (keyed to .agents/templates/task-base.md) ---
+task_file:
+  required_sections:            # H2 headings that must be present
+    - Objective
+    - Linked docs
+    - Plan
+    - Self-review
+  required_subsections:
+    - parent: Self-review
+      heading: Verification outputs
+  content_rules:
+    - id: non-empty-paste
+      applies_to: "Self-review > Verification outputs"
+      rule: >-
+        every required paste slot holds non-empty, non-placeholder text — a fenced
+        command-output block, or `n/a` with a one-line reason — never a bare
+        `[Paste output]` placeholder.
+    - id: no-open-critical
+      applies_to: Open questions
+      rule: "no [CRITICAL] open question remains unresolved when status: done."
+
+# --- AGENTS.md command contract (ADR 0018) ---
+agents_md:
+  required_command_rows: [Validation, Test, Format]
+  extended_command_rows: [Install, Typecheck, Lint, Build, ValidateDeps, Benchmark]
+  out_of_contract:       [MarkdownLint, LinkCheck, CitationCheck]
+
+# --- Placeholder namespaces (ADR 0005) ---
+placeholders:
+  legal_prefixes: ["cmd", "", "swarm:", "project:"]   # "" = framework scaffolding names
+  rule: >-
+    a runner substitutes every required placeholder and leaves unrecognised ones
+    untouched; it does not introduce names in the cmd*/no-prefix namespace without an ADR.
+
+# --- Per-task-type required verification suite ---
+# Canonical matrix: /docs/reference/flow-graph.md. Each slot must appear as a paste
+# slot in that task type's references/task-template.md. cmd* slots resolve via
+# AGENTS.md > Commands; the named gates are defined in /docs/reference/verification-gates.md.
+required_suite:
+  feature:            [Validation, Test, ValidateDeps, acceptance-criteria-coverage]
+  fix:                [Validation, Test, regression-test]
+  refactor:           [ValidateDeps, Typecheck, Test, behaviour-preservation]
+  rewrite:            [Validation, Test, behaviour-preservation]
+  migration:          [Validation, Test, ValidateDeps, behaviour-preservation]
+  upgrade:            [Build, Validation, Test, behaviour-preservation]
+  performance:        [Benchmark, Test, Validation]
+  testing:            [Test, Validation, assertion-flip]
+  documentation:      [example-output]
+  integration:        [Validation, Test, acceptance-criteria-coverage, integration-boundary]
+  spec-writing:       [git-status, acceptance-criteria-bindings]
+  research-writing:   [git-status]
+  audit-writing:      [git-status]
+  bug-report-writing: [reproduction-output]
+  review:             [Validation, Test]            # re-run by the reviewer, not the worker
+  deepen-audit:       [Validation, ValidateDeps]
+  orchestration:      [merged-Validation, merged-Test, scope-disjointness, merge-intent]

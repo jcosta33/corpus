@@ -6,19 +6,19 @@
 
 ## TL;DR
 
-Swarm ships **seven persona skills** — `persona-architect`, `persona-auditor`, `persona-janitor`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`. Each is a standalone, self-contained `SKILL.md` (~70 lines) carrying that mindset's hard constraints, forbiddances, required proofs, and red-flag rationalisations. The agent loads the one whose directive `description` matches the task — no persona skill depends on any other, and none loads on every task.
+Swarm ships **eight persona skills** — `persona-architect`, `persona-auditor`, `persona-janitor`, `persona-migrator`, `persona-performance-surgeon`, `persona-skeptic`, `persona-surveyor`, and `persona-lead-engineer`. Each is a standalone, self-contained `SKILL.md` (~70 lines) carrying that mindset's hard constraints, forbiddances, required proofs, and red-flag rationalisations. The agent loads the one whose directive `description` matches the task — no persona skill depends on any other, and none loads on every task.
 
 A persona is a **mindset, not a role**: same agent, same model, different stance, different output. The skill's job is to lock that stance in from the start of the work and hold it when the task gets hard.
 
 ---
 
-## The split model: seven standalone skills, not one consolidated file
+## The split model: eight standalone skills, not one consolidated file
 
 Earlier framing shipped all personas as a single consolidated `personas/SKILL.md` that a loader read and indexed into. Swarm splits them: one `persona-<slug>/SKILL.md` per mindset.
 
 The split follows directly from how skills load. The open spec defines three loading stages — metadata always in context, the body loaded when the `description` matches, references on demand. A consolidated file defeats the middle stage: adopting *one* persona would pull *all thirteen* mindset bodies into context, most of them irrelevant to the task at hand. With the split, only the body the agent actually adopts loads. Total context cost is *lower* than a single monolithic index, not higher.
 
-This is the progressive-disclosure argument, and it compounds with the U-shaped attention finding (*Lost in the Middle*): a long body buries its middle in an attention trough, so a 600-line consolidated catalogue would have its sixth and seventh personas read but not reliably acted on. Seven ~70-line bodies keep every persona's constraints near the start-or-end of its own short context. The full evidence — length budgets, the U-curve, and why the persona discipline is the canonical example of progressive disclosure — is in [`building/body-anatomy.md`](building/body-anatomy.md).
+This is the progressive-disclosure argument, and it compounds with the U-shaped attention finding (*Lost in the Middle*): a long body buries its middle in an attention trough, so a 600-line consolidated catalogue would have its later personas read but not reliably acted on. Eight ~70-line bodies keep every persona's constraints near the start-or-end of its own short context. The full evidence — length budgets, the U-curve, and why the persona discipline is the canonical example of progressive disclosure — is in [`building/body-anatomy.md`](building/body-anatomy.md).
 
 Self-containment seals the split: each persona skill assumes no sibling is installed. A consumer can vendor only `persona-skeptic` and `persona-architect` and both work, because neither body links to the other or to a shared loader. The directive `description` does the disambiguation — its `Skip this skill for …` clause names the *task types* this persona is not for, never a sibling persona's name.
 
@@ -32,9 +32,9 @@ Each persona `description` follows the directive form: a WHAT verb (*"Adopt the 
 
 ---
 
-## Seven skills, thirteen mindsets
+## Eight skills, thirteen mindsets
 
-The conceptual catalogue under [`../personas/`](../personas/README.md) describes **thirteen mindsets**. Only **seven ship as standalone persona skills** — the seven listed above. The other six are not separate skills; their mindset is carried by the matching **workflow skill**, which encodes the same stance inline:
+The conceptual catalogue under [`../personas/`](../personas/README.md) describes **thirteen mindsets**. Only **eight ship as standalone persona skills** — the eight listed above. The other five are not separate skills; their mindset is carried by the matching **workflow skill**, which encodes the same stance inline:
 
 | Mindset (catalogue) | Ships as | Where the stance lives |
 | ------------------- | -------- | ---------------------- |
@@ -45,14 +45,14 @@ The conceptual catalogue under [`../personas/`](../personas/README.md) describes
 | Performance Surgeon | `persona-performance-surgeon` | persona skill |
 | Skeptic | `persona-skeptic` | persona skill |
 | Surveyor | `persona-surveyor` | persona skill |
+| Lead Engineer | `persona-lead-engineer` | persona skill — orchestration has no workflow skill, so the coordination mindset is itself the discipline ([ADR 0025](../adrs/0025-orchestration-coordination-artifact.md)) |
 | Builder | — | carried by `write-feature` |
 | Bug Hunter | — | carried by `write-bug-report` |
 | Documentarian | — | carried by `write-documentation` |
 | Researcher | — | carried by `write-research` |
 | Test Author | — | carried by `write-testing` |
-| Lead Engineer | — | orchestration mindset; no skill (flat `task-orchestration.md` template) |
 
-The six mindset-only personas earn no separate skill because their discipline is inseparable from the work the workflow skill already governs — the Builder mindset *is* the discipline `write-feature` enforces, so duplicating it as a standalone persona would only add a second body to load for the same task. The seven that do ship as skills are the ones whose stance applies across more than one workflow skill (the Skeptic reviews any code-producing branch; the Migrator covers both migration and upgrade), so isolating them keeps each one independently loadable.
+The five mindset-only personas earn no separate skill because their discipline is inseparable from the work the workflow skill already governs — the Builder mindset *is* the discipline `write-feature` enforces, so duplicating it as a standalone persona would only add a second body to load for the same task. The eight that do ship as skills are the ones whose stance applies where no single workflow skill carries it: seven span more than one workflow skill (the Skeptic reviews any code-producing branch; the Migrator covers both migration and upgrade), and Lead Engineer ships because orchestration has **no** workflow skill at all (per [ADR 0019](../adrs/0019-personas-ship-as-individual-skills.md) as amended) — so isolating each keeps it independently loadable.
 
 ---
 
@@ -71,7 +71,7 @@ The enforcement is the **Self-review hard gate**: the task cannot close without 
 ## Related
 
 - [`../personas/README.md`](../personas/README.md) — the thirteen-mindset conceptual catalogue (routing, contrasts, hazards)
-- [`building/body-anatomy.md`](building/body-anatomy.md) — progressive disclosure and the U-curve; why seven short bodies beat one long one
+- [`building/body-anatomy.md`](building/body-anatomy.md) — progressive disclosure and the U-curve; why eight short bodies beat one long one
 - [`building/activation.md`](building/activation.md) — the directive `description` form that drives self-assessment loading
 - [`building/self-containment.md`](building/self-containment.md) — why each persona skill assumes no sibling is installed
 - [`README.md`](README.md) — the full skill catalogue
