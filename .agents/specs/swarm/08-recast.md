@@ -22,7 +22,7 @@ A regression check (§32, §34) MUST confirm that no skill, profile, or `AGENTS.
 
 ### 26.2 The 24-skill → ~9-pass recast
 
-The 24 shipped skills recast onto the nine passes of §9. The mapping is *many-skills-to-one-pass*: a pass MAY carry more than one pass guide (e.g. `implement` carries one guide per implementation kind), and every pass carries **at least one** pass guide. Two cross-cutting fragments (§26.3) are shared across passes rather than owned by one.
+The 24 shipped skills recast onto the nine passes of §9. The mapping is *many-skills-to-one-pass*: a pass MAY carry more than one pass guide (e.g. `implement` carries one guide per implementation kind). Five passes ship a stdlib pass guide in v0.1 (§9.4 — `lint`, `decompose`, `implement`, `review`, `promote`); the other four (`author`, `improve`, `lower`, `verify`) are fully specified but ship no guide yet and MAY gain one later — a guide-less pass is **not** a conformance gap. Two cross-cutting fragments (§26.3) are shared across passes rather than owned by one.
 
 | Legacy skill | Recast role | Owning pass |
 |---|---|---|
@@ -57,7 +57,7 @@ Three transformations in that table are normative and called out individually:
 - **`fix-flaky-test` survives as a narrow `implement` guide.** It is the one legacy skill that maps to a sufficiently specific procedure (de-flaking a non-deterministic test) to remain its own guide rather than collapse into `write-fix`.
 - **The eight `persona-*` skills become profiles (§27).** Their carrier (standalone file vs inlined in a pass guide) is an implementation detail; what matters is that a profile is a heuristic stance, not a procedure module.
 
-The resulting pass-guide set carried by `docs/passes/` (and the scaffold copy under `scaffold/.agents/skills/`) MUST cover the nine passes; the five **stdlib pass guides** that are tooled first are `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`.
+The resulting pass-guide set spans the nine passes as a *contract*, but only **five stdlib pass guides ship in v0.1** (§9.4): `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`. The `lint` and `decompose` guides are **net-new** — no legacy skill seeds them (the recast table maps legacy skills onto `author`/`implement`/`review`/`verify`/`promote`); the remaining four passes (`author`, `improve`, `lower`, `verify`) are guide-less in v0.1.
 
 ### 26.3 The two cross-cutting fragments
 
@@ -379,6 +379,13 @@ Each source document carries an epistemic stance that constrains what it may ass
 | `audit.md` | **observation-only** — describes present state and risk; asserts no new intended behavior | a `spec.swarm.md` (via `author`) |
 | `bug-report.md` | **diagnosis-only** — reproduces and root-causes a defect; prescribes no fix | a **fix task** (`implement`) |
 | `research.md` | **inquiry** — surveys options and evidence; commits to no decision | a `spec.swarm.md` (via the `author` pass) |
+| `prd.md` | **intent** — states desired product outcomes; non-authoritative until authored | a `spec.swarm.md` (via `author`) |
+| `rfc.md` | **proposal** — proposes a design/approach; commits nothing until accepted | a `spec.swarm.md` (via `author`) or an `adr.md` |
+| `use-case.md` / examples | **scenario** — illustrates desired behavior by example | `REQ`/`INTERFACE` blocks in a `spec.swarm.md` (via `author`) |
+| `nfr.md` / SLOs | **quality attribute** — states non-functional targets | `CONSTRAINT`/`INVARIANT` blocks + verification rows (via `author`) |
+| interface source (OpenAPI/GraphQL/DB schema) | **boundary shape** — declares an interface contract | `INTERFACE` blocks (via `author`) |
+| `finding.md` | **evidence** — one durable, evidenced project fact | governs as Axis-A rank 3 once accepted (§22, §23) |
+| `adr.md` | **decision** — an immutable architecture decision (Nygard) | governs as Axis-A rank 1 (§22, §30) |
 
 Normative consequence: an `audit.md` MUST NOT contain `REQ`/`CONSTRAINT`/`INVARIANT` obligation blocks of its own intent — observed risk is promoted *into* a spec, where it acquires obligation force. A `bug-report.md` MUST NOT prescribe an implementation — its diagnosis promotes *into* a fix task. These are the epistemic-stance invariants of ADR 0007 (kept) and ADR 0001 (kept).
 
