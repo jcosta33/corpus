@@ -206,7 +206,7 @@ The INDEX **links into** Tier-2 artifacts; it MUST NOT duplicate their bodies. A
 
 #### 23.1.2 `memory/glossary.md`
 
-`memory/glossary.md` enforces **one word, one meaning** (ASD-STE100 discipline, also referenced by APS §7 and the `SOL-P006` undefined-term rule, §8). Each entry binds exactly one term to exactly one definition. A term whose meaning is contested MUST be split into distinct terms, never overloaded. The glossary is the project-level fallback for term resolution; an in-file `TERM` definition in a `spec.swarm.md` takes precedence over the glossary for that spec (term-resolution precedence).
+`memory/glossary.md` enforces **one word, one meaning** (ASD-STE100 controlled-vocabulary discipline `[STE]`, also referenced by APS §7 and the `SOL-P006` undefined-term rule, §8). Each entry binds exactly one term to exactly one definition. A term whose meaning is contested MUST be split into distinct terms, never overloaded. The glossary is the project-level fallback for term resolution; an in-file `TERM` definition in a `spec.swarm.md` takes precedence over the glossary for that spec (term-resolution precedence).
 
 ### 23.2 Tier-2 — the immutable evidence store (kernel)
 
@@ -469,7 +469,7 @@ Swarm has **two independent version axes**. Conflating them is a category error:
 | **Language version** | The SOL + APS feature set: grammar, the 7 block types, the 5 modals, the clause keywords, the `SOL-<LAYER>NNN` lint codes (§4–§8) | Per-file frontmatter: `swarm_language` + `aps_version` | Small, slow-moving: `0.1`, `0.2`, `1.0` |
 | **Framework / package version** | The scaffold, templates, skills/pass guides, personas/profiles, flow-graph (§20, §21, §26–§29) | `.agents/.swarm-version` (semver) | Ordinary semver; may move many times between language bumps |
 
-Rationale: this mirrors C# `LangVersion` vs the SDK/compiler, and Rust editions vs `rust-version` vs cargo/rustc — the *language API* (grammar + lint codes) and the *package API* (template sections + skills + flow-graph) evolve on independent clocks, and SemVer is only meaningful when each public API is named explicitly.
+Rationale: this mirrors how a language version is a distinct axis from the package/toolchain version — e.g. C# `LangVersion` (overridable from its target-framework default but bounded by the installed compiler `[CSLANG]`) and Rust editions vs `rust-version` vs cargo/rustc `[RUSTED]` — so the *language API* (grammar + lint codes) and the *package API* (template sections + skills + flow-graph) are versioned as separately-named public APIs, and SemVer is only meaningful when each public API is named explicitly.
 
 #### 25.1.1 Language version
 

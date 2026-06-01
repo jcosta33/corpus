@@ -145,7 +145,7 @@ APS exists because of a **durable mechanism**, not a transient capability ceilin
 
 1. **Format and order sensitivity** — meaning-preserving reformatting alone changes few-shot accuracy by up to 76 points (LLaMA-2-13B) and ~10 points on average across 50+ tasks, with format performance only weakly correlated between models `[SCLAR]` (cf. the older model-specific ~40% figure for GPT-3.5-turbo on code translation `[FORMAT]`); example/prompt ordering can independently swing results between near-SOTA and random `[PROMPTORDER]`; controlled, predictable prose shape reduces this variance.
 2. **Multi-turn decay** — reliability drops ≈39% across multi-turn generation `[MULTITURN]` as early loose assumptions compound; stable artifacts beat accumulating chat.
-3. **Context rot / lost-in-the-middle** — relevant content buried in long inputs is used 20–50% less reliably; low-entropy prose keeps the load-bearing signal legible.
+3. **Context rot / lost-in-the-middle** — relevant content buried in long inputs is used markedly less reliably than content at the beginning or end of the context `[LOSTMID]`; low-entropy prose keeps the load-bearing signal legible.
 4. **Minimize always-on density to protect adherence and control cost** — every always-loaded normative line competes for adherence and is paid for on every turn; APS removes non-load-bearing words so the surviving instructions are followed and cheap.
 5. **Requirement ambiguity degrades generated code** — ambiguous task descriptions drop Pass@1 by 25–30% and contradictory ones by up to 40% (GPT-4 falls from 73.8% to 6.7% on contradictory HumanEval descriptions) `[AMBIGCODE]`, with >30% degradation on frontier models across a 1,304-task ambiguity benchmark `[ORCHID]`; APS lints buried ambiguity (`SOL-P008`) and lifts it into a `QUESTION` (§6.5) before lowering, removing the defect at its source.
 
@@ -169,11 +169,11 @@ Every Swarm diagnostic code MUST use the single namespace `SOL-<LAYER><NNN>`: th
 | VERIFICATION | `V` | Proof-binding: missing / stale / non-observable proof | `verify` / `VERIFY` | `SOL-V001…` |
 | ORCHESTRATION | `O` | Planning / parallelism: write-conflict, dep cycle, blocking `QUESTION` reaching lowering | `decompose` / `LOWER` | `SOL-O001…` |
 
-*Rationale (terse):* one tool, one greppable namespace; layers partition along the ISO 29148 characteristic families and map 1:1 to passes, so a code's letter tells you which pass raised it and which guide repairs it.
+*Rationale (terse):* one tool, one greppable namespace; the layers track established requirement-quality characteristic families (design rationale) and map onto the pipeline phases — a code's letter indicates the phase it belongs to (the `O` layer is raised by any LOWER-phase pass — `lower` or `decompose` — and surfaced by the `lint` gate) and which guide repairs it.
 
 #### 8.1.2 The diagnostic record shape (normative)
 
-Every emitted diagnostic MUST be the object `{ code, severity, layer, span, message, suggest }`. This is the surface contract; the IR carries the same data SARIF-shaped in `diagnostics[]` (§12), with `code` identical across both.
+Every emitted diagnostic MUST be the object `{ code, severity, layer, span, message, suggest }`. This is the surface contract; the IR carries the same data SARIF-shaped (the `level` severity vocabulary follows SARIF `[SARIF]`) in `diagnostics[]` (§12), with `code` identical across both.
 
 | Field | Type | Meaning |
 |---|---|---|
@@ -197,7 +197,7 @@ Every emitted diagnostic MUST be the object `{ code, severity, layer, span, mess
 
 ### 8.2 BLOCKING vs ADVISORY (normative)
 
-A rule is **BLOCKING** if and only if its defect changes **what gets built** — the obligation is incomplete, non-binding, untestable, ambiguous, contradictory, or unsafe to parallelize. A blocking diagnostic carries `severity: error`, and the merge gate (§14) MUST NOT pass an artifact while any blocking diagnostic is unresolved (unless waived, §8.6). That a defect changes what gets built is detectable cheaply *before* generation: a small parameter-efficiently-finetuned classifier reaches F1 0.804 / MCC 0.745, beating frontier LLMs (≈0.47–0.52 F1), and finds under-specification the highest-severity defect class [SPECVALIDATOR] — supporting BLOCKING status for actor/object incompleteness (`SOL-M001`) and uncaptured ambiguity (`SOL-P008`).
+A rule is **BLOCKING** if and only if its defect changes **what gets built** — the obligation is incomplete, non-binding, untestable, ambiguous, contradictory, or unsafe to parallelize. A blocking diagnostic carries `severity: error`, and the merge gate (§14) MUST NOT pass an artifact while any blocking diagnostic is unresolved (unless waived, §8.6). That a defect changes what gets built is detectable cheaply *before* generation: a small parameter-efficiently-finetuned classifier reaches F1 0.804 / MCC 0.745, beating frontier LLMs (≈0.47–0.52 F1), and finds under-specification the most severe defect `[SPECVALIDATOR]` — supporting BLOCKING status for actor/object incompleteness (`SOL-M001`) and uncaptured ambiguity (`SOL-P008`).
 
 A rule is **ADVISORY** if and only if its defect affects only **how it reads** — style, length, voice, redundancy — without changing the built behavior. An advisory diagnostic carries `severity: warning` and does not block on its own.
 

@@ -117,7 +117,7 @@ The `.json` variants are **documented-as-contract names only**: the kernel pins 
 | `trace.md` | Implementation/preservation claims + evidence against obligations. | Core (required) |
 | `review.md` | The verdict record: per-obligation VERDICT blocks + matrix + final verdict. | Core (required) |
 | `finding.md` | One durable, provenance-anchored project fact. | Core (required) |
-| `adr.md` | An immutable architecture this specification (Nygard form). | Core (required) |
+| `adr.md` | An immutable architecture decision record (Nygard form). | Core (required) |
 | `memory/INDEX.md` | Compact recall map (links + a "Load when" per entry). | Core (required) |
 | `memory/glossary.md` | One-word-one-meaning term store. | Memory model (§23) |
 | `memory/patterns/*.md` | Recurring multi-finding knowledge. | Memory model (§23) |

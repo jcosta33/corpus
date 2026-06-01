@@ -429,7 +429,7 @@ Verdict line: `VERDICT <id>: <CORE> [(<lifecycle> by <authority>: <reason>)]`. *
 | `manual` | the honest escape hatch |
 | `monitor` | (was `runtime`) |
 
-Binding clause: `VERIFY BY <type>:<adapter>:<artifact>[#selector]`. The `<adapter>` resolves through `AGENTS.md` > Commands (the `cmd*` placeholder slots are the adapters). Proof-strength order (CONTRADICTED tie-break): `model > property/contract > test > static > manual/monitor`. *See §15.*
+Binding clause: `VERIFY BY <type>:<adapter>:<artifact>[#selector]`. The `<adapter>` resolves through `AGENTS.md` > Commands (the `cmd*` placeholder slots are the adapters). Proof-strength order (CONTRADICTED tie-break): `model > property | contract > test > static > manual | monitor`. *See §15.*
 
 ### 4.6 Phases, passes, and improve operations
 

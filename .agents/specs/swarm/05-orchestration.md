@@ -17,7 +17,7 @@ Concretely, the kernel owns exactly four things and nothing more:
 | 3 | The single canonical safe-parallelism predicate | §18.5 |
 | 4 | The recorded coordination artifact schema (`task-orchestration.md`) | §19 |
 
-The boundary is fixed by the orchestration boundary with one clause of rationale each: agents are **not yet reliable at real-time coordination** and coding parallelizes worse than research; the **write side stays single-threaded** (ADR 0010); safe concurrency reduces to **conflict-serializability** over declared access sets; and Magentic-One's `>2-cycle` replan is the runtime analogue of the recorded liveness marker (§19.5). The kernel records the contract those mechanisms operate on; it does not operate them.
+The boundary is fixed by the orchestration boundary with one clause of rationale each: agents are **not yet reliable at real-time coordination** and coding parallelizes worse than research; the **write side stays single-threaded** (ADR 0010); safe concurrency reduces to **conflict-serializability** over declared access sets; and a stall-then-replan signal is the runtime analogue of the recorded liveness marker (§19.5). The kernel records the contract those mechanisms operate on; it does not operate them.
 
 Depth split (normative):
 
@@ -187,7 +187,7 @@ The following are explicitly OUT of the kernel and MUST be documented, where the
 | Out-of-kernel concern | Why deferred |
 |---|---|
 | Live scheduling / batching of work packets | Requires a runtime; the kernel emits the graphs a scheduler would consume, not the scheduler. |
-| Real-time stall detection and automatic replan | The kernel records the liveness marker + threshold + action (§19.5); detecting and acting on it in real time is the Magentic-One-style runtime analogue, deferred. |
+| Real-time stall detection and automatic replan | The kernel records the liveness marker + threshold + action (§19.5); detecting and acting on it in real time is the runtime analogue, deferred. |
 | Inter-agent wire protocols (A2A / MCP) | Transport between running agents; no markdown artifact, no kernel surface. |
 | SDK delegation primitives | Spawning/handing off live agents; agents are not yet reliable at real-time coordination, so the kernel records the *contract*, not the call. |
 
@@ -223,7 +223,7 @@ Status values MUST be drawn from: `not-started`, `in-progress`, `stalled`, `awai
 
 ### 19.3 The hand-off contract (per worker)
 
-Each worker row carries a **hand-off contract** — the four fields below. This is what defeats "vague subtask descriptions," the field's named #1 multi-agent failure mode (MAST: specification issues 41.77% + inter-agent misalignment 36.94% together ≈ 79% of multi-agent failures — and a recorded hand-off contract attacks both `[MAST]`), so it MUST be recorded, not left to prose.
+Each worker row carries a **hand-off contract** — the four fields below. This is what defeats "vague subtask descriptions," the field's named #1 multi-agent failure mode (MAST: specification/system-design issues (FC1) 41.77% + inter-agent misalignment 36.94% together ≈ 79% of multi-agent failures — and a recorded hand-off contract attacks both `[MAST]`), so it MUST be recorded, not left to prose.
 
 | Hand-off field | Meaning |
 |---|---|
@@ -255,7 +255,7 @@ A worker MUST NOT write outside its `## Parent contract` boundaries; doing so is
 The coordination artifact MUST record liveness as data, because a worker hung `in-progress` or silently diverging is otherwise an invisible state (the kernel has no runtime to detect it).
 
 - **LIVENESS marker** — the `Last progress` column. The lead updates it each time it checks the worker.
-- **STALL threshold** — a worker whose `Last progress` has **not advanced across two consecutive checks** is `stalled`. The two-consecutive-checks rule mirrors Magentic-One's `>2-cycle` replan heuristic; it is the recorded form of that runtime signal.
+- **STALL threshold** — a worker whose `Last progress` has **not advanced across two consecutive checks** is `stalled`. The two-consecutive-checks threshold is Swarm design rationale (a chosen constant for the recorded liveness marker), not an empirical borrowing; it is the recorded form a future launcher's stall detector reads.
 - **STALL action** — on `stalled`, the lead MUST take one recorded action: **re-plan**, **re-scope**, **escalate**, or **abandon**. The chosen action and its rationale MUST be written to a `## Decisions` section so the run is reconstructable.
 
 ```markdown

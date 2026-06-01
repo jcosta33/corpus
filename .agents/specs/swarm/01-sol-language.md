@@ -30,7 +30,7 @@ REQ AC-001:
 
 The trailing colon is REQUIRED. A header without it (`REQ AC-001`) is not a block header; it is prose, and any obligation clauses that follow are unparsed. A parser MUST treat the colon as the delimiter that opens a block body.
 
-> Rationale: EARS, FRETish, and Gherkin all use leading-keyword bare lines; bare headers are used throughout. The mandatory colon (a deliberate v0.1 choice) makes the header unambiguously machine-detectable inside free Markdown.
+> Rationale: EARS, FRETish `[FRET]`, and Gherkin all use leading-keyword bare lines; bare headers are used throughout. The mandatory colon (a deliberate v0.1 choice) makes the header unambiguously machine-detectable inside free Markdown.
 
 A QUESTION header additionally carries a blocking tag *before* the colon (§6.5); this is the only header variation:
 

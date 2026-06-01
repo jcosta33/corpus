@@ -435,7 +435,7 @@ Rationale (Nygard/Fowler): an ADR is a dated record of a decision in its context
 
 ### 30.2 Per-ADR disposition
 
-The 26 existing ADRs fall into three groups.
+The 24 existing ADRs (numbers 0001–0026 minus the intentionally-vacant 0011/0012) fall into three groups.
 
 **Group A — Kept verbatim** (body unchanged; still authoritative as written):
 

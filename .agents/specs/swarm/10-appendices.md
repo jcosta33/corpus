@@ -248,7 +248,7 @@ There is exactly one prefix (`SOL-`) and exactly five layer letters. `APS-` is r
 
 #### B.1.1 100-block allocation, append-only, tombstoning
 
-Each layer is a 100-block. Within `SOL-P###`, codes `001`–`049` are reserved for BLOCKING prose rules and `050`–`099` for ADVISORY prose rules; this split is normative for the P layer only. The catalogue is **append-only**: a code, once published, MUST NOT be renumbered, MUST NOT change layer, and MUST NOT have its meaning silently repurposed. A retired code MUST be **tombstoned** — its row is retained with the marker `TOMBSTONED` in the short-name column, a `superseded-by` pointer where one exists, and the number MUST NOT be reissued. Rationale: one tool, one greppable namespace, stable across versions (ESLint/Clippy append-only-with-tombstone convention).
+Each layer is a 100-block. Within `SOL-P###`, codes `001`–`049` are reserved for BLOCKING prose rules and `050`–`099` for ADVISORY prose rules; this split is normative for the P layer only. The catalogue is **append-only**: a code, once published, MUST NOT be renumbered, MUST NOT change layer, and MUST NOT have its meaning silently repurposed. A retired code MUST be **tombstoned** — its row is retained with the marker `TOMBSTONED` in the short-name column, a `superseded-by` pointer where one exists, and the number MUST NOT be reissued. Rationale (design rationale): one tool, one greppable namespace, stable across versions; an append-only-with-tombstone discipline keeps rule numbers stable as the catalogue evolves.
 
 #### B.1.2 Diagnostic record shape
 
@@ -1104,7 +1104,7 @@ One crisp definition per term, consistent with the body. Each entry cross-refere
 | **STALE** | The lifecycle decorator marking a prior PASS whose recorded source or write-surface hash no longer matches current state; blocks the merge gate and forces a 3-way reconcile (§14, §16). |
 | **surface** | The human-authored layer — English-shaped uppercase space-separated keywords in `.swarm.md` — as distinct from the snake_case IR layer (§4, §5). |
 | **SURFACE** | A named coarse write-surface group (`SURFACE <name> = …`), optionally attributed `append-only\|integration\|shared`; replaces any `locks` primitive (§4, §18, G7). |
-| **task_kind** | The frontmatter enum that parameterizes the `implement`/`author` passes (e.g. `feature`, `fix`, `refactor`, `review`, `spec-writing`, `orchestration`); the 18 canonical values are defined in §28. |
+| **task_kind** | The frontmatter enum that parameterizes the `implement`/`author` passes (e.g. `feature`, `fix`, `refactor`, `review`, `spec-writing`, `orchestration`); the 17 canonical values (the 18 legacy task types minus the banned `kickback`) are defined in §28. |
 | **trace** | The emitted artifact (`*.swarm.trace.md`) recording a `TRACE` block — implementation claims, changed surfaces, proof references — plus the provenance the drift join consumes (§16, §21). |
 | **VERDICT** | The judgment block (reusing the judged obligation's id) carrying one core value (`PASS`, `FAIL`, `BLOCKED`, `UNVERIFIED`) optionally decorated with a lifecycle value; lives inside `review.md`, never a standalone file (§14). |
 | **VERIFY BY** | The surface clause binding an obligation to its proof: `VERIFY BY <type>:<adapter>:<artifact>[#selector]`; the IR field name is `verify_by` (§15). |
