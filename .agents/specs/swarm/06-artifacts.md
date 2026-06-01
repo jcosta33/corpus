@@ -60,6 +60,9 @@ scaffold/                         # the installable payload root (see note below
       spec.swarm.md  task.md  trace.md  review.md  finding.md  adr.md
       audit.md  research.md  bug-report.md  prd.md  rfc.md
       memory/INDEX.md
+    passes/                        # one page per pass (§26); the 9 pass contract pages
+      author.md  lint.md  improve.md  lower.md  decompose.md
+      implement.md  verify.md  review.md  promote.md
     skills/                        # pass guides + companion guides (§26); 1 dir per skill
       pass-author-spec/  pass-lint-spec/  pass-improve-spec/
       pass-lower-spec/  pass-decompose-spec/  pass-implement-obligations/
@@ -264,7 +267,7 @@ project/
     profiles/                        # mirrored/pointer profiles → .swarm/kernel/profiles/
 ```
 
-The mapping from the framework repo to the adopted project is fixed and load-bearing: `scaffold/.agents/{language,templates,skills,profiles,overlays}` (§20.0) becomes `.swarm/kernel/{language,templates,passes,skills,profiles,overlays}`, and `scaffold/.agents/.swarm-version` (§25) becomes `.swarm/VERSION`. The framework-dev repo's `docs/`, `examples/`, and `evals/` are authoring-side and are **not** installed into a consuming project. *Design rationale (layout/naming):* placing the kernel under `.swarm/kernel/` (rather than at `.agents/` as in §20.0's payload) keeps the canonical workspace self-describing — a project carries its own language, templates, and passes — while the bare `.agents/` directory is reserved for the compatibility role of §20.5.4.
+The mapping from the framework repo to the adopted project is fixed and load-bearing: `scaffold/.agents/{language,templates,passes,skills,profiles,overlays}` (§20.0) becomes `.swarm/kernel/{language,templates,passes,skills,profiles,overlays}`, and `scaffold/.agents/.swarm-version` (§25) becomes `.swarm/VERSION`. The framework-dev repo's `docs/`, `examples/`, and `evals/` are authoring-side and are **not** installed into a consuming project. *Design rationale (layout/naming):* placing the kernel under `.swarm/kernel/` (rather than at `.agents/` as in §20.0's payload) keeps the canonical workspace self-describing — a project carries its own language, templates, and passes — while the bare `.agents/` directory is reserved for the compatibility role of §20.5.4.
 
 #### 20.5.2 The eight `.swarm/` directory contracts
 
@@ -457,7 +460,7 @@ A task is a *pass frame and execution companion*: the lowered work packet for on
 
 | Section | Meaning |
 | --- | --- |
-| frontmatter | `type: task`, `id`, `status`, `task_kind` (enum), `source`, `assigned_obligations`, `constraints`, `invariants`, `interfaces`, `write_surfaces`, `verification_bindings`, `parallel_group`, `blocked_by`, `produces`. |
+| frontmatter | `type: task`, `id`, `status` (`active \| blocked \| done \| abandoned`; `done` is terminal), `task_kind` (enum), `source`, `assigned_obligations`, `constraints`, `invariants`, `interfaces`, `write_surfaces`, `verification_bindings`, `parallel_group`, `blocked_by`, `produces`. |
 | `## Parent contract` | The inherited hand-off contract: objective + deliverable + acceptance bar + boundaries (owned vs forbidden paths). |
 | `## Scope` | An explicit **In / Out** list bounding the pass. |
 | `## Assigned obligations` | The exact assigned SOL blocks, pasted verbatim. |

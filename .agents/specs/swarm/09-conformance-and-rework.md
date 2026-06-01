@@ -57,11 +57,11 @@ task_file:
         command-output block, or `n/a` with a one-line reason — never a bare
         `[Paste output]` placeholder.
     - id: no-open-critical
-      applies_to: Open questions
-      rule: "no blocking QUESTION (or [CRITICAL] open question) remains unresolved when status: done."
+      applies_to: "(whole task: frontmatter status + any QUESTION block)"
+      rule: "no blocking QUESTION remains unresolved anywhere in the task when frontmatter status is the terminal value done."
 ```
 
-A conformant `task.md` MUST present every `required_sections` heading and every `required_subsections` entry, and MUST satisfy every `content_rules` entry. `content_rules.non-empty-paste` is the single most load-bearing rule: it surfaces the hallucinated-completion hole (a "tests passed" claim with no pasted output is an invalid proof, per §15 and Invariant 5 — schema-valid output is NOT verification).
+A conformant `task.md` MUST present every `required_sections` heading and MUST satisfy every `content_rules` entry. `content_rules.non-empty-paste` is the single most load-bearing rule: it surfaces the hallucinated-completion hole (a "tests passed" claim with no pasted output is an invalid proof, per §15 and Invariant 5 — schema-valid output is NOT verification).
 
 ### 32.4 Required command rows (`conformance.yaml > agents_md`)
 
@@ -117,15 +117,15 @@ lint:
   retired_prefixes: [APS-]                     # APS- is no longer a code prefix
 ```
 
-The manifest MUST also encode the per-task-type required verification suite (the `(proof-type, phase)` defaults of §15, resolving to `cmd*` slots). The canonical matrix lives in `docs/reference/flow-graph.md`; the manifest is its machine-readable shadow.
+The manifest MUST also encode the per-task-type required verification suite (the `(proof-type, phase)` defaults of §15, resolving to `cmd*` slots). The canonical matrix lives in `docs/reference/flow-graph.md`; the manifest is its machine-readable shadow. Bare entries are `cmd*` adapter slots (§31, resolved through `AGENTS.md > Commands`); `gate:<name>` entries are equivalence/coverage gates whose checks `flow-graph.md` defines (`acceptance-criteria-coverage`, `regression-test`, `behaviour-preservation`, `scope-disjointness`, `merge-intent`); a `merged:` prefix means the slot runs on the post-integration merged result.
 
 ```yaml
 required_suite:
-  feature:            [Validation, Test, ValidateDeps, acceptance-criteria-coverage]
-  fix:                [Validation, Test, regression-test]
-  refactor:           [ValidateDeps, Typecheck, Test, behaviour-preservation]
+  feature:            [cmdValidate, cmdTest, cmdValidateDeps, gate:acceptance-criteria-coverage]
+  fix:                [cmdValidate, cmdTest, gate:regression-test]
+  refactor:           [cmdValidateDeps, cmdTypecheck, cmdTest, gate:behaviour-preservation]
   # … one row per task_kind; full matrix mirrors flow-graph.md …
-  orchestration:      [merged-Validation, merged-Test, scope-disjointness, merge-intent]
+  orchestration:      [merged:cmdValidate, merged:cmdTest, gate:scope-disjointness, gate:merge-intent]
 ```
 
 ### 32.7 The CLI command surface and the toolchain↔agent-CLI boundary (documented contract only, not shipped)
@@ -480,6 +480,8 @@ The corpus SHOULD follow established benchmark-building hygiene so its measureme
 #### 33.7.3 The missing `research-fanout` fixture (normative addition)
 
 The reconciliation claimed a `research-fanout` golden-corpus fixture that the spec then omitted; the corpus MUST ship it. It is the corpus's only **fan-out provenance** fixture: a single `research.md` evidence source (§20.3.4) promoted by `author` passes into **multiple** `*.swarm.md` specs plus one `adr.md`, where every derived obligation cites the originating research span by its cross-file id (`research#R-NNN`, e.g. a derived `payments.swarm.md#AC-001` carrying `BECAUSE research#R-003`). It exercises the "one research artefact MAY feed many downstream artefacts" property (§20.3.4, §29) that no per-domain fixture covers.
+
+**Provenance-id grammar (normative).** A `research.md` tags citable evidence spans with ids `R-001`, `R-002`, … (the `R-` prefix marks an evidence span — parallel to the §4.1 block-id prefixes, but for a non-SOL evidence source). A derived obligation cites a span with the cross-file reference `research#R-NNN` — the `<source-stem>#<span-id>` form of the §5.7 cross-spec reference grammar (file stem `research`, span id `R-NNN`) — in its `BECAUSE` clause. A citation whose `<span-id>` is absent from the named `research.md`, or whose stem names no shipped source, is a provenance failure.
 
 | Fixture file | Holds | Asserts |
 |---|---|---|
