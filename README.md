@@ -16,6 +16,20 @@ Swarm is **unitary at rest** (language, artifact contracts, passes, templates, p
 
 Swarm is *not* a chat assistant, a prompt library, a set of canned instructions, an agent runtime, or an agent CLI. It is a toolchain that coordinates existing agent CLIs as worker backends; it owns the intent structure and never owns the model loop, chat UI, tool-calling runtime, or provider auth.
 
+## What this supersedes — the buffet framing is retired
+
+Earlier Swarm framing presented the system as a **buffet**: a pick-your-own library of skills, personas, and task types, adopted incrementally "until it stops earning its keep." That framing is **retired**. These are no longer independent products to be selected — they are unified components of one compiler:
+
+| Earlier (buffet) framing | Kernel (compiler) framing | Reference |
+|--------------------------|---------------------------|-----------|
+| Skills you pick à la carte | **Pass guides** — reusable methods for executing a named pass | [`docs/library/`](./docs/library/) |
+| Personas / characters | **Heuristic profiles** — cognitive stances that parameterize a pass | [`docs/library/`](./docs/library/) |
+| 18 task types | **Pass frames** — a `task_kind` enum parameterizing `implement`/`author` | [`docs/artifacts/`](./docs/artifacts/) |
+| 4 core docs + extended types | One **unified artifact set** centered on the obligation graph | [`docs/artifacts/`](./docs/artifacts/) |
+| "Recommended routing" prose | Deterministic **lowering** + a **plan** the launcher executes | [`docs/passes/`](./docs/passes/) |
+
+Adoption may still be incremental at the *repository* level (a team may vendor a subset), but the *conceptual model* is unitary: every piece is a component of one compiler, not an independent gadget. A pass guide never owns language semantics; a profile is never a character; a task kind is never an open-ended prompt log.
+
 ## The fixed pipeline
 
 The settled pipeline is fixed and end-to-end:
@@ -69,4 +83,13 @@ Swarm holds five invariants in every part of the framework; the governing one is
 - [`docs/reference/`](./docs/reference/) — the flow graph, proof types, promotion protocol, distillation loss budget, and glossary.
 - [`kernel/`](./kernel/) — the installable payload (the templates, language references, passes, skills, and profiles that install to `.swarm/kernel/`).
 
-These are the reference projections. The single authoritative, long-form source of truth is the **kernel specification** at [`.agents/specs/swarm/`](./.agents/specs/swarm/) — start with its [`README.md`](./.agents/specs/swarm/README.md), then Part 00 (Foundations). Where any file disagrees with the spec, the spec governs.
+Each area is the authoritative reference for what it covers; together with the [`kernel/`](./kernel/) payload, the `docs/` tree **is** Swarm. The references here are complete — there is no separate document a reader must defer to.
+
+- [`docs/artifacts/`](./docs/artifacts/) — the contract for each artifact (spec, task, trace, review, finding, ADR, and the source-document types).
+- [`docs/library/`](./docs/library/) — pass guides, heuristic profiles, and overlays (the layers that parameterize a pass).
+- [`docs/adrs/`](./docs/adrs/) — the architecture decision ledger.
+- [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) and [`docs/NON-GOALS.md`](./docs/NON-GOALS.md) — the invariants and the deliberate boundaries.
+
+---
+
+Swarm **v0.1** · language **SOL/0.1**, **APS 0.1** · the framework package is versioned independently as semver (see [`docs/language/versioning.md`](./docs/language/versioning.md)). This specification is Accepted; it consolidates the prior design work into one self-contained framework.

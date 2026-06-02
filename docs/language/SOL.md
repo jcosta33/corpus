@@ -1,21 +1,34 @@
 # SOL — The Swarm Obligation Language (Surface Reference)
 
-> Authoritative source: `.agents/specs/swarm/01-sol-language.md` §5 (surface syntax) and §6 (the seven block types), plus `.agents/specs/swarm/10-appendices.md` Appendix A (the normative EBNF). This is a reference projection; where it and the spec disagree, the spec governs.
+> Swarm's reference for the SOL surface language: the human-authored syntax, the seven block types, and the modal/verdict grammar you write inside `*.swarm.md` files.
 
 SOL (Swarm Obligation Language) is the human-authored surface language that appears inside `*.swarm.md` files. It is **markdown-only and provider-neutral**: nothing here is shipped code. A "parser", a "linter", and a "lowering" step are described as *contracts* a future tool would build against, never as software this repository runs.
 
-This page is a navigational distillation of the long-form spec. It covers what you need to *write* SOL by hand. The snake_case IR/JSON layer is emitted from SOL, never authored, and lives in spec §12 / Appendix C — out of scope here.
+This page covers what you need to *write* SOL by hand. The snake_case IR/JSON layer is emitted from SOL, never authored — out of scope here.
+
+---
+
+## 0. Two layers of modal language (read this first)
+
+SOL documents are written in two distinct languages, and the reader MUST keep them separate. The same words — `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, `MAY` — appear in both, but they mean different things depending on which layer they sit in.
+
+- **The meta-language** is ordinary prose *about* SOL: this reference page, your own design notes, an AGENTS.md, a pass guide. Its normative keywords — **MUST, MUST NOT, SHOULD, SHOULD NOT, MAY, REQUIRED, OPTIONAL** — are interpreted per RFC 2119 / RFC 8174 and carry force *only* when uppercase. They are **directives to the reader/author/tool**. Example: "An `INTERFACE` block MUST carry a `VERIFY BY contract:` binding" is a rule this page levies on whoever writes an INTERFACE.
+- **The object-language** is SOL itself — the obligation text a human writes *inside* `*.swarm.md`. SOL's own modals (`MUST`/`MUST NOT`/`SHOULD`/`SHOULD NOT`/`MAY`; §2.4) decorate obligations and are **data being specified**, not directives to anyone reading this page. Example: in the SOL line `THE client MUST clear the local session`, the word `MUST` is an SOL token whose semantics §2.4 / §3 define — it is a fact recorded *about the client*, not a requirement levied on the reader.
+
+The discriminator is the fence. **Every SOL fragment, grammar production, and template skeleton in this page sits inside a fenced code block tagged `sol` or `ebnf`; modal words inside such a fence are object-language (data).** Modal words in running prose are meta-language (directives). This is why, throughout this page, a sentence like "a binding REQ MUST carry a `VERIFY BY`" is a rule you must follow, while the `MUST` inside a `sol` example is just the obligation's recorded modality.
+
+A practical consequence: when a tool reads a `*.swarm.md`, it must treat the modals inside SOL blocks as the obligation's *content* (what to lower, judge, and verify), never as instructions addressed to the tool itself.
 
 ---
 
 ## 1. The layering rule (surface vs IR)
 
-There is one master layering of the language (spec §5.1):
+There is one master layering of the language:
 
 - **Surface** is English-shaped **UPPERCASE keywords** — what a human writes.
 - **IR** is **snake_case fields** — what a tool *emits*, never authored.
 
-Wherever the surface gives a keyword (`VERIFY BY`, `DEPENDS ON`, `OWNED BY`), the corresponding IR field (`verify_by`, `depends_on`, `owner`) is reserved for §12 and MUST NOT appear at the surface. A conformant SOL document is a Markdown document in which obligation content is expressed as SOL *blocks* interleaved with APS-controlled prose (spec §7, not covered here).
+Wherever the surface gives a keyword (`VERIFY BY`, `DEPENDS ON`, `OWNED BY`), the corresponding IR field (`verify_by`, `depends_on`, `owner`) is reserved for the IR layer and MUST NOT appear at the surface. A conformant SOL document is a Markdown document in which obligation content is expressed as SOL *blocks* interleaved with APS-controlled prose (the prose standard, not covered here).
 
 ---
 
@@ -44,11 +57,11 @@ The trailing colon is REQUIRED. `REQ AC-001` (no colon) is not a header — it i
 
 For every other block the header is exactly keyword + id + colon, with the body on the following lines.
 
-*Design rationale:* EARS, FRETish, and Gherkin all use leading-keyword bare lines; the mandatory colon (a deliberate v0.1 choice) makes the header unambiguously machine-detectable inside free Markdown.
+*Design rationale:* leading-keyword bare lines are a familiar requirement-grammar shape; the mandatory colon (a deliberate v0.1 choice) makes the header unambiguously machine-detectable inside free Markdown.
 
 ### 2.2 Body line-grouping
 
-A block **body** is the maximal run of contiguous non-blank lines immediately after the header, terminated by the first of (spec §5.3):
+A block **body** is the maximal run of contiguous non-blank lines immediately after the header, terminated by the first of:
 
 1. the next block header (`TYPE PREFIX-NNN:`);
 2. a **blank line** (one or more newline-only lines);
@@ -58,25 +71,25 @@ No other construct closes a body. There is **no closing delimiter and no signifi
 
 Consequence for authors: you **MUST NOT** place a blank line *inside* a block body — the blank line terminates it. Multi-item clauses (e.g. INTERFACE `ERRORS:`) therefore use **contiguous indented bullet continuation lines**, never blank-separated lists.
 
-Leading indentation on body **clause** lines is non-semantic: it is stripped before matching (Appendix A note 5). Block **headers** MUST remain flush-left.
+Leading indentation on body **clause** lines is non-semantic: it is stripped before matching. Block **headers** MUST remain flush-left.
 
 ### 2.3 Rejected surface forms
 
-These three forms are **rejected** for v0.1 (spec §5.4); each subsumes one of the three competing research grammars Appendix A supersedes:
+These three forms are **rejected** for v0.1:
 
 | Rejected form | Why | Future status |
 |---|---|---|
 | Fenced delimiter `:::REQ … :::END` | A nested fence is fragile inside Markdown and redundant with the bare-header rule. | MAY become an OPTIONAL editor alias later; never normative in v0.1. |
-| In-block YAML metadata (`verify:` as a YAML key inside a block) | Splits one obligation across two syntaxes; breaks line-grouping. Use inline keyword clauses instead. | Rejected; metadata is surface clauses (§6.8 / §6 below). |
+| In-block YAML metadata (`verify:` as a YAML key inside a block) | Splits one obligation across two syntaxes; breaks line-grouping. Use inline keyword clauses instead. | Rejected; metadata is surface clauses (§3.8 below). |
 | Significant indentation (Indent/Dedent nesting) | Markdown renderers reflow indentation, so it cannot carry meaning. | Rejected; structure comes from the line-grouping rule. |
 
 ### 2.4 Keywords, case, and modals
 
-SOL keywords are **UPPERCASE and case-sensitive**, and the keyword set is **closed** (block types, modals, and per-block clause keywords). Lowercase `must`, `should`, `may`, `can`, `will` are **plain prose** and carry no normative force; only the uppercase modals bind.
+SOL keywords are **UPPERCASE and case-sensitive**, and the keyword set is **closed** (block types, modals, and per-block clause keywords). Lowercase `must`, `should`, `may`, `can`, `will` are **plain prose** and carry no normative force; only the uppercase modals bind. (These uppercase modals are SOL's *object-language* modals — data recorded about an actor — distinct from the RFC-2119 directives in this page's prose; see §0.)
 
 **Conditions are opaque text in v0.1.** The text after `WHEN`/`WHILE`/`WHERE`/`IF` is captured verbatim as a string. SOL v0.1 defines no expression sublanguage, operators, or boolean structure over conditions — a tool MUST NOT attempt to evaluate them. The expression sublanguage and the timing keywords (`WITHIN`, `BEFORE`, `UNTIL`, `IMMEDIATELY`, `EVENTUALLY`) are deferred to v0.2.
 
-#### The five modals (exactly five, §5.6)
+#### The five modals (exactly five)
 
 | Modal | Force |
 |---|---|
@@ -94,7 +107,7 @@ A `SHOULD`/`SHOULD NOT` with no `BECAUSE`/`EXCEPT` in the same block is `SOL-S00
 
 ### 2.5 The ID convention
 
-Each block carries a **per-type short id** `PREFIX-NNN` (`NNN` = one or more decimal digits). The prefix is fixed by block type (spec §5.7):
+Each block carries a **per-type short id** `PREFIX-NNN` (`NNN` = one or more decimal digits). The prefix is fixed by block type:
 
 | Block type | Prefix | Example |
 |---|---|---|
@@ -119,7 +132,7 @@ Every source spec MUST begin with a YAML frontmatter mapping (keys unordered). T
 | `type` | `spec` | Artifact-type discriminator. |
 | `id` | slug | Stable spec id (e.g. `auth-refresh`). |
 | `swarm_language` | `SOL/0.1` | The SOL language discriminator (which grammar / blocks / modals / lint codes). |
-| `aps_version` | `0.1` | The APS prose-standard version (§7). |
+| `aps_version` | `0.1` | The APS prose-standard version. |
 | `spec_version` | `0.1.0` | The spec *content* version (semver of intent). |
 | `status` | `draft \| review \| approved \| superseded` | Lifecycle status. |
 
@@ -141,11 +154,11 @@ imports: [session-core]
 # Spec: Auth refresh
 ```
 
-*Design rationale (G10):* the three version axes are never merged — `swarm_language` (language), `spec_version` (content), and (when a tool exists) `provenance.compiler_version` (tool). The frontmatter carries the first two.
+*Design rationale:* the three version axes are never merged — `swarm_language` (language), `spec_version` (content), and (when a tool exists) `provenance.compiler_version` (tool). The frontmatter carries the first two.
 
 ### 2.7 Binding vs commentary
 
-SOL blocks and APS prose coexist. Prose is **commentary**; a typed obligation block is **binding**. A span is *binding* iff it lies inside a `REQ`, `CONSTRAINT`, or `INVARIANT` block, and *commentary* otherwise (spec §5.9, G2). Load-bearing meaning (modality, actor, trigger, verification binding) MUST live in SOL blocks, never in surrounding prose.
+SOL blocks and APS prose coexist. Prose is **commentary**; a typed obligation block is **binding**. A span is *binding* iff it lies inside a `REQ`, `CONSTRAINT`, or `INVARIANT` block, and *commentary* otherwise. Load-bearing meaning (modality, actor, trigger, verification binding) MUST live in SOL blocks, never in surrounding prose.
 
 ---
 
@@ -153,7 +166,7 @@ SOL blocks and APS prose coexist. Prose is **commentary**; a typed obligation bl
 
 SOL v0.1 defines **exactly seven block types**. Three carry **binding force** (the *obligation blocks*): `REQ`, `CONSTRAINT`, `INVARIANT`. The other four declare boundaries (`INTERFACE`), mark ambiguity (`QUESTION`), claim implementation (`TRACE`), or judge an obligation (`VERDICT`).
 
-> `TASK-MAP`, `FINDING`, and `ADR` are **not** SOL block types — they are downstream artifacts (spec §21).
+> `TASK-MAP`, `FINDING`, and `ADR` are **not** SOL block types — they are downstream artifacts, not language blocks.
 
 | # | Block | Binds? | Role |
 |---|---|---|---|
@@ -165,7 +178,7 @@ SOL v0.1 defines **exactly seven block types**. Three carry **binding force** (t
 | 6 | `TRACE` | no | Implementation claim |
 | 7 | `VERDICT` | no | Judgment of an obligation |
 
-Clause keywords are uppercase and case-sensitive. The trailing **metadata clauses** (`DEPENDS ON`, `TOUCHES`, `WRITES`, `READS`, `AFFECTS`, `RISK`, `DOMAIN`) are available on the obligation blocks (REQ/CONSTRAINT/INVARIANT) and feed orchestration; see §3.8.
+Clause keywords are uppercase and case-sensitive. The trailing **metadata clauses** (`DEPENDS ON`, `TOUCHES`, `WRITES`, `READS`, `AFFECTS`, `RISK`, `DOMAIN`) are available on the obligation blocks (REQ/CONSTRAINT/INVARIANT) and feed orchestration; see §3.8 below.
 
 ### 3.1 REQ — required behavior (binding)
 
@@ -189,7 +202,7 @@ and_actor_clause = "AND", ws, "THE", ws, actor, ws, modal, ws, response, nl;
 - **`THEN` is optional sugar after `IF` only** (the EARS unwanted-behavior pattern); it MUST NOT appear after `WHEN`/`WHILE`/`WHERE`. `IF … THEN …` and `IF … <newline> THE …` are equivalent.
 - `THE <actor> <MODAL> <response>` is the mandatory consequence. A condition with no following actor clause is `SOL-S001`; an actor clause with no modal is `SOL-S003`.
 - **Modal-scan rule (normative):** the `modal` is the *first* modal terminal at a token boundary (longest-match — `MUST NOT` before `MUST`); everything before it is the actor, everything after is the response. A modal word belonging to the actor/response MUST be quoted/backticked, or the obligation MUST be reworded (the parser MUST NOT guess).
-- **`AND THE` chaining is permitted.** On lowering, each `THE …` / `AND THE …` becomes a **separate IR obligation**. More than two chained consequences is a non-blocking warning (`SOL-P004`-adjacent, atomize suggested), never a hard error (G3).
+- **`AND THE` chaining is permitted.** On lowering, each `THE …` / `AND THE …` becomes a **separate IR obligation**. More than two chained consequences is a non-blocking warning (`SOL-P004`-adjacent, atomize suggested), never a hard error.
 - `BECAUSE` (rationale) / `EXCEPT` (exception) are optional, but one is REQUIRED whenever a consequence uses `SHOULD`/`SHOULD NOT`.
 - `VERIFY BY` is REQUIRED for a binding REQ; its absence is `SOL-V001`.
 
@@ -328,19 +341,22 @@ PROOF static:cmdLint:dependency-boundary-check passed
 
 ### 3.7 VERDICT — judgment of an obligation (non-binding)
 
-Records the review judgment of one obligation. It **reuses the judged obligation's id** (it does not mint a new one); its container is `review.md` — there is no `verdict.md`. The core value sits on the header line, after the colon.
+Records the review judgment of one obligation. It **reuses the judged obligation's id** (it does not mint a new one); its container is `review.md` — there is no `verdict.md`. The core value sits on the header line, after the colon; an optional lifecycle decorator follows it in parentheses.
 
 ```ebnf
-verdict_value     = verdict_core, [ ws, verdict_lifecycle ];
-verdict_core      = "PASS" | "FAIL" | "BLOCKED" | "UNVERIFIED";
-verdict_lifecycle = "(", lifecycle, " by ", authority, ": ", reason,
-                    [ ";", ws, lifecycle_fields ], ")";
-lifecycle         = "WAIVED" | "STALE" | "CONTRADICTED";
-verdict_body      = "REASON", ws, prose, nl,
+verdict_block     = "VERDICT", ws, judged_id, ":", ws, core_value,
+                    [ ws, "(", lifecycle, " by ", authority, ": ", reason_txt,
+                          [ ";", ws, lifecycle_fields ], ")" ], nl,
+                    "REASON", ws, prose, nl,
                     "EVIDENCE", ws, reference, nl, { "EVIDENCE", ws, reference, nl };
+core_value        = "PASS" | "FAIL" | "BLOCKED" | "UNVERIFIED";
+lifecycle         = "WAIVED" | "STALE" | "CONTRADICTED";
+lifecycle_fields  = field, { ";", ws, field };
 ```
 
-A VERDICT carries exactly one **core** value plus an optional **lifecycle decorator** in parentheses. The full 7-value model (4 core + 3 lifecycle) and the merge gate are specified in spec §14; this page projects only the surface form.
+A VERDICT carries exactly **one core value** plus an **optional lifecycle decorator** in parentheses. The full value model is 7 = 4 core + 3 lifecycle.
+
+**The four core values** (exactly one is REQUIRED, immediately after the colon):
 
 | Core | Meaning |
 |---|---|
@@ -349,7 +365,17 @@ A VERDICT carries exactly one **core** value plus an optional **lifecycle decora
 | `BLOCKED` | The proof could not run (prerequisite, tool, or environment missing). |
 | `UNVERIFIED` | No acceptable proof was bound, or none was executed. |
 
-A value outside the core four is a `SOL-V`-family lint error. The three lifecycle decorators — `WAIVED`, `STALE`, `CONTRADICTED` — and their mandatory fields (authority/reason/expiry, etc.) are specified in §14/§16; a decorator missing a required field is `SOL-V005`.
+A value outside the core four is a `SOL-V`-family lint error.
+
+**The three lifecycle decorators** (optional; each annotates the core value with how its standing changed over time). When present, the decorator is a parenthesized clause of the exact shape `(<lifecycle> by <authority>: <reason>[; <field>; …])` — `authority` and `reason` are always REQUIRED, and each decorator additionally carries its own mandatory field(s). A decorator missing a required field is `SOL-V005`.
+
+| Lifecycle | Meaning | Mandatory fields (beyond authority + reason) |
+|---|---|---|
+| `WAIVED` | A `FAIL`/`UNVERIFIED` accepted by a named authority. | **`expiry`** — carried as a `lifecycle_field` (e.g. `expiry 2026-07-01`). A waiver with no expiry is `SOL-V005`. |
+| `STALE` | A prior `PASS` whose evidence no longer matches the current source/surface. | **changed-surface** — the surface whose change invalidated the evidence, as a `lifecycle_field`; the prior verdict is given as the `reason`. |
+| `CONTRADICTED` | Two proofs disagree, or trace/code disagrees with the obligation. | **its two conflicting evidence references** — carried as the body's `EVIDENCE` lines (not as `lifecycle_fields`); at least two `EVIDENCE` lines are therefore expected. |
+
+`REASON` gives the human justification; `EVIDENCE` references the inspected proof output (one or more lines). The full 7-value lifecycle model, its merge gate, and staleness detection are detailed on the verdicts and verification framework pages; this page fixes the surface grammar.
 
 ```sol
 VERDICT AC-001: PASS
@@ -363,9 +389,22 @@ REASON The e2e proof could not be stabilized this cycle.
 EVIDENCE test:cmdTest:auth-refresh-no-loop intermittent failure log
 ```
 
+```sol
+VERDICT AC-004: PASS (STALE by review-bot: prior PASS predates the refactor; changed-surface src/auth/session-store.ts)
+REASON The session-store surface changed after the last passing run, so the prior evidence no longer matches.
+EVIDENCE test:cmdTest:auth-refresh-expired-token earlier passing log
+```
+
+```sol
+VERDICT AC-005: FAIL (CONTRADICTED by review-bot: unit and e2e proofs disagree)
+REASON The unit proof reports success while the e2e proof reports the order is never created.
+EVIDENCE test:cmdTest:order-created-event passed
+EVIDENCE test:e2e:cmdTest:checkout-order-created failed
+```
+
 ### 3.8 Metadata clauses (orchestration inputs)
 
-These MAY trail any obligation block (REQ/CONSTRAINT/INVARIANT). They carry no behavioral force; they feed orchestration and the safe-parallelism predicate (spec §18). Surface form is space-separated UPPERCASE; IR form is snake_case.
+These MAY trail any obligation block (REQ/CONSTRAINT/INVARIANT). They carry no behavioral force; they feed orchestration and the safe-parallelism predicate. Surface form is space-separated UPPERCASE; IR form is snake_case.
 
 | Surface clause | Meaning |
 |---|---|
@@ -392,13 +431,13 @@ proof_type = "static" | "test" | "contract" | "property" | "model"
 test_scope = "unit" | "integration" | "e2e";               (* only when proof_type = "test" *)
 ```
 
-There are **exactly nine proof types** (`static`, `test`, `contract`, `property`, `model`, `perf`, `security`, `manual`, `monitor`); any other type is `SOL-V009`. A `bare_ref` (no `proof_type` segment) is valid but raises an advisory untyped-binding smell. The `adapter` resolves through `AGENTS.md > Commands` (the `cmd*` slot); the `artifact` is the file/target it runs; the optional `#selector` is a sub-target (e.g. a test name). Test scope is spelled in the position after `test`: `test:unit:…`, `test:integration:…`, `test:e2e:…`. The full proof taxonomy and its strength ordering (`model > property/contract > test > static > manual/monitor`) live in spec §15 — out of scope here.
+There are **exactly nine proof types** (`static`, `test`, `contract`, `property`, `model`, `perf`, `security`, `manual`, `monitor`); any other type is `SOL-V009`. A `bare_ref` (no `proof_type` segment) is valid but raises an advisory untyped-binding smell. The `adapter` resolves through `AGENTS.md > Commands` (the `cmd*` slot); the `artifact` is the file/target it runs; the optional `#selector` is a sub-target (e.g. a test name). Test scope is spelled in the position after `test`: `test:unit:…`, `test:integration:…`, `test:e2e:…`. The full proof taxonomy and its strength ordering (`model > property/contract > test > static > manual/monitor`) live on the verification framework page — out of scope here.
 
 ---
 
 ## 5. Lint codes referenced on this page
 
-The five lint layers are **S/P/M/V/O** (Syntax / Prose / seMantic / Verification / Orchestration); the full catalogue is spec Appendix B. The codes named above, for orientation only:
+The five lint layers are **S/P/M/V/O** (Syntax / Prose / seMantic / Verification / Orchestration); the full catalogue lives on the lint reference. The codes named above, for orientation only:
 
 | Code | Layer | What it flags |
 |---|---|---|
@@ -422,10 +461,12 @@ The five lint layers are **S/P/M/V/O** (Syntax / Prose / seMantic / Verification
 
 ---
 
-## Preserved / Dropped / Still-uncertain
+## Related
 
-**Preserved (this projection keeps):** the surface-vs-IR layering rule; the bare-header + mandatory-colon delimiter; the body line-grouping rule and the no-blank-line-inside-body consequence; the three rejected surface forms; UPPERCASE-closed-keyword discipline; opaque conditions; the **five modals** with `SHALL`/`CAN`/`WILL` handling; the per-type ID convention and `#` cross-spec form; the required frontmatter set; the binding-vs-commentary boundary; all **seven block types** with their canonical clause grammars and one worked example each; the metadata clauses; the `VERIFY BY` `verify_ref` shape with the **closed nine proof types**; and the lint codes cited inline.
+Other framework pages that extend or consume what this page defines:
 
-**Dropped (left to the spec):** the snake_case IR / JSON layer and lowering rules (§12, Appendix C); the full APS controlled-prose standard and high-risk-word lists (§7–§8); the complete lint catalogue and improve-op map (Appendix B, including the 10 improve ops and the legacy translation table); the full proof taxonomy and strength ordering (§15); the 7-verdict lifecycle model and the merge gate (§14); staleness detection (§16); the orchestration / safe-parallelism predicate and `SURFACE` attributes in depth (§18); the governance domains / Axis-B model (§22); the phase/pass pipeline (7 phases / 9 passes); and the v0.2 deferrals (expression sublanguage, timing keywords, FRETish temporal semantics — §35, Appendix E).
-
-**Still-uncertain (the spec governs; resolved there, not here):** the exact wording of opaque-text line-continuation (Appendix A note 7) and the precise lifecycle-field requirements per decorator (§14.2) are summarized loosely above and should be read from the spec for any conformance question; the `SOL-O`-class orchestration codes are named but not enumerated here. Where any phrasing in this projection appears to add or narrow a rule, the spec sections cited in the blockquote at the top are authoritative.
+- [APS — the controlled-prose standard](../language/APS.md) — the prose layer SOL blocks are interleaved with, and the high-risk-word rules.
+- [Lint codes](../language/errors.md) — the full `SOL-<LAYER><NNN>` catalogue behind the codes cited inline here.
+- [Language versioning](../language/versioning.md) — the two version axes (`swarm_language` vs framework/package) and the one-way trigger.
+- [Proof types](../reference/proof-types.md) — the closed nine proof types, their strength ordering, and `VERIFY BY` adapter resolution.
+- [verify pass](../passes/verify.md) and [review pass](../passes/review.md) — how `VERDICT` core values and lifecycle decorators are produced, and the merge gate.

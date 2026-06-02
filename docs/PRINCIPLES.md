@@ -1,8 +1,6 @@
 # Principles
 
-> The load-bearing invariants and standing principles of the Swarm kernel. When two design choices collide, these are the tiebreakers. They are written so they actually decide cases.
->
-> This page is a **reference projection** of the kernel specification. The authority is [`.agents/specs/swarm/00-foundations.md`](../.agents/specs/swarm/00-foundations.md) §2; where this page and the spec disagree, the spec governs. The installable payload that carries these principles into an adopted project ships under [`kernel/`](../kernel/).
+> Swarm's reference for the load-bearing invariants and standing principles of the kernel: the tiebreakers that decide cases when two design choices collide. The installable payload that carries these principles into an adopted project ships under [`kernel/`](../kernel/).
 
 Swarm treats a **specification as source code** and a **fleet of agents as the compiler**. Human intent is written as controlled markdown (the source); agents compile it into work that is implemented, verified against the original obligations, and promoted into durable memory. Everything below holds in *every* part of the framework — no construct may contradict an invariant.
 
@@ -93,8 +91,23 @@ Meaning must be **preserved across every lowering**. Each downstream transformat
 
 **All load-bearing meaning** — modality, actor, trigger/state, verification binding, authority order, conflict resolution, trace schema — lives in **SOL and the typed IR**, and never in prose, pass guides, profiles, or `AGENTS.md`.
 
-- **Rationale.** Prose-delivered semantics are unreliable under prompt-format sensitivity, multi-turn reliability decay, and lost-in-the-middle / context-rot; Anthropic's own guidance treats always-loaded instruction files as context, not enforced configuration.
+- **Rationale.** Prose-delivered semantics are unreliable: model adherence degrades under prompt-format sensitivity, multi-turn reliability decay, and lost-in-the-middle / context-rot, and an always-loaded instruction file behaves as context rather than as enforced configuration.
 - **Consequence.** Prose and pass guides are non-authoritative *delivery* layers; a regression check must confirm that no pass guide, profile, or `AGENTS.md` section defines modality, authority order, or verification semantics. Always-loaded normative prose is capped (≤200 lines / ≤25 KB), with everything procedural moved to lazily-loaded pass guides and profiles — to protect adherence and cost, not because models "cannot follow many instructions."
+
+### Unitary at rest, modular in execution
+
+Swarm's organizing slogan is **"unitary at rest, modular in execution."**
+
+- **Unitary at rest.** Swarm installs as one coherent framework. The language, artifact contracts, passes, templates, pass guides, and memory model arrive together and are internally consistent — there is no menu of disconnected features to assemble.
+- **Modular in execution.** At run time, only the pass, profile, and context a single task needs are loaded. A task names the pass guide and profile it requires; nothing else is in context. This protects instruction-adherence and token cost without fragmenting the framework.
+- **Consequence.** Adoption may still be incremental at the *repository* level — a team may vendor a subset — but the *conceptual model* is unitary: every piece is a component of one compiler, not an independent gadget.
+
+### Evidence discipline — real science, not astrology
+
+Swarm holds itself to the same standard it imposes on agents: **real science, not astrology.** Every load-bearing empirical claim and every standards-grounded normative choice must be grounded in a verified finding, used with its recorded caveats. This is Swarm's own discipline, applied to its own text and to every artifact a conformant repository produces.
+
+- **Rationale.** A fact-shaped claim with no grounding is indistinguishable from invention; treating one as evidence corrupts every downstream verdict that rests on it.
+- **Consequence.** A claim that is not backed by a verified finding must be stated as **design rationale**, not as evidence. A finding marked rejected, fabricated, or unverifiable must not be cited as fact — neither in canonical text nor in any produced artifact. A new empirical claim introduced by an amendment must first establish its grounding. **A fact-shaped statement that cites no verified source and is not labelled design rationale is a defect.**
 
 ---
 
@@ -145,4 +158,10 @@ Swarm owns the **intent structure** — language, artifacts, passes, templates, 
 2. **In review.** Ask which principle a change serves and which (if any) it conflicts with. The five invariants are absolute tiebreakers; the standing principles never override them.
 3. **As a skim test.** A doc, template, pass guide, or profile that violates an invariant without explanation is a defect, not a style choice.
 
-See also: the long-form authority in [`.agents/specs/swarm/00-foundations.md`](../.agents/specs/swarm/00-foundations.md) §2; the reference projections under [`docs/`](./); and the installable payload under [`kernel/`](../kernel/).
+## Related
+
+- [Non-goals](./NON-GOALS.md) — what Swarm deliberately is not, the negative space these principles protect.
+- [The compiler pipeline](./model/compiler-pipeline.md) — the seven phases and nine passes the obligation graph flows through.
+- [The `.swarm/` workspace](./model/workspace.md) — how the source / status / generated categories above lay out on disk.
+- [Source authority](./model/source-authority.md) — the amendment and authority rules an ADR cites when changing a principle.
+- [Architecture decision records](./adrs/README.md) — the recorded amendments; a change to any invariant or principle lands as a new ADR.
