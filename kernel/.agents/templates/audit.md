@@ -1,96 +1,50 @@
-# Audit: <Area>
-
-## Status
-
-Active / Resolved
-
-## Author
-
-The Auditor (or The Skeptic if this is a deepen-audit)
-
-## Context
-
-Why this audit exists. The triggering ask, the goal it serves.
-
+---
+type: audit
+id: {{slug}}
+status: draft
+created: {{createdAt}}
+updated: {{createdAt}}
 ---
 
-## Linked docs
+# Audit: {{title}}
 
-- Triggering brief / ask: <path or paragraph>
-- Prior audit (if deepening): `.agents/audits/<prior-slug>.md`
-- Related specs: `.agents/specs/<slug>.md`
-
----
-
-## Goal
-
-What "good" looks like for this area. Without a goal, "current state" has no meaning.
-
----
+> Stance: **observation-only** (§20.3.3, §21.9). An audit records what *is* —
+> present-state risk, debt, drift, duplication, unsafe patterns. It MUST NOT
+> prescribe a fix inline and MUST NOT author `REQ`/`CONSTRAINT`/`INVARIANT`/
+> `INTERFACE` obligation blocks. Obligations come into existence only when this
+> audit promotes to a `spec.swarm.md` via the author pass (§9). Until then this
+> is non-authoritative evidence (§22).
 
 ## Scope
 
-**In scope:**
+<What was inspected and what was deliberately left out. Name the code paths,
+artifacts, or surfaces under audit and the boundary of the observation.>
 
-- (specific code paths under audit)
+- In scope: {{what was examined}}
+- Out of scope: {{what was deliberately excluded}}
 
-**Out of scope:**
+## Observations
 
-- (related areas explicitly excluded)
+<What is true today, each citing the evidence that grounds it (file:line,
+command output, grep result, or other observable). State present state only;
+do not state the fix.>
 
----
-
-## Code paths inspected
-
-- `<path>` — <one-line description of what's there>
-
----
-
-## Findings
-
-Each finding has: severity (BLOCKER / MAJOR / MINOR), file:line, observation, and a **Needed** —
-the concrete change that would close it.
-
-### Issue 1 — <name> [SEVERITY]
-
-- **File:line:** `<path>:<line>`
-- **Observation:** <what is true today>
-- **Needed:** <what change closes this>
-- **Verified by:** <grep results, validation output, or other evidence>
-
-### Issue 2 — ...
-
----
+- {{observation}} — evidence: `{{path}}:{{line}}` / {{command output or other evidence}}
+- {{observation}} — evidence: {{...}}
 
 ## Risks
 
-Things that could go wrong, weren't observed firing yet, but warrant explicit naming. Each risk
-includes the conditions under which it would fire.
+<Things that could go wrong but were not observed firing yet, each with the
+conditions under which they would fire. Still observation, not prescription.>
 
----
+- {{risk}} — fires when: {{condition}}
+- {{risk}} — fires when: {{condition}}
 
-## Suggested approaches
+## Recommended obligations
 
-How a downstream task (refactor, performance, fix) could address the findings. Suggest the
-*approach*, not the implementation. Sequence if multiple approaches interact.
+<Candidate obligations a downstream `author` pass would promote into a
+`spec.swarm.md`. Describe what the spec SHOULD require, in plain prose — do NOT
+write SOL obligation blocks here; the author pass emits them on promotion.>
 
----
-
-## Open questions
-
-- [ ] **[CRITICAL]** Questions that would change the audit's prioritisation if answered.
-- [ ] **[MINOR]** Worth recording.
-
----
-
-## Distillation Loss Statement
-
-(For audits distilled from a long-running investigation or a prior audit)
-
-**Dropped from upstream:**
-
-- <what>
-
-**Why downstream doesn't need this:**
-
-- <why>
+- {{candidate obligation a future spec should carry}}
+- {{candidate obligation a future spec should carry}}

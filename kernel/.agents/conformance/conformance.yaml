@@ -1,62 +1,91 @@
-# Swarm conformance contract (ADR 0026). Inert data — Swarm runs nothing.
-# A checker reads this to validate a consuming repo / task file. The prose
-# sources of truth are the framework's /docs/reference/*; this mirrors them
-# and fixtures/ guards against drift.
-version: 0.1.0
+# Swarm conformance manifest (§32). INERT VERSIONED DATA — Swarm runs nothing.
+#
+# This is the machine-readable encoding of conformance-definition clauses (b)–(d)
+# (§32.2): the testable definition a future checker would honour and the artifact
+# a human uses to validate a repository BY HAND today. Per Invariant 1 (NO RUNTIME,
+# §2), nothing here executes — Swarm ships the contract, never the checker (§32.7).
+# The prose sources of truth are the kernel docs under docs/language/ and
+# docs/reference/; this manifest mirrors them and fixtures/ guards against drift.
+#
+# Copyable skeleton: fill every {{placeholder}} / replace each "<what goes here>".
+# Do not add structure beyond §32; do not introduce new cmd*/no-prefix names
+# without an ADR (§32.5).
 
-# --- A well-formed task file (keyed to .agents/templates/task-base.md) ---
+version: 0.1.0                    # <semver of this manifest; bump on contract change>
+language: SOL/0.1                 # the discriminator this manifest targets (§25, meta.language)
+
+# --- 32.3 The task-file schema (keyed to the §21 task.md template) -----------
+# A conformant task.md MUST present every required_sections H2 heading and MUST
+# satisfy every content_rules entry.
 task_file:
-  required_sections:            # H2 headings that must be present
-    - Objective
-    - Linked docs
-    - Plan
+  required_sections:             # H2 headings that MUST be present (§21.3.1 task.md contract)
+    - Parent contract
+    - Scope
+    - Assigned obligations
+    - Constraints and invariants
+    - Implementation or pass trace
+    - Verification matrix
+    - Promotion queue
     - Self-review
-  required_subsections:
-    - parent: Self-review
-      heading: Verification outputs
   content_rules:
-    - id: non-empty-paste
-      applies_to: "Self-review > Verification outputs"
+    - id: non-empty-paste        # the single most load-bearing rule (§32.3; Invariant 5)
+      applies_to: "Verification matrix"
       rule: >-
         every required paste slot holds non-empty, non-placeholder text — a fenced
         command-output block, or `n/a` with a one-line reason — never a bare
         `[Paste output]` placeholder.
     - id: no-open-critical
-      applies_to: Open questions
-      rule: "no [CRITICAL] open question remains unresolved when status: done."
+      applies_to: "(whole task: frontmatter status + any QUESTION block)"
+      rule: >-
+        no blocking QUESTION remains unresolved anywhere in the task when
+        frontmatter status is the terminal value done.
 
-# --- AGENTS.md command contract (ADR 0018) ---
+# --- 32.4 Required AGENTS.md > Commands rows ---------------------------------
+# <adapter> slots in SOL `VERIFY BY` bindings resolve through this table (§15);
+# a binding whose adapter has no row is unresolvable. Slot names are the cmd*
+# slots of §31.3.
 agents_md:
-  required_command_rows: [Validation, Test, Format]
-  extended_command_rows: [Install, Typecheck, Lint, Build, ValidateDeps, Benchmark]
-  out_of_contract:       [MarkdownLint, LinkCheck, CitationCheck]
+  required_command_rows: [cmdValidate, cmdTest, cmdFormat]                                 # MUST be present; absence is non-conformant
+  extended_command_rows: [cmdInstall, cmdTypecheck, cmdLint, cmdBuild, cmdValidateDeps, cmdBenchmark]   # SHOULD be present when the required-suite references them
+  out_of_contract:       [cmdMarkdownLint, cmdLinkCheck, cmdCitationCheck]                  # MAY be present; never required
 
-# --- Placeholder namespaces (ADR 0005) ---
+# --- 32.5 The legal placeholder set ------------------------------------------
+# Namespaces (see §32.5 table): cmd* and "" (no prefix) are reserved — new names
+# need an ADR; swarm: is framework-owned; project: is consumer-owned; any other
+# prefix (vendor:) is a legal vendor extension a runner leaves untouched.
 placeholders:
   legal_prefixes: ["cmd", "", "swarm:", "project:"]   # "" = framework scaffolding names
   rule: >-
     a runner substitutes every required placeholder and leaves unrecognised ones
     untouched; it does not introduce names in the cmd*/no-prefix namespace without an ADR.
 
-# --- Per-task-type required verification suite ---
-# Canonical matrix: /docs/reference/flow-graph.md. Each slot must appear as a paste
-# slot in that task type's references/task-template.md. cmd* slots resolve via
-# AGENTS.md > Commands; the named gates are defined in /docs/reference/verification-gates.md.
+# --- 32.6 The unified lint scheme (§8) ---------------------------------------
+# One prefix `SOL`, five layers, form `SOL-<LAYER>NNN`. Every diagnostic record
+# has the shape {code, severity, layer, span, message, suggest}. The full
+# catalogue (Appendix B) is the source of truth; this is its inert shadow.
+lint:
+  scheme: "SOL-<LAYER>NNN"
+  layers: { S: SYNTAX, P: PROSE, M: SEMANTIC, V: VERIFICATION, O: ORCHESTRATION }
+  record_shape: [code, severity, layer, span, message, suggest]
+  catalogue_ref: docs/language/errors.md      # the full catalogue is the source of truth (Appendix B)
+  retired_prefixes: [APS-]                     # APS- is no longer a code prefix
+
+# --- 32.6 The per-task-type required verification suite ----------------------
+# The (proof-type, phase) defaults of §15, resolving to cmd* slots. The canonical
+# matrix lives in docs/reference/flow-graph.md; this is its machine-readable shadow.
+#   - bare entries     = cmd* adapter slots (§31), resolved through AGENTS.md > Commands
+#   - gate:<name>      = an equivalence/coverage gate; the legal tokens are exactly
+#                        the five defined in §32.6:
+#                          gate:acceptance-criteria-coverage  every acceptance criterion maps to a passing proof
+#                          gate:regression-test               a test that failed before the change and passes after
+#                          gate:behaviour-preservation        a property/differential/metamorphic preservation check
+#                          gate:scope-disjointness            merged workers' OWNED paths are pairwise disjoint (§18)
+#                          gate:merge-intent                  each conflict resolution preserves both obligations' intent
+#   - merged:<slot>    = the slot runs on the post-integration merged result
 required_suite:
-  feature:            [Validation, Test, ValidateDeps, acceptance-criteria-coverage]
-  fix:                [Validation, Test, regression-test]
-  refactor:           [ValidateDeps, Typecheck, Test, behaviour-preservation]
-  rewrite:            [Validation, Test, behaviour-preservation]
-  migration:          [Validation, Test, ValidateDeps, behaviour-preservation]
-  upgrade:            [Build, Validation, Test, behaviour-preservation]
-  performance:        [Benchmark, Test, Validation]
-  testing:            [Test, Validation, assertion-flip]
-  documentation:      [example-output]
-  integration:        [Validation, Test, acceptance-criteria-coverage, integration-boundary]
-  spec-writing:       [git-status, acceptance-criteria-bindings]
-  research-writing:   [git-status]
-  audit-writing:      [git-status]
-  bug-report-writing: [reproduction-output]
-  review:             [Validation, Test]            # re-run by the reviewer, not the worker
-  deepen-audit:       [Validation, ValidateDeps]
-  orchestration:      [merged-Validation, merged-Test, scope-disjointness, merge-intent]
+  feature:            [cmdValidate, cmdTest, cmdValidateDeps, gate:acceptance-criteria-coverage]
+  fix:                [cmdValidate, cmdTest, gate:regression-test]
+  refactor:           [cmdValidateDeps, cmdTypecheck, cmdTest, gate:behaviour-preservation]
+  # … one row per task_kind; full matrix mirrors docs/reference/flow-graph.md …
+  # <add the remaining task_kind rows here, each row a list of cmd* slots and gate:<name> tokens>
+  orchestration:      [merged:cmdValidate, merged:cmdTest, gate:scope-disjointness, gate:merge-intent]
