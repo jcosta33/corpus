@@ -377,7 +377,7 @@ The finding is then indexed in memory by a single `MAP` line carrying a "Load wh
 
 ```text
 # memory/INDEX.md  (excerpt)
-- [Refresh storm on shared 401](../findings/refresh-storm-on-shared-401.md)
+- Refresh storm on shared 401 — `.swarm/sources/findings/refresh-storm-on-shared-401.md`
   — Load when: implementing or reviewing concurrent token-refresh paths.
 ```
 

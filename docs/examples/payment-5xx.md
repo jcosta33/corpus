@@ -393,7 +393,7 @@ The finding is then indexed in memory by a single `MAP` line carrying a "Load wh
 
 ```text
 # memory/INDEX.md  (excerpt)
-- [Idempotency key required on 5xx retry](../findings/idempotency-key-required-on-5xx-retry.md)
+- Idempotency key required on 5xx retry — `.swarm/sources/findings/idempotency-key-required-on-5xx-retry.md`
   — Load when: implementing or reviewing a payment retry path that re-submits a charge after a 5xx.
 ```
 
