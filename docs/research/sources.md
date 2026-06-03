@@ -2,7 +2,7 @@
 
 > This is the shipped bibliography for Swarm's research layer. It is held to the **§0.7 discipline** ("real science, not astrology"): every load-bearing empirical claim in `docs/research/` cites a **verified** entry below, with the recorded caveats. Entries marked **caveated** (non-peer-reviewed) MUST NOT carry a `MUST`-level claim. Entries in **Rejected** MUST NOT be cited — they are recorded so a fabricated citation is never silently re-introduced.
 >
-> This bibliography was rebuilt from the pre-pivot `skills/building/` research **after web-verification** (June 2026). Several headline figures in that legacy research rested on **fabricated/misattributed arXiv ids** and were rejected (see below). Where the kernel's own `.agents/specs/swarm/sources.md` already verified a source, this layer **reuses that key** rather than re-deriving it.
+> This bibliography was rebuilt from the pre-pivot `skills/building/` research **after web-verification** (June 2026). Several headline figures in that legacy research rested on **fabricated/misattributed arXiv ids** and were rejected (see below). A few entries were already verified by the framework's own bibliography elsewhere; this layer **reuses that key** rather than re-deriving it.
 
 ---
 
@@ -22,7 +22,7 @@
 
 ## Verified — reused from the kernel bibliography
 
-These are already verified in `.agents/specs/swarm/sources.md`; cite the existing key, do not re-derive.
+These were already verified by the framework's bibliography elsewhere; the entries below restate them so this layer is self-contained.
 
 <a id="LOSTMID"></a>
 **[LOSTMID] Lost in the Middle: How Language Models Use Long Contexts.** Liu et al., **TACL 2024**. The U-shaped attention curve — accuracy degrades for information in the middle of long contexts. (Per the kernel entry: "context rot" is a *later popular term*, not coined here; do not attribute it to this paper.) Grounds: the AGENTS.md density cap and the "minimize always-on context" discipline.
@@ -72,4 +72,4 @@ The pre-pivot `skills/building/` research attributed load-bearing figures to the
 
 ---
 
-*Discipline: a claim in `docs/research/` cites a Verified entry, or carries an explicit "preliminary / non-peer-reviewed" caveat naming a Caveated entry, or it is not made. New sources are web-verified before they are added. This mirrors the kernel's `.agents/specs/swarm/sources.md` policy.*
+*Discipline: a claim in `docs/research/` cites a Verified entry, or carries an explicit "preliminary / non-peer-reviewed" caveat naming a Caveated entry, or it is not made. New sources are web-verified before they are added. This follows the framework's §0.7 evidence discipline.*
