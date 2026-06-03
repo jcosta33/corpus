@@ -2,13 +2,13 @@
 
 > A reader following one pass guide should be able to perform its pass without hopping to a sibling guide for what a word means or what discipline applies. A guide restates inline what it needs, and reaches a project's concrete commands through one portable indirection — the `AGENTS.md > Commands` table — rather than through a link to another guide. This is the research grounding for the kernel's self-contained-guide rule and its no-cross-guide-semantics prohibition.
 
-This page is part of the **shipped, cited research layer**. Load-bearing empirical claims here cite a verified entry in [sources.md](sources.md); the design decisions they ground live in the framework's own docs (linked throughout). The page predates the kernel as a pre-pivot skill-authoring note; it is reframed here to the kernel vocabulary — pass guides and heuristic profiles, not "skills" and "personas".
+This page is part of the **cited research layer**. Load-bearing empirical claims here cite a verified entry in [sources.md](sources.md); the design decisions they ground live in the framework's own docs (linked throughout). It grounds the kernel's self-containment rule on the skill-authoring evidence, in the kernel's own vocabulary — pass guides and heuristic profiles.
 
 ---
 
 ## The portability pressure
 
-A **pass guide** is a reusable, lazily-loaded procedural module for one of the nine passes (`author -> lint -> improve -> lower -> decompose -> implement -> verify -> review -> promote`). It is vendored à la carte: a consuming project copies the subset of guides its work needs and leaves the rest. A **heuristic profile** is an optional cognitive stance applied over a pass; it ships the same way.
+A **pass guide** is a reusable, lazily-loaded procedural module for one of the nine passes (`author -> lint -> improve -> lower -> decompose -> implement -> verify -> review -> promote`). It is vendored selectively: a consuming project copies the subset of guides its work needs and leaves the rest. A **heuristic profile** is an optional cognitive stance applied over a pass; it ships the same way.
 
 The structural consequence drives everything below: **a guide cannot assume any sibling guide or profile is present in context.** If a guide *expected* the proof discipline carried by the `empirical-proof` fragment, that discipline would have to be either restated where the guide needs it, or re-derivable from the guide alone. A guide body that links a sibling assumes a layout the consumer may not have reproduced.
 
@@ -26,7 +26,7 @@ This rule binds the **guide body** only. Documentation under `docs/` — includi
 
 ### The no-cross-guide-semantics prohibition
 
-There is a second, sharper rule layered on the first: a guide MUST NOT define, redefine, or be required to interpret what the language means. All load-bearing meaning — block types, modals, verdict values, proof types, lint codes, IR fields — lives in the SOL/APS language reference and the typed IR, never in a guide. A guide is a *procedure*, not a semantic home. (The procedural-layer contract, the one-way dependency direction, and the recast of the 24 legacy skills onto the nine passes are specified in [the pass-guides reference](../library/pass-guides.md).)
+There is a second, sharper rule layered on the first: a guide MUST NOT define, redefine, or be required to interpret what the language means. All load-bearing meaning — block types, modals, verdict values, proof types, lint codes, IR fields — lives in the SOL/APS language reference and the typed IR, never in a guide. A guide is a *procedure*, not a semantic home. (The procedural-layer contract, the one-way dependency direction, and the mapping of the guide set onto the nine passes are specified in [the pass-guides reference](../library/pass-guides.md).)
 
 The reason is adherence. Meaning that lived in a lazily-loaded, optional guide would make the meaning of a spec depend on whether that guide happened to load — so a correctly authored `*.swarm.md` file must be understandable to a strong model with **no guide loaded at all**. Self-containment of the guide and self-standing-ness of the spec are two sides of the same constraint: the guide cannot reach into a sibling for semantics, and the spec does not need the guide for semantics either.
 
@@ -66,7 +66,7 @@ The research backs the *shape* of this from three converging angles, none of the
 - Anthropic's context-engineering guidance treats context as a finite resource and recommends an explicit on-disk note-taking pattern (`task_plan` / `progress_log` / `decisions`) rather than relying on the model to carry state ([CTXENG](sources.md#CTXENG)).
 - The Claude Code Tasks system is vendor-scale validation of disk-persistent, dependency-aware task state ([CCTASKS](sources.md#CCTASKS)).
 
-> **A claim this page does not make.** A pre-pivot version of this note cited a headline "21× file-state degradation" figure attributed to an arXiv id that, on direct fetch, resolves to an unrelated condensed-matter physics paper. That figure is rejected and is **not** repeated here; the case for externalised state rests instead on the three verified sources above (see [sources.md](sources.md) → Rejected).
+> **A claim this page does not make.** A headline "21× file-state degradation" figure circulates in the skill-authoring literature, attributed to an arXiv id that, on direct fetch, resolves to an unrelated condensed-matter physics paper. That figure is rejected and is **not** repeated here; the case for externalised state rests instead on the three verified sources above (see [sources.md](sources.md) → Rejected).
 
 For self-containment specifically, the implication is structural: **state is shared through the file, not through implicit context.** A pass that needs prior findings reads them from `task.md`; a pass that records a decision writes it there. No pass assumes another kept anything in attention.
 
@@ -74,7 +74,7 @@ For self-containment specifically, the implication is structural: **state is sha
 
 ## Loading: named by the task, not by a sibling
 
-Self-containment also shapes *how* a guide activates. The kernel's primary mechanism is **load what the task names**: a `task.md` names, in its frontmatter or assignment block, the pass guide(s) and profile(s) it activates, and the agent loads exactly those ([ADR-0037](../adrs/0037-load-what-the-task-names.md), [the pass-guides reference](../library/pass-guides.md)). Description-match self-activation is the **fallback** for the launcher-less, à-la-carte case — a degraded mode, not the contract. Crucially, neither path lets one guide pull in another: a guide activates because the task named it (or its description matched the task), never because a sibling guide mentioned it. Routing stays orthogonal to which guides are independent.
+Self-containment also shapes *how* a guide activates. The kernel's primary mechanism is **load what the task names**: a `task.md` names, in its frontmatter or assignment block, the pass guide(s) and profile(s) it activates, and the agent loads exactly those ([ADR-0037](../adrs/0037-load-what-the-task-names.md), [the pass-guides reference](../library/pass-guides.md)). Description-match self-activation is the **fallback** for the launcher-less case — a degraded mode, not the contract. Crucially, neither path lets one guide pull in another: a guide activates because the task named it (or its description matched the task), never because a sibling guide mentioned it. Routing stays orthogonal to which guides are independent.
 
 This is why no "loader" or "core" index guide exists. A standing gatekeeper that pre-loaded guides would itself be an always-loaded module — forbidden — and would not be guaranteed present on a consumer's machine. The independence is preserved precisely by having nothing that knits the guides together at load time.
 

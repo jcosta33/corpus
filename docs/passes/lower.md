@@ -88,7 +88,7 @@ Codes: an uncovered obligation is **`SOL-O007`** (BLOCKING, resolves by `SCOPE`)
 
 ## The typed IR `lower` emits
 
-The **IR** is the typed, machine-checkable form of a SOL spec: a single JSON document re-expressing every obligation, relationship, diagnostic, and provenance fact in one `*.swarm.md` source. The surface is what a human authors; the IR is what a tool would reason over (§3 makes the surface-vs-IR split the master architectural distinction). A structured intermediate measurably beats free prose for downstream code work — reasoning over an explicitly typed graph outperforms reasoning over loose prose — which is why analysis is bound to a typed IR rather than left in the surface text. The file is named with the `.swarm.` infix: `auth-refresh.swarm.md` lowers to `auth-refresh.swarm.ir.json`.
+The **IR** is the typed, machine-checkable form of a SOL spec: a single JSON document re-expressing every obligation, relationship, diagnostic, and provenance fact in one `*.swarm.md` source. The surface is what a human authors; the IR is what a tool would reason over (§3 makes the surface-vs-IR split the master architectural distinction). Lowering the spec to this machine-shaped plan before any code work begins is the plan-before-execute discipline [[PLANSOLVE]](../research/sources.md#PLANSOLVE) the pipeline enforces structurally. A structured intermediate measurably beats free prose for downstream code work — reasoning over an explicitly typed graph outperforms reasoning over loose prose — which is why analysis is bound to a typed IR rather than left in the surface text. The file is named with the `.swarm.` infix: `auth-refresh.swarm.md` lowers to `auth-refresh.swarm.ir.json`.
 
 ### Top-level envelope: exactly five keys, in order
 

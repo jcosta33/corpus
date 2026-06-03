@@ -7,8 +7,8 @@ One crisp definition per term, one term per meaning. Each entry cross-references
 | Term | Definition |
 | --- | --- |
 | **adapter** | The project-specific tool an obligation's proof resolves to; the `<adapter>` slot of `VERIFY BY <type>:<adapter>:<artifact>` resolves through `AGENTS.md` > Commands `cmd*` placeholder slots (§15, §31). |
-| **AGENTS.md** | The always-loaded bootloader of persistent facts and pointers, hard-capped at ≤200 lines / ≤25 KB; carries the Commands table the adapters resolve through but never defines modality, authority, or verification semantics (§31). |
-| **APS** | Agent Prose Semantics — the controlled-prose standard governing the readable prose around SOL blocks; the name survives, but `APS-` is retired as a lint-code prefix (the rules now live under `SOL-P###`) (§7). |
+| **AGENTS.md** | The always-loaded bootloader of persistent facts and pointers, hard-capped at ≤200 lines / ≤25 KB [[LOSTMID]](../research/sources.md#LOSTMID); carries the Commands table the adapters resolve through but never defines modality, authority, or verification semantics (§31). |
+| **APS** | Agent Prose Semantics — the controlled-prose standard governing the readable prose around SOL blocks; its rules live under the `SOL-P###` lint layer (§7). |
 | **block type** | One of the seven SOL block kinds (`REQ`, `CONSTRAINT`, `INVARIANT`, `INTERFACE`, `QUESTION`, `TRACE`, `VERDICT`), each with a fixed id prefix and clause grammar (§4, §6). |
 | **conformance** | The property of a repository that ships the language reference docs, the seven core templates, a populated `AGENTS.md` bootloader, and the version file (`kernel/.agents/.swarm-version`, or `.swarm/VERSION` in an adopted project) (§20, §32). |
 | **CONSTRAINT** | An obligation block (id `C-NNN`) that restricts *how* obligations may be satisfied rather than requesting behavior; carries binding force (§6). |
@@ -29,7 +29,7 @@ One crisp definition per term, one term per meaning. Each entry cross-references
 | **obligation** | A binding clause carried by a `REQ`, `CONSTRAINT`, or `INVARIANT` block; the unit that is verified, traced, and gated (§4, §6). |
 | **obligation graph** | The dependency-and-conflict graph the IR encodes via `edges[]`, over which Swarm's core analyses (topo-sort, cycle detection, write-conflict, traceability) run (§3, §12). |
 | **pass** | One of the nine schedulable transformations (`author → lint → improve → lower → decompose → implement → verify → review → promote`) that a task performs over its source artifacts (§9). |
-| **pass guide** | A skill reframed as procedural guidance for performing a pass; it never owns SOL or APS semantics, which must be understandable without it (§26). |
+| **pass guide** | A skill reframed as procedural guidance for performing a pass; it never owns SOL or APS semantics, which must be understandable without it [[SKILLBP]](../research/sources.md#SKILLBP) (§26). |
 | **phase** | One of the seven conceptual compiler stages (`PARSE → NORMALIZE → LOWER → EXECUTE → VERIFY → REVIEW → PROMOTE`) onto which passes map (§9). |
 | **plan** | The `*.swarm.plan.json` artifact — a graph envelope plus rich task payload derived from the IR; documented as a contract only, with no `locks` primitive (§13). |
 | **profile** | A persona reframed as a heuristic parameter on a pass (e.g. `review[profile: skeptic]`), carrying Prevents/Default-questions/Required-evidence/Refuses/Applies-when (§27). |
@@ -41,7 +41,7 @@ One crisp definition per term, one term per meaning. Each entry cross-references
 | **STALE** | The lifecycle decorator marking a prior PASS whose recorded source or write-surface hash no longer matches current state; blocks the merge gate and forces a 3-way reconcile (§14, §16). |
 | **surface** | The human-authored layer — English-shaped uppercase space-separated keywords in `.swarm.md` — as distinct from the snake_case IR layer (§4, §5). |
 | **SURFACE** | A named coarse write-surface group (`SURFACE <name> = …`), optionally attributed `append-only\|integration\|shared`; replaces any `locks` primitive (§4, §18, G7). |
-| **task_kind** | The frontmatter enum that parameterizes the `implement`/`author` passes (e.g. `feature`, `fix`, `refactor`, `review`, `spec-writing`, `orchestration`); the 17 canonical values (the 18 legacy task types minus the banned `kickback`) are defined in §28. |
+| **task_kind** | The frontmatter enum that parameterizes the `implement`/`author` passes (e.g. `feature`, `fix`, `refactor`, `review`, `spec-writing`, `orchestration`); the enum has 17 canonical values, and `kickback` is not among them — it is a control-flow event, not a task type (§28). |
 | **trace** | The emitted artifact (`*.swarm.trace.md`) recording a `TRACE` block — implementation claims, changed surfaces, proof references — plus the provenance the drift join consumes (§16, §21). |
 | **VERDICT** | The judgment block (reusing the judged obligation's id) carrying one core value (`PASS`, `FAIL`, `BLOCKED`, `UNVERIFIED`) optionally decorated with a lifecycle value; lives inside `review.md`, never a standalone file (§14). |
 | **VERIFY BY** | The surface clause binding an obligation to its proof: `VERIFY BY <type>:<adapter>:<artifact>[#selector]`; the IR field name is `verify_by` (§15). |

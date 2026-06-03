@@ -88,13 +88,13 @@ A bare `VERIFY BY <ref>` with no `type:` segment is **structurally valid** but r
 - an obligation entering a `CONTRADICTED` proof-strength tie-break (§17);
 - a per-task default-suite check (§15.8).
 
-A migration importing legacy specs MAY carry bare refs; `improve`/`NORMALIZE` upgrades them to typed bindings.
+A spec imported from outside the framework MAY carry bare refs; the `improve`/`NORMALIZE` pass upgrades them to typed bindings.
 
 ## Why the boundary matters (design rationale)
 
 The taxonomy is deliberately *closed* so that a future linter can reason about it: the `<type>` is analyzable, while `<adapter>` and `<artifact>` stay free strings (kept in `AGENTS.md`) so the same spec ports across repos. (Cross-reference: the two-layer obligation/adapter model is §15.3.)
 
-The closed set tracks the **test-oracle problem**: when a precise oracle is unavailable, a single concrete example cannot stand in for an obligation's predicate, so generative property-based and metamorphic checks are the principled response — they assert a quantified property rather than a single hand-picked case. This is why `property` and `model` are first-class types rather than scope notes under `test`, and why `manual` is named honestly rather than disguised as a passing test. A binding that resolves only to "schema-valid output" or a bare "tests passed" is not a proof and yields `UNVERIFIED`, not `PASS` (the *what is NOT a proof* floor, §15.9): a passing or schema-valid signal that does not actually exercise the obligation's predicate is an inadequate oracle, and inadequate oracles must not be allowed to manufacture a `PASS`.
+The closed set tracks the **test-oracle problem**: when a precise oracle is unavailable, a single concrete example cannot stand in for an obligation's predicate, so generative property-based and metamorphic checks are the principled response — they assert a quantified property rather than a single hand-picked case. This is why `property` and `model` are first-class types rather than scope notes under `test`, and why `manual` is named honestly rather than disguised as a passing test. A binding that resolves only to "schema-valid output" or a bare "tests passed" is not a proof and yields `UNVERIFIED`, not `PASS` (the *what is NOT a proof* floor, §15.9): a passing or schema-valid signal that does not actually exercise the obligation's predicate is an inadequate oracle, and inadequate oracles must not be allowed to manufacture a `PASS` [[REFLEXION]](../research/sources.md#REFLEXION).
 
 A bound proof produces exactly one CORE verdict — `PASS`, `FAIL`, `BLOCKED`, or `UNVERIFIED` (§14.1) — and the lifecycle decorators (`WAIVED`/`STALE`/`CONTRADICTED`) annotate that result; the full seven-value verdict model and the merge gate live in §14.
 

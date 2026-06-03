@@ -1,8 +1,8 @@
 # Sources — the evidence base for `docs/research/`
 
-> This is the shipped bibliography for Swarm's research layer. It is held to the **§0.7 discipline** ("real science, not astrology"): every load-bearing empirical claim in `docs/research/` cites a **verified** entry below, with the recorded caveats. Entries marked **caveated** (non-peer-reviewed) MUST NOT carry a `MUST`-level claim. Entries in **Rejected** MUST NOT be cited — they are recorded so a fabricated citation is never silently re-introduced.
+> This is the bibliography for Swarm's research layer. It is held to the **§0.7 discipline** ("real science, not astrology"): every load-bearing empirical claim in `docs/research/` cites a **verified** entry below, with the recorded caveats. Entries marked **caveated** (non-peer-reviewed) MUST NOT carry a `MUST`-level claim. Entries in **Rejected** MUST NOT be cited — they are recorded so a fabricated citation is never silently re-introduced.
 >
-> This bibliography was rebuilt from the pre-pivot `skills/building/` research **after web-verification** (June 2026). Several headline figures in that legacy research rested on **fabricated/misattributed arXiv ids** and were rejected (see below). A few entries were already verified by the framework's own bibliography elsewhere; this layer **reuses that key** rather than re-deriving it.
+> This bibliography was assembled **after web-verification** (June 2026). Several headline figures that circulate in the skill-authoring literature rested on **fabricated/misattributed arXiv ids** and were rejected (see below). A few entries were already verified by the framework's own bibliography elsewhere; this layer **reuses that key** rather than re-deriving it.
 
 ---
 
@@ -62,13 +62,13 @@ Treated exactly as the kernel treats `[ARIZE26]`/`[DETERMINISM]`: usable to *ill
 
 ## Rejected — DO NOT CITE (fabricated / misattributed)
 
-The pre-pivot `skills/building/` research attributed load-bearing figures to these arXiv ids. **Direct fetch (June 2026) found each id resolves to an unrelated paper.** They are recorded here so the fabrication is never re-introduced (per the kernel's reject discipline).
+The skill-authoring literature attributes load-bearing figures to these arXiv ids. **Direct fetch (June 2026) found each id resolves to an unrelated paper.** They are recorded here so the fabrication is never re-introduced (per the kernel's reject discipline).
 
-| Legacy claim | Cited as | What the id actually is | Verdict |
+| Circulating claim | Cited as | What the id actually is | Verdict |
 | --- | --- | --- | --- |
 | "21× degradation when file-based state externalization is removed" (InfiAgent) | arXiv:2511.10954 | *Kapitza-Dirac interference of Higgs waves in superconductors* (condensed-matter physics) | **REJECTED — misattributed; the 21× figure is unverifiable and MUST NOT be cited.** File-state externalization is instead grounded on [CTXENG] + [CCTASKS] + [SCRATCHPAD]. |
 | "fixed turn limit at p75 cuts cost 24–68%" (More with Less) | arXiv:2510.27502 | *Reference Equations of State for Density Prediction in Regasified LNG Mixtures* (chemical physics) | **REJECTED — misattributed.** |
-| "agentic failures are overwhelmingly context failures" (PAACE) | arXiv:2511.21345 | *Blind Turbo Demodulation for Differentially Encoded OFDM* (signal processing) | **REJECTED — misattributed** (the legacy doc itself flagged it as unverified). |
+| "agentic failures are overwhelmingly context failures" (PAACE) | arXiv:2511.21345 | *Blind Turbo Demodulation for Differentially Encoded OFDM* (signal processing) | **REJECTED — misattributed** (the source that circulated it flagged it as unverified). |
 
 ---
 

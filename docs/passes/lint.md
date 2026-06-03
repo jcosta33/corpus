@@ -35,14 +35,14 @@ Every diagnostic uses one namespace: `SOL-<LAYER><NNN>` — the literal prefix `
 | Layer | Letter | Domain | Mirrors pass / phase | Block range |
 | --- | --- | --- | --- | --- |
 | SYNTAX | `S` | Parser-detectable well-formedness | `lint` / `PARSE` | `SOL-S001…` |
-| PROSE | `P` | Controlled-prose / requirement-smell, single-obligation-local (the former APS layer; absorbs old `SOL-L`) | `lint` / `NORMALIZE` | `SOL-P001…` |
+| PROSE | `P` | Controlled-prose / requirement-smell, single-obligation-local (the APS prose layer) | `lint` / `NORMALIZE` | `SOL-P001…` |
 | SEMANTIC | `M` | Cross-reference: duplicate id, contradiction, unbound ref | `improve` / `NORMALIZE` | `SOL-M001…` |
 | VERIFICATION | `V` | Proof-binding: missing / stale / non-observable proof | `verify` / `VERIFY` | `SOL-V001…` |
 | ORCHESTRATION | `O` | Planning / parallelism: write-conflict, dep cycle, blocking `QUESTION` reaching lowering | `decompose` / `LOWER` | `SOL-O001…` |
 
 A code's letter indicates the phase it belongs to and which guide repairs it. Note that although the `O` layer is *raised* by any LOWER-phase pass (`lower` or `decompose`), it is *surfaced by the `lint` gate* (§8.1.1) — the layers and the passes are 1:1 by domain, not by who reports them.
 
-`APS-` is **retired as a code prefix** (§8.5). "APS" survives only as the *name* of the prose standard. Every legacy `APS-*`, flat `SOL101/SOL201/SOL301`, and `SOL-L###` code is remapped into the unified namespace (full translation table in Appendix B). Tools and authors MUST cite only the unified codes.
+`APS` is the *name* of the prose standard, not a code prefix (§8.5): prose-layer diagnostics surface as `SOL-P###` codes in the unified namespace, never as an `APS-` code. Tools and authors MUST cite only the unified `SOL-<LAYER>###` codes.
 
 ### The diagnostic record shape
 
@@ -196,4 +196,4 @@ A lint-layer demotion is distinct from a `WAIVED` verdict at the verification la
 - [The `decompose` pass](decompose.md) — owner of the `O` (orchestration) layer: write-conflict, dependency-cycle, and the blocking-`QUESTION`-reaching-lowering codes.
 - [The `verify` pass](verify.md) — owner of the `V` (verification) layer and the merge-gate where `V`/`O` blockers and `WAIVED` verdicts are decided.
 - [SOL — the spec language](../language/SOL.md) and [APS — the controlled-prose standard](../language/APS.md) — the grammar and prose rules the `S` and `P` layers detect against.
-- [Diagnostic codes (errors)](../language/errors.md) — the full per-layer code catalogue and the legacy `APS-*`/`SOL-L###`/flat-code translation table.
+- [Diagnostic codes (errors)](../language/errors.md) — the full per-layer code catalogue for the unified `SOL-<LAYER>###` namespace.

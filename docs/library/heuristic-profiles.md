@@ -1,6 +1,6 @@
 # Heuristic profiles
 
-> Swarm's reference for **heuristic profiles**: the optional cognitive stances that sharpen a pass without changing what the pass means — what a profile is, the seven-section profile contract (including the `## Refuses` red-flag table), the six stdlib profiles and the full thirteen-stance set, where profiles ship, and the profile-by-pass routing model that replaces the legacy persona matrices.
+> Swarm's reference for **heuristic profiles**: the optional cognitive stances that sharpen a pass without changing what the pass means — what a profile is, the seven-section profile contract (including the `## Refuses` red-flag table), the six stdlib profiles and the full thirteen-stance set, where profiles ship, and the single-axis profile-by-pass routing model.
 
 A **heuristic profile** is an optional cognitive stance applied to a pass. It changes *what an agent looks for and refuses* while performing the pass; it never changes *how* the pass runs — that is the job of the pass guide — and it never defines load-bearing meaning. A profile is a parameter, not a person: it is not a character, not an actor, and not a procedure. Like every Swarm surface, a profile is **markdown only with no runtime**; it is a contract a human or an agent reads and adopts, never code that executes.
 
@@ -46,7 +46,7 @@ Section semantics:
 
 The `## Refuses` section is the heart of a profile: an enumerated **refusal set** rather than a single sweeping rule. Each row pairs a red flag — a pattern the stance recognizes as a likely defect — with the action the stance takes when it sees that pattern. Enumerating the refusals (instead of stating one broad "iron law") is what lets the stance reject the *specific* failure modes its pass invites, and lets a reader audit exactly what it will and will not let through. The dispositions a row names (`reject`, `UNVERIFIED`, …) are applications of vocabulary owned elsewhere; the table *applies* that vocabulary, it does not define it.
 
-For example, the Skeptic stance — the canonical reference profile — refuses summary-only proof (demand the artifact), "tests passed" with no command, exit code, or output (reject as `UNVERIFIED`), a trace whose evidence does not match the obligation it claims (reject as `UNVERIFIED`), and the implementer rendering the verdict on their own change (reject; require an independent reviewer). Each row is a concrete trap the `review`/`verify` passes are prone to, named so the stance catches it on sight.
+For example, the Skeptic stance — the canonical reference profile — refuses summary-only proof (demand the artifact), "tests passed" with no command, exit code, or output (reject as `UNVERIFIED`) [[REFLEXION]](../research/sources.md#REFLEXION), a trace whose evidence does not match the obligation it claims (reject as `UNVERIFIED`), and the implementer rendering the verdict on their own change (reject; require an independent reviewer). Each row is a concrete trap the `review`/`verify` passes are prone to, named so the stance catches it on sight.
 
 ## The six stdlib profiles
 
@@ -89,7 +89,7 @@ All thirteen are uniformly heuristic profiles: there is no two-tier "persona vs 
 
 Routing in Swarm is **profile × pass**. A task names exactly one pass — the transformation it frames over its assigned obligations — and MAY name the profile that sharpens it. The `task_kind` frontmatter value is what selects the profile inside the two passes that vary by kind: the nine implementation kinds all route to `implement` and differ only in which profile and pass guide apply (`feature`/`rewrite` → Builder, `fix` → Skeptic, `refactor` → Janitor, `migration`/`upgrade` → Migrator, `performance` → Performance Surgeon, `testing` → Test Author, `documentation` → Documentarian); the authoring kinds all route to `author` and select Architect, Researcher/Surveyor, Auditor, or Bug Hunter. The `review` kind selects the `review` pass under the Skeptic stance; `orchestration` and `integration` route to `decompose` plus a merge-gate `review` under the Lead Engineer stance.
 
-This single axis replaces two legacy lookup tables — persona-by-task-type and persona-by-document-type. A conformant repo MUST express routing as profile × pass and MUST NOT reintroduce a persona-per-task-type or persona-per-document-type matrix. The rationale is concrete: the old matrices duplicated the same mindset across many cells; collapsing every stance onto the pass axis removes that duplication and makes the question "which stance applies here?" answerable from the pass and the `task_kind` alone.
+Routing is this **single axis** — profile × pass — rather than a pair of lookup tables keyed on task type and document type. A conformant repo MUST express routing as profile × pass and MUST NOT introduce a persona-per-task-type or persona-per-document-type matrix. The rationale is concrete: a per-task-type or per-document-type matrix duplicates the same mindset across many cells; routing every stance onto the pass axis removes that duplication and makes the question "which stance applies here?" answerable from the pass and the `task_kind` alone.
 
 ## Where profiles ship
 
@@ -104,11 +104,11 @@ In practice, two parts of the seven-section contract carry the weight of the sta
 - **The Stance.** State, in one line, the failure class this profile exists to catch and the frame of mind it imposes — the substance that fills `## Prevents` and tilts the rest of the sections. The Skeptic's stance is refute-by-default; the Builder's is constructive build under the assigned scope; the Janitor's is behavior-preserving minimal-footprint change. Everything else in the profile follows from that one sentence.
 - **The `## Refuses` red-flag table.** This is where the stance becomes auditable. Shape it as a two-column table — each row a red flag the stance recognizes on sight, paired with the disposition it takes (`reject`, mark `UNVERIFIED`, require an independent reviewer, …). Enumerate the *specific* traps this profile's pass invites rather than stating one sweeping rule; the row's disposition cites vocabulary owned by the language reference and the pass guides, it never mints new meaning. A reader should be able to scan the table and know exactly what the stance will and will not let through.
 
-Keep the profile short. The other five sections (`## Default questions`, `## Required evidence`, `## Self-review delta`, `## Applies when`, `## Does not apply when`) sharpen the stance and guard against misapplication, but they are downstream of the one-line stance and the refusal set. If those two are crisp, the profile does its job.
+Keep the profile short [[SKILLBP]](../research/sources.md#SKILLBP). The other five sections (`## Default questions`, `## Required evidence`, `## Self-review delta`, `## Applies when`, `## Does not apply when`) sharpen the stance and guard against misapplication, but they are downstream of the one-line stance and the refusal set. If those two are crisp, the profile does its job.
 
 ## Related
 
-- [Pass guides](pass-guides.md) — the skill/pass-guide model: *how* a pass runs, the layer a profile sits over.
+- [Pass guides](pass-guides.md) — the pass-guide model: *how* a pass runs, the layer a profile sits over.
 - [Overlays](overlays.md) — project rule bundles, the other parameterizing layer alongside profiles.
 - [The `review` pass](../passes/review.md) — the merge gate and the seven-value verdict vocabulary the Skeptic/Reviewer stance applies.
 - [The `verify` pass](../passes/verify.md) — the proof taxonomy and proof-strength order a profile's `Required evidence` cites, never defines.

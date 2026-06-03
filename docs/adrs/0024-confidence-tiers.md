@@ -6,7 +6,7 @@ Superseded by [0035](./0035-seven-value-verdict-model.md) — the self-reviewed 
 
 ## Context
 
-The [agents-as-compiler readiness audit](../../.agents/audits/agents-as-compiler-readiness.md) found that the only independent oracle Swarm has — a Skeptic who re-runs validation in their own worktree — is (a) scoped to multi-agent review (`adversarial-review` skips solo authoring), (b) non-binding (routing is recommended, [0020](./0020-activation-by-self-assessment.md)), and (c) a single uncalibrated LLM judgment. Solo single-threaded work — the stated default for write-side tasks — terminates at the *same* agent's `## Self-review`. No document distinguished "the producing agent checked its own work" from "a separate agent independently verified it," so every result read as equally trustworthy when they are not.
+The agents-as-compiler readiness audit found that the only independent oracle Swarm has — a Skeptic who re-runs validation in their own worktree — is (a) scoped to multi-agent review (`adversarial-review` skips solo authoring), (b) non-binding (routing is recommended, [0020](./0020-activation-by-self-assessment.md)), and (c) a single uncalibrated LLM judgment. Solo single-threaded work — the stated default for write-side tasks — terminates at the *same* agent's `## Self-review`. No document distinguished "the producing agent checked its own work" from "a separate agent independently verified it," so every result read as equally trustworthy when they are not.
 
 ## Decision
 

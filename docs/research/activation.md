@@ -1,10 +1,10 @@
 # Activation: how a pass guide or profile is selected
 
-> This is the SHIPPED, CITED research layer. It is the one corner of `docs/` that deliberately carries `[KEY]` citations; every load-bearing empirical claim points to a verified entry in [`sources.md`](sources.md), used with its recorded caveats. Everywhere else in `docs/` is self-standing.
+> This is the CITED research layer. It is the one corner of `docs/` that deliberately carries `[KEY]` citations; every load-bearing empirical claim points to a verified entry in [`sources.md`](sources.md), used with its recorded caveats. Everywhere else in `docs/` is self-standing.
 
 When an agent is about to run a pass, *something* has to put the right method in front of it: the [pass guide](../library/pass-guides.md) for that pass, and the [heuristic profile](../library/heuristic-profiles.md) that sharpens it. This page is about that selection step — how the conditioning a pass needs gets into context, and how *not* to get it wrong.
 
-Swarm's answer has two tiers, and the order matters. The **primary** mechanism is **load what the task names**: the [`task.md`](../artifacts/task.md) names its pass guide(s) and profile, and the agent loads exactly those. The **fallback**, for the case where there is no task and no router, is description-matching: a guide carries a self-activating `description`, and an agent matches it against the work in front of it. The fallback is a degraded mode, not the contract. The legacy research this page reframes had these the other way around — it treated the `description` line as the single most load-bearing thing in a skill. The kernel rejects that framing ([ADR-0037](../adrs/0037-load-what-the-task-names.md)); this page records why.
+Swarm's answer has two tiers, and the order matters. The **primary** mechanism is **load what the task names**: the [`task.md`](../artifacts/task.md) names its pass guide(s) and profile, and the agent loads exactly those. The **fallback**, for the case where there is no task and no router, is description-matching: a guide carries a self-activating `description`, and an agent matches it against the work in front of it. The fallback is a degraded mode, not the contract. Much of the skill-authoring literature has these the other way around — it treats the `description` line as the single most load-bearing thing in a skill. The kernel rejects that framing ([ADR-0037](../adrs/0037-load-what-the-task-names.md)); this page records why.
 
 ---
 
@@ -33,7 +33,7 @@ Loading (which conditioning is in context) stays **orthogonal** to verification 
 
 ## Fallback: description-matching, a degraded mode
 
-There is a real case the primary path does not cover: a task dropped into an arbitrary agent CLI with no launcher and no naming — the launcher-less, à-la-carte world. For that case, and only that case, the fallback survives: an agent MAY match a guide's self-activating `description` against the task in front of it. This is retained, not deleted; it is just **not the contract**. An unnamed task silently drops to this degraded mode, which is why the kernel pushes authors to name their guides in `task.md`.
+There is a real case the primary path does not cover: a task dropped into an arbitrary agent CLI with no launcher and no naming — the launcher-less case. For that case, and only that case, the fallback applies: an agent MAY match a guide's self-activating `description` against the task in front of it. It is supported, but it is **not the contract**. An unnamed task silently drops to this degraded mode, which is why the kernel pushes authors to name their guides in `task.md`.
 
 There is no standing gatekeeper that pre-loads guides per pass. Such a gatekeeper would itself be an always-loaded skill — forbidden ([ADR-0017](../adrs/0017-no-always-load-skills.md)) — and would not be guaranteed present on a consumer's machine.
 
@@ -67,7 +67,7 @@ The form is an **authoring heuristic for the fallback**, consistent with the off
 
 ## Exclusions name task-kinds, not sibling guides
 
-The one rule worth keeping verbatim from the legacy form: the `Skip for…` clause names **task-kinds**, never sibling guide names. Where two guides could plausibly match the same work, each rules out the other's *task-kind* — the agent matches the work against whichever guide's `ALWAYS apply when…` clause triggers, with no guide having to know which siblings are installed.
+One rule is worth stating sharply: the `Skip for…` clause names **task-kinds**, never sibling guide names. Where two guides could plausibly match the same work, each rules out the other's *task-kind* — the agent matches the work against whichever guide's `ALWAYS apply when…` clause triggers, with no guide having to know which siblings are installed.
 
 Naming a sibling guide by name would be tempting (more concrete, fewer characters) but structurally wrong. A consumer who vendored only one guide and not its neighbour would have a `description` that references a guide that is not present — a dangling reference. Naming the *task-kind* gives the agent the same disambiguation signal without coupling the `description` to a particular catalogue. This matters because Swarm's profiles and guides are independently vendorable: the [profile × pass routing model](../library/heuristic-profiles.md) selects a stance from the pass and `task_kind` alone, with no per-task-type lookup matrix. Both the directive form and the task-kind-only exclusion rule serve the same end — a `description` that disambiguates by *shape*, so the fallback stays dependable even when the obvious neighbour is missing.
 
@@ -75,13 +75,13 @@ Naming a sibling guide by name would be tempting (more concrete, fewer character
 
 ## What this page does *not* claim
 
-This reframe deliberately drops three things the legacy doc relied on, because they fail Swarm's evidence discipline ("real science, not astrology" — [Principles § Evidence discipline](../PRINCIPLES.md)):
+This page deliberately declines three claims common in the skill-authoring literature, because they fail Swarm's evidence discipline ("real science, not astrology" — [Principles § Evidence discipline](../PRINCIPLES.md)):
 
-- **No "the description is the most load-bearing line."** Under the kernel, the most load-bearing routing signal is the `task.md` naming; the `description` is the fallback. The legacy claim inverted the doctrine.
-- **No headline activation figures.** The legacy doc quoted an odds ratio and "100% activation" rates as established fact. Those come from a single non-peer-reviewed measurement ([ACTIVATION-BLOG](sources.md#ACTIVATION-BLOG)); only the *direction* is cited here, and only as preliminary.
-- **No "compliance ceiling" or capability-ceiling claim.** The legacy doc grounded a brevity argument on a misattributed degradation figure and on a vendor study's "+20% tokens / −3% success" numbers used as a hard ceiling. The density rationale here rests instead on the U-shaped attention finding ([LOSTMID](sources.md#LOSTMID)) plus the bloat-versus-gap-filling tradeoff — *not* on any claim that models cannot follow many instructions. The fabricated "21× file-state" and "24–68% turn-cost" figures the legacy research leaned on are recorded as **rejected** in [`sources.md`](sources.md) and MUST NOT be reintroduced.
+- **No "the description is the most load-bearing line."** Under the kernel, the most load-bearing routing signal is the `task.md` naming; the `description` is the fallback. The common framing inverts the doctrine.
+- **No headline activation figures.** The literature quotes an odds ratio and "100% activation" rates as established fact. Those come from a single non-peer-reviewed measurement ([ACTIVATION-BLOG](sources.md#ACTIVATION-BLOG)); only the *direction* is cited here, and only as preliminary.
+- **No "compliance ceiling" or capability-ceiling claim.** A common brevity argument rests on a misattributed degradation figure and on a vendor study's "+20% tokens / −3% success" numbers used as a hard ceiling. The density rationale here rests instead on the U-shaped attention finding ([LOSTMID](sources.md#LOSTMID)) plus the bloat-versus-gap-filling tradeoff — *not* on any claim that models cannot follow many instructions. The fabricated "21× file-state" and "24–68% turn-cost" figures that circulate in that literature are recorded as **rejected** in [`sources.md`](sources.md) and MUST NOT be reintroduced.
 
-A separate, real concern the legacy doc raised — that an agent might *activate* a method and then silently skip a step — is reframed in the kernel as the **forced-visible-output** / empirical-proof rule: a `PASS` whose evidence is the bare phrase "tests passed", with no command, exit code, or output, is invalid ([verify pass](../passes/verify.md)). The grounded version of "make the work visible so it can be checked" is the verbal-feedback finding behind self-reflection ([REFLEXION](sources.md#REFLEXION)) and the scratchpad finding for externalising intermediate work ([SCRATCHPAD](sources.md#SCRATCHPAD)); the practitioner write-up that named the two-problems distinction ([TWOPROBLEMS](sources.md#TWOPROBLEMS)) is illustrative only.
+A separate, real concern the literature raises — that an agent might *activate* a method and then silently skip a step — is addressed in the kernel as the **forced-visible-output** / empirical-proof rule: a `PASS` whose evidence is the bare phrase "tests passed", with no command, exit code, or output, is invalid ([verify pass](../passes/verify.md)). The grounded version of "make the work visible so it can be checked" is the verbal-feedback finding behind self-reflection ([REFLEXION](sources.md#REFLEXION)) and the scratchpad finding for externalising intermediate work ([SCRATCHPAD](sources.md#SCRATCHPAD)); the practitioner write-up that named the two-problems distinction ([TWOPROBLEMS](sources.md#TWOPROBLEMS)) is illustrative only.
 
 ---
 

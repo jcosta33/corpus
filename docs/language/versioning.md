@@ -99,7 +99,7 @@ spec_version: 0.1.0       # spec content version (= meta.version in the IR)
 | `aps_version: 0.1` | (not echoed in IR; governs the `SOL-P…` prose lint layer) | Language |
 | `spec_version: 0.1.0` | `meta.version` | Spec content |
 
-**Conformance note (§25.4).** Earlier draft templates write `swarm_language: 0.1` (a bare number). The normalized form is `swarm_language: SOL/0.1` (with the `SOL/` discriminator) plus a separate `spec_version`. A conformant repo MUST use the normalized form; a bare `swarm_language: 0.1` is a `SOL-S…`-class frontmatter diagnostic (the `SOL-S` structural lint layer, §4–§8). The framework version is **never** written in per-file frontmatter — it lives only in the framework version file (`kernel/.agents/.swarm-version`; `.swarm/VERSION` in an adopted project, §20.5.1).
+**Conformance note (§25.4).** The canonical form is `swarm_language: SOL/0.1` (with the `SOL/` discriminator) plus a separate `spec_version`. A conformant repo MUST use this form; a bare `swarm_language: 0.1` (a number with no discriminator) is a `SOL-S…`-class frontmatter diagnostic (the `SOL-S` structural lint layer, §4–§8). The framework version is **never** written in per-file frontmatter — it lives only in the framework version file (`kernel/.agents/.swarm-version`; `.swarm/VERSION` in an adopted project, §20.5.1).
 
 ## Related
 

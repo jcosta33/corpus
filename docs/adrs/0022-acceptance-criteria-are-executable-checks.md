@@ -6,9 +6,9 @@ Accepted
 
 ## Context
 
-The [agents-as-compiler readiness audit](../../.agents/audits/agents-as-compiler-readiness.md) named one BLOCKER (against the goal): a spec's acceptance criteria are prose a human or agent interprets, never compiled into machine-checkable assertions. The toolchain validations of [0021](./0021-verification-contract.md) (typecheck, lint, dependency-flow, test) prove the code is *well-formed and the existing suite passes* — they do **not** prove the code does *what the spec intended* unless the spec's intent is itself expressed as a runnable check. The reviewer (`adversarial-review`) then grades against the same prose spec the generator read — a correlated check, not an independent oracle. This is the gap between "disciplined conditioning" and "spec as code."
+The agents-as-compiler readiness audit named one BLOCKER (against the goal): a spec's acceptance criteria are prose a human or agent interprets, never compiled into machine-checkable assertions. The toolchain validations of [0021](./0021-verification-contract.md) (typecheck, lint, dependency-flow, test) prove the code is *well-formed and the existing suite passes* — they do **not** prove the code does *what the spec intended* unless the spec's intent is itself expressed as a runnable check. The reviewer (`adversarial-review`) then grades against the same prose spec the generator read — a correlated check, not an independent oracle. This is the gap between "disciplined conditioning" and "spec as code."
 
-One lane already does it right: [`write-fix`](../skills/write-fix.md) requires a regression test that **fails before the fix and passes after**, anchored to a concrete reproduction — a validated oracle. The pattern is reachable; it just was not generalised to acceptance criteria.
+One lane already does it right: `write-fix` requires a regression test that **fails before the fix and passes after**, anchored to a concrete reproduction — a validated oracle. The pattern is reachable; it just was not generalised to acceptance criteria.
 
 ## Decision
 

@@ -6,7 +6,7 @@ Superseded by [0036](./0036-heuristic-profile-model.md) — a standalone file be
 
 ## Context
 
-The persona catalogue describes **13 mindsets** ([`docs/personas/`](../personas/)). An earlier scaffold packed the canonical persona payloads into one consolidated `personas/SKILL.md`. That single file forced a consumer to load all personas to get any one of them, contradicting à-la-carte vendoring, and it carried mindsets that duplicate a workflow skill — a "Builder" persona says little that `write-feature` doesn't already say.
+The persona catalogue describes **13 mindsets** ([`docs/personas/`](../personas/)). One option is to pack the canonical persona payloads into a single consolidated `personas/SKILL.md`. But that single file would force a consumer to load all personas to get any one of them, contradicting selective vendoring, and it would carry mindsets that duplicate a workflow skill — a "Builder" persona says little that `write-feature` doesn't already say.
 
 With no always-loaded skills ([0017](./0017-no-always-load-skills.md)) and activation by self-assessment ([0020](./0020-activation-by-self-assessment.md)), each persona that ships needs its own directive `description` so the agent can load *that* mindset when the work calls for it — which a consolidated file cannot provide.
 

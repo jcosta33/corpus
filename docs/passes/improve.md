@@ -39,7 +39,7 @@ The closed set, in spec order (§10.2):
 NORMALIZE  ATOMIZE  CONCRETIZE  QUANTIFY  BIND  SCOPE  CLARIFY  DECONFLICT  COMPRESS  PROMOTE
 ```
 
-Each operation is *triggered* by one or more lint codes (§8), has a precondition (what must hold before it applies) and a postcondition (what it guarantees after). Trigger codes use the unified `SOL-<LAYER>###` namespace across the five lint layers (S/P/M/V/O); legacy `APS-*` codes are retired (§8, Appendix B).
+Each operation is *triggered* by one or more lint codes (§8), has a precondition (what must hold before it applies) and a postcondition (what it guarantees after). Trigger codes use the unified `SOL-<LAYER>###` namespace across the five lint layers (S/P/M/V/O); prose violations surface as `SOL-P###` codes (§8, Appendix B).
 
 | # | Operation | Trigger lint code(s) | Precondition | Postcondition |
 |---|---|---|---|---|
@@ -47,11 +47,11 @@ Each operation is *triggered* by one or more lint codes (§8), has a preconditio
 | 2 | `ATOMIZE` | `SOL-P004` | One block bundles two or more separable obligations. | Each separable obligation is its own block with its own id; bindings distributed. |
 | 3 | `CONCRETIZE` | `SOL-P005` | A vague-quality word has no same-line observable criterion. | The word is replaced by observable behavior (actor + action + object). |
 | 4 | `QUANTIFY` | `SOL-P005` | An unbounded quality has no measurable threshold. | The quality carries a measurable threshold or named measurable criterion. |
-| 5 | `BIND` | `SOL-V001`, `SOL-V###` | An obligation lacks a `VERIFY BY` binding, source, interface, or trace reference. | The obligation carries a valid `VERIFY BY <type>:<adapter>:<artifact>` and required references (merges legacy `Bind` + `Trace`). |
+| 5 | `BIND` | `SOL-V001`, `SOL-V###` | An obligation lacks a `VERIFY BY` binding, source, interface, or trace reference. | The obligation carries a valid `VERIFY BY <type>:<adapter>:<artifact>` and required references (covers both proof-binding and trace-reference repair). |
 | 6 | `SCOPE` | `SOL-O###` | The spec lacks declared non-goals, applicability, write surfaces, or exclusions. | Explicit non-goals / applicability / `WRITES` / exclusions are present. |
 | 7 | `CLARIFY` | `SOL-P008` | Behavioral uncertainty is buried in prose, not lifted to a block. | The uncertainty is an explicit interpretation OR a `QUESTION` block. |
 | 8 | `DECONFLICT` | `SOL-M002` | Two obligations (or an obligation and a higher artifact) contradict. | The contradiction is resolved per source authority (§22), or raised to amendment. |
-| 9 | `COMPRESS` | `SOL-P054`, `SOL-P055` | Prose carries non-load-bearing noise or redundancy. | Noise/redundancy removed; future agents interpret the text consistently (merges legacy `Compress` + `Stabilize`). |
+| 9 | `COMPRESS` | `SOL-P054`, `SOL-P055` | Prose carries non-load-bearing noise or redundancy. | Noise/redundancy removed; future agents interpret the text consistently (covers both noise removal and phrasing stabilization). |
 | 10 | `PROMOTE` | promotion protocol (§23) | A durable fact sits in task-local state. | The fact is moved to `finding.md` / `spec.swarm.md` / `adr.md` / memory with provenance. |
 
 **`CONCRETIZE` vs `QUANTIFY` (§10.2).** Operations 3 and 4 share the trigger `SOL-P005` (vague-quality word with no observable criterion). They differ only in *repair*: `CONCRETIZE` substitutes *observable behavior* (qualitative), `QUANTIFY` substitutes a *measurable threshold* (quantitative). The author selects whichever the obligation's nature requires; both exit the same lint code.

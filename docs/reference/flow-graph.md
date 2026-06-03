@@ -24,11 +24,11 @@ Each row is a **closed set**: the conformance contract forbids adding, removing,
 Notes that prevent miscounting:
 
 - **Block types: 7, not 10.** `TASK-MAP`, `FINDING`, and `ADR` are downstream artifacts, not SOL block types. Three block types carry binding force (the *obligation blocks* `REQ`, `CONSTRAINT`, `INVARIANT`); the other four declare a boundary (`INTERFACE`), mark ambiguity (`QUESTION`), claim implementation (`TRACE`), or judge an obligation (`VERDICT`).
-- **Modals: 5, not 7.** `SHALL`/`SHALL NOT` are *removed* (deprecated migration aliases of `MUST`/`MUST NOT`, flagged `SOL-P058`); `CAN`/`WILL` are *non-modal* and forbidden in binding clauses (`SOL-P003`). Only the five uppercase modals bind.
+- **Modals: 5, not 7.** `SHALL`/`SHALL NOT` are not modals and are forbidden in binding clauses (flagged `SOL-P058`); `CAN`/`WILL` are *non-modal* and likewise forbidden (`SOL-P003`). Only the five uppercase modals bind.
 - **Proof types: 9, not 11 and not 7.** The closed set resolves the earlier 11-type and 7-type proposals. `unit`/`integration`/`e2e` are scope *qualifiers* under `test` (written `test:unit:`, etc.), not types; `runtime` is not a type and maps to `monitor`. An unknown `<type>` is `SOL-V009`.
 - **Phases vs passes: 7 vs 9 — do not conflate.** A *phase* is a conceptual compiler stage (a fixed-order taxonomy of *where* work sits); a *pass* is a schedulable transformation (the unit a human/agent/tool actually runs). Several passes may map to one phase.
 - **Improve operations: exactly 10, closed.** "Improve the spec" with no named operation is not a valid request; an improve pass MUST NOT invent operations outside the set. Note `NORMALIZE` and `PROMOTE` name *both* an improve operation and (separately) a phase / a pass — same word, different layer.
-- **Lint layers: 5.** One prefix `SOL`, five layers, form `SOL-<LAYER>NNN`. The legacy `APS-` prefix is retired.
+- **Lint layers: 5.** One prefix `SOL`, five layers, form `SOL-<LAYER>NNN`. APS prose violations surface as `SOL-P###` codes within this single namespace.
 
 ## Phases and passes
 
@@ -58,7 +58,7 @@ author -> lint -> improve -> lower -> decompose -> implement -> verify -> review
 | `review` | `REVIEW` | M, V | Judges claims, applies lifecycle decorators, computes the merge gate. |
 | `promote` | `PROMOTE` | — | Moves durable discoveries into provenance-anchored artifacts. |
 
-Of the nine passes, exactly **five** ship a stdlib pass guide in v0.1 (`lint`, `decompose`, `implement`, `review[profile: skeptic]`, `promote`); the other four (`author`, `improve`, `lower`, `verify`) are fully specified by the language/verification references and MAY gain a guide later without a language-version change. Pass guides are SOFT control: they MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning.
+Of the nine passes, exactly **five** ship a stdlib pass guide in v0.1 (`lint`, `decompose`, `implement`, `review[profile: skeptic]`, `promote`); the other four (`author`, `improve`, `lower`, `verify`) are fully specified by the language/verification references and MAY gain a guide later without a language-version change. Pass guides are SOFT control: they MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning [[SKILLBP]](../research/sources.md#SKILLBP).
 
 ## The proof-type × phase default-suite matrix
 

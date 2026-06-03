@@ -6,7 +6,7 @@ This page is the **complete, formal grammar** for SOL (the Swarm Obligation Lang
 
 It is **markdown-only and provider-neutral**: nothing here is shipped code. A "parser" is the contract a future tool builds against; this repository runs no parser, linter, or lowering step. The grammar is the contract; the tool, when it exists, conforms to it.
 
-This grammar consolidates and supersedes three earlier competing surface shapes from the research corpus — the fenced `:::TYPE …:::END` form, the significant-indentation `Indent`/`Dedent` form, and the colon-less header form. Each of those is **non-conformant**; this EBNF is the only normative shape. *Design rationale:* one greppable surface, machine-detectable inside free Markdown, with no construct a Markdown renderer can reflow away.
+This grammar fixes a single surface shape and **rejects** three alternative shapes — the fenced `:::TYPE …:::END` form, the significant-indentation `Indent`/`Dedent` form, and the colon-less header form. Each of those is **non-conformant**; this EBNF is the only normative shape. *Design rationale:* one greppable surface, machine-detectable inside free Markdown, with no construct a Markdown renderer can reflow away.
 
 ---
 
@@ -191,7 +191,7 @@ domain            = "DOMAIN", ws, domain_name, nl;                       (* per-
 domain_name       = "enforced-policy" | "compliance" | "security" | "architecture"
                   | "product" | "team" | "task-map" | "memory";
 
-(* ===== Modal terminals: exactly five. SHALL / SHALL NOT removed; CAN / WILL are NOT modals. ===== *)
+(* ===== Modal terminals: exactly five. SHALL / SHALL NOT are not modals; CAN / WILL are not modals. ===== *)
 modal             = "MUST NOT" | "MUST" | "SHOULD NOT" | "SHOULD" | "MAY"; (* longest-match: NOT before bare *)
 (* "SHALL", "SHALL NOT": recognized deprecated aliases of MUST / MUST NOT (lint SOL-P058 advisory; NORMALIZE rewrites them).                              *)
 (* "CAN", "WILL": non-modal; if used as a modal in a binding clause, lint SOL-P003 (informal force). *)
@@ -232,7 +232,7 @@ These rules are part of the grammar's contract. A conformant parser MUST honor t
 
 1. **Opaque single-line text.** `condition_text`, `question_text`, `response`, `hold_text`, and `prose_text` are opaque single-line text in v0.1. No structured expression grammar (operators, comparisons, `AND`/`OR`) is defined; a parser MUST NOT attempt to tokenize their interior. The expression sublanguage is deferred to v0.2.
 2. **Timing keywords are deferred.** `WITHIN`, `BEFORE`, `UNTIL`, `IMMEDIATELY`, `EVENTUALLY` are **not productions in this grammar**; they are reserved for v0.2 (FRETish temporal semantics). Their appearance in a `.swarm.md` is parsed as opaque prose and SHOULD raise an advisory pointing to the deferral.
-3. **Removed legacy keywords.** `ALWAYS`/`NEVER` (legacy INVARIANT openers), `EXPOSES`/`INPUT`/`OUTPUT` (legacy INTERFACE), and `MAP`/`TO`/`ORDER`/`ASK` (legacy TASK-MAP/QUESTION) are removed and have no production; they MUST be rejected.
+3. **Rejected keywords.** `ALWAYS`/`NEVER` (as INVARIANT openers), `EXPOSES`/`INPUT`/`OUTPUT` (as INTERFACE clauses), and `MAP`/`TO`/`ORDER`/`ASK` are not part of the grammar and have no production; they MUST be rejected.
 4. **`THEN` placement.** `THEN` is legal only as the optional trailing sugar of `if_clause`; after `WHEN`/`WHILE` it MUST be rejected as a parse error.
 5. **Indentation is non-semantic.** A block body **clause** line MAY carry leading whitespace; that whitespace is stripped before the line is matched against its body production. Block **headers** (`req_header`, `constraint_header`, … and `surface_decl`) MUST remain flush-left (no leading whitespace). The `[ ws ]` allowance applies only to body clause lines.
 6. **SOL has no comment token.** There is no `comment` production anywhere in this grammar. `#` is reserved exclusively for the `cross_spec_ref` separator (`spec_id#id`) and the `verify_ref` `#selector`. A trailing or standalone `# …` annotation is therefore **not** part of the language; any `# …` annotation surrounding an example is editorial marginalia, not a parseable line a conformant parser admits.
@@ -262,7 +262,7 @@ A note on layering: a missing or malformed proof binding (`VERIFY BY`) and a mal
 | `SOL-V005` | VERIFICATION | BLOCKING | `verdict_value` `verdict_core` outside the four core values, or `verdict_lifecycle` missing a mandatory field | `VERDICT` value outside `PASS`/`FAIL`/`BLOCKED`/`UNVERIFIED`, or a lifecycle decorator missing authority/reason (`WAIVED` also requires expiry). |
 | `SOL-V006` | VERIFICATION | BLOCKING | `INTERFACE` `verify_line` whose `proof_type` ≠ `contract` | `INTERFACE` MUST be verified by a `contract:` binding. |
 
-The lint layers are **S/P/M/V/O** (Syntax / Prose / seMantic / Verification / Orchestration). This page reproduces only the production-attached subset; the cross-reference (`SOL-M`) and orchestration (`SOL-O`) layers, the legacy translation table, the severity model, and the diagnostic-record shape are on the [lint reference](errors.md).
+The lint layers are **S/P/M/V/O** (Syntax / Prose / seMantic / Verification / Orchestration). This page reproduces only the production-attached subset; the cross-reference (`SOL-M`) and orchestration (`SOL-O`) layers, the severity model, and the diagnostic-record shape are on the [lint reference](errors.md).
 
 ---
 
@@ -272,7 +272,7 @@ Other framework pages that extend or consume this grammar:
 
 - [SOL — the Swarm Obligation Language (surface reference)](SOL.md) — the prose-and-examples teaching companion to this formal grammar; the seven block types, the five modals, and the seven-value verdict model in narrative form.
 - [The IR schema](../reference/ir-schema.md) — the snake_case `*.swarm.ir.json` envelope this surface lowers into; the other half of the surface-vs-IR layering.
-- [Lint codes](errors.md) — the full `SOL-<LAYER><NNN>` catalogue, severity model, and legacy translation table behind the production-attached codes cited here.
+- [Lint codes](errors.md) — the full `SOL-<LAYER><NNN>` catalogue and severity model behind the production-attached codes cited here.
 - [APS — the controlled-prose standard](APS.md) — the prose layer (`prose_text`) SOL blocks interleave with, and the high-risk-word rules.
 - [Proof types](../reference/proof-types.md) — the closed nine proof types and `VERIFY BY` adapter resolution that `verify_ref` binds.
 - [Language versioning](versioning.md) — the version axes that decide which grammar (`SOL/x.y`) applies, and the deferral of the v0.2 expression and timing sublanguages noted in §4.

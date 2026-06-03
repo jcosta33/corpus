@@ -6,7 +6,7 @@ Superseded by [0037](./0037-load-what-the-task-names.md) — the activation doct
 
 ## Context
 
-[0002](./0002-personas-1-to-1-with-task-types.md) had the launcher *deterministically* set persona from task type plus flow graph, and the agent did not self-assign. In a vendored, à-la-carte world there may be no launcher applying the graph — a consumer can drop skills into any agent CLI that follows the [agents.md](https://agents.md/) standard. Activation can't depend on an enforcing gatekeeper that may not be present, and a removed gatekeeper skill ([0017](./0017-no-always-load-skills.md)) means nothing is left to block a mismatched route at run time anyway. Conditioning has to survive without an enforcer.
+[0002](./0002-personas-1-to-1-with-task-types.md) had the launcher *deterministically* set persona from task type plus flow graph, and the agent did not self-assign. In a world of selectively-vendored skills there may be no launcher applying the graph — a consumer can drop skills into any agent CLI that follows the [agents.md](https://agents.md/) standard. Activation can't depend on an enforcing gatekeeper that may not be present, and a removed gatekeeper skill ([0017](./0017-no-always-load-skills.md)) means nothing is left to block a mismatched route at run time anyway. Conditioning has to survive without an enforcer.
 
 ## Decision
 
@@ -27,5 +27,5 @@ This **supersedes the enforcement stance of [0002](./0002-personas-1-to-1-with-t
 
 ## Alternatives rejected
 
-- **Keep deterministic launcher-set personas ([0002](./0002-personas-1-to-1-with-task-types.md)).** Assumes a launcher is always present and an enforcing gatekeeper exists; neither holds for à-la-carte vendoring into an arbitrary agent CLI.
+- **Keep deterministic launcher-set personas ([0002](./0002-personas-1-to-1-with-task-types.md)).** Assumes a launcher is always present and an enforcing gatekeeper exists; neither holds for selective vendoring into an arbitrary agent CLI.
 - **A standing gatekeeper skill that validates routing each task.** That is an always-loaded skill, rejected by [0017](./0017-no-always-load-skills.md); it also can't be guaranteed present on a consumer's machine.

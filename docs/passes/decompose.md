@@ -6,7 +6,7 @@ Like every Swarm pass, `decompose` has **no runtime**. It is a contract a human,
 
 ## What the pass does
 
-The `decompose` pass **partitions the obligation graph into task-sized, write-disjoint work packets** with their assigned obligations, write surfaces, and verification bindings.
+The `decompose` pass **partitions the obligation graph into task-sized, write-disjoint work packets** with their assigned obligations, write surfaces, and verification bindings. Deliberate decomposition into a searchable structure of sub-units, rather than flat one-shot generation over the whole spec, is what makes the downstream work tractable [[TREEOFTHOUGHTS]](../research/sources.md#TREEOFTHOUGHTS).
 
 | Aspect | Value |
 |---|---|

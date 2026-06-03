@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The [agents-as-compiler readiness audit](../../.agents/audits/agents-as-compiler-readiness.md) found that Swarm's confidence gate is **self-attested**: the agent runs a command and pastes the output into the task file. The `empirical-proof` skill itself concedes the output is "still gameable with fabricated output" and vulnerable to "selective tail-paste." Nothing mechanically re-runs the verifier or blocks promotion on failure, because Swarm has no runtime ([PRINCIPLES.md](../PRINCIPLES.md) #1, [0017](./0017-no-always-load-skills.md)). The framework's strength is *conspicuousness* — an empty paste block is visible where a confident "✅" is not — not *enforcement*.
+The agents-as-compiler readiness audit found that Swarm's confidence gate is **self-attested**: the agent runs a command and pastes the output into the task file. The `empirical-proof` skill itself concedes the output is "still gameable with fabricated output" and vulnerable to "selective tail-paste." Nothing mechanically re-runs the verifier or blocks promotion on failure, because Swarm has no runtime ([PRINCIPLES.md](../PRINCIPLES.md) #1, [0017](./0017-no-always-load-skills.md)). The framework's strength is *conspicuousness* — an empty paste block is visible where a confident "✅" is not — not *enforcement*.
 
 The over-claim was framing this discipline as a "hard gate" / "non-negotiable" without stating that, absent a re-running harness, the gate is the agent grading itself. The framework cannot ship an enforcer, but it *can* specify the contract a compliant runtime (the Swarm CLI, or any launcher) must honour — turning "discipline" into an enforceable interface for anyone who builds the runtime.
 

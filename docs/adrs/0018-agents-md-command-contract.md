@@ -15,7 +15,7 @@ Two surfaces, one source of truth.
 - **Skill bodies reference commands by their contract name in prose**, e.g. "run the project's validation command, `AGENTS.md > Commands > Validation`" — never a bare `{{cmd}}` placeholder used as an invocation. If the named entry is missing or undefined, the skill **asks the user before running anything** and proceeds once told. Skills never invent concrete commands.
 - **Templates keep the `{{cmd*}}` placeholders** (`{{cmdValidate}}`, `{{cmdTest}}`, `{{cmdFormat}}`, `{{slug}}`, …) in `.agents/templates/` and each skill's `references/task-template.md`. A launcher binds them from the same source.
 
-That source is the new **`## Commands`** section of `AGENTS.md`. It maps the contract names to placeholders and to project commands across three tiers, so every placeholder in the catalogue is bindable or explicitly marked:
+That source is the new **`## Commands`** section of `AGENTS.md` — naming the repository's commands in the context file is what makes them reliably reached [[AGENTSMD-HARM]](../research/sources.md#AGENTSMD-HARM). It maps the contract names to placeholders and to project commands across three tiers, so every placeholder in the catalogue is bindable or explicitly marked:
 
 - **Required** — `Validation` → `{{cmdValidate}}`, `Test` → `{{cmdTest}}`, `Format` → `{{cmdFormat}}`.
 - **Extended** — bound when the relevant work occurs: `Install`, `Typecheck`, `Lint`, `Build`, `ValidateDeps` (dependency-flow / architecture-boundary), `Benchmark`. Mark `n/a` with a reason if absent.

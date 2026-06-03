@@ -161,7 +161,7 @@ Beyond the domain defects, the corpus ships fixtures for each task-file violatio
 | missing `Commands` row | an `AGENTS.md` omitting `cmdFormat` | the required command-row set | FAIL |
 | unresolved blocking QUESTION at close | `status: done` with an open blocking `QUESTION` | the no-open-critical content rule | FAIL |
 
-The **empty-paste** class is the single most load-bearing fixture: it guards the hallucinated-completion hole. A `task.md` can present every required heading and still claim "tests passed" with no pasted output — schema-valid, but not verified. Every completion claim must bind to actual pasted proof output (or an honest `n/a` with a one-line reason), never a bare `[Paste output]` placeholder. This is the corpus's encoding of the principle that schema-valid output is **not** verification.
+The **empty-paste** class is the single most load-bearing fixture: it guards the hallucinated-completion hole. A `task.md` can present every required heading and still claim "tests passed" with no pasted output — schema-valid, but not verified. Every completion claim must bind to actual pasted proof output (or an honest `n/a` with a one-line reason), never a bare `[Paste output]` placeholder. This is the corpus's encoding of the principle that schema-valid output is **not** verification [[REFLEXION]](../research/sources.md#REFLEXION).
 
 Additionally, the corpus ships at least one minimal syntax negative for **each `SOL-S` error family** (for example `SOL-S001` dangling condition, `SOL-S003` actor clause with no modal, `SOL-S005` prefix↔type mismatch, `SOL-S006` SHOULD-without-BECAUSE), so every error-code family has a guarding fixture and no family can silently regress.
 

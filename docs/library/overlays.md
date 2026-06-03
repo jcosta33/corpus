@@ -24,7 +24,7 @@ Typical overlay content:
 | **Local command bindings** | "In this repo, the integration suite is `make itest`; name it where a pass needs it." |
 | **Domain / house rules** | "Money is always minor units (integer cents); reject float currency in any spec." |
 
-Overlays are the canonical re-home for legacy architecture and testing-policy "skills." Those were never pass guides — they document no pass — and never profiles — they carry no cognitive stance. They encode project-local convention, and that is exactly what an overlay is for. Keeping them as overlays prevents one repository's house rules from contaminating the shared standard-library pass guides.
+Overlays are the canonical home for architecture and testing-policy rules. Such rules are not pass guides — they document no pass — and not profiles — they carry no cognitive stance. They encode project-local convention, and that is exactly what an overlay is for. Keeping them as overlays prevents one repository's house rules from contaminating the shared standard-library pass guides.
 
 ## The overlay contract
 
@@ -76,7 +76,7 @@ It sits *downstream of every kernel object*: it consumes language, artifact, pas
 
 ### Lazy activation by name
 
-An overlay is **lazily loaded by name** — exactly like a pass guide or a profile, and for the same reason. A `task.md` names the overlay (or overlays) whose rules apply to its pass; only the named overlays load. Description-matching is the degraded fallback when a task fails to name one. An overlay MUST NOT be always-loaded. This keeps the active context to the pass guide, the profile, and the named overlays the work in front of the agent actually requires — not the union of every project rule the repository has ever written.
+An overlay is **lazily loaded by name** — exactly like a pass guide or a profile, and for the same reason. A `task.md` names the overlay (or overlays) whose rules apply to its pass; only the named overlays load. Description-matching is the degraded fallback when a task fails to name one. An overlay MUST NOT be always-loaded. This keeps the active context to the pass guide, the profile, and the named overlays the work in front of the agent actually requires — not the union of every project rule the repository has ever written [[CTXENG]](../research/sources.md#CTXENG).
 
 ## The boundary
 
@@ -97,7 +97,7 @@ Before a rule lands as an overlay rule, one gating question decides whether the 
 
 - **Portable → a pass guide.** If the rule would still produce its intended behaviour for a team on another language, CI, and agent — with nothing else loaded — it is universal *how-to-work* guidance, not project convention. It belongs to a pass guide in the standard library, not an overlay. An overlay that carries portable guidance is misfiled; it should be lifted into the pass guide so every adopter inherits it.
 - **Project-local → an overlay.** If the rule is true *here* but would be wrong (or merely irrelevant) to bake into the shared kernel — a stack-specific convention, a local command binding, a house refusal — it is exactly what an overlay is for. This is the rule that fails the vendorability test because it is coupled to *this* repository.
-- **A persistent project fact → the AGENTS.md bootloader.** If the rule is not a multi-step discipline an agent loads for a pass but a standing fact the agent should treat as always-true context — what this repo's architecture *is*, which command *is* the integration suite, what the domain *means* — it is persistent context, and persistent context lives in [the AGENTS.md bootloader](../model/conformance.md), not in a lazily-loaded overlay. Encoding a standing fact as an overlay forces the task to name it before the agent can see it, which is the wrong lifecycle for something that is always true.
+- **A persistent project fact → the AGENTS.md bootloader.** If the rule is not a multi-step discipline an agent loads for a pass but a standing fact the agent should treat as always-true context — what this repo's architecture *is*, which command *is* the integration suite [[AGENTSMD-HARM]](../research/sources.md#AGENTSMD-HARM), what the domain *means* — it is persistent context, and persistent context lives in [the AGENTS.md bootloader](../model/conformance.md), not in a lazily-loaded overlay [[CTXENG]](../research/sources.md#CTXENG). Encoding a standing fact as an overlay forces the task to name it before the agent can see it, which is the wrong lifecycle for something that is always true.
 
 The split matters because each layer has a different lifecycle: a pass guide is portable and inherited by every adopter, an overlay is project-local and loaded only when a task names it, and the bootloader is project-local but always resident. Misfiling a rule — a portable one trapped in an overlay, a standing fact buried behind lazy activation — costs adopters either reuse or visibility. For the evidence behind this three-way test and the failure modes of getting it wrong, see [the scope evidence](../research/scope.md).
 

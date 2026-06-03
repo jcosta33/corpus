@@ -20,7 +20,7 @@ The verdict model is the confidence backbone: it is the only place that answers 
 
 ## 2. The seven-value verdict model (4 core + 3 lifecycle)
 
-The verdict vocabulary is **exactly seven values**, in two disjoint roles. A verdict carries **exactly one CORE value** and **zero or more LIFECYCLE decorators**. The earlier 4-value enum is *upgraded*, not replaced.
+The verdict vocabulary is **exactly seven values**, in two disjoint roles. A verdict carries **exactly one CORE value** and **zero or more LIFECYCLE decorators**. The four CORE values are the base; the three LIFECYCLE decorators *extend* them, never replace them.
 
 ### 2.1 The four CORE run results (mutually exclusive)
 
@@ -265,7 +265,7 @@ A default suite says *which* proof types a task kind expects; this note records 
 
 - **`performance` — the same-protocol baseline-and-target proof (`perf`).** A `perf` proof is meaningless without a baseline measured under the *same* protocol — identical warmup, sample count, statistical aggregate, hardware, environment, input shape, and cache state — as the target measurement. The verdict binds two readings taken the same way, not a single after-the-fact number; the recorded conditions are part of the evidence because the speedup only holds under them. A `perf` `PASS` does not waive the correctness suite: a faster wrong answer is still wrong, so `performance` also binds `test @ VERIFY`.
 
-The unifying discipline across all three (and every other suite) is **forced visible output**: a verdict's `EVIDENCE` must be inspectable. A "tests passed" claim with no command, exit code, run output, or selector resolution is not a proof — the verification step that produces no visible marker is the one that gets silently skipped, and an asserted-but-uninspectable result is recorded `UNVERIFIED`, never `PASS` (§5.8).
+The unifying discipline across all three (and every other suite) is **forced visible output** [[REFLEXION]](../research/sources.md#REFLEXION): a verdict's `EVIDENCE` must be inspectable. A "tests passed" claim with no command, exit code, run output, or selector resolution is not a proof — the verification step that produces no visible marker is the one that gets silently skipped, and an asserted-but-uninspectable result is recorded `UNVERIFIED`, never `PASS` (§5.8).
 
 ### 5.8 What is NOT a proof
 

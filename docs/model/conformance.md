@@ -44,7 +44,7 @@ The manifest encodes, as inert data, the structural and content rules a well-for
   - `non-empty-paste` (on the *Verification matrix*): every required paste slot holds non-empty, non-placeholder text — a fenced command-output block, or `n/a` with a one-line reason — never a bare `[Paste output]` placeholder.
   - `no-open-critical`: no blocking `QUESTION` remains unresolved anywhere in the task when its frontmatter status is the terminal value `done`.
 
-`non-empty-paste` is the single most load-bearing rule: it closes the hallucinated-completion hole, since a "tests passed" claim with no pasted output is an invalid proof — schema-valid output is not verification.
+`non-empty-paste` is the single most load-bearing rule: it closes the hallucinated-completion hole, since a "tests passed" claim with no pasted output is an invalid proof — schema-valid output is not verification [[REFLEXION]](../research/sources.md#REFLEXION).
 
 ### Required command rows
 
@@ -82,7 +82,7 @@ The manifest carries the unified lint scheme as inert data so the checker and th
 | `V` | VERIFICATION |
 | `O` | ORCHESTRATION |
 
-`APS` is the prose-standard's *name*, not a code prefix — the `APS-` prefix is retired, and APS violations surface as `SOL-P*` codes. The full catalogue is the source of truth; the manifest only references it.
+`APS` is the prose-standard's *name*, not a code prefix — APS violations surface as `SOL-P*` codes within the single unified `SOL` namespace. The full catalogue is the source of truth; the manifest only references it.
 
 ### Count acceptance checks (A10–A16)
 

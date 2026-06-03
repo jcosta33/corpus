@@ -14,11 +14,14 @@ superseded_by:
 
 ADR 0020 made skills and personas **self-activate by self-assessment**: each carried
 a directive `description` and loaded when its triggers matched the work in front of the
-agent. That was the right answer to a real pressure — in a launcher-less, à-la-carte
+agent. That was the right answer to a real pressure — in a launcher-less
 world there may be no gatekeeper to route work — but it elevated description-matching to
 the *primary* mechanism. Two problems follow from making the fallback the default. First,
 routing then depends on `description` quality: a vague or over-broad description mis-fires,
 and the agent has no authoritative statement of what it should load for the pass it is in.
+(Practitioner reports preliminarily suggest directive, exclusion-bearing descriptions
+activate more reliably than passive ones; the direction is illustrative, not load-bearing,
+and the kernel does not rest routing on it [[ACTIVATION-BLOG]](../research/sources.md#ACTIVATION-BLOG).)
 Second, leaning on always-evaluated descriptions pushes toward more conditioning being
 ambiently present, which works against the density discipline that protects adherence and
 cost (§31). §26.4 resolves this by naming the canonical doctrine and demoting self-assessment
@@ -44,7 +47,7 @@ once active (verification) are independent axes, exactly as ADR 0020 established
 | Alternative | Why rejected |
 | --- | --- |
 | Keep description-match self-assessment as the primary mechanism (ADR 0020) | Makes routing depend on `description` quality and pushes toward ambient, always-evaluated conditioning that harms adherence and cost; the task itself is the authoritative place to name what loads (§26.4, §31). |
-| Drop description-matching entirely, require explicit naming always | Breaks the launcher-less, à-la-carte case ADR 0020 existed to serve — a task dropped into an arbitrary agent CLI with no naming would have no way to route at all; the fallback MUST survive (§26.4). |
+| Drop description-matching entirely, require explicit naming always | Breaks the launcher-less case ADR 0020 existed to serve — a task dropped into an arbitrary agent CLI with no naming would have no way to route at all; the fallback MUST survive (§26.4). |
 | A standing gatekeeper that loads guides per task | An always-loaded skill, forbidden by ADR 0017, and not guaranteed present on a consumer's machine (§26.4, ADR 0017). |
 | Always-load the relevant guides for a pass | Contradicts ADR 0017 and the §31 density cap; pass guides and profiles are lazily loaded by name (§26.4). |
 

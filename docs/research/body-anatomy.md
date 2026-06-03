@@ -57,7 +57,7 @@ The ~500-line figure is an authoring ceiling for a *lazily-loaded* guide; the â‰
 
 **Applied in Swarm.** Working state is not carried in the guide body. A task names the guides and profiles it loads in [`task.md`](../artifacts/task.md), and per-run state lives in the [`.swarm/` workspace](../model/workspace.md) â€” `sources/` for desired truth, `status/` for observed satisfaction and drift, `generated/` for the recreatable execution packets. A guide body that tried to carry run state would both bloat (fighting rule 1) and duplicate the workspace contract.
 
-> Earlier drafts of this material framed externalised state as a per-skill `task-template.md` decision. In the kernel the working state is the workspace itself; the guide body stays a pure method.
+> In the kernel the working state is the workspace itself, not a per-guide template; the guide body stays a pure method.
 
 ---
 

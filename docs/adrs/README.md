@@ -11,7 +11,7 @@ This ledger is the index. It carries a row for **every** ADR — kept, amended, 
 Two consequences of that rule govern this ledger:
 
 - **Numbers `0011` and `0012` are intentionally vacant** — vacated in an earlier consolidation and left unfilled so references to higher numbers do not shift.
-- **The pre-kernel ADRs (`0001`–`0026`) are immutable history.** Their bodies still name the pre-kernel vocabulary and paths (`scaffold/`, `personas/`, consolidated `SKILL.md`, the old flow-graph) **as they were decided**. Those bodies are *not* subject to the kernel's active-construct rules (the §34 / A19–A28 retirements) — those rules govern canonical/active prose, not the historical record. The **current** truth of any amended decision is its superseding `0027+` ADR; read the chain, not the old body in isolation.
+- **The pre-kernel ADRs (`0001`–`0026`) are immutable history.** Their bodies still name the pre-kernel vocabulary and paths (`scaffold/`, `personas/`, the consolidated `SKILL.md`, the earlier flow-graph) **as they were decided**. Those bodies are *not* subject to the kernel's active-construct rules (the §34 / A19–A28 retirements) — those rules govern canonical/active prose, not the historical record. The **current** truth of any amended decision is its superseding `0027+` ADR; read the chain, not the earlier body in isolation.
 
 ## The ledger
 
@@ -72,7 +72,7 @@ The rework introduced fifteen ADRs. The nine the spec enumerates as mandatory ke
 | [0031](./0031-source-authority-two-axis.md) | domain axis × artifact axis, lexicographic | §22 |
 | [0032](./0032-memory-model.md) | two-tier, provenance-anchored promotion | §23 |
 | [0033](./0033-golden-corpus.md) | positive + negative conformance fixtures over the three domains | §33 |
-| [0034](./0034-unified-lint-namespace.md) | one prefix, five layers; `APS-` retired as a *code* prefix | §8 |
+| [0034](./0034-unified-lint-namespace.md) | one prefix, five layers; APS violations surface under the `SOL-` prefix, not a separate `APS-` code prefix | §8 |
 | [0035](./0035-seven-value-verdict-model.md) | 4 core + 3 lifecycle verdicts | §14 |
 
 The remaining six carry the Group-B recasts and the kernel-rename/versioning extensions: [0036](./0036-heuristic-profile-model.md) (profiles, §27), [0037](./0037-load-what-the-task-names.md) (loading doctrine, §26.4), [0038](./0038-verify-by-adapters-through-commands.md) (the `VERIFY BY`/Commands binding, §15/§31.3), [0039](./0039-write-surface-model.md) (the write-surface, §18/§19), [0040](./0040-kernel-payload-directory.md) (the `kernel/` payload, §20.5/§34), and [0041](./0041-two-axis-versioning.md) (two-axis versioning, §25).

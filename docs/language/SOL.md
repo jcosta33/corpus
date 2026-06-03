@@ -99,7 +99,7 @@ SOL keywords are **UPPERCASE and case-sensitive**, and the keyword set is **clos
 | `SHOULD NOT` | Strong prohibition; REQUIRES a same-block `BECAUSE` or `EXCEPT`. |
 | `MAY` | Optional; carries no obligation. |
 
-`SHALL` / `SHALL NOT` are **removed** (RFC 2119 makes `MUST` ≡ `REQUIRED` ≡ `SHALL`, so `SHALL` is redundant). They are recognized only as **deprecated migration aliases**: a parser accepts them, `lint` flags them advisory (`SOL-P058`), and `NORMALIZE` rewrites them to `MUST`/`MUST NOT`. No template emits them.
+`SHALL` / `SHALL NOT` are **not modals** (RFC 2119 makes `MUST` ≡ `REQUIRED` ≡ `SHALL`, so `SHALL` would be redundant). They are recognized only as **deprecated aliases**: a parser accepts them, `lint` flags them advisory (`SOL-P058`), and `NORMALIZE` rewrites them to `MUST`/`MUST NOT`. No template emits them.
 
 `CAN` and `WILL` are **non-modal** (capability / prediction) and are **forbidden in binding clauses**; their use where a modal is expected is `SOL-P003` (BLOCKING).
 
@@ -254,7 +254,7 @@ invariant_body = property, ws, ( "MUST" | "MUST NOT" ), ws, predicate, nl,
                  { metadata_clause };
 ```
 
-- `ALWAYS` and `NEVER` are **removed** (redundant with the block's always-held semantics; one-word-one-meaning). An author MUST NOT write them.
+- `ALWAYS` and `NEVER` are **not INVARIANT keywords** (redundant with the block's always-held semantics; one-word-one-meaning). An author MUST NOT write them.
 - An INVARIANT MUST NOT describe a one-time triggered behavior (that is a `REQ`).
 - It **PREFERS** a `property`, `model`, or `static` proof (those can assert a property over all states). Binding an INVARIANT *only* to a non-observable unit `test` is a `SOL-V003` warning.
 
@@ -328,7 +328,7 @@ proof_result = "passed" | "failed" | "blocked" | "unverified";
 
 - `IMPLEMENTS` lists the REQ ids satisfied; `PRESERVES` lists the CONSTRAINT/INVARIANT ids not to be violated; `CHANGED` names modified surfaces (the basis for staleness detection).
 - Each `PROOF` line names a `verify_ref` and its observed `proof_result`. The four lowercase results map 1:1 to the uppercase VERDICT core values: `passed`→`PASS`, `failed`→`FAIL`, `blocked`→`BLOCKED`, `unverified`→`UNVERIFIED`. (`manual` is a proof *type*, never a result.)
-- A TRACE that claims `IMPLEMENTS` MUST carry at least one `PROOF` line — `PROOF` is grammatically mandatory, so a no-`PROOF` trace is a structural parse error (`SOL-S014`), not a missing-evidence lint. An `IMPLEMENTS`/`PRESERVES` naming an unknown obligation is `SOL-M003`. A `PROOF` line MUST reference real output — an unqualified "tests passed" is not admissible.
+- A TRACE that claims `IMPLEMENTS` MUST carry at least one `PROOF` line — `PROOF` is grammatically mandatory, so a no-`PROOF` trace is a structural parse error (`SOL-S014`), not a missing-evidence lint. An `IMPLEMENTS`/`PRESERVES` naming an unknown obligation is `SOL-M003`. A `PROOF` line MUST reference real output — an unqualified "tests passed" is not admissible [[REFLEXION]](../research/sources.md#REFLEXION).
 
 ```sol
 TRACE T-001:

@@ -1,6 +1,6 @@
 # `task.md` — the pass frame
 
-`task.md` is the bounded work packet of the Swarm pipeline: the lowered, self-contained frame for **one pass** over an assigned set of obligation ids, carrying its parent contract, its write surfaces, its verification bindings, and the slots where execution evidence accumulates. In the obligation graph it is the node where intent stops being a partitioned plan and becomes a single owned unit of work — the unit one `implement` (or `author`/`review`) run discharges, traces, and verifies.
+`task.md` is the bounded work packet of the Swarm pipeline: the lowered, self-contained frame for **one pass** over an assigned set of obligation ids, carrying its parent contract, its write surfaces, its verification bindings, and the slots where execution evidence accumulates [[SCRATCHPAD]](../research/sources.md#SCRATCHPAD). In the obligation graph it is the node where intent stops being a partitioned plan and becomes a single owned unit of work — the unit one `implement` (or `author`/`review`) run discharges, traces, and verifies. A task frame is a disk-persistent, dependency-aware unit of work, carrying its dependency edges as frontmatter rather than holding them in context [[CCTASKS]](../research/sources.md#CCTASKS).
 
 Swarm is markdown-only and has **no runtime**: the "pass" a `task.md` frames is a CONTRACT a human, an agent following a pass guide, or a future tool performs, never shipped code. A `task.md` is inert structured Markdown that an agent populates by hand; nothing in it executes.
 
@@ -94,7 +94,7 @@ The copyable skeleton for this artifact is shipped at:
 kernel/.agents/templates/task.md
 ```
 
-That template is the skeleton you copy to start a task; **this page is its contract**. Where the template gives empty slots and the field enum, this page gives the meaning of each slot and the rules a conformant `task.md` MUST satisfy. The 18 legacy per-type templates consolidate onto this **single** task template; a `task_kind` value specializes it.
+That template is the skeleton you copy to start a task; **this page is its contract**. Where the template gives empty slots and the field enum, this page gives the meaning of each slot and the rules a conformant `task.md` MUST satisfy. There is **one** task template for every kind of work; a `task_kind` value specializes it.
 
 ## Related
 

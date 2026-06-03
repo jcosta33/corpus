@@ -26,7 +26,7 @@ SOL — bare-header obligation blocks of the exact form `TYPE PREFIX-NNN:` (§5.
 | Adopt one research grammar wholesale (EARS / FRETish / Gherkin) | Each is a partial surface; none is a closed obligation language with a fixed block + modal + verification model. SOL's line-oriented grammar supersedes all three (§5.1). |
 | Fenced block delimiters (`:::REQ … :::END`) | A second nested fence is fragile to parse inside Markdown and redundant with the bare-header rule (§5.4). |
 | In-block YAML metadata (`verify:` as a YAML key) | Splits one obligation across two syntaxes and breaks the line-grouping rule; clauses are inline keyword lines instead (§5.4). |
-| Keep `SHALL`/`SHALL NOT` as distinct modals | RFC 2119 makes `MUST` ≡ `SHALL`, so `SHALL` is redundant and read inconsistently elsewhere; retained only as a deprecated migration alias (§5.6). |
+| Admit `SHALL`/`SHALL NOT` as distinct modals | RFC 2119 makes `MUST` ≡ `SHALL`, so `SHALL` is redundant and read inconsistently elsewhere; the closed modal set is the five `MUST`/`MUST NOT`/`SHOULD`/`SHOULD NOT`/`MAY`, and `SHALL` is not among them (§5.6). |
 | Allow `CAN`/`WILL` as binding | Capability and prediction carry no obligation force and invite ambiguity; forbidden in binding clauses (§5.6). |
 
 ## Consequences

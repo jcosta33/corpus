@@ -16,19 +16,19 @@ Swarm is **unitary at rest** (language, artifact contracts, passes, templates, p
 
 Swarm is *not* a chat assistant, a prompt library, a set of canned instructions, an agent runtime, or an agent CLI. It is a toolchain that coordinates existing agent CLIs as worker backends; it owns the intent structure and never owns the model loop, chat UI, tool-calling runtime, or provider auth.
 
-## What this supersedes — the buffet framing is retired
+## The components
 
-Earlier Swarm framing presented the system as a **buffet**: a pick-your-own library of skills, personas, and task types, adopted incrementally "until it stops earning its keep." That framing is **retired**. These are no longer independent products to be selected — they are unified components of one compiler:
+Swarm is one compiler assembled from a small set of components — each a part of the whole, not an independently adopted gadget:
 
-| Earlier (buffet) framing | Kernel (compiler) framing | Reference |
-|--------------------------|---------------------------|-----------|
-| Skills you pick à la carte | **Pass guides** — reusable methods for executing a named pass | [`docs/library/`](./docs/library/) |
-| Personas / characters | **Heuristic profiles** — cognitive stances that parameterize a pass | [`docs/library/`](./docs/library/) |
-| 18 task types | **Pass frames** — a `task_kind` enum parameterizing `implement`/`author` | [`docs/artifacts/`](./docs/artifacts/) |
-| 4 core docs + extended types | One **unified artifact set** centered on the obligation graph | [`docs/artifacts/`](./docs/artifacts/) |
-| "Recommended routing" prose | Deterministic **lowering** + a **plan** the launcher executes | [`docs/passes/`](./docs/passes/) |
+| Component | What it is | Reference |
+|---|---|---|
+| **Pass guides** | Reusable methods for executing a named pass. | [`docs/library/`](./docs/library/) |
+| **Heuristic profiles** | Cognitive stances that parameterize a pass — *what an agent looks for and refuses*, never a character. | [`docs/library/`](./docs/library/) |
+| **Pass frames** | A `task_kind` enum that parameterizes `implement` / `author`. | [`docs/artifacts/`](./docs/artifacts/) |
+| **The artifact set** | One unified set of artifacts centered on the obligation graph. | [`docs/artifacts/`](./docs/artifacts/) |
+| **Lowering + plan** | Deterministic lowering of obligations into a plan the launcher executes. | [`docs/passes/`](./docs/passes/) |
 
-Adoption may still be incremental at the *repository* level (a team may vendor a subset), but the *conceptual model* is unitary: every piece is a component of one compiler, not an independent gadget. A pass guide never owns language semantics; a profile is never a character; a task kind is never an open-ended prompt log.
+The conceptual model is unitary: every piece is a component of one compiler. A pass guide never owns language semantics; a profile is never a character; a task kind is never an open-ended prompt log. Adoption may still be incremental at the *repository* level — a team may vendor a subset — but each piece remains a component of the compiler, not an independent product.
 
 ## The fixed pipeline
 
@@ -53,7 +53,7 @@ The surface is exactly **7 block types** (`REQ`, `CONSTRAINT`, `INVARIANT`, `INT
 
 ## How it is adopted
 
-The installable payload — the **kernel** — lives in this repo under [`kernel/`](./kernel/). On adoption it installs to **`.swarm/kernel/`** in the consuming project, and `kernel/AGENTS.md` becomes the project's `AGENTS.md` **bootloader** (how an agent starts; short, capped at ≤200 lines / ≤25 KB). Nothing executes during or after this copy — the kernel is inert reference data and copyable templates.
+The installable payload — the **kernel** — lives in this repo under [`kernel/`](./kernel/). On adoption it installs to **`.swarm/kernel/`** in the consuming project, and `kernel/AGENTS.md` becomes the project's `AGENTS.md` **bootloader** (how an agent starts; short, capped at ≤200 lines / ≤25 KB [[LOSTMID]](docs/research/sources.md#LOSTMID)). Nothing executes during or after this copy — the kernel is inert reference data and copyable templates.
 
 In an adopted project, `.swarm/` is the canonical Swarm workspace, separating **desired** state from **observed** state from **generated** material:
 
@@ -73,7 +73,7 @@ Swarm holds five invariants in every part of the framework; the governing one is
 2. **Soft vs hard control** — prose, SOL, APS, pass guides, profiles, and `AGENTS.md` are soft guidance; anything that must hold regardless of the model needs a deterministic check *outside* the model (today that hard lane is aspirational/manual).
 3. **Surface-vs-IR layering** — the human surface is UPPERCASE space-separated keywords; the IR is snake_case fields.
 4. **Code is reality** — code and tests can falsify an obligation but never silently amend intent.
-5. **Schema-valid is not verified** — shape is not truth; a `PASS` verdict requires a bound proof that actually ran and produced inspectable evidence, not merely a structurally valid trace.
+5. **Schema-valid is not verified** — shape is not truth; a `PASS` verdict requires a bound proof that actually ran and produced inspectable evidence, not merely a structurally valid trace [[REFLEXION]](docs/research/sources.md#REFLEXION).
 
 ## Where the docs live
 
@@ -92,4 +92,4 @@ Each area is the authoritative reference for what it covers; together with the [
 
 ---
 
-Swarm **v0.1** · language **SOL/0.1**, **APS 0.1** · the framework package is versioned independently as semver (see [`docs/language/versioning.md`](./docs/language/versioning.md)). This specification is Accepted; it consolidates the prior design work into one self-contained framework.
+Swarm **v0.1** · language **SOL/0.1**, **APS 0.1** · the framework package is versioned independently as semver (see [`docs/language/versioning.md`](./docs/language/versioning.md)). This specification is Accepted; it is one self-contained framework.

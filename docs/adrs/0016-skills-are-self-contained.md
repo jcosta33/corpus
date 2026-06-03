@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Skills are vendored à la carte: a consumer copies the subset of `/scaffold/.agents/skills/` their work needs and leaves the rest. A `SKILL.md` body that links a sibling skill, or points at a framework-internal path (`.agents/...`, `docs/agents/...`), assumes a layout the consumer may not have reproduced.
+Skills are vendored selectively: a consumer copies the subset of `/scaffold/.agents/skills/` their work needs and leaves the rest. A `SKILL.md` body that links a sibling skill, or points at a framework-internal path (`.agents/...`, `docs/agents/...`), assumes a layout the consumer may not have reproduced.
 
 Anti-pattern catalogues converge on this as the **Reference Illusion**: a skill referencing files or skills that aren't guaranteed to exist on the consumer's machine, leaving a dead reference that silently degrades behaviour rather than failing loudly. The agent reads instructions pointing at something that isn't there and quietly does less.
 

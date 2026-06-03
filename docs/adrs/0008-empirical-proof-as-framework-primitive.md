@@ -10,7 +10,7 @@ Models complete the "successful task" pattern with confident summaries. Without 
 
 ## Decision
 
-Every code-changing task archetype mandates **verbatim** command output (or bounded equivalent) in `## Self-review` / verification sections. Paraphrase is invalid. Skeptic reviewers **re-run** checks locally.
+Every code-changing task archetype mandates **verbatim** command output (or bounded equivalent) in `## Self-review` / verification sections. Paraphrase is invalid — a passed test with no pasted output is not a proof [[REFLEXION]](../research/sources.md#REFLEXION). Skeptic reviewers **re-run** checks locally.
 
 Encoded in **`empirical-proof`** skill plus task templates (`/scaffold/.agents/templates/` and each skill's `references/task-template.md`).
 

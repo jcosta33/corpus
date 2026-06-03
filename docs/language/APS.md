@@ -131,7 +131,7 @@ Permitted via QUANTIFY (same-line measurable threshold):
 
 ## 5. APS rule families mapped to `SOL-P` codes
 
-Every APS rule family resolves to **exactly one** prose-layer lint code in the unified taxonomy. The legacy `APS-*` codes are retired; this mapping is canonical and supersedes them. Full code definitions and the lint taxonomy (the S/P/M/V/O layers) live in [errors](errors.md).
+Every APS rule family resolves to **exactly one** prose-layer lint code in the unified taxonomy: APS violations surface as `SOL-P` codes. This mapping is canonical. Full code definitions and the lint taxonomy (the S/P/M/V/O layers) live in [errors](errors.md).
 
 | APS rule family | `SOL-P` code | Severity | Repair op |
 |---|---|---|---|
@@ -160,7 +160,7 @@ APS exists because of a **durable mechanism**, not a transient capability ceilin
 
 1. **Format and order sensitivity** — meaning-preserving reformatting alone can swing few-shot accuracy substantially, and the same input shape that works well for one model need not transfer to another; example and prompt ordering can independently swing results between near-best and near-random. Controlled, predictable prose shape reduces this variance.
 2. **Multi-turn decay** — reliability falls as work is spread across many conversational turns, because early loose assumptions compound; stable artifacts beat accumulating chat.
-3. **Context rot / lost-in-the-middle** — relevant content buried in the middle of long inputs is used markedly less reliably than content at the beginning or end of the context; low-entropy prose keeps the load-bearing signal legible.
+3. **Context rot / lost-in-the-middle** — relevant content buried in the middle of long inputs is used markedly less reliably than content at the beginning or end of the context [[LOSTMID]](../research/sources.md#LOSTMID); low-entropy prose keeps the load-bearing signal legible.
 4. **Minimize always-on density to protect adherence and control cost** — every always-loaded normative line competes for adherence and is paid for on every turn; APS removes non-load-bearing words so the surviving instructions are followed and cheap.
 5. **Requirement ambiguity degrades generated code** — ambiguous task descriptions measurably lower the share of generated code that passes its tests, and outright contradictory descriptions degrade it further; the defect originates in the requirement, not the model. APS lints buried ambiguity (`SOL-P008`) and lifts it into a `QUESTION` before lowering, removing the defect at its source.
 

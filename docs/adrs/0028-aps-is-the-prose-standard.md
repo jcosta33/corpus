@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-A Swarm spec is mostly prose: the words that surround, introduce, and accompany SOL obligation blocks. In the pre-kernel model nothing said whether that prose *bound* anything. A reader — human or agent — could not tell which sentence was a load-bearing requirement and which was commentary, so a vague adjective in a paragraph and a vague adjective inside an obligation read as equally authoritative. Prose is also the least stable carrier of meaning a future conformant tool will encounter: §7.6 anchors APS on five durable mechanisms — format/order sensitivity, multi-turn decay, lost-in-the-middle context rot, always-on density cost, and requirement-ambiguity degrading generated code — none of which a dated capability number can paper over. Without a standard for prose, the typed SOL surface could be silently contradicted, diluted, or competed with by the words around it.
+A Swarm spec is mostly prose: the words that surround, introduce, and accompany SOL obligation blocks. In the pre-kernel model nothing said whether that prose *bound* anything. A reader — human or agent — could not tell which sentence was a load-bearing requirement and which was commentary, so a vague adjective in a paragraph and a vague adjective inside an obligation read as equally authoritative. Prose is also the least stable carrier of meaning a future conformant tool will encounter: §7.6 anchors APS on five durable mechanisms — format/order sensitivity, multi-turn decay, lost-in-the-middle context rot [[LOSTMID]](../research/sources.md#LOSTMID), always-on density cost, and requirement-ambiguity degrading generated code — none of which a dated capability number can paper over. Without a standard for prose, the typed SOL surface could be silently contradicted, diluted, or competed with by the words around it.
 
 ## Decision
 
@@ -26,7 +26,7 @@ APS (Agent Prose Semantics) is the controlled-prose standard for everything in a
 | Apply prose rules uniformly everywhere, ignoring position | The force of an APS rule depends on *where* a span sits; a vague word in commentary merely explains, while the same word inside an obligation changes what gets built. A uniform rule would either over-block commentary or under-protect binding clauses (§7.2). |
 | Resolve vague wording by open-ended stylistic rewriting | The defect is a *missing observable criterion*, not bad style; only the named `CONCRETIZE`/`QUANTIFY` improve operations with an explicit exit condition close `SOL-P005`. Free rewriting has no exit condition and may drift from intent (§7.4). |
 | Keep the `APS-` code prefix for prose diagnostics | One greppable namespace (`SOL-<LAYER><NNN>`) serves one tool; "APS" survives only as the *name* of the standard and MUST NOT appear in any diagnostic code (§7.5, §8.5). |
-| Anchor the density discipline on a model-accuracy ceiling (e.g. the IFScale "68% at 500 instructions" figure) | That figure MUST NOT be cited as a capability ceiling; the standard rests on a durable adherence-and-cost mechanism, not a transient number that ages out (§7.6). |
+| Anchor the density discipline on a model-accuracy ceiling (a dated instruction-following benchmark figure) | No such figure is cited as a capability ceiling; the standard rests on a durable adherence-and-cost mechanism, not a transient number that ages out (§7.6). |
 
 ## Consequences
 

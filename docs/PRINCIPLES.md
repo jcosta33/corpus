@@ -48,7 +48,7 @@ Code and tests are implementation **reality**: they can **falsify** an obligatio
 
 A structurally valid artifact — schema-valid IR, well-formed trace — is **not** a verified one. **Shape is not truth.**
 
-- **Rationale.** Structured output constrains form but cannot prove values are correct. "Tests passed" without observable output is not a proof.
+- **Rationale.** Structured output constrains form but cannot prove values are correct. "Tests passed" without observable output is not a proof. [[REFLEXION]](research/sources.md#REFLEXION)
 - **Consequence.** Every completion claim maps to independent deterministic or evidentiary verification; a `VERDICT` of `PASS` requires a bound proof that actually ran and produced inspectable evidence, not the mere existence of a syntactically valid trace.
 
 > **Tiebreaker.** When a claim rests on "it parsed" or "the tests are green" with nothing pasted: that is shape, not truth. Demand the bound proof and its inspectable evidence.
@@ -92,15 +92,15 @@ Meaning must be **preserved across every lowering**. Each downstream transformat
 **All load-bearing meaning** — modality, actor, trigger/state, verification binding, authority order, conflict resolution, trace schema — lives in **SOL and the typed IR**, and never in prose, pass guides, profiles, or `AGENTS.md`.
 
 - **Rationale.** Prose-delivered semantics are unreliable: model adherence degrades under prompt-format sensitivity, multi-turn reliability decay, and lost-in-the-middle / context-rot, and an always-loaded instruction file behaves as context rather than as enforced configuration.
-- **Consequence.** Prose and pass guides are non-authoritative *delivery* layers; a regression check must confirm that no pass guide, profile, or `AGENTS.md` section defines modality, authority order, or verification semantics. Always-loaded normative prose is capped (≤200 lines / ≤25 KB), with everything procedural moved to lazily-loaded pass guides and profiles — to protect adherence and cost, not because models "cannot follow many instructions."
+- **Consequence.** Prose and pass guides are non-authoritative *delivery* layers; a regression check must confirm that no pass guide, profile, or `AGENTS.md` section defines modality, authority order, or verification semantics. Always-loaded normative prose is capped (≤200 lines / ≤25 KB) [[LOSTMID]](research/sources.md#LOSTMID), with everything procedural moved to lazily-loaded pass guides and profiles — to protect adherence and cost, not because models "cannot follow many instructions."
 
 ### Unitary at rest, modular in execution
 
 Swarm's organizing slogan is **"unitary at rest, modular in execution."**
 
 - **Unitary at rest.** Swarm installs as one coherent framework. The language, artifact contracts, passes, templates, pass guides, and memory model arrive together and are internally consistent — there is no menu of disconnected features to assemble.
-- **Modular in execution.** At run time, only the pass, profile, and context a single task needs are loaded. A task names the pass guide and profile it requires; nothing else is in context. This protects instruction-adherence and token cost without fragmenting the framework.
-- **Consequence.** Adoption may still be incremental at the *repository* level — a team may vendor a subset — but the *conceptual model* is unitary: every piece is a component of one compiler, not an independent gadget.
+- **Modular in execution.** At run time, only the pass, profile, and context a single task needs are loaded. A task names the pass guide and profile it requires; nothing else is in context. This protects instruction-adherence and token cost without fragmenting the framework. [[CTXENG]](research/sources.md#CTXENG)
+- **Consequence.** The conceptual model is unitary: every piece is a component of one compiler, not an independent gadget. A repository binds the framework as one whole; what varies at run time is only which pass, profile, and context a given task loads.
 
 ### Evidence discipline — real science, not astrology
 
@@ -120,7 +120,7 @@ In an adopted project, these principles bind the layout of the canonical Swarm w
 Swarm's artifacts live under `.swarm/` by default; `.agents/` is an agent-tool **compatibility surface**, not the Swarm root.
 
 - **Rationale.** Burying primary specs, memory, status, and ledger under a generic `.agents/` namespace conflates Swarm's source-of-truth workspace with the load surface a specific agent tool happens to read.
-- **Consequence.** Canonical specs, memory, status, and ledger live under `.swarm/` and not under `.agents/` as canonical. Anything mirrored into `.agents/` for tool compatibility points back to (or is copied from) `.swarm/kernel/` and is marked compatibility/migration material. The installable payload ships in the framework repo under `kernel/` and installs to `.swarm/kernel/`.
+- **Consequence.** Canonical specs, memory, status, and ledger live under `.swarm/` and not under `.agents/` as canonical. Anything mirrored into `.agents/` for tool compatibility points back to (or is copied from) `.swarm/kernel/` and is marked compatibility material. The installable payload ships in the framework repo under `kernel/` and installs to `.swarm/kernel/`.
 
 ### Source, status, and generated are separate categories
 

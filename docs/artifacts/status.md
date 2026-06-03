@@ -17,7 +17,7 @@ What a status MUST NOT do:
 - **It MUST NOT be the only home of any fact.** A status is rebuildable from the spec, the trace-provenance schema, and the review verdict record. Every row it carries traces back to a verdict block and a recorded proof. A fact that exists only in the status — never written to a trace or a review — is a defect: the status would then be authoring, not observing.
 - **It MUST NOT be hand-edited as intent.** It is regenerated or updated by the verify, review, and promote passes; a human or agent may rewrite it from the upstream record, but never to inject a verdict no proof produced or to silence a drift the staleness rule fired.
 
-This stance is held by the surrounding source-authority discipline of the framework, not by any gatekeeper tool: there is no runtime to enforce it. The discipline lives in the language and reference layer, and a conformant repository MUST NOT reintroduce a skill whose job is to police whether a status has overstepped into authoring.
+This stance is held by the surrounding source-authority discipline of the framework, not by any gatekeeper tool: there is no runtime to enforce it. The discipline lives in the language and reference layer; a conformant repository MUST NOT ship a tool whose job is to police whether a status has overstepped into authoring.
 
 ## Filename & placement
 

@@ -12,7 +12,7 @@ Parallel autonomous writers collide on merges, violating determinism and bypassi
 
 Parallelism is acceptable on **read paths** / research; writes that land in one branch must serialize through orchestration (**Lead Engineer** pattern) unless human explicitly forks work with merge policy.
 
-Encoded in recursion limits and orchestration semantics ([`docs/concepts/10-subagent-strategy.md`](../concepts/10-subagent-strategy.md)).
+Encoded in recursion limits and orchestration semantics (`docs/concepts/10-subagent-strategy.md`).
 
 ## Consequences
 

@@ -188,7 +188,7 @@ This is the default sequencing. A launcher MAY interleave passes across multiple
 
 ### 2.4 The five stdlib pass guides
 
-A **pass guide** is a lazily-loaded procedural document (a "skill" in legacy vocabulary). Pass guides are SOFT control (Invariant 2): they MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR. Of the nine passes, **exactly five** ship with a stdlib pass guide in v0.1 (§9.4): `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`. The remaining four (`author`, `improve`, `lower`, `verify`) are fully specified by the spec and MAY gain guides in a later framework release with no language-version change. (Naming note: the legacy `adversarial-review` skill is not its own guide — it is `review[profile: skeptic]`.)
+A **pass guide** is a lazily-loaded procedural document (the kernel's term for what the broader agent ecosystem calls a "skill"). Pass guides are SOFT control (Invariant 2): they MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR. Of the nine passes, **exactly five** ship with a stdlib pass guide in v0.1 (§9.4): `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`. The remaining four (`author`, `improve`, `lower`, `verify`) are fully specified by the spec and MAY gain guides in a later framework release with no language-version change. (Naming note: adversarial review is not its own guide — it is `review[profile: skeptic]`.) Pass-guide bodies follow the established skill-authoring discipline — a ~500-line body cap, a third-person description, progressive disclosure, and an explain-the-WHY pattern [[SKILLBP]](../research/sources.md#SKILLBP).
 
 ---
 
@@ -211,7 +211,7 @@ Two corollaries (§10.1):
 
 ### 3.2 The ten operations (normative)
 
-Each operation is triggered by one or more lint codes, with a precondition and a postcondition. Trigger codes use the unified `SOL-<LAYER>###` namespace; legacy `APS-*` codes are retired (§10.2).
+Each operation is triggered by one or more lint codes, with a precondition and a postcondition. Trigger codes use the unified `SOL-<LAYER>###` namespace; APS violations surface as `SOL-P###` codes (§10.2).
 
 | # | Operation | Trigger code(s) | Repairs |
 | --- | --- | --- | --- |
@@ -219,11 +219,11 @@ Each operation is triggered by one or more lint codes, with a precondition and a
 | 2 | `ATOMIZE` | `SOL-P004` | One block bundling ≥2 separable obligations → each its own block with its own id; bindings distributed. |
 | 3 | `CONCRETIZE` | `SOL-P005` | Vague-quality word with no observable criterion → replaced by **observable behavior** (actor + action + object). |
 | 4 | `QUANTIFY` | `SOL-P005` | Unbounded quality with no measurable threshold → carries a **measurable threshold** or named measurable criterion. |
-| 5 | `BIND` | `SOL-V001`, `SOL-V###` | Obligation lacking a binding/source/interface/trace → valid `VERIFY BY <type>:<adapter>:<artifact>` + required references (merges legacy `Bind` + `Trace`). |
+| 5 | `BIND` | `SOL-V001`, `SOL-V###` | Obligation lacking a binding/source/interface/trace → valid `VERIFY BY <type>:<adapter>:<artifact>` + required references (covers both the proof binding and its trace references). |
 | 6 | `SCOPE` | `SOL-O###` | Missing non-goals / applicability / write surfaces / exclusions → explicit `Non-goals` / applicability / `WRITES` / exclusions present. |
 | 7 | `CLARIFY` | `SOL-P008` | Behavioral uncertainty buried in prose → an explicit interpretation **OR** a `QUESTION` block. |
 | 8 | `DECONFLICT` | `SOL-M002` | Two obligations (or obligation vs higher artifact) contradict → resolved per source authority (§22), or raised to amendment. |
-| 9 | `COMPRESS` | `SOL-P054`, `SOL-P055` | Non-load-bearing noise / redundancy → removed; text interpreted consistently (merges legacy `Compress` + `Stabilize`). |
+| 9 | `COMPRESS` | `SOL-P054`, `SOL-P055` | Non-load-bearing noise / redundancy → removed; text interpreted consistently (covers both redundancy removal and consistent-reading stabilization). |
 | 10 | `PROMOTE` | promotion protocol (§23) | Durable fact in task-local state → moved to `finding.md` / `spec.swarm.md` / `adr.md` / memory with provenance. |
 
 `CONCRETIZE` and `QUANTIFY` share trigger `SOL-P005` but differ in repair: `CONCRETIZE` substitutes *observable behavior* (qualitative), `QUANTIFY` a *measurable threshold* (quantitative). The author picks whichever the obligation's nature requires; both exit the same code (§10.2).
@@ -261,7 +261,7 @@ A `REQ` MAY chain obligations with `[AND THE <actor> <MODAL> <response>]*`. `low
 
 ### 4.3 The `decompose` pass
 
-`decompose` consumes `*.swarm.ir.json` and produces `task.md` work packets. It is the new machinery the legacy task-type model lacked. It MUST (§11.2):
+`decompose` consumes `*.swarm.ir.json` and produces `task.md` work packets. It is the machinery that partitions the obligation graph into bounded, write-disjoint work — a deliberate decomposition of the task rather than a single flat pass [[TREEOFTHOUGHTS]](../research/sources.md#TREEOFTHOUGHTS). It MUST (§11.2):
 
 1. **Partition obligations into work packets**, each carrying its assigned obligations, constraints/invariants in force, interfaces touched, write surfaces, and verification bindings (the `task.md` contract, §21).
 2. **Project owned paths** for each packet as the file/glob projection of its assigned obligations' `WRITES` surfaces.

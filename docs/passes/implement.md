@@ -89,7 +89,7 @@ The default `## Scope > Out` list is itself a boundary statement of the pass: *d
 
 ## The output: the `trace.md` claim contract (§21.4)
 
-`implement` emits a `trace.md` that records implementation *claims* against obligations and binds them to *evidence*. Its core payload is one or more `TRACE` blocks (`IMPLEMENTS` / `PRESERVES` / `CHANGED` / `PROOF`, §6) plus the drift-provenance fields (§16) the staleness join depends on. A conformant `trace.md` MUST contain:
+`implement` emits a `trace.md` that records implementation *claims* against obligations and binds them to *evidence* — externalising the run's intermediate work into a durable, inspectable artifact rather than leaving it in the agent's context [[SCRATCHPAD]](../research/sources.md#SCRATCHPAD). Its core payload is one or more `TRACE` blocks (`IMPLEMENTS` / `PRESERVES` / `CHANGED` / `PROOF`, §6) plus the drift-provenance fields (§16) the staleness join depends on. A conformant `trace.md` MUST contain:
 
 | Section | Meaning |
 |---|---|
@@ -104,7 +104,7 @@ How a TRACE block records the claim (§6, §12.5):
 
 - `IMPLEMENTS` lists the `REQ` ids the change satisfies; `PRESERVES` lists the `CONSTRAINT`/`INVARIANT` ids it must not violate; `CHANGED` names the modified surfaces (the basis for staleness detection); each `PROOF` line names a verification reference plus its observed `proof_result` — `passed | failed | blocked | unverified`.
 - The lowercase `proof_result` is the *observed run outcome*; it maps **1:1** to the uppercase VERDICT core value at the `verify`/`review` step: `passed -> PASS`, `failed -> FAIL`, `blocked -> BLOCKED`, `unverified -> UNVERIFIED`. The verdict has **7 values total — 4 core** (`PASS`/`FAIL`/`BLOCKED`/`UNVERIFIED`) **+ 3 lifecycle** (`WAIVED`/`STALE`/`CONTRADICTED`, §14) — but `implement` only ever produces the core observation; the lifecycle decorators are applied later at `review`.
-- A TRACE that claims `IMPLEMENTS` **MUST carry at least one `PROOF` line** — the grammar makes `PROOF` mandatory in a trace body, so a no-`PROOF` trace is a structural parse error (`SOL-S014`), not a missing-evidence lint. A `PROOF` line MUST reference real output: an unqualified "tests passed" is not admissible (§15, §17).
+- A TRACE that claims `IMPLEMENTS` **MUST carry at least one `PROOF` line** — the grammar makes `PROOF` mandatory in a trace body, so a no-`PROOF` trace is a structural parse error (`SOL-S014`), not a missing-evidence lint. A `PROOF` line MUST reference real output: an unqualified "tests passed" is not admissible [[REFLEXION]](../research/sources.md#REFLEXION) (§15, §17).
 - A TRACE whose `IMPLEMENTS`/`PRESERVES` names an unknown obligation is `SOL-M003` (unbound cross-reference) — the same orphan-target condition the COVERAGE gate guards against.
 
 In the IR, these claims become `implements` and `preserves` edges in the single relationship store `edges[]` (§12.5) — the input the downstream `verify` and `review` passes join against the obligation graph.

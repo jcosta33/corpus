@@ -6,7 +6,7 @@ Superseded by [0039](./0039-write-surface-model.md) — owned/forbidden paths be
 
 ## Context
 
-The [agents-as-compiler readiness audit](../../.agents/audits/agents-as-compiler-readiness.md) found the multi-agent path — the framework's highest-stakes work — the least conditioned:
+The agents-as-compiler readiness audit found the multi-agent path — the framework's highest-stakes work — the least conditioned:
 
 - **No self-activating surface (Finding 5):** orchestration shipped no skill, so in a no-always-loaded-skills world ([0017](./0017-no-always-load-skills.md)) an agent handed multiple source docs had nothing to fire the Lead Engineer discipline.
 - **No recorded ownership (Finding 6):** the disjoint-file-scope rule the entire write-side-parallel safety argument rests on lived only as prose; the worker tracker had no owned-paths field.

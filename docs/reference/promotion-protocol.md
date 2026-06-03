@@ -2,7 +2,7 @@
 
 A discovery made during a task does **not** become memory by being written down. It becomes memory by being **promoted** — an explicit, recorded act that moves a fact from a task's ephemeral scratch into a durable, indexed, provenanced artifact. This page is the promotion protocol the kernel references by name: the seven-value status enum, the mandatory-before-close gate, the discovery-to-target routing table, the validation/rollback discipline, and the **ledger** that records the disposition of every promotion as compact, immutable history.
 
-Promotion exists because chat transcripts and inline prose are *not* memory — they are unindexed, unprovenanced, and unfalsifiable. Memory is a promotion system (a fact earns durability through a recorded promotion) backed by an immutable evidence store, with a compact index over it. The protocol is markdown-only and NO-RUNTIME: it describes the *files and the discipline* a future retrieval/checker tool would build against, not a shipped engine — nothing here ships a retrieval engine, a compactor, or a git driver.
+Promotion exists because chat transcripts and inline prose are *not* memory — they are unindexed, unprovenanced, and unfalsifiable. Memory is a promotion system (a fact earns durability through a recorded promotion) backed by an immutable evidence store, with a compact index over it [[CTXENG]](../research/sources.md#CTXENG). The protocol is markdown-only and NO-RUNTIME: it describes the *files and the discipline* a future retrieval/checker tool would build against, not a shipped engine — nothing here ships a retrieval engine, a compactor, or a git driver.
 
 ## The promotion-status enum (seven values)
 
@@ -59,7 +59,7 @@ Two normative consequences hold across **every** row:
 
 ### The "universal workflow rule" tie-break
 
-Routing a *universal workflow rule* toward `AGENTS.md` collides with the ≤200-line bootloader cap and the rule that only persistent **facts** belong in `AGENTS.md` while **procedures** belong in pass guides. The kernel resolves this normatively:
+Routing a *universal workflow rule* toward `AGENTS.md` collides with the ≤200-line bootloader cap [[LOSTMID]](../research/sources.md#LOSTMID) and the rule that only persistent **facts** belong in `AGENTS.md` while **procedures** belong in pass guides [[AGENTSMD-HARM]](../research/sources.md#AGENTSMD-HARM). The kernel resolves this normatively:
 
 > A "universal workflow rule" promotion MUST become **a pass-guide edit (the procedure) PLUS at most a one-line `AGENTS.md` pointer (the fact that the guide exists and when to load it).** It MUST NOT inline the procedure into `AGENTS.md`.
 

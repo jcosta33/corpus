@@ -1,6 +1,6 @@
 # Pass guides
 
-> Swarm's reference for **pass guides**: the reusable, lazily-loaded procedural modules that document *how* to run a named pass — never *what the language means* — together with the legacy-skill recast, the loading doctrine, the cross-cutting fragments, and the pass-guide contract.
+> Swarm's reference for **pass guides**: the reusable, lazily-loaded procedural modules that document *how* to run a named pass — never *what the language means* — together with how procedural modules map onto the nine passes, the loading doctrine, the cross-cutting fragments, and the pass-guide contract.
 
 A **pass guide** is a procedural module that documents how to perform one of the **nine passes** of the Swarm compiler pipeline (`author -> lint -> improve -> lower -> decompose -> implement -> verify -> review -> promote`) — and nothing more. It is a reusable *method* an agent loads when a task names it: the prose recipe for executing a pass well, the questions to ask, the order to work in, the evidence to gather. It is **SOFT control** (Invariant 2): it influences how an agent works but binds nothing the kernel marks authoritative. Where a guide and the language reference disagree, the language reference governs.
 
@@ -16,13 +16,13 @@ The reason is adherence: meaning that lived in a lazily-loaded, optional guide w
 
 A conformant repo confirms, by regression check, that no pass guide, profile, fragment, or `AGENTS.md` section defines modality, authority order, or verification semantics.
 
-## The recast: 24 legacy skills onto 9 passes
+## How procedural modules map onto the nine passes
 
-The pass-guide model replaces a legacy framework that shipped **24 self-contained "skills."** A skill was a procedural module a model loaded to do a unit of work — the same shape as a pass guide, but with no discipline preventing it from quietly owning semantics. The recast preserves every skill's procedural value while removing that one failure mode, by re-homing each skill as exactly one of three things: a **pass guide** (one per pass), a **cross-cutting fragment** (shared procedure), or a **profile** (a cognitive stance, documented separately).
+The pass-guide layer organizes the framework's procedural modules — each a self-contained recipe a model loads to do a unit of work [[SKILLBP]](../research/sources.md#SKILLBP) — under a discipline that keeps any one module from quietly owning semantics. Every procedural module is exactly one of three things: a **pass guide** (one per pass), a **cross-cutting fragment** (shared procedure), or a **profile** (a cognitive stance, documented separately).
 
-The mapping is **many-skills-to-one-pass**: a single pass MAY carry more than one guide. The `implement` pass, for instance, carries one guide per implementation kind.
+The mapping is **many-modules-to-one-pass**: a single pass MAY carry more than one guide. The `implement` pass, for instance, carries one guide per implementation kind.
 
-| Legacy skill | Recast role | Owning pass |
+| Procedural module | Role | Owning pass |
 |---|---|---|
 | `write-spec` | author guide | `author` (spec) |
 | `write-research` | author guide | `author` (research) |
@@ -37,29 +37,29 @@ The mapping is **many-skills-to-one-pass**: a single pass MAY carry more than on
 | `write-testing` | implement guide | `implement` |
 | `write-documentation` | implement guide | `implement` |
 | `fix-flaky-test` | narrow implement guide | `implement` |
-| `adversarial-review` | **folds into** `review` as the Skeptic profile — no longer a skill | `review` |
+| `adversarial-review` | the Skeptic profile over `review` — not a standalone module | `review` |
 | `empirical-proof` | cross-cutting fragment | shared (behind `verify` / `review`) |
 | `distillation-discipline` | cross-cutting fragment | shared (behind `lower` / `decompose` / `promote`) |
-| `persona-architect` | becomes a profile | `author` (spec) |
-| `persona-auditor` | becomes a profile | `author` (audit) |
-| `persona-janitor` | becomes a profile | `implement` |
-| `persona-migrator` | becomes a profile | `implement` |
-| `persona-performance-surgeon` | becomes a profile | `implement` |
-| `persona-skeptic` | becomes a profile | `review` / `verify` |
-| `persona-surveyor` | becomes a profile | `author` (research) |
-| `persona-lead-engineer` | becomes a profile | `decompose` / merge-gate |
+| `persona-architect` | a profile | `author` (spec) |
+| `persona-auditor` | a profile | `author` (audit) |
+| `persona-janitor` | a profile | `implement` |
+| `persona-migrator` | a profile | `implement` |
+| `persona-performance-surgeon` | a profile | `implement` |
+| `persona-skeptic` | a profile | `review` / `verify` |
+| `persona-surveyor` | a profile | `author` (research) |
+| `persona-lead-engineer` | a profile | `decompose` / merge-gate |
 
 Three rows are normative and worth calling out:
 
-- **`adversarial-review` folds into `review`.** It does **not** survive as a standalone skill. Its adversarial method becomes the **Skeptic profile** applied to the `review` (and `verify`) passes, because skepticism is a *parameter to a pass*, not a separate pass of its own.
-- **`fix-flaky-test` survives as a narrow `implement` guide.** It is the one legacy skill that maps to a procedure specific enough (de-flaking a non-deterministic test) to stay its own guide rather than collapse into the general fix guide.
-- **The eight `persona-*` skills become profiles.** A profile is a heuristic stance — what an agent looks for and refuses — not a procedure module. Profiles are documented on their own page; this page covers the procedure layer.
+- **`adversarial-review` is the Skeptic profile over `review`.** It is **not** a standalone procedural module. Its adversarial method is the **Skeptic profile** applied to the `review` (and `verify`) passes, because skepticism is a *parameter to a pass*, not a separate pass of its own.
+- **`fix-flaky-test` is a narrow `implement` guide.** Its procedure is specific enough (de-flaking a non-deterministic test) to stand as its own guide rather than collapse into the general fix guide.
+- **The eight `persona-*` modules are profiles.** A profile is a heuristic stance — what an agent looks for and refuses — not a procedure module. Profiles are documented on their own page; this page covers the procedure layer.
 
 ### What ships in v0.1
 
 The pass-guide set spans all nine passes as a *contract*, but only **five stdlib pass guides ship in v0.1**: those for `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`. The remaining four passes — `author`, `improve`, `lower`, `verify` — are fully specified by their pass contracts but ship **no guide yet**, and MAY gain one in a later framework release with no language-version change. A guide-less pass is **not** a conformance gap: the pass contract is the binding artifact, and the guide is an optional aid to performing it.
 
-The `lint` and `decompose` guides are **net-new** — no legacy guide seeded them. The recast table seeds guides only onto `author` and `implement`; the one legacy item touching `decompose` was the Lead Engineer *profile*, not a guide.
+The `lint` and `decompose` guides have no antecedent in the mapping table above: that table populates guides only on `author` and `implement`, and the single module touching `decompose` is the Lead Engineer *profile*, not a guide.
 
 ## The two cross-cutting fragments
 
@@ -67,7 +67,7 @@ Two procedural disciplines apply across multiple passes, so they ship as **fragm
 
 | Fragment | Discipline it carries | Passes that compose it |
 |---|---|---|
-| `empirical-proof` | the proof / `VERIFY BY` discipline — every completion claim maps to an independent, re-runnable proof; "tests passed" with no pasted output is not a proof | `verify`, `review` |
+| `empirical-proof` | the proof / `VERIFY BY` discipline — every completion claim maps to an independent, re-runnable proof; "tests passed" with no pasted output is not a proof [[REFLEXION]](../research/sources.md#REFLEXION) | `verify`, `review` |
 | `distillation-discipline` | the loss-budget discipline — what MUST be preserved and what MAY be dropped when meaning crosses an artifact boundary | `lower`, `decompose`, `promote` |
 
 Neither fragment defines semantics. `empirical-proof` does not define the proof taxonomy or the verdict model — it carries the *procedure* for applying the proof discipline the language reference owns. `distillation-discipline` does not define the loss-budget table — it carries the *procedure* for distilling accountably (making each boundary crossing's loss visible, via a `Preserved / Dropped / Still-uncertain` statement) against the budget the reference owns.
@@ -78,8 +78,8 @@ Neither fragment defines semantics. `empirical-proof` does not define the proof 
 
 A pass guide is **lazily loaded** — never always-on. The canonical way it activates is by being **named in the task** that frames the pass:
 
-- A `task.md` SHOULD name, in its frontmatter or assignment block, the pass guide(s) and profile(s) it activates for the pass it frames. When named, the agent **MUST load exactly those, and SHOULD NOT load others** — because always-on density harms adherence and cost.
-- When no launcher and no explicit naming is present, an agent MAY fall back to matching a guide's self-activating `description` field against the task. This is a **degraded mode**, retained for the launcher-less, à-la-carte case (a task dropped into an arbitrary agent CLI with no router) — not the contract.
+- A `task.md` SHOULD name, in its frontmatter or assignment block, the pass guide(s) and profile(s) it activates for the pass it frames. When named, the agent **MUST load exactly those, and SHOULD NOT load others** — because always-on density harms adherence and cost [[LOSTMID]](../research/sources.md#LOSTMID).
+- When no launcher and no explicit naming is present, an agent MAY fall back to matching a guide's self-activating `description` field against the task. This is a **degraded mode**, retained for the launcher-less case (a task dropped into an arbitrary agent CLI with no router) — not the contract.
 - A pass guide MUST NOT be always-loaded. There is no standing gatekeeper that pre-loads guides; that would itself be an always-loaded skill (forbidden) and would not be guaranteed present on a consumer's machine.
 
 The recommended primary path — naming the guides in the task — looks like this:
@@ -147,16 +147,16 @@ Skip for <out-of-scope task_kind 1> or <out-of-scope task_kind 2>.
 - **Do not … directly** — block the bypass: the path the agent takes when it decides *not* to load the guide.
 - **Skip for …** — name the *task kinds* this guide is not for, never a sibling guide's name. Naming task kinds keeps the fallback working even when a consumer vendored only this guide and not its neighbour, and it prevents directive saturation when several guides overlap on a trigger.
 
-The directive form is an authoring heuristic for this fallback path, not an obligation: when the task names the guide, naming wins and the `description` is bypassed. The rule's evidence — directive descriptions activating far more reliably than passive *"Use when …"* phrasings — is in [the evidence](../research/activation.md).
+The directive form is an authoring heuristic for this fallback path, not an obligation: when the task names the guide, naming wins and the `description` is bypassed. The third-person, concrete `description` form follows the official skill-authoring guidance [[SKILLBP]](../research/sources.md#SKILLBP) and the Open Agent Skills `description` field [[SKILLSPEC]](../research/sources.md#SKILLSPEC). The directional, preliminary evidence that directive descriptions activate more reliably than passive *"Use when …"* phrasings [[ACTIVATION-BLOG]](../research/sources.md#ACTIVATION-BLOG) is in [the evidence](../research/activation.md).
 
 ### The body skeleton
 
 A guide body satisfies the contract sections, and within them follows a stable shape so the rules actually fire once the guide loads:
 
-- **Numbered rules, each with a one-line rationale** — `1. <Rule>` … `N. <Rule>`, every rule paired with one or two sentences of *why*. The rationale is the "explain-the-why" discipline: a bare imperative works only for the cases the author imagined, while the rationale lets the agent extend the rule to a case the author never anticipated.
+- **Numbered rules, each with a one-line rationale** — `1. <Rule>` … `N. <Rule>`, every rule paired with one or two sentences of *why*. The rationale is the "explain-the-why" discipline [[SKILLBP]](../research/sources.md#SKILLBP): a bare imperative works only for the cases the author imagined, while the rationale lets the agent extend the rule to a case the author never anticipated.
 - **An `## Anti-patterns` section** — concrete failure modes with their corrections, not just rules. Without negative examples the agent has no prior for the edge cases that miss the happy path, and it tends to invent a fix that is often wrong.
-- **References exactly one hop away** — material the guide cites sits one level deep; a referenced file does not itself link to another referenced file. Chained references get partial-read and silently dropped, so the hop limit is structural, not stylistic.
-- **A target length aligned to the density cap** — keep the body well under the length the AGENTS.md bootloader's density cap allows, so that nothing load-bearing sits in the low-attention middle of a long context. When a body grows past the practical target, the question is "what moves one hop out to a referenced file?", not "can the body be longer?".
+- **References exactly one hop away** — material the guide cites sits one level deep; a referenced file does not itself link to another referenced file. This is progressive disclosure: cheap metadata is always present, the body loads when the pass is engaged, and deeper material loads only when the procedure reaches for it [[SKILLSPEC]](../research/sources.md#SKILLSPEC). Chained references get partial-read and silently dropped [[SKILLBP]](../research/sources.md#SKILLBP), so the hop limit is structural, not stylistic.
+- **A target length aligned to the density cap** — keep the body under the ~500-line authoring ceiling [[SKILLBP]](../research/sources.md#SKILLBP) and well under the length the AGENTS.md bootloader's density cap allows, so that nothing load-bearing sits in the low-attention middle of a long context [[LOSTMID]](../research/sources.md#LOSTMID). When a body grows past the practical target, the question is "what moves one hop out to a referenced file?", not "can the body be longer?".
 
 The directional evidence behind the body shape — attention degrading across long contexts, rationale-bearing rules outperforming bare imperatives, and the reference-depth failure mode — is in [the evidence](../research/body-anatomy.md).
 
@@ -175,7 +175,7 @@ The stdlib pass guides, the narrow `fix-flaky-test` guide, and the two cross-cut
 | `kernel/.agents/skills/empirical-proof/` | cross-cutting fragment | `verify`, `review` |
 | `kernel/.agents/skills/distillation-discipline/` | cross-cutting fragment | `lower`, `decompose`, `promote` |
 
-These directories carry legacy-vocabulary names (`skills/`); in kernel vocabulary they are pass guides and fragments. The four guide-less passes (`author`, `improve`, `lower`, `verify`) ship no module here — their pass contracts stand on their own.
+These directories sit under a `skills/` path for cross-tool compatibility; in kernel vocabulary they are pass guides and fragments. The four guide-less passes (`author`, `improve`, `lower`, `verify`) ship no module here — their pass contracts stand on their own.
 
 ## Related
 

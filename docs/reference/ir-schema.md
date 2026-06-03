@@ -563,7 +563,7 @@ A packet's `merge_safe` MUST be `false` if it has any unresolved `conflicts_with
           "id":         { "type": "string", "description": "Packet id, unique within the plan." },
           "pass":       { "enum": ["author", "lint", "improve", "lower", "decompose", "implement", "verify", "review", "promote"] },
           "profile":    { "type": ["string", "null"], "default": null, "description": "Heuristic profile; null = the pass default." },
-          "inputs":     { "type": "array", "items": { "type": "string" }, "description": "Node ids this packet consumes (subsumes the legacy derived_from[])." },
+          "inputs":     { "type": "array", "items": { "type": "string" }, "description": "Node ids this packet consumes." },
           "outputs":    { "type": "array", "items": { "type": "string" }, "description": "Artifacts produced (code paths, trace/review/finding)." },
           "writes":     { "type": "array", "items": { "type": "string" }, "default": [], "description": "Write surfaces; each MUST be a subset of its inputs' WRITES (SOL-O005)." },
           "reads":      { "type": "array", "items": { "type": "string" }, "default": [] },
