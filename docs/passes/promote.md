@@ -18,7 +18,7 @@ The model is **two-tier and provenance-anchored** (§23). Rationale: chat transc
 | Input | the task's discoveries + the resolved-or-pending promotion queue |
 | Output | durable writes to `.swarm/memory/` and `.swarm/sources/` (plus the `AGENTS.md` pointer case, §23.4.1) and a fully-resolved promotion queue |
 | Close gate | a task MUST NOT close while any promotion item is `pending` (§23.4) |
-| Ships a stdlib pass guide in v0.1? | **Yes** — `promote` is one of the five tooled-first passes (with `lint`, `decompose`, `implement`, `review[profile: skeptic]`) |
+| Ships a stdlib pass guide in v0.1? | **Yes** — `promote` ships a dedicated pass guide (as do `lint`, `decompose`, and `review`); `implement` is served by the nine per-`task_kind` guides, `author` by the six author guides, and `verify` by the `empirical-proof` fragment; `improve` and `lower` ship none (ADR-0042) |
 
 ## The two-tier memory model
 

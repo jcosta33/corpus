@@ -55,9 +55,9 @@ The `task.md` an `implement` run owns declares **owned paths** (its `write_surfa
 
 An owned path that touches a file outside any assigned obligation's declared write surface is lint code **`SOL-O005`** ("owned path outside declared write surface"). This is what keeps parallel `implement` packets write-disjoint — the property `decompose` proved using the write-surface conflict graph (§18).
 
-## `implement` IS a stdlib pass guide
+## `implement` ships nine per-kind implement guides
 
-Of the nine passes, exactly **five** ship with a stdlib pass guide in v0.1: `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote` (§9.4). `implement` is one of them. Rationale (§9.4): it is **the most-run pass**, and so benefits most from a written procedure; its carrier profile is selected **by task kind** (§28), not fixed. A pass guide is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
+`implement` is **the most-run pass**, and so benefits most from a written procedure; its carrier profile is selected **by task kind** (§28), not fixed. Instead of a single pass guide, it is served by the **nine per-`task_kind` implement guides** (ADR-0042) — `../skills/write-feature/SKILL.md`, `../skills/write-fix/SKILL.md`, `../skills/write-refactor/SKILL.md`, `../skills/write-rewrite/SKILL.md`, `../skills/write-migration/SKILL.md`, `../skills/write-performance/SKILL.md`, `../skills/write-testing/SKILL.md`, `../skills/write-documentation/SKILL.md`, and `../skills/fix-flaky-test/SKILL.md` — each a standalone procedure for one task kind. A guide is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
 
 ## The input: the `task.md` pass frame (§21.3)
 
@@ -120,13 +120,13 @@ The pass frame and the trace contract together fence the change:
 
 Sibling payload files under `kernel/.agents/`:
 
-- `../skills/pass-implement-obligations/GUIDE.md` — the stdlib pass guide for `implement` (the per-task-kind procedure each of the six carriers follows; SOFT control).
+- `../skills/write-feature/SKILL.md`, `../skills/write-fix/SKILL.md`, `../skills/write-refactor/SKILL.md`, `../skills/write-rewrite/SKILL.md`, `../skills/write-migration/SKILL.md`, `../skills/write-performance/SKILL.md`, `../skills/write-testing/SKILL.md`, `../skills/write-documentation/SKILL.md`, `../skills/fix-flaky-test/SKILL.md` — the nine per-kind implement guides for `implement` (one per-task-kind procedure; SOFT control).
 - `../passes/decompose.md` — the upstream pass that partitions the IR into write-disjoint `task.md` packets and computes the COVERAGE gate by hand.
 - `../passes/verify.md` — the downstream, profile-independent pass that turns the TRACE `PROOF` evidence into a core verdict.
 - `../passes/review.md` — applies the three lifecycle decorators (`WAIVED` / `STALE` / `CONTRADICTED`) and judges `## Unassigned changes`.
 - `../passes/promote.md` — closes out the `## Promotion queue` discoveries.
 - `../templates/task.md` — the `task.md` pass-frame template (frontmatter field set, `task_kind` enum, the eight body sections).
 - `../templates/trace.md` — the `trace.md` claim-contract template (sections, per-binding provenance fields, TRACE block structure).
-- `../profiles/janitor.md`, `../profiles/builder.md`, `../profiles/researcher.md` — carrier profiles selected by task kind.
-- `../skills/empirical-proof/GUIDE.md` — the no-fabricated-evidence discipline behind the `PROOF`-line rule.
+- `../skills/persona-janitor/SKILL.md`, `../skills/persona-builder/SKILL.md`, `../skills/persona-researcher/SKILL.md` — carrier profiles selected by task kind.
+- `../skills/empirical-proof/SKILL.md` — the no-fabricated-evidence discipline behind the `PROOF`-line rule.
 - `../language/SOL.md`, `../language/errors.md` — the SOL block grammar and the lint codes (`SOL-O005` / `SOL-O007` / `SOL-O008` / `SOL-M003` / `SOL-S014`).

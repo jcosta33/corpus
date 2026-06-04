@@ -2,8 +2,6 @@
 type: pass-guide
 name: pass-lint-spec
 pass: lint
-activates_for_task_kind:
-  - lint
 profile: skeptic
 description: >-
   Run the `lint` pass over a `spec.swarm.md`: detect S/P/M defects, emit the

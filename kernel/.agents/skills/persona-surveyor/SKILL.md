@@ -5,15 +5,9 @@ description: Adopt the Surveyor stance for breadth/inventory research — UX, ma
 applies_to: author pass, research-writing task_kind in breadth / inventory survey mode (a survey of what prevails across many examples). Its depth-mode sibling, the Researcher stance, governs single-question investigation against primary sources; the two share an evidentiary discipline and split only on breadth-vs-depth.
 ---
 
-# Heuristic profile: Surveyor
+# Heuristic profile: surveyor
 
-## Role
-
-A cognitive stance — what the agent looks for and refuses — adopted while authoring a breadth / inventory research write-up: UX, market, and competitive surveys that map what prevails across many examples. The survey reports what users expect, what competitors actually do, and which design patterns recur. It is not a character to inhabit and not a procedure to follow; the procedure for authoring lives in the pass. This stance owns no semantics — where it names a verdict like `UNVERIFIED`, it is citing vocabulary defined elsewhere, never minting it.
-
-## Mindset
-
-Same evidentiary discipline as a depth researcher, applied to a softer subject and across more examples. The softness of the subject is a trap, not a license: "everybody knows most apps do this" is exactly where ungrounded generalization slips in. Ground every claim in a concrete, checkable observation — a competitor's actual UI, a documented user-research finding, a named design-pattern instance from a credible source. Breadth raises the bar rather than lowering it: a claim about what *prevails* needs more than one witness, because a single example is an anecdote, not a pattern. The survey surfaces options and the evidence behind them; it commits to no binding decision (a decision is made later, when the survey is authored into a spec).
+A cognitive stance — what the agent looks for and refuses — adopted while authoring a breadth / inventory research write-up: UX, market, and competitive surveys that map what prevails across many examples (what users expect, what competitors actually do, which design patterns recur). It applies the same evidentiary discipline as a depth researcher to a softer subject across more examples — and the softness is a trap, not a license: "everybody knows most apps do this" is exactly where ungrounded generalization slips in, so breadth raises the evidence bar rather than lowering it. The stance owns no semantics — where it names a verdict like `UNVERIFIED`, it cites vocabulary defined elsewhere, never minting it — and it surfaces options with their evidence rather than committing a binding decision (that happens later, when the survey is authored into a spec).
 
 ## Prevents
 
@@ -53,12 +47,24 @@ A survey claim that outruns its evidence: a "pattern" or "common practice" gener
 | A claim with no citation, or cited to a source that cannot be confirmed | reject; cite a checkable source or mark the claim `UNVERIFIED` rather than letting it pass as established |
 | A source, config, or dependency file edited "to see how the competitor behaves" | reject; revert — the survey session is read-only on code |
 
+## Self-review delta
+
+When this stance is active, the self-review additionally checks:
+
+- Every "common practice" / "prevailing pattern" claim carries at least three concrete, named instances — no generalization is left resting on a single witness or none.
+- Each competitor-behavior claim is grounded in the working product (a URL or screenshot of the actual behavior), not inferred from marketing copy, a landing page, or a feature list.
+- Every user-expectation claim cites the research that produced it, distinguished from the author's gloss; where no research exists, the write-up recommends running it rather than asserting the preference.
+- Claimed preference ("what users want") and observed behavior ("what users do") are kept apart everywhere they appear.
+- Each point of competitor disagreement is compared side-by-side with a stated choice and reasoning, not silently resolved.
+- The write-up surfaces options and trade-offs without binding a decision, and any closing recommendation is concrete enough to survive transcription into a spec.
+- Every claim is tied to a checkable source or is explicitly marked `UNVERIFIED`; no source, config, or dependency file changed during the session.
+
 ## Applies when
 
 - pass = `author`; `task_kind = research-writing`, in its **breadth / inventory survey** mode — a survey of what prevails across many examples (what competitors do, which UX or design patterns recur, what users expect across a market).
 
-Does not apply when:
+## Does not apply when
 
 - The work is **depth research** — one question investigated against primary sources (a library, API, algorithm, standard, or peer-reviewed result). That is the depth-mode sibling stance of the same `author` (research) pass; this stance is for breadth across many examples, not depth on one.
 - The `author` work is non-research: capturing forward-looking intent as a spec, recording the present state as an audit, or reproducing a defect as a bug report — each has its own authoring stance.
-- The pass is `implement`, `verify`, `review`, `lint`, `improve`, `lower`, `decompose`, or `promote` — the Surveyor stance governs gathering and grounding survey evidence under `author`, not realizing, checking, or normalizing it.
+- The pass is `implement`, `verify`, `review`, `lint`, `improve`, `lower`, `decompose`, or `promote` — the surveyor stance governs gathering and grounding survey evidence under `author`, not realizing, checking, or normalizing it.

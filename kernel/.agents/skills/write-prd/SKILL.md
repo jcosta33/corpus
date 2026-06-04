@@ -2,8 +2,6 @@
 type: pass-guide
 name: write-prd
 pass: author
-activates_for_task_kind:
-  - spec-writing
 description: >-
   Author a `prd.md` — the intent-only parent of a spec — capturing the problem,
   affected users, and the outcomes that define success, so every downstream

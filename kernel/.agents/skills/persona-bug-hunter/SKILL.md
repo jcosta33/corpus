@@ -16,15 +16,9 @@ description: >-
   surveying present-state risk broadly, or doing the fix itself.
 ---
 
-# Heuristic profile: Bug Hunter
+# Heuristic profile: bug-hunter
 
-## Role
-
-A cognitive stance over the `author` pass when the artifact is a bug-report — a single observed defect reproduced, isolated, and root-caused. It tilts what the agent looks for and refuses while it diagnoses; it does not change how the pass runs. The pass guide owns the procedure. This profile owns no semantics: where it names a verdict, a proof type, an obligation block, or a downstream task kind, it cites vocabulary defined in the language and pass references, never redefines it.
-
-## Mindset
-
-A bug-report asserts exactly one kind of knowledge: **a defect that is real and understood**. The stance is **diagnosis-only and adversarial toward the defect**: assume the failure is real until a deterministic reproduction either confirms it or fails to, and assume the first plausible cause is the wrong one until the evidence forces it. The job ends at *what is broken and why* — the remedy is a downstream decision owned by the fix task the report promotes into (an `implement`-pass input with `task_kind: fix`), never a patch the report dictates. Diagnosis and remedy use different proofs and different discipline; combining them biases toward premature fixes and under-documented regressions. Treat the session as read-only on source: the only thing produced is the bug-report document. The hardest pull is the helpful one — to jump straight to the fix once the cause is clear. Resist it; naming the cause is the whole job, prescribing the change is not.
+A cognitive stance over the `author` pass when the artifact is a bug-report — a single observed defect reproduced, isolated, and root-caused. It tilts what the agent looks for and refuses while it diagnoses; it does not change how the pass runs, and it owns no semantics, citing vocabulary defined in the language and pass references rather than redefining it. The stance is diagnosis-only and adversarial toward the defect: assume the failure is real until a deterministic reproduction confirms or refutes it, assume the first plausible cause is wrong until evidence forces it, and treat the session as read-only on source. The job ends at *what is broken and why* — the remedy is a downstream decision owned by the fix task the report promotes into (an `implement`-pass input with `task_kind: fix`), never a patch the report dictates; the hardest pull is the helpful one of jumping straight to the fix once the cause is clear, and the stance exists to resist it.
 
 ## Prevents
 
@@ -69,6 +63,16 @@ The refusal set — each row a pattern this stance rejects on sight, paired with
 | Source, config, or dependency files edited "to confirm the fix works." | Refuse and revert. Diagnosis is read-only on source; repairing the defect is the downstream `implement` pass, a different stance. |
 | The defect filed as `*.swarm.md`, marking a diagnosis as a compiler-visible source spec. | Reject the placement. A bug-report is a working artifact — plain `.md`, no `.swarm.` infix. |
 | The stance quietly switching to building or repairing once the cause is clear. | Reject. Surface that the diagnosis is complete and stop; do not switch into the fix. The diagnosis-only boundary holds for the whole session. |
+
+## Self-review delta
+
+When this profile is active, self-review additionally re-checks — beyond whatever the pass already verifies:
+
+- **The repro is in the report, verbatim.** The failing command, its output, and exit status are pasted, not asserted. If no deterministic reproduction exists, the report is marked not-yet-diagnosed rather than presented as a finished diagnosis.
+- **The root cause carries a file:line anchor and names the state-plus-input that triggers it** — not a symptom location, and not the first suspicious line accepted without tracing back to the origin.
+- **`Expected` is traced to an existing obligation (`<spec-id>#<...>-NNN`), or its absence is recorded as a coverage-gap finding** — never stated as bare opinion, and never patched over by authoring a new obligation block in the report.
+- **No fix has leaked in.** Scan the report for any sentence that prescribes a change, a patch, or a diff; if one appears, the diagnosis-only boundary was crossed and the cure must be dropped.
+- **The working tree is clean on source.** Confirm — with pasted `git status` showing zero source, config, or dependency changes — that the session produced only the bug-report, a plain `.md` with no `.swarm.` infix.
 
 ## Applies when
 

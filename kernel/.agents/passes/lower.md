@@ -2,7 +2,7 @@
 
 `lower` is the fourth of the **nine passes** of the Swarm compiler pipeline (`author -> lint -> improve -> lower -> decompose -> implement -> verify -> review -> promote`). This file is the working contract for that single pass and the **intermediate representation (IR)** it produces.
 
-Like every Swarm pass, `lower` has **no runtime**: it is a contract a human, an agent following a pass guide, or a future tool performs. The IR is specified as a versioned data contract — this repository ships **no emitter, no parser, and no validator** for it, and the only legal producer of an `.ir.json` file is a future compiler (§12.1, Invariant 1). `lower` is one of the four passes (`author`, `improve`, `lower`, `verify`) that ship **no stdlib pass guide** in v0.1.
+Like every Swarm pass, `lower` has **no runtime**: it is a contract a human, an agent following a pass guide, or a future tool performs. The IR is specified as a versioned data contract — this repository ships **no emitter, no parser, and no validator** for it, and the only legal producer of an `.ir.json` file is a future compiler (§12.1, Invariant 1). Along with `improve`, `lower` ships **no stdlib guide** in v0.1; a guide-less pass is not a conformance gap.
 
 ## Where `lower` sits: the `LOWER` phase has two passes
 
@@ -32,7 +32,7 @@ The surface-clause → edge-type mapping `lower` applies:
 |---|---|
 | `DEPENDS ON` | a `depends_on` edge |
 | `AFFECTS <node-id>` | an `affects` edge to that node |
-| `AFFECTS <surface>` (a surface, not a node) | stays in the node's `affects` **scope set**; contributes `conflicts_with` edges per §18 — never an `affects` edge (§12.5.1) |
+| `AFFECTS <surface>` (a surface, not a node) | contributes `conflicts_with` edges per §18 (resolved against the surfaces other nodes `WRITES`) — never an `affects` edge, and not stored as a node scope set (the node carries `reads`/`writes`/`touches`; §12.5.1) |
 | `WRITES` overlap (two nodes share a write surface) | `conflicts_with` edges |
 | each `VERIFY BY` | a `verified_by` edge |
 
@@ -203,5 +203,5 @@ Sibling payload files that bound `lower`'s neighborhood:
 - `./review.md` — surfaces the orphan-target code `SOL-M003` and consumes the TRACE `implements`/`preserves` edges.
 - `../language/SOL.md` — the SOL surface grammar (the seven block types, five modals, `AND THE` chaining, `VERIFY BY` clause) `lower` reads from.
 - `../language/errors.md` — the `SOL-<LAYER>NNN` code taxonomy the gate predicates and diagnostics key against.
-- `../skills/distillation-discipline/GUIDE.md` — the distillation-loss discipline as a pass guide: authority and verification bindings carried intact, dropping ⇒ distillation error.
+- `../skills/distillation-discipline/SKILL.md` — the distillation-loss discipline as a cross-cutting fragment: authority and verification bindings carried intact, dropping ⇒ distillation error.
 - `../templates/spec.swarm.md` — the `spec.swarm.md` surface `lower` consumes.

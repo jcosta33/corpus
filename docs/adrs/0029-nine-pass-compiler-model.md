@@ -68,7 +68,7 @@ reference ([`docs/model/compiler-pipeline.md`](../model/compiler-pipeline.md)) a
 
 ### Neutral / tradeoffs
 
-- Only five of the nine passes ship a stdlib pass guide in v0.1 (`lint`, `decompose`, `implement`, `review[profile: skeptic]`, `promote`); the other four are fully specified by the spec and MAY gain guides later without a language-version change (§9.4).
+- Not every pass ships a dedicated stdlib pass guide: `lint`, `decompose`, `review`, and `promote` each ship one; `implement` is served by the nine per-`task_kind` implement guides, `author` by the six author guides, and `verify` by the `empirical-proof` fragment; `improve` and `lower` ship none and are fully specified by the spec, and MAY gain guides later without a language-version change (§9.4) (packaging later revised — see ADR-0042). A guide-less pass is not a conformance gap.
 - A launcher MAY interleave passes across multiple specs; the order constraint binds only per single obligation (§9.2).
 
 ## Status

@@ -26,7 +26,7 @@ author -> lint -> improve -> lower -> decompose -> implement -> verify -> review
 | Carrier profile | Skeptic |
 | Mutating? | No — emits diagnostics only |
 
-`lint` is one of the **five passes that ship a stdlib pass guide in v0.1** (§9.4); the guide is SOFT control (it tells an agent how to lint well) and MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
+`lint` ships a **dedicated stdlib pass guide** (`../skills/pass-lint-spec/SKILL.md`, §9.4); the guide is SOFT control (it tells an agent how to lint well) and MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
 
 ## What `lint` emits: the unified taxonomy
 
@@ -200,5 +200,5 @@ This pass page lists the principal inline codes only. Two v0.1 scoping notes car
 - `./lower.md` — the typed IR the lint report lowers into, and the first LOWER-boundary checkpoint the CLARIFY gate guards.
 - `./decompose.md` — the LOWER-phase pass that raises the O-layer codes and owns the sibling COVERAGE gate.
 - `./verify.md` — the verdict model and proof taxonomy the V-layer codes (`VERIFY BY` binding) check against, including the `WAIVED` verdict distinct from a lint-layer waiver.
-- `../profiles/skeptic.md` — the heuristic profile carried while running `lint`.
+- `../skills/persona-skeptic/SKILL.md` — the heuristic profile carried while running `lint`.
 - `../templates/spec.swarm.md` — the `spec.swarm.md` artifact `lint` consumes.

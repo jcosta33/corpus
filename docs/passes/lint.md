@@ -26,7 +26,7 @@ author -> lint -> improve -> lower -> decompose -> implement -> verify -> review
 | Carrier profile | Skeptic |
 | Mutating? | No — emits diagnostics only |
 
-`lint` is one of the **five passes that ship a stdlib pass guide in v0.1** (§9.4); the guide is SOFT control (it tells an agent how to lint well) and MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
+`lint` ships a **dedicated stdlib pass guide** (§9.4); the guide is SOFT control (it tells an agent how to lint well) and MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR. (`lint`, `decompose`, `review`, and `promote` each ship a dedicated pass guide; `implement` is served by the nine per-`task_kind` guides and `author` by the six author guides; `improve` and `lower` ship no guide; `verify` is served by the `empirical-proof` fragment — see ADR-0042.)
 
 ## What `lint` emits: the unified taxonomy
 

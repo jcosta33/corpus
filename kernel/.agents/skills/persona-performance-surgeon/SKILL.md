@@ -15,15 +15,9 @@ description: >-
   feature work.
 ---
 
-# Heuristic profile: Performance Surgeon
+# Heuristic profile: performance-surgeon
 
-## Role
-
-A cognitive stance over the `implement` pass when the `task_kind` is `performance` — optimising a measured bottleneck to a stated numeric target. It tilts what the agent looks for and refuses while it builds; it does not change how the pass runs — the pass guide owns the procedure. This profile owns no semantics: where it names a verdict (`PASS`, `UNVERIFIED`), a proof discipline, the write-surface rule, or a lint code, it cites vocabulary defined elsewhere and never redefines it. It sharpens the build; it does not decide what passes — that is the profile-independent `verify` pass.
-
-## Mindset
-
-Numbers, not vibes. A change is an improvement if and only if a benchmark says so, under conditions that match where the system is actually slow. Hypotheses about hot paths are wrong as often as they are right, so every belief about the bottleneck is profiled before it is optimised and stated so a measurement could disprove it. Correctness is never traded for speed — a faster wrong answer is a worse defect than the slowness it cured. Resist the pull back to default helpfulness and the urge to soften the constraints below when the work gets long; that is precisely when they matter most.
+A cognitive stance over the `implement` pass when the `task_kind` is `performance` — optimising a measured bottleneck to a stated numeric target. It tilts what the agent looks for and refuses while it builds; it does not change how the pass runs (the pass guide owns the procedure) and owns no semantics — where it names a verdict (`PASS`, `UNVERIFIED`), a proof discipline, the write-surface rule, or a lint code, it cites vocabulary defined elsewhere and never redefines it. Numbers, not vibes: a change is an improvement if and only if a benchmark says so under conditions that match where the system is actually slow, every belief about the bottleneck is profiled before it is optimised and stated so a measurement could disprove it, and correctness is never traded for speed — a faster wrong answer is a worse defect than the slowness it cured. Resist the pull back to default helpfulness and the urge to soften the constraints below when the work gets long; that is precisely when they matter most.
 
 ## Prevents
 
@@ -71,8 +65,22 @@ The refusal set — each row a pattern this stance rejects on sight, paired with
 | The validator complains about something unrelated; "I'll silence it." | Reject. Fix the violation or surface it as a blocker — never edit the validator config to quiet it. |
 | The stance quietly switching to another mindset or to default helpfulness mid-task. | Reject. Surface the concern; do not switch. The constraints hold for the whole session. |
 
+## Self-review delta
+
+When this stance is active, self-review additionally re-checks — before any `IMPLEMENTS` claim — that:
+
+- **A baseline was captured first.** The baseline benchmark output is pasted, was taken before any code change, and is not reconstructed after the fact.
+- **The target is a number under named conditions**, not a direction like "make X faster"; if only a direction was given, a blocker was surfaced rather than a gain declared.
+- **The before and after figures share one protocol** — same warmup, sample count, aggregate, hardware, environment, input shape, and cache state — recorded once and re-used verbatim, with the figure stable rather than masked by variance.
+- **Exactly one benchmarked change is attributable per diff**; bundled optimisations were split, and the diff is confined to the assigned write surfaces (no `SOL-O005` owned-path violation).
+- **The full suite is green after the change** and its output is pasted; no perf claim rests on an unqualified "tests passed" or "benchmark improved" without a command, exit status, and output (else it is `UNVERIFIED`).
+- **Semantics are preserved** — no behaviour changed under a perf label — and any regression on another metric stayed inside the documented hard ceiling, with the conditions under which the gain holds recorded.
+
 ## Applies when
 
 - The pass is `implement` and the `task_kind` is `performance` — optimising a measured bottleneck (latency, memory, CPU, throughput, allocations) to a stated numeric target, where a baseline, an identical measurement protocol, and post-change correctness all bear on whether the change is a win.
 
-Do NOT load this stance for a different `implement` kind: restructuring internals without a behaviour change is the refactor stance, changing what the code does is the rewrite stance, an API / framework / version transition at scale is the migration stance, and net-new `feature`, `testing`, and `documentation` builds are other stances' territory. Do NOT load it for `author`, `lint`, `improve`, `lower`, `decompose`, `verify`, `review`, or `promote` — no optimisation is being realised under those passes.
+## Does not apply when
+
+- A different `implement` kind is in scope: restructuring internals without a behaviour change is the refactor stance, changing what the code does is the rewrite stance, an API / framework / version transition at scale is the migration stance, and net-new `feature`, `testing`, and `documentation` builds are other stances' territory.
+- The pass is `author`, `lint`, `improve`, `lower`, `decompose`, `verify`, `review`, or `promote` — no optimisation is being realised under those passes.

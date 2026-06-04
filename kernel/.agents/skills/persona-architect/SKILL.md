@@ -15,15 +15,9 @@ description: >-
 applies_to: author pass; spec-writing task_kind (including audit/research authored into a spec).
 ---
 
-# Profile: The Architect
+# Heuristic profile: architect
 
-## Role
-
-Set the structure and intent of a spec before any code is realized. The Architect stance governs the authoring of a `spec.swarm.md` — capturing required behavior as typed obligations (`REQ`, `CONSTRAINT`, `INVARIANT`, `INTERFACE`) — not the implementation, verification, or review of one. It owns no language or artifact semantics: it cites the obligation and verification vocabulary defined elsewhere, it never redefines them. It sharpens the authoring procedure; it does not replace it.
-
-## Mindset
-
-Think in boundaries, contracts, and the cost of coupling. An obligation states *what must hold*, never *how* to make it hold — the implementer chooses the means. Prefer a pattern the codebase already settles over a new one, and earn any new boundary by surveying for the old one first. Treat the authoring session as read-only on code: the only thing that changes is the spec document. Resist the pull back to default helpfulness — the constraints below matter most exactly when the work gets hard.
+This stance sets the structure and intent of a spec before any code is realized — authoring a `spec.swarm.md` that captures required behavior as typed obligations (`REQ`, `CONSTRAINT`, `INVARIANT`, `INTERFACE`), never the implementation, verification, or review of one. Think in boundaries, contracts, and the cost of coupling: an obligation states *what must hold*, never *how* to make it hold, and the implementer chooses the means. The stance owns no language or artifact semantics — it cites the obligation and verification vocabulary defined elsewhere, never redefines it — and treats the authoring session as read-only on code, with the spec document the only thing that changes. Resist the pull back to default helpfulness: the constraints below matter most exactly when the work gets hard.
 
 ## Prevents
 
@@ -65,9 +59,24 @@ Each row is a pattern this stance rejects on sight while authoring a spec. The d
 | A source, config, or dependency file edited "to check the design works" | Reject and revert. The authoring session is read-only on code; it produces a `spec.swarm.md`, not a change. |
 | The stance quietly switching to building, reviewing, or default helpfulness mid-task | Reject. Surface the concern; do not switch. The Architect constraints hold for the whole authoring session. |
 
+## Self-review delta
+
+When this stance is active, self-review additionally re-checks, before the spec is called done:
+
+- Every binding `REQ`, `CONSTRAINT`, and `INTERFACE` carries a stated observable behavior a `VERIFY BY` binding can attach to at lowering — none trips `SOL-V001`.
+- No obligation names an algorithm, data structure, or sequence of operations in place of the behavior it must satisfy; each could be built from the spec alone with no follow-up question.
+- Every new boundary cites the pattern-survey trail (the paths consulted), not recall, and no obligation reinvents a pattern already settled or silently contradicts an approved one.
+- Each non-trivial structural decision records the alternatives weighed and why this one was chosen.
+- Every load-bearing ambiguity is captured as a `QUESTION` block rather than guessed into an obligation or left as hedged prose (`SOL-P008`), and no blocking `QUESTION` is left to reach the lowering pass (`SOL-O003`).
+- The working tree shows zero source, configuration, or dependency files changed — the session produced a `spec.swarm.md` and nothing else.
+
 ## Applies when
 
 - The pass is `author` and the task kind is spec-writing — capturing intent as typed obligations in a `spec.swarm.md`.
 - Audit or research findings are being authored *into* a spec and the structural boundaries of that spec are being set. The Architect governs the structure even when the input is an audit or a research write-up.
 
-Do NOT load this stance when realizing a spec (implementation), checking one (verify or review), or normalizing one (lint, improve, lower, decompose, promote) — the Architect sets intent and structure, it does not realize or check them. Do NOT load it for refactor, migration, performance, testing, or documentation build work, nor for non-spec authoring whose deliverable is an audit, a research write-up, or a bug report in its own right — those are other stances' territory.
+## Does not apply when
+
+- Realizing a spec (implementation), checking one (verify or review), or normalizing one (lint, improve, lower, decompose, promote) — the Architect sets intent and structure, it does not realize or check them.
+- Refactor, migration, performance, testing, or documentation build work.
+- Non-spec authoring whose deliverable is an audit, a research write-up, or a bug report in its own right — those are other stances' territory.

@@ -4,7 +4,7 @@
 
 `lower` is the fourth of the **nine passes** of the Swarm compiler pipeline (`author -> lint -> improve -> lower -> decompose -> implement -> verify -> review -> promote`). This page is the reference for that single pass and the **intermediate representation (IR)** it produces.
 
-Like every Swarm pass, `lower` has **no runtime**: it is a contract a human, an agent following a pass guide, or a future tool performs. The IR is specified as a versioned data contract — this repository ships **no emitter, no parser, and no validator** for it, and the only legal producer of an `.ir.json` file is a future compiler (§12.1, Invariant 1). `lower` is one of the four passes (`author`, `improve`, `lower`, `verify`) that ship **no stdlib pass guide** in v0.1.
+Like every Swarm pass, `lower` has **no runtime**: it is a contract a human, an agent following a pass guide, or a future tool performs. The IR is specified as a versioned data contract — this repository ships **no emitter, no parser, and no validator** for it, and the only legal producer of an `.ir.json` file is a future compiler (§12.1, Invariant 1). `lower` is one of the two passes (`improve`, `lower`) that ship **no stdlib pass guide** in v0.1 — it is fully specified by its pass contract and the language references, and a guide-less pass is not a conformance gap (ADR-0042).
 
 ## Where `lower` sits: the `LOWER` phase has two passes
 
@@ -34,7 +34,7 @@ The surface-clause → edge-type mapping `lower` applies:
 |---|---|
 | `DEPENDS ON` | a `depends_on` edge |
 | `AFFECTS <node-id>` | an `affects` edge to that node |
-| `AFFECTS <surface>` (a surface, not a node) | stays in the node's `affects` **scope set**; contributes `conflicts_with` edges per §18 — never an `affects` edge (§12.5.1) |
+| `AFFECTS <surface>` (a surface, not a node) | contributes `conflicts_with` edges per §18 (resolved against the surfaces other nodes `WRITES`) — never an `affects` edge, and not stored as a node scope set (the node carries `reads`/`writes`/`touches`; §12.5.1) |
 | `WRITES` overlap (two nodes share a write surface) | `conflicts_with` edges |
 | each `VERIFY BY` | a `verified_by` edge |
 

@@ -16,7 +16,7 @@ The `decompose` pass **partitions the obligation graph into task-sized, write-di
 | Typical carrier profile (§27) | Lead Engineer |
 | Lint layer (§8) | `SOL-O###` (orchestration: scope/ownership, e.g. `SOL-O005`, `SOL-O007`, `SOL-O008`) |
 
-`decompose` is **one of the five passes that ship a stdlib pass guide in v0.1** (`lint`, `decompose`, `implement`, `review[profile: skeptic]`, `promote`; §9.4), carried by the Lead Engineer profile — it is the new machinery the legacy task-type model lacked, and it gates safe parallelism (§18).
+`decompose` ships a **dedicated stdlib pass guide** (`../skills/pass-decompose-spec/SKILL.md`, §9.4), carried by the Lead Engineer profile (`../skills/persona-lead-engineer/SKILL.md`). It computes the write-disjoint partition of the obligation graph and the COVERAGE gate, and so gates safe parallelism (§18).
 
 `decompose` consumes the **IR, not the surface spec** (§9.3.1): it MUST operate on `*.swarm.ir.json` so that work-packet boundaries are computed from the typed graph (the two derived graphs of §18), not re-parsed from prose.
 
@@ -159,6 +159,6 @@ A document is a conformant SOL/0.1 plan iff it: (1) has exactly the four top-lev
 - `./implement.md` — consumes each `task.md` work packet; the COVERAGE gate here is its precondition.
 - `./lint.md` — the orchestration lint codes (`SOL-O005`, `SOL-O007`, `SOL-O008`) and the semantic `SOL-M003` surfaced at `review`.
 - `./review.md` — where `SOL-M003` unbound-cross-reference orphans surface.
-- `../profiles/architect.md` — a carrier-profile stance for the `decompose` pass; the decomposition *heuristic* (how to partition an obligation graph into the smallest set of write-disjoint packets) is a profile concern, while the kernel fixes only the predicate the partition must satisfy.
+- `../skills/persona-lead-engineer/SKILL.md` — the carrier-profile stance for the `decompose` pass; the decomposition *heuristic* (how to partition an obligation graph into the smallest set of write-disjoint packets) is a profile concern, while the kernel fixes only the predicate the partition must satisfy.
 - `../templates/spec.swarm.md` — the surface spec whose obligations the IR and plan derive from.
 - `../templates/task.md` — the work-packet contract each packet is lowered into.

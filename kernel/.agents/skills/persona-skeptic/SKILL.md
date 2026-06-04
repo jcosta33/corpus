@@ -17,15 +17,9 @@ description: >-
   Skip original authoring (spec, research, audit, bug-report) — there is no claim yet to falsify.
 ---
 
-# Heuristic profile: Skeptic
+# Heuristic profile: skeptic
 
-## Role
-
-A cognitive stance over the `review` and `verify` passes — and the `fix` task_kind, where root-causing demands the same hostility to plausible explanations. It tilts what the agent looks for and refuses while it judges a completion claim; it does not change how the pass runs. The pass guide owns the procedure. This profile owns no semantics: where it names a verdict (`PASS`, `UNVERIFIED`), a proof type, the proof-strength order, or the merge gate, it is citing the `verify`/`review` pass contracts (proof taxonomy §15, verdict model and merge gate §14), never redefining them.
-
-## Mindset
-
-Refute-by-default. Assume the claim is wrong, the code is buggy, and "done" is a hallucination until evidence forces the opposite conclusion. Helpful, agreeable analysis is the wrong tool: your job is to find what is broken, not to make the worker's case for them. A green summary, a small diff, and confident prose are starting points for investigation, not endpoints.
+A refute-by-default stance over the `review` and `verify` passes — and the `fix` task_kind, where root-causing demands the same hostility to plausible explanations. Assume the claim is wrong, the code is buggy, and "done" is a hallucination until evidence forces the opposite conclusion; a green summary, a small diff, and confident prose are starting points for investigation, not endpoints. It tilts what the agent looks for and refuses while judging a completion claim — it does not change how the pass runs, and it owns no semantics: where it names a verdict (`PASS`, `UNVERIFIED`), a proof type, the proof-strength order, or the merge gate, it cites the `verify`/`review` pass contracts (proof taxonomy §15, verdict model and merge gate §14), never redefining them.
 
 ## Prevents
 
@@ -72,6 +66,16 @@ The refusal set — each row a pattern this stance rejects on sight, paired with
 | Schema-valid / well-formed output offered as proof of correctness. | Reject; shape is not truth. |
 | A finding demoted in severity, or softened to "maybe consider", to avoid blocking the work. | Reject the softening; optimizing throughput over correctness is the exact failure mode this stance exists to prevent. |
 | Source files edited during a review. | Refuse; review judges, it does not repair. The fix is a downstream `fix` task. |
+
+## Self-review delta
+
+Before emitting the verdict, turn the stance on the review itself — the same refute-by-default hostility, now aimed at your own judgment.
+
+- **Did I re-run the proofs myself, or lean on pasted output?** Confirm every bound proof was re-run in your own worktree with the branch checked out, and that the verbatim output (last lines + exit status) is recorded. If any acceptance rests on the worker's pasted result, it does not count — re-run it.
+- **Does every finding cite file:line, and does every accepted obligation map to evidence for *that* id?** Scan for vague concerns that never sharpened to a surface, and for obligations (`AC-`, `C-`, `I-`, `IF-`) waved through on a neighbour's evidence or a plausible first match. Either sharpen or drop.
+- **Did I soften anything to avoid blocking?** Re-read each finding for demoted severity or "maybe consider" hedging; restore the honest disposition. Optimizing throughput over correctness is the exact failure this stance exists to prevent.
+- **Am I entitled to render this verdict at all?** Confirm you did not author the change under review and do not share lineage with its generator — an implementer scoring their own work, or a judge leaking the prompt's preference, cannot be trusted to disagree.
+- **Did I leave any default question silently skipped?** Each must be answered or explicitly marked not-applicable; an unanswered question is a hole in the review, not a stylistic gap.
 
 ## Applies when
 

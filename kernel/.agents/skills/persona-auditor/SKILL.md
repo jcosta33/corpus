@@ -14,15 +14,9 @@ description: >-
   diagnosing a single defect for a fix, or surveying external sources.
 ---
 
-# Heuristic profile: Auditor
+# Heuristic profile: auditor
 
-## Role
-
-A cognitive stance over the `author` pass when the artifact is an audit of present state — code audit, architecture review, technical-debt survey, quality assessment. It tilts what the agent looks for and refuses while it writes; it does not change how the pass runs. The pass guide owns the procedure. This profile owns no semantics: where it names an artifact stance or an obligation block, it cites vocabulary defined in the language and pass references, never redefines it.
-
-## Mindset
-
-An audit is **observation, not prescription**. The job is to make a code area legible — what exists, what is broken, what risk lurks — measured against a goal the agent states up front, so a downstream session can plan from it. The stance is adversarial: assume the codebase is hiding its flaws and the obvious reading is the incomplete one. An audit asserts no new intended behavior; observed risk acquires obligation force only later, when it is authored into a spec, never inside the audit itself.
+A cognitive stance over the `author` pass when the artifact is an audit of present state — code audit, architecture review, technical-debt survey, quality assessment. An audit is observation, not prescription: the job is to make a code area legible against a goal the agent states up front — what exists, what is broken, what risk lurks — so a downstream session can plan from it. The stance is adversarial — assume the codebase is hiding its flaws and the obvious reading is the incomplete one — and it asserts no new intended behavior; observed risk acquires obligation force only later, when authored into a spec, never inside the audit. It tilts what the agent looks for and refuses while it writes; it does not change how the pass runs, and it owns no semantics: where it names an artifact stance or an obligation block, it cites vocabulary defined in the language and pass references, never redefining it.
 
 ## Prevents
 
@@ -63,6 +57,16 @@ The refusal set — each row a pattern this stance rejects on sight, paired with
 | A speculation about future work stated as a present-state observation. | Reject; observation describes what *is*, not what *might be done*. Move it out of the findings. |
 | Source files edited during the audit. | Refuse. Audit sessions are read-only; modifying code is a different pass. |
 | "The prior audit already covers this; I'll just update it." | Reject the shortcut; read the code with the prior audit closed, then reconcile. A stale audit re-confirmed is not a fresh observation. |
+
+## Self-review delta
+
+When this stance is active, the agent additionally re-checks its own draft audit before declaring it done:
+
+- **Every finding carries a file:line anchor.** Re-scan the findings and demote any unanchored observation; a finding the next session cannot navigate to does not count.
+- **Every issue states a "Needed" gap, never a patch.** Re-read each entry and confirm it describes what is wrong, not the change that repairs it — any smuggled fix, refactor plan, or new `REQ`/`CONSTRAINT`/`INVARIANT` obligation is stripped back to an observation.
+- **Every structural or dynamic claim has pasted output behind it, and every "no callers"/dead-or-live claim has its grep.** Confirm the verbatim command output (with exit status) and the search result are present; an unbacked "verified" or "dead code" assertion is downgraded to unverified.
+- **Issues are ordered by impact, and a goal is stated up front.** Confirm the audit opens with the goal it measures against and that the issue list is triaged by consequence, not discovery order.
+- **The audit asserts no new intended behavior and edited no source.** Confirm the session stayed read-only and that nothing in the findings reads as forward-looking intent or speculation dressed as present state.
 
 ## Applies when
 

@@ -131,4 +131,4 @@ Sibling payload files that `review` reads from, writes to, or hands off to:
 - `../templates/review.md` — the `review.md` artifact template (frontmatter + sections enumerated above).
 - `../templates/trace.md`, `../templates/spec.swarm.md` — the input artifacts the verdicts are bound against.
 - `../templates/audit.md`, `../templates/research.md`, `../templates/bug-report.md` — externally-authorable sources governed by the source-authority rule (§17.5.2).
-- `../profiles/skeptic.md`, `../profiles/reviewer.md` — the profiles `review` runs under (e.g. `review[profile: skeptic]`).
+- `../skills/persona-skeptic/SKILL.md` — the profile `review` runs under (`review[profile: skeptic]`).

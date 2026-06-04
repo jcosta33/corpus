@@ -28,6 +28,8 @@ The mapping is **many-modules-to-one-pass**: a single pass MAY carry more than o
 | `write-research` | author guide | `author` (research) |
 | `write-audit` | author guide | `author` (audit) |
 | `write-bug-report` | author guide | `author` (bug-report) |
+| `write-prd` | author guide | `author` (prd) |
+| `write-rfc` | author guide | `author` (rfc) |
 | `write-feature` | implement guide | `implement` |
 | `write-fix` | implement guide | `implement` |
 | `write-refactor` | implement guide | `implement` |
@@ -192,8 +194,8 @@ These directories sit under a `skills/` path for cross-tool compatibility; in ke
 
 ## Related
 
-- [The compiler pipeline](../model/compiler-pipeline.md) — the nine passes and seven phases a guide runs against, and the five-stdlib-guide summary.
-- [The `lint` pass](../passes/lint.md), [the `decompose` pass](../passes/decompose.md), [the `implement` pass](../passes/implement.md), [the `review` pass](../passes/review.md), and [the `promote` pass](../passes/promote.md) — the contracts the five shipped guides perform.
+- [The compiler pipeline](../model/compiler-pipeline.md) — the nine passes and seven phases a guide runs against, and the per-pass guide/fragment packaging (ADR-0042).
+- [The `lint` pass](../passes/lint.md), [the `decompose` pass](../passes/decompose.md), [the `implement` pass](../passes/implement.md), [the `review` pass](../passes/review.md), and [the `promote` pass](../passes/promote.md) — the contracts the dedicated pass guides and the per-`task_kind` implement guides perform.
 - [The `verify` pass](../passes/verify.md) — the proof model and verdict vocabulary the `empirical-proof` fragment applies but never defines.
 - [The `task.md` artifact](../artifacts/task.md) — where a task names the pass guides and profiles to load.
 - [SOL](../language/SOL.md) and [the errors reference](../language/errors.md) — the authoritative homes of the meaning a pass guide MUST NOT own.

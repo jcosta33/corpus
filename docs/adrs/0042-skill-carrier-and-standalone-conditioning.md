@@ -14,7 +14,7 @@ superseded_by:
 
 The kernel's procedural conditioning layer shipped as eight files named `GUIDE.md` under `kernel/.agents/skills/`. Four problems compounded:
 
-1. **The carrier filename is not the one agent tools discover.** The Open Agent Skills convention and the agent CLIs that load skills discover and activate a `SKILL.md` by its `name` + `description` frontmatter. The framework's own activation research ([`docs/research/activation.md`](../research/activation.md)) treats the `SKILL.md` `description` as the most load-bearing line — the field an agent scans to decide whether to pull a skill into context. A file named `GUIDE.md` carries the same skill-shaped frontmatter but is not discovered as a skill, so the kernel's pass guides silently opted out of the "load what the task names / description-match fallback" activation path (§26.4, [0037](./0037-load-what-the-task-names.md)). The build-source layout never specified the filename; `GUIDE.md` was a generation-time choice that leaked the "pass guide, not à-la-carte skill" relabeling ([0036](./0036-heuristic-profile-model.md)) into the filename, where it breaks interoperability.
+1. **The carrier filename is not the one agent tools discover.** The Open Agent Skills convention and the agent CLIs that load skills discover and activate a `SKILL.md` by its `name` + `description` frontmatter. The framework's own activation research ([`docs/research/activation.md`](../research/activation.md)) treats the `SKILL.md` `description` as the most load-bearing line — the field an agent scans to decide whether to pull a skill into context. A file named `GUIDE.md` carries the same skill-shaped frontmatter but is not discovered as a skill, so the kernel's pass guides silently opted out of the "load what the task names / description-match fallback" activation path (§26.4, [0037](./0037-load-what-the-task-names.md)). The build-source layout never specified the filename; `GUIDE.md` was a generation-time choice that leaked the "pass guide, not standalone skill" relabeling ([0036](./0036-heuristic-profile-model.md)) into the filename, where it breaks interoperability.
 
 2. **One implement guide bundled nine task kinds under one broad description** — the "Everything Skill" anti-pattern ([`docs/research/activation.md`](../research/activation.md)): a description broad enough to cover all nine implementation kinds is too broad to activate surgically, and an agent loading it carries all nine kinds' procedures.
 
@@ -58,7 +58,7 @@ This record **refines, and does not supersede,** ADRs 0016, 0017, 0019, 0029, 00
 
 ### Neutral / tradeoffs
 
-- The framework statements that "five stdlib pass guides ship in v0.1" are replaced by the larger shipped set; the flow-graph, conformance manifest, and the `docs/library/pass-guides.md` catalogue are updated. The frozen build-source spec (`.agents/specs/swarm/`) is not re-synced, so its §9.4 count intentionally lags.
+- The framework statements that "five stdlib pass guides ship in v0.1" are replaced by the larger shipped set; the flow-graph, conformance manifest, and the `docs/library/pass-guides.md` catalogue are updated. The frozen build-source spec is not re-synced, so its stdlib-guide count intentionally lags.
 
 ## Status
 

@@ -18,7 +18,7 @@ The model is **two-tier and provenance-anchored**. Rationale: chat transcripts a
 | Input | the task's discoveries + the resolved-or-pending promotion queue |
 | Output | durable writes to `.swarm/memory/` and `.swarm/sources/` (plus the `AGENTS.md` pointer case) and a fully-resolved promotion queue |
 | Close gate | a task MUST NOT close while any promotion item is `pending` |
-| Ships a stdlib pass guide in v0.1? | **Yes** — `promote` is one of the five tooled-first passes (with `lint`, `decompose`, `implement`, `review[profile: skeptic]`) |
+| Ships a stdlib pass guide in v0.1? | **Yes** — `promote` ships a dedicated pass guide (`../skills/pass-promote-findings/SKILL.md`), alongside dedicated guides for `lint`, `decompose`, and `review[profile: skeptic]`; `implement` is served by the nine per-kind implement guides and `author` by the six author guides |
 
 ## The two-tier memory model
 
@@ -130,4 +130,4 @@ Sibling payload files under `kernel/.agents/`:
 
 - `../passes/author.md` and `../passes/lint.md` — the other passes in the nine-pass pipeline.
 - `../templates/spec.swarm.md` — the spec container a "new intended behaviour" promotion writes into.
-- `../profiles/skeptic.md` — the heuristic profile named in `review[profile: skeptic]` provenance.
+- `../skills/persona-skeptic/SKILL.md` — the heuristic profile named in `review[profile: skeptic]` provenance.

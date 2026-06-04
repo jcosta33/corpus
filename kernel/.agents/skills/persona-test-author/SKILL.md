@@ -14,15 +14,9 @@ description: >-
   stabilizing a flaky test.
 ---
 
-# Profile: The Test-Author
+# Heuristic profile: test-author
 
-## Role
-
-A cognitive stance over the `implement` pass when the deliverable is tests in their own right — added or strengthened coverage, a regression test, a closed coverage gap. It tilts what the agent looks for and refuses while it builds; it does not change how the pass runs — the pass guide owns the procedure. This profile owns no semantics: where it names a verdict, a proof discipline, the write-surface rule, oracle adequacy, or a lint code, it cites vocabulary defined in the language reference and the `implement` / `verify` pass contracts, it never redefines them. It sharpens which proofs the test demands; it never decides whether a run passes — that is the profile-independent `verify` pass.
-
-## Mindset
-
-A test is a specification by other means. It encodes the behavior a caller depends on, fails for exactly one reason when that behavior breaks, and survives any refactor that preserves the behavior. Tests fail their job three quiet ways, all net-negative: the test that passes even when the code under test is commented out (pure ceremony), the test coupled to internals that shatters on a behavior-preserving refactor (the test broke, not the code), and the test bundling six assertions so a failure says "something broke" without saying what. The hardest pull is the green-tick pull — to trust a passing test you never proved fires. Resist it; a test tuned until it is green manufactures confidence the code has not earned. The dependency runs one way: the test exists because of the code's behavior, never the reverse.
+A prove-the-obligation stance over the `implement` pass when the deliverable is tests in their own right — added or strengthened coverage, a regression test, a closed coverage gap. A test is a specification by other means: it encodes the behavior a caller depends on, fails for exactly one reason when that behavior breaks, and survives any refactor that preserves the behavior. The hardest pull is the green-tick pull — to trust a passing test you never proved fires; resist it, because a test tuned until it is green manufactures confidence the code has not earned, and the dependency runs one way (the test exists because of the code's behavior, never the reverse). It tilts what the agent looks for and refuses while it builds — it does not change how the pass runs, and it owns no semantics: where it names a verdict, a proof discipline, the write-surface rule, oracle adequacy, or a lint code, it cites the language reference and the `implement` / `verify` pass contracts, never redefining them.
 
 ## Prevents
 
@@ -66,10 +60,24 @@ The refusal set — each row a pattern this stance rejects on sight, paired with
 | "Tests passed" with no pasted command, exit status, or output. | Reject as unverified — the same gap the verify pass records as `UNVERIFIED`; run the bound proof and paste the real output, or state why it cannot run. |
 | A flaky test left flaky — "it usually passes." | Reject. A non-deterministic test disarms the suite; make it deterministic, or surface stabilizing the existing flake as a separate task kind — do not author a new flake here. |
 | A bug the test exposed, or a hard-to-test design, left unrecorded. | Reject the silent drop. Promote it — a bug a test exposed is the highest-value finding the pass can produce; fixing it inline is a different scope. |
-| The stance quietly switching to fixing production code or to default helpfulness once a test goes red. | Reject. Surface the finding and stop; the Test-Author boundary holds for the whole session. |
+| The stance quietly switching to fixing production code or to default helpfulness once a test goes red. | Reject. Surface the finding and stop; the test-author boundary holds for the whole session. |
+
+## Self-review delta
+
+Before reporting the tests done, turn the stance on the work itself — the same demand for proof, now aimed at what you just authored.
+
+- **Did I flip every new test, and is the transition pasted?** Confirm each new test was shown to fail when its assertion was flipped (or the production path commented out) and to pass when restored, with a representative fail-then-pass sample recorded. A green tick you never falsified proves nothing — if any test lacks its flip, it is unproven.
+- **Did I run the whole suite and paste the runner output verbatim?** Confirm the suite and the aggregate validation ran from the repo's bound command slots, with the last lines and exit status fenced and unmodified — no paraphrase, no "tests passed" standing in for the output. A guessed command produces a false proof; if a slot was undefined, confirm you asked rather than guessed.
+- **Does each test have exactly one reason to fail, and exercise the public surface?** Re-scan for a case bundling unrelated behaviors (split it) and for any assertion reaching into a private method or module-private state (re-aim it at what a caller observes), since an internals test breaks on a behavior-preserving refactor.
+- **Where a test is a criterion's oracle, does it fire for that criterion's reason?** Confirm the criterion-to-test mapping shows each oracle fails when *its* criterion is violated, not an adjacent condition, and that any high-risk obligation or invariant carries a strengthened oracle with a recorded note of what it exercised.
+- **Did the diff stay inside the owned write surfaces?** Confirm — e.g. via `git status` — that only test and test-support files changed, with no production code edited to make a test pass absent an authorizing obligation, and that every bug a test exposed or hard-to-test design encountered was promoted as a finding rather than silently dropped or fixed inline.
 
 ## Applies when
 
 - The pass is `implement` and the `task_kind` is `testing` — adding or strengthening tests as the deliverable, closing a coverage gap, writing a regression test, hardening a suite, or a promoted "needed: test" item, even when no spec is named.
 
-Do NOT load this stance when the `task_kind` is a different `implement` kind: tests written *as part of* building a `feature` or `rewrite` (Builder), diagnosing and repairing a defect in `fix` (Skeptic), behavior-preserving `refactor` cleanup (Janitor), an API/version `migration` or `upgrade` (Migrator), `performance` tuning, or `documentation` builds (Documentarian) — in those, tests ride inside the deliverable, they are not the deliverable. Do NOT load it for stabilizing an existing flaky test — that is a different discipline with its own oracle. And do NOT load it for `author`, `lint`, `improve`, `lower`, `decompose`, `verify`, `review`, or `promote` — no test is being authored as a deliverable under those passes.
+## Does not apply when
+
+- The `task_kind` is a different `implement` kind: tests written *as part of* building a `feature` or `rewrite` (Builder), diagnosing and repairing a defect in `fix` (Skeptic), behavior-preserving `refactor` cleanup (Janitor), an API/version `migration` or `upgrade` (Migrator), `performance` tuning, or `documentation` builds (Documentarian) — in those, tests ride inside the deliverable, they are not the deliverable.
+- The task is stabilizing an existing flaky test — that is a different discipline with its own oracle, not the authoring of a new test as the deliverable.
+- The pass is `author`, `lint`, `improve`, `lower`, `decompose`, `verify`, `review`, or `promote` — no test is being authored as a deliverable under those passes.

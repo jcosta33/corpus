@@ -15,7 +15,7 @@ The `improve` pass takes a linted spec and brings it into canonical, smell-free,
 | Phase | **`NORMALIZE`** (the canonicalization stage) |
 | Input artifacts | `spec.swarm.md` + the `lint` report |
 | Output artifacts | `spec.swarm.md` (normalized) + a spec-improvement report |
-| Typical carrier profile (§27) | Architect / Skeptic |
+| Typical carrier profile (§27) | Architect |
 | Lint layer (§8) | — (answers the lint codes mapped in §10; emits none of its own) |
 
 Two ordering facts pin where `improve` sits (§9.3.1):
@@ -154,4 +154,4 @@ A few selections inside `improve` are deliberately left to the author rather tha
 - `../passes/decompose.md` — the separate `decompose` pass, distinct from the `ATOMIZE` improve operation (R-DECOMPOSE-NOT-IMPROVE).
 - `../passes/review.md` — the `review` pass that, with `improve`, classifies each edit by the twelve-category semantic diff before promotion.
 - `../templates/spec.swarm.md` — the spec artifact `improve` normalizes (`spec.swarm.md`).
-- `../profiles/architect.md`, `../profiles/skeptic.md` — the typical carrier profiles for this pass.
+- `../skills/persona-architect/SKILL.md` — the carrier profile for this pass (`improve` is normalization, carried by the Architect; the Skeptic lists `improve` under "does not apply").

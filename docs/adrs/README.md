@@ -62,7 +62,7 @@ Two consequences of that rule govern this ledger:
 
 ## The new kernel ADRs (0027+), by topic
 
-The rework introduced fifteen ADRs. The nine the spec enumerates as mandatory kernel decisions (§30.3) record decisions that must not be left implicit in prose:
+The rework introduced sixteen ADRs. The nine the spec enumerates as mandatory kernel decisions (§30.3) record decisions that must not be left implicit in prose:
 
 | ADR | Records | Spec |
 |-----|---------|------|
@@ -76,6 +76,6 @@ The rework introduced fifteen ADRs. The nine the spec enumerates as mandatory ke
 | [0034](./0034-unified-lint-namespace.md) | one prefix, five layers; APS violations surface under the `SOL-` prefix, not a separate `APS-` code prefix | §8 |
 | [0035](./0035-seven-value-verdict-model.md) | 4 core + 3 lifecycle verdicts | §14 |
 
-The remaining six carry the Group-B recasts and the kernel-rename/versioning extensions: [0036](./0036-heuristic-profile-model.md) (profiles, §27), [0037](./0037-load-what-the-task-names.md) (loading doctrine, §26.4), [0038](./0038-verify-by-adapters-through-commands.md) (the `VERIFY BY`/Commands binding, §15/§31.3), [0039](./0039-write-surface-model.md) (the write-surface, §18/§19), [0040](./0040-kernel-payload-directory.md) (the `kernel/` payload, §20.5/§34), and [0041](./0041-two-axis-versioning.md) (two-axis versioning, §25).
+The remaining seven carry the Group-B recasts, the kernel-rename/versioning extensions, and the skill-carrier packaging refinement: [0036](./0036-heuristic-profile-model.md) (profiles, §27), [0037](./0037-load-what-the-task-names.md) (loading doctrine, §26.4), [0038](./0038-verify-by-adapters-through-commands.md) (the `VERIFY BY`/Commands binding, §15/§31.3), [0039](./0039-write-surface-model.md) (the write-surface, §18/§19), [0040](./0040-kernel-payload-directory.md) (the `kernel/` payload, §20.5/§34), [0041](./0041-two-axis-versioning.md) (two-axis versioning, §25), and [0042](./0042-skill-carrier-and-standalone-conditioning.md) (skills carry as `SKILL.md` + standalone surgically-activated conditioning, §26/§27; refines [0016](./0016-skills-are-self-contained.md), [0017](./0017-no-always-load-skills.md), [0019](./0019-personas-ship-as-individual-skills.md), [0029](./0029-nine-pass-compiler-model.md), [0036](./0036-heuristic-profile-model.md), [0037](./0037-load-what-the-task-names.md)).
 
 A conformant repo MUST carry these ADRs (or equivalents) so the chain explains why the obligation language, prose standard, pipeline, artifact set, authority model, memory, corpus, lint namespace, and verdict set have their shape.

@@ -4,6 +4,7 @@ name: write-audit
 pass: author
 activates_for_task_kind:
   - audit-writing
+  - deepen-audit
 description: >-
   Run an `author` pass that produces an `audit.md`: an observation-only record of present-state
   risk, debt, drift, or unsafe patterns, every observation grounded in evidence (file:line,

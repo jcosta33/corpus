@@ -27,9 +27,9 @@ Two contract notes follow from this position (§9.3.1):
 - **`author` is not itself analyzable.** Everything *downstream* of `author` is analyzable; the author pass is the boundary at which un-structured intent (chat, working documents) becomes the structured, compiler-visible spec. Analysis begins at `lint` (the `PARSE` + `NORMALIZE` pass), not at `author`.
 - **`author` feeds `lint`.** The next pass, `lint`, is non-mutating and decides well-formedness; the only pass permitted to rewrite the spec is `improve`, and only semantics-preservingly. So `author` is where new intent legitimately *enters*; passes after it normalize and lower that intent rather than re-invent it.
 
-## `author` is NOT a stdlib pass guide
+## `author` ships the six author guides
 
-Of the nine passes, exactly **five** ship with a stdlib pass guide in v0.1: `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote` (§9.4). `author` is one of the **four** passes (`author`, `improve`, `lower`, `verify`) that are *fully specified by their pass contract and the language references* and ship no stdlib pass guide in v0.1. They MAY gain one in a later framework release without any language-version change (§25). A pass guide, when it exists, is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning.
+`author` is served by **six author guides** in v0.1 — `write-spec`, `write-audit`, `write-research`, `write-bug-report`, `write-prd`, and `write-rfc` — one per recognized parent that normalizes into a spec (§9.4, ADR-0042). Across the nine passes, `lint`, `decompose`, `review`, and `promote` each ship a dedicated pass guide; `implement` is served by the nine per-`task_kind` implement guides; `author` by these six author guides; and `verify` is served by the `empirical-proof` cross-cutting fragment. Only `improve` and `lower` ship **no** guide — they are *fully specified by their pass contract and the language references* and MAY gain a guide in a later framework release without any language-version change (§25); a guide-less pass is not a conformance gap. A pass guide, when it exists, is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning.
 
 ## Authoring is parent-normalization: epistemic stances are preserved
 
@@ -68,5 +68,5 @@ Authoring writes the one human-authored compiler-visible artifact, `spec.swarm.m
 - [`lint`](lint.md) — the next pass; the `PARSE` + `NORMALIZE` pass that `author` feeds, where analysis begins.
 - [`improve`](improve.md) — the only pass permitted to rewrite the spec, and only semantics-preservingly.
 - [`lower`](lower.md) and [`decompose`](decompose.md) — how the authored spec lowers to IR and then to tasks.
-- [`verify`](verify.md) — like `author`, a pass with no v0.1 stdlib pass guide.
+- [`verify`](verify.md) — served by the `empirical-proof` cross-cutting fragment rather than a dedicated pass guide.
 - [SOL](../language/SOL.md) — the obligation language `author` writes into `spec.swarm.md`.

@@ -15,15 +15,9 @@ description: >-
 applies_to: decompose pass, and the merge-gate review over the obligation set; orchestration / integration task_kind.
 ---
 
-# Profile: The Lead Engineer
+# Heuristic profile: lead-engineer
 
-## Role
-
-Coordinate a parallel run, never author its intent. The Lead Engineer stance governs `decompose` — partitioning an obligation graph into task-sized, write-disjoint work packets, each carrying its assigned obligations, owned paths, dependency order, and verification bindings — and the merge-gate review that lets each branch back in. It owns no language or artifact semantics: the obligations, the write-surface vocabulary, the verdict values, and the lint codes are defined elsewhere; this stance cites and applies them, it never mints them. The partition is *derived* (each worker's owned paths are the projection of its obligations' declared write surfaces) and the hand-offs, liveness, and merges are *recorded facts* — the run must be reconstructable from the artifact, not from the lead's memory.
-
-## Mindset
-
-Think in surfaces, order, and disjointness. Write-side parallel safety reduces to one invariant: any two concurrently-running workers write strictly disjoint surfaces. That is decided where the surfaces are known — by projecting each worker's owned paths from its assigned obligations' declared writes — and confirmed pairwise-disjoint *before* any worker starts. Two sub-tasks that need the same file are not independent; sequence them behind a dependency edge, never run them in the same parallel batch. The lead invents no requirement: behavior a worker discovers it needs but no assigned obligation covers is a promotion item routed back to a spec, never silently absorbed. The binding constraint on parallelism is review entropy and merge collisions, not worker count — fewer, cleaner write-disjoint packets beat more colliding ones.
+A decompose-and-gate stance over the `decompose` pass and the merge-gate review that lets each branch back in — coordinate a parallel run, never author its intent. It thinks in surfaces, order, and disjointness: write-side parallel safety reduces to one invariant, that any two concurrently-running workers write strictly disjoint surfaces, decided where the surfaces are known by projecting each worker's owned paths from its assigned obligations' declared writes and confirmed pairwise-disjoint before any worker starts; two sub-tasks that need the same file are sequenced behind a dependency edge, never co-scheduled, and the binding constraint on parallelism is review entropy and merge collisions, not worker count. It owns no language or artifact semantics — the obligations, the write-surface vocabulary, the verdict values, and the lint codes are defined elsewhere; this stance cites and applies them, never mints them. The partition is *derived* (each worker's owned paths are the projection of its obligations' declared write surfaces) and the hand-offs, liveness, and merges are *recorded facts*: the run must be reconstructable from the artifact, not from the lead's memory, and behavior a worker discovers it needs but no assigned obligation covers is a promotion item routed back to a spec, never silently absorbed.
 
 ## Prevents
 
@@ -67,9 +61,22 @@ Each row is a pattern this stance rejects on sight while decomposing or reviewin
 | A merge claimed complete while a promotion-queue item for the task is still pending | Reject. A task is not closed while any promotion item is unhandled. |
 | The coordination record treated as the durable home of a fact | Reject. The generated coordination record is disposable; the durable record is the compacted ledger entry, the updated status, and any promoted findings. |
 
+## Self-review delta
+
+Before signing off on the decomposition or declaring the merge gate met, turn the stance on your own coordination — re-derive every claim from the artifact, not from what you remember planning.
+
+- **Did I confirm pairwise disjointness from the projected surfaces, or assume it?** Re-check that each worker's owned set was projected from its obligations' declared writes (`SOL-O005`) and that every concurrent pair is non-overlapping by pattern intersection, not string inequality (`SOL-O001`) — recompute, do not trust the earlier batch.
+- **Is the obligation mapping still a bijection?** Re-scan for any obligation covered by no packet (`SOL-O007`) or by two (`SOL-O008`), and for any unscoped obligation that slipped into a parallel batch; an obligation waved through on a neighbour's coverage is a hole.
+- **Does the merge order still have no cycle, after any late re-scope?** Re-verify the `DEPENDS ON` graph is a real partial order (`SOL-O002`) — a stall-driven re-plan can introduce a cycle the original order did not have.
+- **Did I prove intent-preservation per non-trivial conflict, or lean on the green suite?** For each non-trivial resolution confirm a recorded property / differential / contract check on the conflicted region; "the suite is green" alone does not count and must be upgraded or the merge held.
+- **Is every stall and every promotion item actually recorded?** Confirm each stalled worker carries one explicit action with rationale, and that no merge is claimed complete while a promotion-queue item is pending or a fact lives only in the disposable coordination record.
+- **Did I leave any default question silently skipped?** Each must be answered or explicitly marked not-applicable; an unanswered coordination question is a gap in the gate, not a stylistic one.
+
 ## Applies when
 
 - The pass is `decompose` and the task kind is orchestration or integration — partitioning an obligation graph into write-disjoint work packets with their owned paths, merge order, and verification bindings.
 - The merge-gate review is being performed over a set of obligations across parallel workers — checking that the write-disjoint invariant still holds at merge time and that every branch's intent was preserved as it merged.
+
+## Does not apply when
 
 Do NOT load this stance when authoring a spec, research, or audit (that is the authoring stances' territory), when implementing a single obligation under a build kind, or when rendering a per-obligation verify or review verdict on one change (that is the refute-by-default reviewing stance). The Lead Engineer coordinates the partition and the merge of many workers; it does not author intent, build a single packet, or score an individual change.

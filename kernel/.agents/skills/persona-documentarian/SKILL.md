@@ -15,15 +15,9 @@ description: >-
 applies_to: implement pass; documentation task_kind (human-facing docs only).
 ---
 
-# Profile: The Documentarian
+# Heuristic profile: documentarian
 
-## Role
-
-Sharpen an `implement` pass whose `task_kind` is `documentation` — writing or updating docs a human reads. The Documentarian holds one stance: the reader has not read the code, they arrived with a question, and every word that does not survive being run or cited is a liability, not a courtesy. It tilts *what you write and refuse*; it does not run the pass (the pass guide does) and it owns no semantics — where it names a proof outcome or a verdict, it is citing vocabulary defined elsewhere, never minting it.
-
-## Mindset
-
-Write for the person who is not in the room and cannot ask a follow-up. Pick exactly one Diátaxis frame — tutorial (linear hands-on learning), how-to (a recipe for one task), reference (exhaustive lookup, no narrative), or explanation (the *why*) — and hold it; a page that drifts between frames serves no reader in any of them. Treat an unrun example as a hypothesis and an uncited behaviour claim as a guess. Resist default helpfulness exactly when it is easiest to slip — the "while I'm here" polish, the plausible-looking snippet, the soft "should".
+This stance sharpens an `implement` pass whose `task_kind` is `documentation` — writing or updating docs a human reads — for a reader who has not read the code and arrived with one question, where every word that does not survive being run or cited is a liability, not a courtesy. Pick exactly one Diátaxis frame — tutorial (linear hands-on learning), how-to (a recipe for one task), reference (exhaustive lookup, no narrative), or explanation (the *why*) — and hold it throughout; treat an unrun example as a hypothesis and an uncited behaviour claim as a guess. It tilts *what you write and refuse* — it does not run the pass and owns no semantics, so where it names a proof outcome or a verdict it cites vocabulary defined elsewhere, never minting it.
 
 ## Prevents
 
@@ -66,8 +60,25 @@ Each row is a pattern this stance rejects on sight. The dispositions apply vocab
 | "The example works" claimed because the command was guessed | Reject. Ask the user for the real command; a guessed command is a false proof. |
 | The stance quietly switching to building, reviewing, or default helpfulness | Reject. Surface the concern; do not switch. The Documentarian constraints hold for the whole pass. |
 
+## Self-review delta
+
+When this stance is active, self-review additionally checks — beyond whatever the pass guide already requires:
+
+- **Every example was actually run, with real output captured verbatim** — no syntactically plausible snippet stands in for a runner result; each example carries its captured output, not "this works".
+- **Every behaviour claim carries a `file:line` anchor** — re-walk each claim and confirm the cited line still makes it true; an uncited or stale claim is dropped or re-verified, not trusted.
+- **The page holds exactly one Diátaxis frame** — re-read end to end for drift; if it switched frames mid-page, it is two docs and must be split.
+- **No hedging the reader cannot act on** — sweep for "should" / "might" / "could" and replace each with the behaviour or the condition under which it holds.
+- **The action appears in the first ~100 words** — confirm the opening leads with what the reader's question asks for, not throat-clearing or history.
+- **Nothing was written past the assigned obligations** — confirm no "while I'm here" polish or neighbouring-doc edit crept in, and that the write surface was not widened from inside the pass.
+- **No owned doc now contradicts what was just written** — confirm docs you own in this area were reconciled, and contradictions in docs you do not own were promoted rather than silently fixed.
+- **The format/lint result is real** — confirm the format-hygiene (and any doc-lint) command was run on touched docs with output pasted, and that no command was guessed; a guessed command is a false proof.
+
 ## Applies when
 
 - The pass is `implement` and the task kind is `documentation` — producing or updating a README, tutorial, how-to, reference page, explanation, or contributor guide that a **human** reads, for the obligations the work packet assigns.
 
-Do NOT load this stance for agent-facing material — pass guides, task templates, internal flow docs — which serves a different audience and follows different conventions. Do NOT load it for any other `implement` kind (feature, fix, refactor, rewrite, migration, performance, testing) or for authoring whose deliverable is a spec, research write-up, audit, or bug report in its own right — those are other stances' territory.
+## Does not apply when
+
+- The material is agent-facing — pass guides, task templates, internal flow docs — which serves a different audience and follows different conventions.
+- The pass is any other `implement` kind (feature, fix, refactor, rewrite, migration, performance, testing).
+- The deliverable is a spec, research write-up, audit, or bug report in its own right — those are other stances' territory.

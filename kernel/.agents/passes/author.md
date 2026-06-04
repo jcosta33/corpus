@@ -25,9 +25,9 @@ Two contract notes follow from this position:
 - **`author` is not itself analyzable.** Everything *downstream* of `author` is analyzable; the author pass is the boundary at which un-structured intent (chat, working documents) becomes the structured, compiler-visible spec. Analysis begins at `lint` (the `PARSE` + `NORMALIZE` pass), not at `author`.
 - **`author` feeds `lint`.** The next pass, `lint`, is non-mutating and decides well-formedness; the only pass permitted to rewrite the spec is `improve`, and only semantics-preservingly. So `author` is where new intent legitimately *enters*; passes after it normalize and lower that intent rather than re-invent it.
 
-## `author` is NOT a stdlib pass guide
+## `author` ships author guides, not a pass guide
 
-Of the nine passes, exactly **five** ship with a stdlib pass guide in v0.1: `lint`, `decompose`, `implement`, `review[profile: skeptic]`, and `promote`. `author` is one of the **four** passes (`author`, `improve`, `lower`, `verify`) that are *fully specified by the language references* and ship no stdlib pass guide in v0.1. They MAY gain one in a later framework release without any language-version change. A pass guide, when it exists, is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning.
+The shipped stdlib guide set (ADR-0042) is: a dedicated pass guide for each of `lint`, `decompose`, `review[profile: skeptic]`, and `promote`; nine per-`task_kind` `implement` guides (`write-feature`/`fix`/`refactor`/`rewrite`/`migration`/`performance`/`testing`/`documentation` + `fix-flaky-test`); six author guides (`write-spec`/`audit`/`research`/`bug-report`/`prd`/`rfc`); and two cross-cutting fragments (`empirical-proof`, `distillation-discipline`) — all standalone `SKILL.md` under `kernel/.agents/skills/`. The `improve` and `lower` passes ship no guide, and `verify` is served by the `empirical-proof` fragment; a guide-less pass is not a conformance gap. `author` is **not** served by a single pass guide: it is served by the **six author guides** (`../skills/write-spec/SKILL.md`, `../skills/write-audit/SKILL.md`, `../skills/write-research/SKILL.md`, `../skills/write-bug-report/SKILL.md`, `../skills/write-prd/SKILL.md`, `../skills/write-rfc/SKILL.md`), one per recognized parent. A guide, when it exists, is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning.
 
 ## Authoring is parent-normalization: epistemic stances are preserved
 
@@ -68,4 +68,4 @@ Authoring writes the one human-authored compiler-visible artifact, `spec.swarm.m
 - `../passes/lower.md`, `../passes/decompose.md`, `../passes/verify.md` — the rest of the downstream pipeline that normalizes and lowers authored intent rather than re-inventing it.
 - `../templates/spec.swarm.md` — the one human-authored compiler-visible artifact `author` produces.
 - `../templates/audit.md`, `../templates/research.md`, `../templates/prd.md`, `../templates/rfc.md`, `../templates/bug-report.md`, `../templates/finding.md`, `../templates/adr.md` — the recognized parents `author` normalizes (each carries the epistemic stance the table above pins).
-- `../profiles/architect.md`, `../profiles/researcher.md` — typical carrier profiles for the `author` pass.
+- `../skills/persona-architect/SKILL.md`, `../skills/persona-researcher/SKILL.md` — typical carrier profiles for the `author` pass.

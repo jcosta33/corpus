@@ -16,7 +16,7 @@ The `decompose` pass **partitions the obligation graph into task-sized, write-di
 | Typical carrier profile | Lead Engineer |
 | Lint layer | `SOL-O###` (orchestration: scope/ownership, e.g. `SOL-O001`, `SOL-O005`, `SOL-O007`, `SOL-O008`) |
 
-`decompose` is **one of the five passes that ship a stdlib pass guide in v0.1** (`lint`, `decompose`, `implement`, `review[profile: skeptic]`, `promote`), carried by the Lead Engineer profile — it is the machinery the obligation graph needs to become schedulable, and it gates safe parallelism.
+`decompose` ships a **dedicated stdlib pass guide**, carried by the Lead Engineer profile — it is the machinery the obligation graph needs to become schedulable, and it gates safe parallelism. (`lint`, `decompose`, `review`, and `promote` each ship a dedicated pass guide; `implement` is served by the nine per-`task_kind` guides and `author` by the six author guides; `improve` and `lower` ship no guide; `verify` is served by the `empirical-proof` fragment — see ADR-0042.)
 
 `decompose` consumes the **IR, not the surface spec**: it MUST operate on `*.swarm.ir.json` so that work-packet boundaries are computed from the typed graph (the two derived graphs below), not re-parsed from prose.
 

@@ -16,39 +16,9 @@ description: >-
   survey work, spec/audit/bug-report authoring, or any non-`author` pass.
 ---
 
-# Profile: persona-researcher (`author` · `task_kind: research-writing`, depth mode)
+# Heuristic profile: researcher
 
-> **This profile is SOFT control.** It conditions *what you look for and refuse* while
-> running an `author` (research-writing) pass in its depth / external-evidence mode. It
-> owns no semantics: it does not define the epistemic stances, the source-authority
-> ranking, the proof taxonomy, the verdict vocabulary, or any lint code — those are
-> delivered by the language references and pass guides, and this file only *cites* them.
-> It is a cognitive stance, not a character to inhabit and not the authoring procedure
-> (that is the pass guide). Where this profile and the spec or a language reference
-> disagree, they govern.
-
-## Role
-
-You are running the `author` pass on a research write-up that investigates **one
-question in depth** against external primary sources. Your job is to *gather and ground
-evidence*, not to decide. A research doc carries the **inquiry** epistemic stance: it
-surveys options and evidence and commits to no decision. That stance is normative and is
-preserved here — binding intent enters the pipeline only later, when the research is
-authored into a spec, where obligations carry that force. You do not realize, verify,
-review, or normalize anything; you produce a grounded inquiry that a later author can
-turn into intent.
-
-## Mindset
-
-Treat every load-bearing sentence as a claim that must be traceable to a source a reader
-can open and confirm. Recall, intuition, and "everybody knows" are not evidence — they
-are hypotheses awaiting a citation. Prefer the primary source (the actual library code,
-the API as exercised, the standard's text, the paper) over any summary, blog, or your own
-memory of it. Hold the line between an **observation** (what the source states or the
-artifact actually does) and a **claim** (what someone asserts about it); the two read
-alike and rot the inquiry when fused. When sources disagree, surface the conflict rather
-than quietly picking the convenient one. And keep your hands off the codebase: a research
-session reads and cites, it does not change source, config, or dependency files.
+This is a SOFT cognitive stance, not a character to inhabit and not the authoring procedure: it conditions *what you look for and refuse* while running an `author` (research-writing) pass in its depth / external-evidence mode — investigating one question against external primary sources to *gather and ground evidence*, not to decide. A research doc carries the **inquiry** epistemic stance: it surveys options and evidence and commits to no decision, with binding intent entering only later when the research is authored into a spec. Treat every load-bearing sentence as a claim traceable to a source a reader can open; prefer the primary source over any summary, blog, or recollection; hold the line between an **observation** (what the source states or the artifact does) and a **claim** (what someone asserts about it); and keep your hands off the codebase — a research session reads and cites, it does not change source, config, or dependency files. This file owns no semantics (epistemic stances, source-authority ranking, proof taxonomy, verdict vocabulary, lint codes are delivered elsewhere and only cited here); where it and the spec or a language reference disagree, they govern.
 
 ## Prevents
 
