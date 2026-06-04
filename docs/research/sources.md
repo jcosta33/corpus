@@ -20,6 +20,24 @@
 <a id="PLANSOLVE"></a>
 **[PLANSOLVE] Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning.** Wang, Xu, Lan, Hu, Lan, Lee, Lim. **ACL 2023**, arXiv:2305.04091. *Verified (June 2026, direct fetch).* Devise a plan that divides the task into subtasks, then execute it; **consistently outperforms zero-shot CoT** across arithmetic/commonsense/symbolic reasoning. Grounds: plan-before-execute (the `lower`/`decompose` rationale).
 
+<a id="FORMATFREE"></a>
+**[FORMATFREE] Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models.** Tam, Wu, Tsai, Lin, Lee, Chen. **EMNLP 2024 (Industry Track)**, arXiv:2408.02442 (ACL Anthology 2024.emnlp-industry.91). *Verified (June 2026, ACL Anthology + abstract fetch).* Format restriction **degrades reasoning** — JSON-mode is worst on reasoning tasks such as GSM8K, looser prompts score higher, and the effect intensifies with stricter constraints — while the **same structure helps** classification/extraction; parsing-error rates are ~0%, so the loss is reasoning-order compression, not malformed output. Grounds: structure the *frame*, not the reasoning; the evidence-before-conclusion ordering rule; reason free-form, then emit the structured artifact.
+
+<a id="SELFCORRECT"></a>
+**[SELFCORRECT] When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs.** Kamoi, Zhang, Zhang, Han, Zhang. **TACL 2024**, arXiv:2406.01297. *Verified (June 2026, direct fetch).* No prior work shows reliable self-correction from *prompted* self-feedback; self-correction succeeds only where a **reliable external signal** is available (or after large-scale fine-tuning). Grounds: the reliability lever is an external deterministic check, not the model judging itself.
+
+<a id="ATTRFIRST"></a>
+**[ATTRFIRST] Attribute First, then Generate: Locally-attributable Grounded Text Generation.** Slobodkin, Hirsch, Cattan, Schuster, Dagan. **ACL 2024**, arXiv:2403.17104. *Verified (June 2026, direct fetch).* Selecting source evidence *before* generating (content-selection → planning → generation) yields locally-attributable text with **more concise, verifiable citations** at equal quality. Grounds: the evidence-first ordering rule and provenance-as-binding (cite the supporting span, then state the claim).
+
+<a id="TRUSTALIGN"></a>
+**[TRUSTALIGN] Measuring and Enhancing Trustworthiness of LLMs in RAG through Grounded Attributions and Learning to Refuse.** Song, Sim, Bhardwaj, Chieu, Majumder, Poria. **ICLR 2025 (Oral)**, arXiv:2409.11242. *Verified (June 2026, direct fetch).* An alignment method (Trust-Align) that rewards **grounded attribution and refusing when unsupported** materially raises measured trustworthiness across model families; plain prompting / in-context learning does not. Grounds: provenance-or-refuse — an unsupported claim should be withheld, not emitted.
+
+<a id="CORRELATED"></a>
+**[CORRELATED] Correlated Errors in Large Language Models.** Kim, Garg, Peng, Garg. **ICML 2025**, arXiv:2506.07962. *Verified (June 2026, direct fetch).* Across 350+ models, models **agree ~60% of the time when both are wrong**, and error-correlation persists across distinct architectures and providers and *grows* with capability — an "algorithmic monoculture" that undermines majority voting, ensembling, and LLM-as-judge. Grounds: do not treat agreement / voting / same-family self-critique as a correctness signal.
+
+<a id="MINJA"></a>
+**[MINJA] Memory Injection Attacks on LLM Agents via Query-Only Interaction (MINJA).** Dong, Xu, He, Li, Tang, Liu, Liu, Xiang. **NeurIPS 2025**, arXiv:2503.03704. *Verified (June 2026, OpenReview + search).* A query-only attacker injects malicious records into an agent's memory (~98% injection success; ~70–77% downstream attack success) that later fire on benign queries. Grounds **threat-motivated design, not a measured reliability gain**: the epistemic-stance boundary — durable memory/findings carry stance + provenance so a lower-stance or injected record cannot masquerade as authoritative. *The attack is measured; Swarm's defense against it is design, not a measured delta.*
+
 ## Verified — reused from the kernel bibliography
 
 These were already verified by the framework's bibliography elsewhere; the entries below restate them so this layer is self-contained.
@@ -27,8 +45,11 @@ These were already verified by the framework's bibliography elsewhere; the entri
 <a id="LOSTMID"></a>
 **[LOSTMID] Lost in the Middle: How Language Models Use Long Contexts.** Liu et al., **TACL 2024**. The U-shaped attention curve — accuracy degrades for information in the middle of long contexts. (Per the kernel entry: "context rot" is a *later popular term*, not coined here; do not attribute it to this paper.) Grounds: the AGENTS.md density cap and the "minimize always-on context" discipline.
 
-<a id="AGENTSMD-HARM"></a>
-**[AGENTSMD-HARM] Evaluating AGENTS.md** (Gloaguen, Mündler, Müller, Raychev, Vechev, ETH Zürich SRI) **and** its efficiency companion (Lulla et al.). Per the kernel entry: repository-specific commands are used far more often when named in the context file than when not; LLM-*generated* narrative context can cost more than it returns. Grounds: the `AGENTS.md > Commands` contract (name the commands; minimise narrative).
+<a id="SCOT"></a>
+**[SCOT] Structured Chain-of-Thought Prompting for Code Generation.** Li, Li, Li, Jin. **ACM TOSEM 34(2), Art. 37, 2025** (DOI 10.1145/3690635; preprint arXiv:2305.06599). *Verified (peer-reviewed; reused from the kernel bibliography.)* A *structured* intermediate (program-structured reasoning) beats free-form CoT for code generation (the paper reports +13.79% Pass@1). Grounds: a structured intermediate measurably beats free prose for downstream code work (the `lower` / IR rationale).
+
+<a id="SMELLS"></a>
+**[SMELLS] Rapid Quality Assurance with Requirements Smells.** Femmer, Méndez Fernández, Wagner, Eder. **Journal of Systems and Software 123 (2017): 190–213** (DOI 10.1016/j.jss.2016.02.047). *Verified (peer-reviewed; reused from the kernel bibliography.)* Lightweight lexical detection of requirements "smells" (vague terms, comparatives, …) is feasible but **precision is bounded** (the study reports roughly 48–59% precision at ~82–87% recall). Grounds: prose-smell checks are **advisory, never blocking** — only a defined grammar (the SOL layer) reaches blocking precision.
 
 ## Verified — official guidance (authoritative vendor/spec docs, not empirical claims)
 
@@ -49,7 +70,7 @@ These were already verified by the framework's bibliography elsewhere; the entri
 
 ## Caveated — non-peer-reviewed (cite ONLY as preliminary; never load-bearing)
 
-Treated exactly as the kernel treats `[ARIZE26]`/`[DETERMINISM]`: usable to *illustrate* a direction, never to ground a `MUST`. Their headline statistics are single-author/blog measurements, not controlled peer-reviewed studies.
+Treated as the kernel treats its own non-peer-reviewed sources: usable to *illustrate* a direction, never to ground a `MUST`. Their headline statistics are single-author/blog measurements, not controlled peer-reviewed studies.
 
 <a id="ACTIVATION-BLOG"></a>
 **[ACTIVATION-BLOG] Why Claude Code Skills Don't Activate — And How to Fix It.** Seleznov, Medium, 2026. A self-published 650-trial measurement reporting directive descriptions activating far more reliably than passive ones (the "OR ≈ 20.6 / 100% activation" figures). **Non-peer-reviewed; the specific numbers are NOT load-bearing.** The *direction* (directive, exclusion-bearing descriptions help) is used only as illustration; the kernel's primary mechanism is "load what the task names" (§26.4), with description-match as the fallback.
@@ -60,7 +81,50 @@ Treated exactly as the kernel treats `[ARIZE26]`/`[DETERMINISM]`: usable to *ill
 <a id="PRACTITIONER"></a>
 **[PRACTITIONER] Practitioner skill-authoring catalogues.** Safonova ("I validated 100+ Claude Code Skills", Substack); Ibryam ("Skill Authoring Patterns", Generative Programmer); BSWEN (skill-count vs startup cost); the anti-patterns catalogue. **Practitioner sources, caveated** — useful for named anti-patterns and authoring heuristics, never for a quantitative claim.
 
-## Rejected — DO NOT CITE (fabricated / misattributed)
+### Preprints — web-verified arXiv (finding confirmed; cite as preliminary, never a `MUST`)
+
+A web-verified arXiv preprint is stronger than a blog post but is **not peer-reviewed**: it may *corroborate* or *illustrate* a direction, never carry a `MUST`. Each finding below was confirmed against the source (June 2026).
+
+<a id="AGENTSMD-HARM"></a>
+**[AGENTSMD-HARM] Evaluating AGENTS.md.** Gloaguen, Mündler, Müller, Raychev, Vechev (ETH Zürich + LogicStar.ai). **arXiv:2602.11988** (preprint). *Verified (June 2026).* Two findings: (1) repository-specific commands are used far more often when **named** in the context file than when not (≈1.6×, *p*=0.01; ≈2.5×, *p*=0.05) — corroborates the Commands contract; (2) **over-specification hurts** — LLM-*generated* narrative context files reduced task success by ~3% while raising inference cost by **over 20%**, and even developer-written ones gave only a small gain at added cost. Its efficiency companion **(Lulla et al., arXiv:2601.20404) is a *contrasting* result** — developer-written `AGENTS.md` *reduced* runtime (~28.6%) and tokens (~16–20%); the two do not jointly establish "narrative is costly" and must not be cited as if they do. Grounds: the minimality / anti-bloat discipline (fewer, scoped, command-naming context files; not more narrative). *Where the `AGENTS.md > Commands` contract cites this (ADR-0018, ADR-0038), treat it as **corroborating** evidence — the contract's normative force rests on the [AGENTSMD-CONV] convention and the design reasoning, not on this preprint.*
+
+<a id="FORMATTAX"></a>
+**[FORMATTAX] The Format Tax.** Lee et al. **arXiv:2604.03616** (preprint). *Verified (June 2026).* The cost of format-restriction is paid mostly at the *prompt* (~−3.9pp), not the decoder (~−1.6pp); **decoupling** (reason free-form, then emit) recovers +6.8 / +9.2pp, and frontier models pay near-zero tax. Corroborates [FORMATFREE]; grounds the reason-then-emit rule.
+
+<a id="EVIBOUND"></a>
+**[EVIBOUND] Evidence-Bound Autonomous Research.** Chen. **arXiv:2511.05524** (preprint; small N=8 — illustrative). *Verified (June 2026).* Prompt-only completion governance produced ~100% hallucinated "done" claims; **dual machine-checkable gates drove that to 0%**. Illustrates: bind "done"/"true" to a checkable evidence anchor, not a prose assertion.
+
+<a id="SWESKILLS"></a>
+**[SWESKILLS] SWE-Skills-Bench.** Han et al. **arXiv:2603.15401** (preprint). *Verified (June 2026).* Of 49 candidate skills, **39 gave zero improvement and 3 actively degraded performance (−9 to −10pp)** via stale / version-mismatched guidance and "template interference." Grounds: staleness/conflict lint + minimality (an inert or stale doc is a liability, not a neutral addition).
+
+<a id="ORACLESWE"></a>
+**[ORACLESWE] ORACLE-SWE.** Li et al. **arXiv:2604.07789** (preprint). *Verified (June 2026).* A **reproduction test** is far more valuable than prose plans for issue resolution (plans were not worth isolating as a signal). Grounds: machine-*checkable*/executable evidence beats machine-*readable* prose.
+
+<a id="CITECHECK"></a>
+**[CITECHECK] Citation-resolution checking.** Rao et al. **arXiv:2604.03173**; CiteGuard **arXiv:2510.17853** (preprints). *Verified (June 2026).* An automated citation-resolving checker cut non-resolving citations **16%→0.6% (≈26×)** and **6.1%→0.1% (≈79×)**, *p*<10⁻³⁵; LLMs otherwise fabricate **78–90%** of citations, and structured validation recovers near-human accuracy. Grounds: provenance pays off only when an automated pass **resolves the referent** (provenance must be lint-enforced, not a convention).
+
+<a id="NOFREE"></a>
+**[NOFREE] No Free Labels.** **arXiv:2503.05061** (preprint). *Verified (June 2026).* LLM-judge / reward-model agreement collapses (κ ≈ 0.86 → 0.30) without a reference answer. Grounds: an LLM judge without a grounded reference is not a verifier.
+
+<a id="CONSENSUS"></a>
+**[CONSENSUS] Consensus is Not Verification.** **arXiv:2603.06612** (preprint). *Verified (June 2026).* Multi-agent voting / self-consistency **amplifies shared errors** rather than catching them. Grounds (with [CORRELATED]): consensus is not a correctness signal.
+
+<a id="MULTITURN-LOST"></a>
+**[MULTITURN-LOST] LLMs Get Lost in Multi-Turn Conversation.** **arXiv:2505.06120** (preprint). *Verified (June 2026).* Multi-turn performance drops ~39% with a ~112% rise in unreliability, triggered by **under-specification**. Affirms: keep load-bearing meaning on a stable, typed surface, re-read each pass; prose is an unreliable cross-turn carrier.
+
+<a id="MAST"></a>
+**[MAST] Multi-Agent System failure Taxonomy (MAST).** Cemri et al. **arXiv:2503.13657** (preprint; venue unconfirmed). *Verified (June 2026; finding confirmed, venue not).* 14 failure modes across three categories — **system-design & specification ≈41.8%, inter-agent misalignment ≈36.9%, verification ≈21.3%** (so specification + verification ≈ 63%). *Note (audit O-0):* the first category is "System Design / poor specification," not "Specification" alone. Grounds: why Swarm hardens the specification and verification layers; the inter-agent contract gap.
+
+<a id="SEMAP"></a>
+**[SEMAP] Structured/contract-based multi-agent protocol (SEMAP).** Mao et al. **arXiv:2510.12120** (preprint). *Verified (June 2026).* Contracts + structured inter-agent messaging + lifecycle verification cut failures **64–70%**, with the largest single win in **under-specification (71–73%)**. Grounds: the SOL/contract + verification-gate spine; the inter-agent coordination contract.
+
+<a id="REPORTLOGIC"></a>
+**[REPORTLOGIC] Agent-report quality axis.** **arXiv:2602.18446** (preprint). *Verified (June 2026).* A primary quality axis of an agent's report is an explicit **claim → support** structure. Grounds: the evidence-before-conclusion / claim-must-carry-evidence rule for findings and audits.
+
+<a id="SUPPORTING-PREPRINTS"></a>
+**[FOCUSEDCOT / PAPERTRAIL / REQ2LTL / SPECFIX] Supporting preprints** (mechanism-strong, number-weak): focused chain-of-thought (arXiv:2511.22176), provenance trails (arXiv:2602.21045), requirements→temporal-logic (arXiv:2512.17334), spec-repair (arXiv:2505.07270). *Verified directionally (June 2026).* Used only to corroborate the provenance / structured-frame direction; never load-bearing.
+
+## Rejected — DO NOT CITE (fabricated / misattributed / unconfirmed)
 
 The skill-authoring literature attributes load-bearing figures to these arXiv ids. **Direct fetch (June 2026) found each id resolves to an unrelated paper.** They are recorded here so the fabrication is never re-introduced (per the kernel's reject discipline).
 
@@ -69,6 +133,13 @@ The skill-authoring literature attributes load-bearing figures to these arXiv id
 | "21× degradation when file-based state externalization is removed" (InfiAgent) | arXiv:2511.10954 | *Kapitza-Dirac interference of Higgs waves in superconductors* (condensed-matter physics) | **REJECTED — misattributed; the 21× figure is unverifiable and MUST NOT be cited.** File-state externalization is instead grounded on [CTXENG] + [CCTASKS] + [SCRATCHPAD]. |
 | "fixed turn limit at p75 cuts cost 24–68%" (More with Less) | arXiv:2510.27502 | *Reference Equations of State for Density Prediction in Regasified LNG Mixtures* (chemical physics) | **REJECTED — misattributed.** |
 | "agentic failures are overwhelmingly context failures" (PAACE) | arXiv:2511.21345 | *Blind Turbo Demodulation for Differentially Encoded OFDM* (signal processing) | **REJECTED — misattributed** (the source that circulated it flagged it as unverified). |
+
+**Also do-not-cite-as-fact (web-checked June 2026):**
+
+- **"17.1% performance drop / a 7B model beats a 70B model" under format restriction** — traced only to a vendor blog with **no primary source**; **unconfirmed**. (The peer-reviewed version of this direction is [FORMATFREE].)
+- **Piskala, "50% error reduction / 75% cycle-time" from spec-driven development (arXiv:2602.00180)** — position/survey, secondhand and uncontrolled; **not a measured result.**
+- **Registered reports with no results yet** — *Spec-Driven Code Generation* (arXiv:2601.03878) and *Specification as a Quality Gate* (arXiv:2603.25773) report **no measured outcomes** (design/protocol/opinion only); cite as design rationale at most, never as evidence.
+- **The "Tessl / Guillermo Rauch / specs-are-the-new-code" attribution** — **mistaken** (no evidence Rauch is associated with it); do not repeat it.
 
 ---
 
