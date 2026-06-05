@@ -20,11 +20,12 @@ This is **design rationale** — a layout and naming decision, not an empirical 
 
 ## `.swarm/` is the canonical workspace
 
-`.swarm/` is **the** canonical Swarm workspace: everything that defines, tracks, or reconciles intent lives under it. It partitions into eight top-level categories — `sources/ status/ generated/ memory/ ledger/ archive/ kernel/ tmp/` — each a distinct contract:
+`.swarm/` is **the** canonical Swarm workspace: everything that defines, tracks, or reconciles intent lives under it. It partitions into nine top-level categories — `sources/ status/ generated/ memory/ ledger/ archive/ kernel/ overlays/ tmp/` — each a distinct contract:
 
 | Directory | Holds | Category | Committed? | Populated by |
 | --- | --- | --- | --- | --- |
-| `kernel/` | The installed framework payload — `language/ templates/ passes/ skills/ overlays/`. Framework-owned; project edits belong in `overlays/`. | payload | Yes | Installation from the framework repo's `kernel/`; kernel migrations |
+| `kernel/` | The installed framework payload — `language/ templates/ passes/ skills/ conformance/ memory/`. **Framework-owned; replaced wholesale on a kernel upgrade — never hand-edited.** Project rules go in the sibling `overlays/` (ADR-0045). | payload | Yes | Installation from the framework repo's `kernel/`; kernel migrations |
+| `overlays/` | **Project-local rule bundles** layered onto the kernel — architecture conventions, extra refusals, local command bindings ([overlays](../library/overlays.md)). **Project-owned; lives *outside* `kernel/` so it survives a kernel upgrade** (ADR-0045). Ships seeded-empty. | project | Yes | The project; seeded empty from the framework repo's `kernel/overlays/` |
 | `sources/` | **Desired truth** + durable source artifacts: specs (`*.swarm.md`), PRDs, RFCs, research, audits, bugs, findings, ADRs, interfaces, NFRs (§20.3.4). | desired | Yes | Humans + the `author`/`improve` passes |
 | `status/` | **Observed** satisfaction + drift: per-spec satisfaction reports, task/worktree state, drift reports. Records whether code satisfies the spec; never redefines intent. | observed | Yes | The `verify`/`review` passes; drift detection (future toolchain) |
 | `generated/` | **Generated** execution packets: task frames, traces, reviews, generated tests/docs. Recreatable from `sources/`; compacted into `ledger/` on completion. | generated | Mostly gitignored (see commit policy) | The `lower`/`decompose`/`implement`/`verify`/`review` passes |
@@ -42,7 +43,8 @@ project/
   .swarm/                   # THE CANONICAL SWARM WORKSPACE
     VERSION                 # adopted kernel version, semver (§25)
     config.yaml             # surface policies (§16.6), agent adapters, lint-severity overrides
-    kernel/                 # the INSTALLED payload (language templates passes skills overlays)
+    kernel/                 # the INSTALLED payload (language templates passes skills conformance memory) — framework-owned, replaced on upgrade
+    overlays/               # PROJECT rule bundles → layered onto kernel/; project-owned, survives upgrade (ADR-0045)
     sources/                # DESIRED truth      → specs/ prds/ rfcs/ research/ audits/ bugs/ findings/ adrs/ interfaces/ nfrs/
     status/                 # OBSERVED state     → specs/ tasks/ worktrees/ drift/
     generated/              # EXECUTION packets  → tasks/ traces/ reviews/ tests/ docs/
@@ -116,7 +118,7 @@ An adopted project SHOULD gitignore execution-local and scratch state while comm
 .swarm/generated/reviews/
 ```
 
-A project MUST NOT gitignore `.swarm/sources/`, `.swarm/status/`, `.swarm/memory/`, `.swarm/ledger/`, `.swarm/kernel/`, or `.swarm/archive/` unless it intentionally splits durable knowledge into a separate repository. `generated/` and `tmp/` are reconstructible from `sources/`; the rest are the durable record the reconciliation model depends on.
+A project MUST NOT gitignore `.swarm/sources/`, `.swarm/status/`, `.swarm/memory/`, `.swarm/ledger/`, `.swarm/kernel/`, `.swarm/overlays/`, or `.swarm/archive/` unless it intentionally splits durable knowledge into a separate repository. `generated/` and `tmp/` are reconstructible from `sources/`; the rest are the durable record the reconciliation model depends on.
 
 ## Related
 

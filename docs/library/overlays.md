@@ -4,7 +4,7 @@
 
 An **overlay** is the project-scoped guidance layer of the Swarm kernel. Where a pass guide documents *how* to perform one of the nine passes, and a heuristic profile documents *what an agent looks for and refuses* while performing a pass, an overlay documents *what this one project additionally expects* on top of both. It is how a repository encodes its house rules — its architecture conventions, its testing policy, its domain refusals, its local command bindings — without editing or forking the kernel that ships those passes and profiles.
 
-Like every Swarm artifact, an overlay is **markdown-only** and has no runtime: it is a guidance file a human or an agent reads while performing a pass, never shipped code. The kernel's overlay directory is `kernel/.agents/overlays/`; the standard library ships it empty, because the kernel is complete without any overlay at all.
+Like every Swarm artifact, an overlay is **markdown-only** and has no runtime: it is a guidance file a human or an agent reads while performing a pass, never shipped code. A project's overlays live in **`.swarm/overlays/`** — a **project-owned** directory and a sibling of `.swarm/kernel/`, deliberately *outside* the framework-owned payload so they survive a kernel upgrade (ADR-0045). The standard library seeds it empty (from the framework's `kernel/overlays/`), because the kernel is complete without any overlay at all.
 
 ## What an overlay is
 
@@ -28,7 +28,7 @@ Overlays are the canonical home for architecture and testing-policy rules. Such 
 
 ## The overlay contract
 
-Every overlay is a `*.md` file (or a directory of them) under `kernel/.agents/overlays/<name>/`, declaring this frontmatter and these four sections:
+Every overlay is a `*.md` file (or a directory of them) under `.swarm/overlays/<name>/`, declaring this frontmatter and these four sections:
 
 ```markdown
 ---
@@ -105,8 +105,8 @@ The split matters because each layer has a different lifecycle: a pass guide is 
 
 | Path | Holds |
 |---|---|
-| `kernel/.agents/overlays/` | The overlay directory. The standard library ships it empty (with a README); a project populates it. |
-| `kernel/.agents/overlays/<name>/` | One overlay — a `*.md` file or a directory of them, per [the contract](#the-overlay-contract). |
+| `.swarm/overlays/` | The project's overlay directory — **project-owned**, a sibling of `.swarm/kernel/` so it survives a kernel upgrade (ADR-0045). Seeded empty (a README) from the framework's `kernel/overlays/`; the project populates it. |
+| `.swarm/overlays/<name>/` | One overlay — a `*.md` file or a directory of them, per [the contract](#the-overlay-contract). |
 
 ## Related
 
@@ -116,4 +116,4 @@ The split matters because each layer has a different lifecycle: a pass guide is 
 - [APS](../language/APS.md) — the prose standard an overlay MUST NOT redefine.
 - [errors](../language/errors.md) — the `SOL-<LAYER>NNN` lint catalog an overlay MUST NOT add to or override.
 - [conformance](../model/conformance.md) — where the regression check that confirms no overlay redefines a kernel object lives, and which records that overlays are not required for conformance.
-- [workspace](../model/workspace.md) — the `.swarm/` / `.agents/` layout that resolves the `kernel/.agents/overlays/` location into an adopted project.
+- [workspace](../model/workspace.md) — the `.swarm/` layout; overlays install to the project-owned `.swarm/overlays/` (ADR-0045), outside the replaceable `.swarm/kernel/`.

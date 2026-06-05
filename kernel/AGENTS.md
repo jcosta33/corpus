@@ -45,7 +45,8 @@
 <!-- One-line pointers ONLY — never inline the target content. -->
 - Language reference (SOL / APS / errors / versioning): `.swarm/kernel/language/`
 - Memory recall map (says *when to load* each entry; never dumped here): `.swarm/memory/INDEX.md`
-- Passes, `.swarm/kernel/skills/` (pass guides, per-kind implement & author guides, heuristic-profile persona-* stances, fragments) and overlays: `.swarm/kernel/`
+- Passes + skills (pass guides, per-kind implement & author guides, heuristic-profile persona-* stances, fragments): `.swarm/kernel/`
+- Project rule bundles (overlays): `.swarm/overlays/` (project-owned; survives kernel upgrades)
 
 ## Compatibility
 `.agents/` MAY hold compatibility mirror files for agent tools (skills, profiles, thin task
