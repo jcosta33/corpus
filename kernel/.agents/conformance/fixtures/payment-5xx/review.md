@@ -25,6 +25,10 @@ source_spec: .swarm/sources/specs/payment-5xx.swarm.md
 
 ## Per-obligation verdicts
 
+VERDICT IF-001: PASS
+REASON The charge-card interface contract holds — the `charge-card.pact` contract proof verifies the declared request/response shape (a required `VERIFY BY` binding; an INTERFACE in scope is a judged obligation at the merge gate). The gate still BLOCKS below on the CONTRADICTED invariant, independent of this PASS.
+EVIDENCE contract:cmdContract:contracts/charge-card.pact passed
+
 VERDICT AC-020: PASS (CONTRADICTED by review: bounded-retry test and the production duplicate-captures monitor disagree about the no-double-charge property)
 REASON Bounded-retry harness test PASSes, but the production monitor observes duplicate captures on the same key; the two proofs disagree about the no-double-charge property.
 EVIDENCE test:cmdTest:payment-5xx.spec.ts#retries-bounded passed

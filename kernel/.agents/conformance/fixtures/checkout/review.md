@@ -1,8 +1,9 @@
 <!--
 checkout golden-corpus fixture — Stage 7 (review + merge gate, pass: review, run under the
 `skeptic` profile). The `review` pass consumes the trace and emits one per-obligation VERDICT
-line carrying a core value optionally decorated with a lifecycle value. All six obligations are
-clean PASS: each verdict is judged against the source spec, the diff, and the proof evidence —
+line carrying a core value optionally decorated with a lifecycle value. All seven obligations
+(incl. the IF-010 interface contract) are clean PASS: each verdict is judged against the source
+spec, the diff, and the proof evidence —
 not the trace's self-report. The unauthorized-change check confirms no diff hunk wrote outside
 its packet's WRITES surface, and the two packets' write surfaces are disjoint — so the
 safe-parallelism predicate that the authored source violated (SOL-O001) now holds. With every
@@ -20,6 +21,10 @@ source_spec: .swarm/sources/specs/checkout.swarm.md
 # Review: checkout
 
 ## Per-obligation verdicts
+
+VERDICT IF-010: PASS
+REASON The checkout interface contract holds — the `openapi/checkout.yaml` contract proof validates the declared request/response shape (a required `VERIFY BY` binding; an INTERFACE in scope is a judged obligation at the merge gate).
+EVIDENCE cmdValidate openapi/checkout.yaml output in review log
 
 VERDICT AC-010: PASS
 REASON `validates-cart` exercises a submitted cart and asserts validation runs before any charge.
@@ -54,6 +59,6 @@ cleared, not merely re-marked.
 
 ## Final verdict
 Gate: every required obligation is PASS or WAIVED; none STALE/CONTRADICTED/FAIL/BLOCKED/UNVERIFIED.
-Result: PASS — six required obligations — the five REQs (AC-010, AC-013, AC-014, AC-011,
-AC-012) and the invariant I-010 — are clean PASS, and no parallel write-surface conflict
-remains. The merge gate opens.
+Result: PASS — seven required obligations — the IF-010 interface contract, the five REQs
+(AC-010, AC-013, AC-014, AC-011, AC-012), and the invariant I-010 — are clean PASS, and no
+parallel write-surface conflict remains. The merge gate opens.

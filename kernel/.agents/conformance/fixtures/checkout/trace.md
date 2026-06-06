@@ -18,9 +18,10 @@ source_spec: .swarm/sources/specs/checkout.swarm.md
 # Trace: checkout
 
 TRACE T-010:
-IMPLEMENTS AC-010, AC-013, AC-014, AC-011
+IMPLEMENTS IF-010, AC-010, AC-013, AC-014, AC-011
 PRESERVES I-010
 CHANGED api/src/checkout/submit.ts, db/orders
+PROOF contract:cmdValidate:openapi/checkout.yaml passed
 PROOF test:cmdTest:api/tests/checkout.spec.ts#validates-cart passed
 PROOF test:cmdTest:api/tests/checkout.spec.ts#charges-card passed
 PROOF test:cmdTest:api/tests/checkout.spec.ts#emails-receipt passed
@@ -35,6 +36,7 @@ PROOF test:cmdTest:api/tests/inventory.spec.ts#writes-ledger passed
 ## Provenance
 | binding | source_hash      | per_surface_hash[]                          | adapter     | verdict | tier     | origin_obligations | origin_traces |
 | ------- | ---------------- | ------------------------------------------- | ----------- | ------- | -------- | ------------------ | ------------- |
+| IF-010  | sha256:2a7c…d0   | {openapi/checkout.yaml, sha256:a110…b2, exercised} | cmdValidate | PASS | contract | [IF-010]           | [T-010]       |
 | AC-010  | sha256:4b1f…12   | {submit.ts, sha256:a110…b2, exercised}      | cmdTest     | PASS    | test     | [AC-010]           | [T-010]       |
 | AC-013  | sha256:5c2a…34   | {submit.ts, sha256:a110…b2, exercised}      | cmdTest     | PASS    | test     | [AC-013]           | [T-010]       |
 | AC-014  | sha256:6d3b…56   | {submit.ts, sha256:a110…b2, exercised}      | cmdTest     | PASS    | test     | [AC-014]           | [T-010]       |
