@@ -18,56 +18,19 @@ The `review` pass **renders the merge-gate judgment**: it compares trace claims 
 | Default proof suite for the `review` task kind | `manual @ REVIEW` over the recorded evidence; re-run of the bound `cmd*` proofs |
 | Lint layer | `SOL-V` (VERIFICATION) — well-formedness of verdicts (see [`lint`](lint.md)) |
 
-## The verdict vocabulary it records
+## The verdicts it records
 
-`review` records **verdicts**, and the verdict vocabulary is **exactly seven values**, partitioned into two disjoint roles: a verdict carries exactly **one CORE** value and **zero or more LIFECYCLE** decorators.
+`review` records **verdicts** in the seven-value model defined once in [`verify`](verify.md): a verdict carries **exactly one CORE value** (`PASS` / `FAIL` / `BLOCKED` / `UNVERIFIED`) and **zero or more LIFECYCLE decorators** (`WAIVED` / `STALE` / `CONTRADICTED`). The value meanings, the decoration rules (`WAIVED` only on `FAIL`/`UNVERIFIED`, `STALE` only on a prior `PASS`, `CONTRADICTED` on any core), and the well-formedness lint (`SOL-V005`/`V007`/`V008`) all live in [`verify`](verify.md); `review` applies them.
 
-The **four CORE run results** are mutually exclusive — one bound proof, on one run, lands in exactly one:
+The verdict line is `VERDICT <id>: <CORE> [(<lifecycle> by <authority>: <reason>)]`, with `<id>` reusing the judged obligation's surface id (`AC-001`, `C-001`, `I-001`, `IF-001`), followed by `REASON` and one or more `EVIDENCE` clauses. A `QUESTION` is never judged; a `TRACE` is the *input* to judgment; a `VERDICT` *is* the recorded judgment.
 
-| CORE | Meaning |
-|---|---|
-| `PASS` | A bound proof ran and its result satisfies the obligation. |
-| `FAIL` | A bound proof ran and its result contradicts the obligation. |
-| `BLOCKED` | A bound proof could not run (missing prerequisite, tool, adapter, environment, or fixture). The truth is *unknown*, not false. |
-| `UNVERIFIED` | No acceptable proof was bound, or a binding exists but no run was attempted. |
+## The merge gate it renders
 
-`BLOCKED` and `UNVERIFIED` MUST NOT be conflated: `BLOCKED` is an environment fix, `UNVERIFIED` is a binding/execution gap. A reviewer who cannot tell which applies MUST record `UNVERIFIED` (the weaker, more honest claim).
+The **merge gate** is the single normative predicate `review` exists to render. It is evaluated over every **required** obligation — every `REQ`, `CONSTRAINT`, `INVARIANT`, and `INTERFACE` in scope, each with its required `VERIFY BY` bindings:
 
-The **three LIFECYCLE decorators** annotate a core value with a governance fact that arises *after* or *around* the run:
+> **Merge gate (normative).** A change set MAY be promoted **if and only if**, for **every required `VERIFY BY` binding** of every required obligation, the binding's latest verdict is `PASS` or `WAIVED`, **and none** is `STALE`, `CONTRADICTED`, `FAIL`, `BLOCKED`, or `UNVERIFIED`. "Latest" is the verdict from the most recent recorded run.
 
-| LIFECYCLE | Decorates | Mandatory fields |
-|---|---|---|
-| `WAIVED` | `FAIL` or `UNVERIFIED` only | authority, reason, expiry |
-| `STALE` | a prior `PASS` only | prior-verdict ref, changed-surface |
-| `CONTRADICTED` | any core value | two conflicting evidence refs |
-
-`WAIVED` MUST decorate only `FAIL`/`UNVERIFIED` (there is no reason to waive a `PASS`); `STALE` MUST decorate only a prior `PASS` (a `FAIL`/`BLOCKED`/`UNVERIFIED` was never trusted, so it cannot go stale); `CONTRADICTED` MAY decorate any core, because contradiction is a relationship between *two* evidence sources.
-
-The verdict line grammar is `VERDICT <id>: <CORE> [(<lifecycle> by <authority>: <reason>)]`, with `<id>` reusing the judged obligation's surface id (`AC-001`, `C-001`, `I-001`, `IF-001`), followed by `REASON` and one or more `EVIDENCE` clauses. A `QUESTION` is never judged; a `TRACE` is the *input* to judgment; a `VERDICT` *is* the recorded judgment.
-
-## The merge gate (the one normative predicate)
-
-The **merge gate** is the single normative predicate that decides whether a change set may be promoted. It is evaluated over the set of **required** obligations — every `REQ`, `CONSTRAINT`, `INVARIANT`, and `INTERFACE` in scope, each with its required `VERIFY BY` bindings.
-
-> **Merge gate (normative).** A change set MAY be promoted **if and only if**, for **every required `VERIFY BY` binding** of every required obligation, the binding's latest verdict is `PASS` or `WAIVED`, **and none** is `STALE`, `CONTRADICTED`, `FAIL`, `BLOCKED`, or `UNVERIFIED`. "Latest" is the verdict from the most recent recorded run for that binding.
-
-There is **one `VERDICT` per required `VERIFY BY` binding**: an obligation with three required bindings contributes three verdicts, and *all* must pass-or-waive. The node-level `status` is the **aggregate** over an obligation's bindings (blocking if any binding blocks, else `PASS`).
-
-The per-value disposition under the gate:
-
-| Latest verdict | Disposition |
-|---|---|
-| `PASS` (no lifecycle) | **Passes** the gate. |
-| `WAIVED` (on `FAIL`/`UNVERIFIED`, fields valid, not expired) | **Passes** the gate. |
-| `FAIL` | Blocks. Fix code or amend the obligation. |
-| `BLOCKED` | Blocks. Fix the environment/adapter, then re-run. |
-| `UNVERIFIED` | Blocks. Bind a proof and run it, or `WAIVE`. |
-| `PASS (STALE)` | Blocks. Forces the 3-way reconcile (the not-silent reconcile discipline). |
-| any `(CONTRADICTED)` | Blocks. Routes to review with the stronger oracle authoritative (see below). |
-
-A conformant repo MUST NOT promote while any required obligation is in a blocking disposition. Because Swarm has no runtime, this gate is enforced by a **deterministic check outside the model** when one exists (CI, a PreToolUse hook, a merge-blocking status) and is **manual today** — the spec MUST NOT claim it is automatically enforced.
-
-A `WAIVED` verdict passes the gate **only while its waiver is live**: a waiver auto-expires on the next source-hash change of the waived obligation, and an expired waiver reverts to its underlying `FAIL`/`UNVERIFIED` so the gate blocks again. There are **no permanent waivers**.
+There is **one `VERDICT` per required binding** — an obligation with three required bindings contributes three, and *all* must pass-or-waive; the node-level `status` is the aggregate (blocking if any binding blocks, else `PASS`). The per-value disposition under the gate is the table in [`verify`](verify.md). A conformant repo MUST NOT promote while any required binding is in a blocking disposition; the gate is **manual today**, with a deterministic home (CI, a PreToolUse hook, a merge-blocking status) when a harness exists. A `WAIVED` verdict passes **only while its waiver is live**: it auto-expires on the next source-hash change of the waived obligation and reverts to its underlying `FAIL`/`UNVERIFIED` — there are **no permanent waivers**.
 
 ## Resolving a `CONTRADICTED` verdict
 
