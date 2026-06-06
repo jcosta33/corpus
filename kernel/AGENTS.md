@@ -50,9 +50,11 @@
 - Project rule bundles (overlays): `.swarm/overlays/` (project-owned; survives kernel upgrades)
 
 ## Compatibility
-`.agents/` MAY hold compatibility mirror files for agent tools (skills, profiles, thin task
-pointers), each pointing back to its canonical `.swarm/kernel/` (or `.swarm/generated/`) original.
-Canonical Swarm artifacts live in `.swarm/`.
+The kernel skills live at `.swarm/kernel/skills/`; for an agent CLI to discover them, adoption bridges
+them into the dir your CLI scans (`.claude/skills` for Claude Code, or the neutral `.agents/skills`) by
+symlink (copy where symlinks don't survive) — without that bridge the skills are invisible to the tool.
+That `.agents/`/`.claude/` surface is a one-directional mirror of `.swarm/kernel/skills/`; canonical
+Swarm artifacts live in `.swarm/`.
 
 ## Commands
 <!--

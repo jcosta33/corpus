@@ -30,7 +30,9 @@ kernel/AGENTS.md  →  AGENTS.md               # adopted as the project's bootlo
 
 ## Adopting
 
-1. Copy this payload into the consuming repo's `.swarm/kernel/` and adopt `AGENTS.md`.
+**The full step-by-step (with a copy-paste agent prompt) is [`../docs/ADOPTING.md`](../docs/ADOPTING.md).** In brief:
+
+1. Copy this payload into the consuming repo's `.swarm/kernel/` and adopt `AGENTS.md`; seed `.swarm/memory/`, `.swarm/config.yaml`, and `.swarm/overlays/`; create the `.swarm/` workspace dirs; and bridge the skills into your agent CLI's scan dir (`.claude/skills` / `.agents/skills`).
 2. Fill `AGENTS.md`'s `## Commands` table — bind each `cmd*` slot (`cmdTest`, `cmdLint`, `cmdTypecheck`, `cmdValidate`, …) to a project command. A `VERIFY BY <type>:<adapter>:<artifact>` clause resolves its adapter through that table; an unbound slot means an agent asks before running anything.
 3. Fill the `## Project facts` placeholders in `AGENTS.md`.
 4. Append the lines in [`.gitignore.additions`](./.gitignore.additions) to the project `.gitignore`.

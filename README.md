@@ -53,6 +53,8 @@ The surface is exactly **7 block types** (`REQ`, `CONSTRAINT`, `INVARIANT`, `INT
 
 ## How it is adopted
 
+**→ [`docs/ADOPTING.md`](docs/ADOPTING.md) is the step-by-step guide** — a copy-paste prompt that hands the adoption to the coding agent you already use (or a human runs the same steps).
+
 The installable payload — the **kernel** — lives in this repo under [`kernel/`](./kernel/). On adoption it installs to **`.swarm/kernel/`** in the consuming project, and `kernel/AGENTS.md` becomes the project's `AGENTS.md` **bootloader** (how an agent starts; short, capped at ≤200 lines / ≤25 KB [[LOSTMID]](docs/research/sources.md#LOSTMID)). Nothing executes during or after this copy — the kernel is inert reference data and copyable templates.
 
 In an adopted project, `.swarm/` is the canonical Swarm workspace, separating **desired** state from **observed** state from **generated** material:
