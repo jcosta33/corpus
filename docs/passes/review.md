@@ -121,7 +121,7 @@ Every artifact `review` reads is agent-readable markdown, which is also an attac
 
 Three lint floors the reviewer enforces by hand or via the [`lint`](lint.md) pass today (`SOL-V` layer): a non-`PASS/FAIL/BLOCKED/UNVERIFIED` core or a lifecycle missing its mandatory fields is `SOL-V005` (BLOCKING); a misplaced `WAIVED`/`STALE` is `SOL-V007` (BLOCKING); a required obligation with no `VERDICT` at the gate is `SOL-V008` (BLOCKING, and counts as `UNVERIFIED`). A `WAIVED` MUST name authority + reason + expiry; a `STALE` MUST cite the prior-verdict ref + changed surface; a `CONTRADICTED` MUST cite the two conflicting evidence refs.
 
-What `review` MUST reject as a non-proof (never `PASS`): schema-valid output (shape is not truth), "tests passed" with no command/exit-code/output, and a `manual` verdict with no recorded reasoning [[REFLEXION]](../research/sources.md#REFLEXION).
+What `review` MUST reject as a non-proof (never `PASS`): schema-valid output (shape is not truth), "tests passed" with no command/exit-code/output, and a `manual` verdict with no recorded reasoning [[REFLEXION]](../research/sources.md#REFLEXION). Rewarding grounded attribution and refusing when unsupported is what measurably raises trustworthiness — plain prompting does not [[TRUSTALIGN]](../research/sources.md#TRUSTALIGN); an unsupported claim is withheld, not emitted.
 
 ## Related
 

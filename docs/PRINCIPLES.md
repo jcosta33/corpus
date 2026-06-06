@@ -91,7 +91,7 @@ Meaning must be **preserved across every lowering**. Each downstream transformat
 
 **All load-bearing meaning** — modality, actor, trigger/state, verification binding, authority order, conflict resolution, trace schema — lives in **SOL and the typed IR**, and never in prose, pass guides, profiles, or `AGENTS.md`.
 
-- **Rationale.** Prose-delivered semantics are unreliable: model adherence degrades under prompt-format sensitivity, multi-turn reliability decay, and lost-in-the-middle / context-rot, and an always-loaded instruction file behaves as context rather than as enforced configuration.
+- **Rationale.** Prose-delivered semantics are unreliable: model adherence degrades under prompt-format sensitivity, multi-turn reliability decay [[MULTITURN-LOST]](research/sources.md#MULTITURN-LOST), and lost-in-the-middle / context-rot [[LOSTMID]](research/sources.md#LOSTMID), and an always-loaded instruction file behaves as context rather than as enforced configuration.
 - **Consequence.** Prose and pass guides are non-authoritative *delivery* layers; a regression check must confirm that no pass guide, profile, or `AGENTS.md` section defines modality, authority order, or verification semantics. Always-loaded normative prose is capped (≤200 lines / ≤25 KB) [[LOSTMID]](research/sources.md#LOSTMID), with everything procedural moved to lazily-loaded pass guides and profiles — to protect adherence and cost, not because models "cannot follow many instructions."
 
 ### Unitary at rest, modular in execution

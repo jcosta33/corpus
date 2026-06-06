@@ -192,7 +192,7 @@ Default proof-type → `cmd*` slot mapping:
 | `manual` | no command — a recorded human review |
 | `monitor` | `cmdMonitor` / dashboard ref — no merge-time execution |
 
-Keeping the *type* in the obligation and the *command* in `AGENTS.md` means the same `spec.swarm.md` ports across repos; only the Commands table changes. A binding whose adapter has no matching Commands row is `SOL-V002` (proof-not-executable), which surfaces as `BLOCKED` at run time — never `PASS`.
+Keeping the *type* in the obligation and the *command* in `AGENTS.md` means the same `spec.swarm.md` ports across repos; only the Commands table changes — extending the cross-tool `AGENTS.md` repository-context convention [[AGENTSMD-CONV]](../research/sources.md#AGENTSMD-CONV). A binding whose adapter has no matching Commands row is `SOL-V002` (proof-not-executable), which surfaces as `BLOCKED` at run time — never `PASS`.
 
 ### 5.4 Type-selection rules per block type
 
@@ -257,7 +257,7 @@ The phase tag (`@ VERIFY`, `@ NORMALIZE`, `@ REVIEW`, `@ LOWER`) names the pass 
 
 ### 5.7.1 The verification side of the task-kind contracts
 
-A default suite says *which* proof types a task kind expects; this note records *what those proofs must establish* for the three task kinds whose verification shape is non-obvious. Each is a design rationale, not a new lint rule — for the evidence behind the discipline, see [the execution research](../research/execution.md), and for the authoring side these contracts gate, see [the implement pass](./implement.md).
+A default suite says *which* proof types a task kind expects; this note records *what those proofs must establish* for the three task kinds whose verification shape is non-obvious. Each is a design rationale, not a new lint rule — for the authoring side these contracts gate, see [the implement pass](./implement.md).
 
 - **`refactor` — the equivalence/characterization oracle.** A refactor preserves behaviour end to end, so its `test`-at-`VERIFY` proof is not "does the new code pass a suite" but "would this oracle *fail if behaviour changed*". An adequate refactor oracle is a characterization or equivalence check — golden-output, differential, or property — that pins the existing behaviour before the change and would break the instant any of it moved. A green suite that never asserted the preserved behaviour is necessary but not sufficient; its `oracle_adequacy` should record what surface it actually exercised (the adequacy record), and a high-risk refactor escalates under the stronger-oracle threshold for `RISK high|critical`.
 

@@ -81,12 +81,6 @@ Treated as the kernel treats its own non-peer-reviewed sources: usable to *illus
 <a id="ACTIVATION-BLOG"></a>
 **[ACTIVATION-BLOG] Why Claude Code Skills Don't Activate — And How to Fix It.** Seleznov, Medium, 2026. A self-published 650-trial measurement reporting directive descriptions activating far more reliably than passive ones (the "OR ≈ 20.6 / 100% activation" figures). **Non-peer-reviewed; the specific numbers are NOT load-bearing.** The *direction* (directive, exclusion-bearing descriptions help) is used only as illustration; the kernel's primary mechanism is "load what the task names" (§26.4), with description-match as the fallback.
 
-<a id="TWOPROBLEMS"></a>
-**[TWOPROBLEMS] Claude Skills Have Two Reliability Problems, Not One.** Bara, Medium, 2026. Distinguishes activation failure from silent execution-step-skipping; motivates forced-visible-output. **Non-peer-reviewed; illustrative only** (the load-bearing version of this is [REFLEXION] + empirical-proof).
-
-<a id="PRACTITIONER"></a>
-**[PRACTITIONER] Practitioner skill-authoring catalogues.** Safonova ("I validated 100+ Claude Code Skills", Substack); Ibryam ("Skill Authoring Patterns", Generative Programmer); BSWEN (skill-count vs startup cost); the anti-patterns catalogue. **Practitioner sources, caveated** — useful for named anti-patterns and authoring heuristics, never for a quantitative claim.
-
 ### Preprints — web-verified arXiv (finding confirmed; cite as preliminary, never a `MUST`)
 
 A web-verified arXiv preprint is stronger than a blog post but is **not peer-reviewed**: it may *corroborate* or *illustrate* a direction, never carry a `MUST`. Each finding below was confirmed against the source (June 2026).
@@ -138,9 +132,6 @@ A web-verified arXiv preprint is stronger than a blog post but is **not peer-rev
 
 <a id="HILBENCH"></a>
 **[HILBENCH] HiL-Bench: Do Agents Know When to Ask for Help?** **arXiv:2604.09408** (preprint; not yet peer-reviewed). *Verified (June 2026).* Frontier agents solve up to ~89% of SWE/SQL tasks with full info, but on messy/ambiguous specs the best model drops to **~24% even when given a tool to ask for help**. Grounds: agents don't reliably self-clarify → clarify-before-lower (the CLARIFY-gate rationale).
-
-<a id="SUPPORTING-PREPRINTS"></a>
-**[FOCUSEDCOT / PAPERTRAIL / REQ2LTL / SPECFIX] Supporting preprints** (mechanism-strong, number-weak): focused chain-of-thought (arXiv:2511.22176), provenance trails (arXiv:2602.21045), requirements→temporal-logic (arXiv:2512.17334), spec-repair (arXiv:2505.07270). *Verified directionally (June 2026).* Used only to corroborate the provenance / structured-frame direction; never load-bearing.
 
 ## Rejected — DO NOT CITE (fabricated / misattributed / unconfirmed)
 

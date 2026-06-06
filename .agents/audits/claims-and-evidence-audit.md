@@ -70,6 +70,10 @@ markdown-only, no runtime).
   the abstract; only the peer-review **status** is inflated — and it is inflated in the very section
   that promises peer review. Blast radius: the externalised-state thesis leans on it, though always
   as "grounds/rationale", never a hard `MUST`.
+  *(Resolved: `sources.md:18` was corrected to "ICLR 2022 Workshop (DL4C)"; the `docs/research/` topical
+  dump files cited above as sites — `task-files.md`, `body-anatomy.md`, `self-containment.md`, `scope.md` —
+  have since been removed, their evidence folded contextually into the framework docs via inline `[[KEY]]`
+  citations.)*
 - **O-2 — `[AGENTSMD-HARM]` companion mis-paired + affiliation imprecise + missing id (MAJOR).**
   `docs/research/sources.md:30-31` attributes "LLM-generated narrative context can cost more than it
   returns" jointly to the ETH study **and** "its efficiency companion (Lulla et al.)." **Web-verified:**
