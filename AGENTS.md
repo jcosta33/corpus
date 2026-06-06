@@ -14,12 +14,12 @@ contract a future tool builds against, never code this repo runs.
   `artifacts/`, `library/`, `reference/`, `research/`, `adrs/`, `examples/` + `PRINCIPLES.md`,
   `NON-GOALS.md`, `positioning.md`. The references here are complete; nothing defers to an
   external doc.
-- `install/` — the installable payload a consuming repo adopts into `.swarm/kernel/`:
-  `install/.agents/{language,templates,passes,skills,overlays,conformance,memory}` + `install/AGENTS.md`.
+- `starter-kit/` — the installable payload a consuming repo adopts into `.swarm/kernel/`:
+  `starter-kit/.agents/{language,templates,passes,skills,overlays,conformance,memory}` + `starter-kit/AGENTS.md`.
 - `evals/` — rubrics.
 - `.agents/` — this repo's agent-tool surface: `skills/` (a **curated subset** of the kernel skills —
   only the ones useful for developing *this* repo, not a full mirror; the complete 34-skill payload is
-  `install/.agents/skills/`), `specs/swarm/` (the **frozen** build source), `audits/` (dev audits).
+  `starter-kit/.agents/skills/`), `specs/swarm/` (the **frozen** build source), `audits/` (dev audits).
 
 ## Startup
 1. Read the current task / request first.
@@ -29,10 +29,10 @@ contract a future tool builds against, never code this repo runs.
 
 ## Universal rules (the conventions that keep this repo coherent)
 - **Do NOT edit `.agents/specs/swarm/`.** It is the frozen build source — historical reference
-  only. The shipped framework (`docs/` + `install/`) is the product and the source of truth; all
+  only. The shipped framework (`docs/` + `starter-kit/`) is the product and the source of truth; all
   changes go there (+ an ADR under `docs/adrs/`).
 - **`docs/` is canonical; the kernel twins are derived (ADR-0044).** `docs/language/` and
-  `docs/passes/` are the source of truth; their `install/.agents/` copies are the derived,
+  `docs/passes/` are the source of truth; their `starter-kit/.agents/` copies are the derived,
   self-contained payload. A fix lands in `docs/` first, then the kernel twin is brought into
   line (eyeball-diff the two on any edit) — the kernel additionally drops citations/§-refs and
   rewrites links to resolve offline. Don't edit the kernel twin as if it were authoritative.
@@ -57,7 +57,7 @@ contract a future tool builds against, never code this repo runs.
   9 passes · 10 improve operations · 5 lint layers (S/P/M/V/O) · 7 edge types · 17 `task_kind` values.
 
 ## Pointers
-- Skills — the full catalogue (pass guides, per-kind implement, author, fragments, 13 personas) is the kernel payload `install/.agents/skills/`; `.agents/skills/` holds only the curated subset imported for developing this repo
+- Skills — the full catalogue (pass guides, per-kind implement, author, fragments, 13 personas) is the kernel payload `starter-kit/.agents/skills/`; `.agents/skills/` holds only the curated subset imported for developing this repo
 - Language reference (SOL / APS / errors / versioning): `docs/language/`
 - The pipeline, artifacts, conformance: `docs/model/`, `docs/artifacts/`
 - The evidence base (verified / caveated / rejected sources): `docs/research/sources.md`
@@ -70,7 +70,7 @@ contract a future tool builds against, never code this repo runs.
      not code. Coherence is verified by deterministic checks an agent runs by hand —
      counts reconcile across docs, `[[KEY]]` citations resolve, internal links resolve,
      fences balanced, fixture JSON valid, no `GUIDE.md` / stale-structure refs — and by the
-     conformance golden corpus under `install/.agents/conformance/fixtures/`. No runtime
+     conformance golden corpus under `starter-kit/.agents/conformance/fixtures/`. No runtime
      executes any of this (Invariant 1, NO RUNTIME). -->
 | Slot | Command | Resolves |
 | --- | --- | --- |

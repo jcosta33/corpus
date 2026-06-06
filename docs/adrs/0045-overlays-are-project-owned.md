@@ -21,7 +21,7 @@ Overlays are the project-local rule layer (architecture conventions, extra refus
 bindings) a repository adds on top of the kernel ([overlays reference](../library/overlays.md)). They are
 **project-authored** content. Yet the kernel payload model placed them *inside* the framework-owned tree:
 `docs/model/workspace.md` listed `overlays/` as a sub-directory of `.swarm/kernel/` (the installed payload)
-and the producer seed shipped at `install/.agents/overlays/` (which mirrors `.swarm/kernel/`).
+and the producer seed shipped at `starter-kit/.agents/overlays/` (which mirrors `.swarm/kernel/`).
 
 That nesting is an **upgrade footgun**. The kernel-upgrade model ([0044](./0044-kernel-is-derived-and-self-contained.md))
 replaces `.swarm/kernel/` **wholesale** from a newer payload. With overlays nested inside it, a naive payload
@@ -38,9 +38,9 @@ makes upgrades unsafe.
 1. **`.swarm/overlays/`** is a top-level workspace category (alongside `sources/`, `status/`, `memory/`,
    `ledger/`, `archive/`), **project-owned and committed**. A kernel upgrade replaces `.swarm/kernel/`
    wholesale and **never touches `.swarm/overlays/`**.
-2. The producer seed moves out of the payload mirror: `install/.agents/overlays/` → **`install/overlays/`**
-   (a workspace seed, not part of the `install/.agents/` → `.swarm/kernel/` mirror), so [0044](./0044-kernel-is-derived-and-self-contained.md)'s
-   "`install/.agents/` mirrors `.swarm/kernel/`" invariant stays honest. The stdlib ships it **empty (a README)**.
+2. The producer seed moves out of the payload mirror: `starter-kit/.agents/overlays/` → **`starter-kit/overlays/`**
+   (a workspace seed, not part of the `starter-kit/.agents/` → `.swarm/kernel/` mirror), so [0044](./0044-kernel-is-derived-and-self-contained.md)'s
+   "`starter-kit/.agents/` mirrors `.swarm/kernel/`" invariant stays honest. The stdlib ships it **empty (a README)**.
 3. The ownership boundary is now **positional**: everything under `.swarm/kernel/**` is framework-owned and
    replaced on upgrade; `.swarm/overlays/` (with the root `AGENTS.md`, `.swarm/config.yaml`, and the data
    workspace) is project-owned and preserved. This is the same boundary the upgrade story relies on.
@@ -57,7 +57,7 @@ precondition for a safe kernel upgrade and for the static adoption bundle.
 | Alternative | Why rejected |
 | --- | --- |
 | Keep overlays under `.swarm/kernel/overlays/`, preserve them on upgrade by a special stash/restore step | Makes the upgrade special-case a project-owned subdir of a framework-owned tree; ownership-by-exception is exactly the conflation that caused the footgun. Positional ownership (location = owner) is simpler and safe by construction. |
-| Keep the producer seed at `install/.agents/overlays/` | Breaks [0044](./0044-kernel-is-derived-and-self-contained.md)'s mirror invariant (`install/.agents/` ⇒ `.swarm/kernel/`): the coherence gate would expect it to install under `.swarm/kernel/overlays/`. The seed must leave the payload mirror. |
+| Keep the producer seed at `starter-kit/.agents/overlays/` | Breaks [0044](./0044-kernel-is-derived-and-self-contained.md)'s mirror invariant (`starter-kit/.agents/` ⇒ `.swarm/kernel/`): the coherence gate would expect it to install under `.swarm/kernel/overlays/`. The seed must leave the payload mirror. |
 | Put project rules in the root `AGENTS.md` instead of overlays | `AGENTS.md` is always-loaded persistent facts; overlays are lazily-loaded, pass-scoped rule bundles — a different lifecycle ([overlays reference](../library/overlays.md) §"where does a rule belong"). They are not interchangeable. |
 
 ## Consequences
@@ -72,8 +72,8 @@ precondition for a safe kernel upgrade and for the static adoption bundle.
 ### Negative
 
 - The `.swarm/` workspace grows from eight to nine top-level categories; adopters learn one more directory.
-- Existing prose and the producer layout that named `install/.agents/overlays/` / `.swarm/kernel/overlays/`
-  must be updated (this ADR + `workspace.md` + `overlays.md` + the `install/AGENTS.md`/`README.md` pointers).
+- Existing prose and the producer layout that named `starter-kit/.agents/overlays/` / `.swarm/kernel/overlays/`
+  must be updated (this ADR + `workspace.md` + `overlays.md` + the `starter-kit/AGENTS.md`/`README.md` pointers).
 
 ### Neutral / tradeoffs
 
@@ -90,7 +90,7 @@ Accepted (v0.1).
 - Adds: `.swarm/overlays/` as a project-owned, upgrade-surviving top-level workspace category; the positional
   ownership boundary (`.swarm/kernel/**` framework-owned/replaced vs `.swarm/overlays/` project-owned/preserved).
 - Modifies: the workspace partition (eight → nine categories); the producer seed location
-  (`install/.agents/overlays/` → `install/overlays/`); the `install/AGENTS.md` and `install/README.md` overlay
+  (`starter-kit/.agents/overlays/` → `starter-kit/overlays/`); the `starter-kit/AGENTS.md` and `starter-kit/README.md` overlay
   pointers; the "Where overlays live" contract in `docs/library/overlays.md`.
 - Refines: [0040](./0040-kernel-payload-directory.md). Supports: [0044](./0044-kernel-is-derived-and-self-contained.md).
 - Does NOT change: the overlay contract, the dependency chain, the SOFT/additive boundary, or any canonical count.

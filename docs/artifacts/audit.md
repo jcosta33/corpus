@@ -78,7 +78,7 @@ The calibration heuristic is **severity by blast radius, not by discovery order*
 The copyable skeleton ships at:
 
 ```
-install/.agents/templates/audit.md
+starter-kit/.agents/templates/audit.md
 ```
 
 That template is the skeleton you copy to start a new audit; **this page is its contract** — it states what each section means, the stance the artifact must hold, and where the file lives. Copy the template, fill every placeholder, keep the stance note, and ground every observation in evidence. A shipped, uninstantiated template MUST NOT be treated as a populated artifact.

@@ -32,7 +32,7 @@ it is **orthogonal to `parallel_group`** (a single non-parallel task can still n
   review → **in-place**. No ceremony; the absence of a source artifact is the signal.
 
 This lives where the agent reads it: the `## Isolation` section of `implement.md` (both twins) and the
-`isolation:`/`base:` fields on the `task.md` frame, with a one-line trigger in the `install/AGENTS.md`
+`isolation:`/`base:` fields on the `task.md` frame, with a one-line trigger in the `starter-kit/AGENTS.md`
 startup. Merge + cleanup are the orchestration lifecycle at worker-count 1 (the cross-worker disjointness
 condition is vacuous for one writer); an in-flight worktree is recorded under `.swarm/status/worktrees/`.
 
@@ -64,6 +64,6 @@ Accepted (v0.1).
 
 - Adds: the isolation binary + the `isolation:`/`base:` frame fields + the branch-naming convention;
   isolation is orthogonal to `parallel_group`.
-- Modifies: `implement.md` (a `## Isolation` section), the `task.md` frame, the `install/AGENTS.md` startup.
+- Modifies: `implement.md` (a `## Isolation` section), the `task.md` frame, the `starter-kit/AGENTS.md` startup.
 - Refines: [0039](./0039-write-surface-model.md); operationalizes [0010](./0010-write-side-single-threaded.md).
 - Does NOT change: the merge gate, the write-surface conflict model, any canonical closed set.

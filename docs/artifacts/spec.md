@@ -95,7 +95,7 @@ Obligation content lives **only** in SOL blocks, each opened by a bare header `T
 The copyable skeleton for this artifact is:
 
 ```
-install/.agents/templates/spec.swarm.md
+starter-kit/.agents/templates/spec.swarm.md
 ```
 
 That file is the skeleton you copy and fill — every `{{placeholder}}` and each `<what goes here>` guide is replaced when you author a real spec. **This page is its contract**: the template is the shape, and the sections, ordering, frontmatter, block discipline, and epistemic-stance rules above are the obligations that shape must satisfy. In an adopted project the same skeleton ships under `.swarm/kernel/templates/spec.swarm.md`.

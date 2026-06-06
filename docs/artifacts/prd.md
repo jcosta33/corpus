@@ -60,7 +60,7 @@ The `## Success metrics` section is a table — `Metric | Target | How observed 
 The copyable skeleton ships in the kernel at:
 
 ```
-install/.agents/templates/prd.md
+starter-kit/.agents/templates/prd.md
 ```
 
 That file is the skeleton you copy to start a new PRD; **this page is its contract**. The template carries the frontmatter, the seven section headings in order, and inline guidance that restates the intent-only stance; this page is the authority on what each section means and what the PRD is forbidden to do. Where you are authoring a PRD by hand, copy the template, fill the seven sections, and keep every statement on the intent side of the line — the moment a sentence describes a mechanism or reads as an obligation, it belongs in the spec the author pass will produce, not here.

@@ -94,7 +94,7 @@ These conventions are normative and apply to **every** artifact template in the 
 - Tables are the required carrier for every matrix (verification, obligation-verdict, promotion queue). A row whose status cell is empty in a *built* artifact is treated as `UNVERIFIED`.
 - Surface SOL blocks embedded in a working artifact (`TRACE` in `trace.md`, `VERDICT` in `review.md`) are quoted SOL data and MUST obey the SOL block grammar — including the canonical vocabulary: the 7 block types, the 5 modal keywords (`MUST` / `MUST NOT` / `SHOULD` / `SHOULD NOT` / `MAY`), the 7 verdicts (4 core `PASS` / `FAIL` / `BLOCKED` / `UNVERIFIED` + 3 lifecycle `WAIVED` / `STALE` / `CONTRADICTED`), the 9 proof types, and the `VERIFY BY <type>:<adapter>:<artifact>` form.
 
-The copyable skeleton for each artifact lives in the kernel payload under `install/.agents/templates/`. Each per-artifact page below is the **contract** for one of those skeletons: the page defines what the artifact means and what its sections require; the template is the file you copy and fill.
+The copyable skeleton for each artifact lives in the kernel payload under `starter-kit/.agents/templates/`. Each per-artifact page below is the **contract** for one of those skeletons: the page defines what the artifact means and what its sections require; the template is the file you copy and fill.
 
 ## 5. Filename and placement in an adopted workspace
 

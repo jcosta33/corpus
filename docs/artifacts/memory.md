@@ -79,7 +79,7 @@ Every row in sections 3–5 MUST carry a `Load when`. The recurring discipline a
 The copyable skeleton is the kernel template:
 
 ```text
-install/.agents/templates/memory/INDEX.md
+starter-kit/.agents/templates/memory/INDEX.md
 ```
 
 That template is the skeleton you copy into a new workspace (it installs to `.swarm/memory/INDEX.md`); **this page is its contract** — what each section and field means and the rules the skeleton must be filled out to satisfy. Copy the template, then populate it under the load-when discipline above: one row per durable artifact, each with the trigger that surfaces it, and remove any row that cannot name when it matters.

@@ -73,7 +73,7 @@ A conformant `adr.md` MUST contain the four Nygard elements — context, decisio
 The copyable skeleton for this artifact is shipped at:
 
 ```
-install/.agents/templates/adr.md
+starter-kit/.agents/templates/adr.md
 ```
 
 Copy that file to start a new ADR — it is the empty skeleton (frontmatter + the seven body sections above, with placeholders). **This page is the contract; the template is the skeleton.** When the two are read together, the template tells you the shape to fill in and this page tells you what each section must mean and what the ADR may never do.

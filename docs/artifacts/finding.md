@@ -76,7 +76,7 @@ The full provenance set is **mandatory on every finding that reaches `accepted` 
 
 ## Copyable template
 
-The copyable skeleton is `install/.agents/templates/finding.md`. That file is the empty starting point an author copies to create a new finding; **this page is its contract** — the meaning of each field, the epistemic boundary, and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/finding.md`.
+The copyable skeleton is `starter-kit/.agents/templates/finding.md`. That file is the empty starting point an author copies to create a new finding; **this page is its contract** — the meaning of each field, the epistemic boundary, and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/finding.md`.
 
 ## Related
 

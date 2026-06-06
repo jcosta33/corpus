@@ -66,7 +66,7 @@ The `R-NNN` finding ids and `Q-NNN` question ids are the load-bearing local hand
 
 ## Copyable template
 
-The copyable skeleton is `install/.agents/templates/research.md`. That file is the empty starting point an author copies to create a new research artifact; **this page is its contract** — the meaning of each section and field, the epistemic boundary (inquiry, never decision; no obligation blocks), and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/research.md`.
+The copyable skeleton is `starter-kit/.agents/templates/research.md`. That file is the empty starting point an author copies to create a new research artifact; **this page is its contract** — the meaning of each section and field, the epistemic boundary (inquiry, never decision; no obligation blocks), and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/research.md`.
 
 ## Related
 

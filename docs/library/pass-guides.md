@@ -160,31 +160,31 @@ A guide body satisfies the contract sections, and within them follows a stable s
 
 ## The installed guides
 
-The four pass guides, the nine per-kind `implement` guides, the six author guides, and the two cross-cutting fragments ship under `install/.agents/skills/`. Each is a self-contained `SKILL.md` carrying the contract above, plus a self-activating `description` for the launcher-less fallback. (The thirteen `persona-*/SKILL.md` profiles ship under the same path; they are catalogued on [heuristic profiles](heuristic-profiles.md).)
+The four pass guides, the nine per-kind `implement` guides, the six author guides, and the two cross-cutting fragments ship under `starter-kit/.agents/skills/`. Each is a self-contained `SKILL.md` carrying the contract above, plus a self-activating `description` for the launcher-less fallback. (The thirteen `persona-*/SKILL.md` profiles ship under the same path; they are catalogued on [heuristic profiles](heuristic-profiles.md).)
 
 | Installed module | Role | Pass |
 |---|---|---|
-| `install/.agents/skills/pass-lint-spec/` | pass guide | `lint` |
-| `install/.agents/skills/pass-decompose-spec/` | pass guide | `decompose` |
-| `install/.agents/skills/pass-review-trace/` | pass guide (carries the Skeptic profile) | `review` |
-| `install/.agents/skills/pass-promote-findings/` | pass guide | `promote` |
-| `install/.agents/skills/write-feature/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-fix/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-refactor/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-rewrite/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-migration/` | per-kind `implement` guide (covers migration + upgrade) | `implement` |
-| `install/.agents/skills/write-performance/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-testing/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/write-documentation/` | per-kind `implement` guide | `implement` |
-| `install/.agents/skills/fix-flaky-test/` | narrow `implement` guide (loaded under `task_kind: fix`) | `implement` |
-| `install/.agents/skills/write-spec/` | author guide | `author` |
-| `install/.agents/skills/write-audit/` | author guide | `author` |
-| `install/.agents/skills/write-research/` | author guide | `author` |
-| `install/.agents/skills/write-bug-report/` | author guide | `author` |
-| `install/.agents/skills/write-prd/` | author guide | `author` |
-| `install/.agents/skills/write-rfc/` | author guide | `author` |
-| `install/.agents/skills/empirical-proof/` | cross-cutting fragment | `verify`, `review` |
-| `install/.agents/skills/distillation-discipline/` | cross-cutting fragment | `lower`, `decompose`, `promote` |
+| `starter-kit/.agents/skills/pass-lint-spec/` | pass guide | `lint` |
+| `starter-kit/.agents/skills/pass-decompose-spec/` | pass guide | `decompose` |
+| `starter-kit/.agents/skills/pass-review-trace/` | pass guide (carries the Skeptic profile) | `review` |
+| `starter-kit/.agents/skills/pass-promote-findings/` | pass guide | `promote` |
+| `starter-kit/.agents/skills/write-feature/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-fix/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-refactor/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-rewrite/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-migration/` | per-kind `implement` guide (covers migration + upgrade) | `implement` |
+| `starter-kit/.agents/skills/write-performance/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-testing/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/write-documentation/` | per-kind `implement` guide | `implement` |
+| `starter-kit/.agents/skills/fix-flaky-test/` | narrow `implement` guide (loaded under `task_kind: fix`) | `implement` |
+| `starter-kit/.agents/skills/write-spec/` | author guide | `author` |
+| `starter-kit/.agents/skills/write-audit/` | author guide | `author` |
+| `starter-kit/.agents/skills/write-research/` | author guide | `author` |
+| `starter-kit/.agents/skills/write-bug-report/` | author guide | `author` |
+| `starter-kit/.agents/skills/write-prd/` | author guide | `author` |
+| `starter-kit/.agents/skills/write-rfc/` | author guide | `author` |
+| `starter-kit/.agents/skills/empirical-proof/` | cross-cutting fragment | `verify`, `review` |
+| `starter-kit/.agents/skills/distillation-discipline/` | cross-cutting fragment | `lower`, `decompose`, `promote` |
 
 These directories sit under a `skills/` path for cross-tool compatibility; in kernel vocabulary they are pass guides, per-kind implement guides, author guides, and fragments. The two guide-less passes (`improve`, `lower`) ship no module here — their pass contracts stand on their own.
 

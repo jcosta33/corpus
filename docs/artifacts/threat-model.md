@@ -29,7 +29,7 @@ A `threat-model.md` promotes forward only through an `author` pass that restates
 
 ## Copyable template
 
-The skeleton is `install/.agents/templates/threat-model.md`. That file is the copyable skeleton; this page is its contract.
+The skeleton is `starter-kit/.agents/templates/threat-model.md`. That file is the copyable skeleton; this page is its contract.
 
 ## Related
 

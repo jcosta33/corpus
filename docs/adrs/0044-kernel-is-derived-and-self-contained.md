@@ -17,7 +17,7 @@ superseded_by:
 
 ## Context
 
-`docs/language/` ↔ `install/.agents/language/` and `docs/passes/` ↔ `install/.agents/passes/` are
+`docs/language/` ↔ `starter-kit/.agents/language/` and `docs/passes/` ↔ `starter-kit/.agents/passes/` are
 maintained as **duplicate copies** (the rule recorded in this repo's `AGENTS.md`). In practice they
 are *divergent re-renderings*: a 13-file-pair analysis found that neither side is uniformly more
 current — the kernel is ahead on some pairs
@@ -29,10 +29,10 @@ carries a `CONSTRAINT WHERE`-clause the kernel regressed). The hand-maintained t
 **"fix one copy, miss the twin"** defect.
 
 The same analysis surfaced a **larger, latent defect the twins were hiding: the shipped kernel is not
-actually self-contained.** An adopter installs `install/.agents/` into `.swarm/kernel/` and receives
+actually self-contained.** An adopter installs `starter-kit/.agents/` into `.swarm/kernel/` and receives
 **no `docs/`** and **no §-numbered monolith** — yet the kernel files carry **614 `§N` references and 9
 `Appendix-X` references** that resolve only against the frozen, never-shipped build source
-(`.agents/specs/swarm/`), including in the **always-loaded `install/AGENTS.md`** (`§14`/`§17`/`§20.5`/…)
+(`.agents/specs/swarm/`), including in the **always-loaded `starter-kit/AGENTS.md`** (`§14`/`§17`/`§20.5`/…)
 and in `conformance.yaml` (`§21`/`§25`/`§32`/`§33`, plus `catalogue_ref: docs/language/errors.md`
 pointing at a path the adopter never gets). Several kernel files also still carry **migration framing**
 the de-pivot forbids ("the earlier 4-value enum is upgraded", "merges legacy Bind+Trace", "two competing
@@ -44,9 +44,9 @@ under this decision.)
 
 ## Decision
 
-1. **`docs/` is the single canonical source** for the `docs/language/` ↔ `install/.agents/language/`
-   and `docs/passes/` ↔ `install/.agents/passes/` twins. `install/.agents/language/` and
-   `install/.agents/passes/` are **derived, checked copies** — established after a **one-time reconciling
+1. **`docs/` is the single canonical source** for the `docs/language/` ↔ `starter-kit/.agents/language/`
+   and `docs/passes/` ↔ `starter-kit/.agents/passes/` twins. `starter-kit/.agents/language/` and
+   `starter-kit/.agents/passes/` are **derived, checked copies** — established after a **one-time reconciling
    merge** that pulls every kernel-only load-bearing fact *up* into `docs/` and fixes `docs/`'s own gaps,
    so the canonical `docs/` corner is a true superset of load-bearing content. This **refines**
    [0040](./0040-kernel-payload-directory.md) and relates to [0042](./0042-skill-carrier-and-standalone-conditioning.md)/[0016](./0016-skills-are-self-contained.md) (thin skills cite-don't-define) and [0041](./0041-two-axis-versioning.md).
@@ -71,14 +71,14 @@ under this decision.)
 5. **Self-containment + the coherence gate.** The kernel cites no `§N`/`Appendix` from a document it does
    not ship. The only legitimate `§N` use is a **local self-reference** to a file's own numbered sections —
    e.g. `versioning.md`'s `§1`–`§4` headings, or `SOL.md`'s `§2.4`/`§3.8` references to its own numbered
-   `2.4`/`3.8` sections (headed as a bare number, cited with the `§` prefix). `conformance.yaml`/`install/AGENTS.md`
+   `2.4`/`3.8` sections (headed as a bare number, cited with the `§` prefix). `conformance.yaml`/`starter-kit/AGENTS.md`
    reference no `docs/` paths. The gate is a grep: fail if any shipped file carries a `§N`/`Appendix` token
    that does not resolve to a numbered section heading in the **same file**, or a `docs/` path.
 
 6. **Execution discipline:** the merge runs **pair-by-pair** (the merge direction differs per pair —
    `decompose.md` regenerates the kernel *from* docs; `errors.md`/`lint.md`/`promote.md` merge kernel→docs),
    running the eyeball-diff check **after each pair**. Never a single bulk copy — that would destroy the
-   more-current side. `conformance.yaml` and `install/AGENTS.md` (always-loaded entry points) are fixed
+   more-current side. `conformance.yaml` and `starter-kit/AGENTS.md` (always-loaded entry points) are fixed
    **first**.
 
 ## Alternatives considered

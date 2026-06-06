@@ -60,7 +60,7 @@ In order, every conformant bug-report MUST contain these four sections:
 
 ## Copyable template
 
-The copyable skeleton is `install/.agents/templates/bug-report.md`. That file is the empty starting point an author copies to create a new bug-report; **this page is its contract** — the meaning of each field, the diagnosis-only boundary, and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/bug-report.md`.
+The copyable skeleton is `starter-kit/.agents/templates/bug-report.md`. That file is the empty starting point an author copies to create a new bug-report; **this page is its contract** — the meaning of each field, the diagnosis-only boundary, and the placement rules the skeleton is filled in against. In an adopted project the same skeleton is installed at `.swarm/kernel/templates/bug-report.md`.
 
 ## Related
 

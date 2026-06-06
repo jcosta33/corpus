@@ -1,6 +1,6 @@
 # Principles
 
-> Swarm's reference for the load-bearing invariants and standing principles of the kernel: the tiebreakers that decide cases when two design choices collide. The installable payload that carries these principles into an adopted project ships under [`install/`](../install/).
+> Swarm's reference for the load-bearing invariants and standing principles of the kernel: the tiebreakers that decide cases when two design choices collide. The installable payload that carries these principles into an adopted project ships under [`starter-kit/`](../starter-kit/).
 
 Swarm treats a **specification as source code** and a **fleet of agents as the compiler**. Human intent is written as controlled markdown (the source); agents compile it into work that is implemented, verified against the original obligations, and promoted into durable memory. Everything below holds in *every* part of the framework — no construct may contradict an invariant.
 
@@ -115,12 +115,19 @@ Swarm holds itself to the same standard it imposes on agents: **real science, no
 
 These are design/layout principles for an adopted project, not empirical claims. The concrete layout is in [`model/workspace.md`](model/workspace.md); this section states the principles behind it.
 
-### Swarm lives under `.agents/`, and prescribes only what the flow uses
+### Swarm is a spec-repo discipline; the code repo stays pristine
 
-Swarm installs under `.agents/` — the cross-tool agent directory — and prescribes only the handful of folders a pass actually reads or writes (`skills/`, `reference/`, `templates/`, `specs/`, `tasks/`, `memory/`). It imposes no `.swarm/` mount and stamps in no empty tree.
+Swarm lives in a **spec / documentation repo** (intent — authored and reviewed under `.agents/`). A **code repo** that consumes specs stays clean: no required Swarm footprint, at most one opt-in `implement-and-verify` skill, with all Swarm scratch gitignored and durable outcomes pushed back to the spec repo as linked PRs. Co-located is the degenerate one-repo case. ([ADR-0050](adrs/0050-swarm-is-a-spec-repo-discipline.md))
 
-- **Rationale.** A NO-RUNTIME framework cannot justify a filing cabinet of directories nothing reads. Prescribing the proven-flow folders keeps adoption intuitive without overbearing structure; anything a *future* tool would write is created lazily, not up front.
-- **Consequence.** Source artifacts (specs, audits, findings, ADRs) are normal `type:`-tagged docs under `.agents/`; only `specs/`/`tasks/`/`memory/` are fixed because the flow keys off them. Project conventions live in the root `AGENTS.md`, not a separate overlays directory.
+- **Rationale.** Intent is curated by a few and consumed by many across repos; one spec can govern several code repos. Developers reject tools that litter their codebase, so a code repo keeps only its real sources of truth and its code. A NO-RUNTIME framework also cannot justify a filing cabinet of directories nothing reads.
+- **Consequence.** A spec repo prescribes only the flow folders it uses (`skills/`, `reference/`, `templates/`, `specs/`, `memory/`); a code repo prescribes none. No `.swarm/` mount, no version file, no empty tree. Project conventions live in the root `AGENTS.md`, not an overlays directory.
+
+### SOL is an authoring aid, not a reading burden
+
+SOL's English-shaped keywords exist to force the **author** to be unambiguous, testable, and bounded. A capable agent **reads** a good SOL spec with no grammar manual.
+
+- **Rationale.** The value of the controlled language is paid at authoring time; the spec is then a self-legible interface. Shipping a "how to read SOL" skill into every code repo would be both pollution and redundant.
+- **Consequence.** A code repo needs **no** SOL reference cards and no SOL-reading skill — the spec (delivered, or referenced by id) is the whole interface. The reference cards are authoring tools and live in the spec repo.
 
 ### Source, status, and generated are separate categories
 

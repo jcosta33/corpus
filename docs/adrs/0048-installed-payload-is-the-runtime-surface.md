@@ -17,7 +17,7 @@ superseded_by: 0049-minimal-install-no-mount-no-imposed-workspace
 
 ## Context
 
-ADR-0040/0044 defined the installable payload as `install/.agents/` and shipped it **wholesale** into an
+ADR-0040/0044 defined the installable payload as `starter-kit/.agents/` and shipped it **wholesale** into an
 adopter's `.swarm/kernel/` — `skills/`, `templates/`, `language/` (the full SOL/APS/errors/versioning
 manuals), `passes/` (the nine pass reference docs with rationale), `conformance/` (the golden corpus),
 and `memory/`. The justification was offline self-containment.
@@ -58,7 +58,7 @@ the deep reference stays upstream. (The twin-maintenance burden 0044 introduced 
   manuals, no corpus. Upgrades copy less; there is less to drift.
 - **Negative:** an agent cannot read the full pass rationale offline. Acceptable: the skills carry the
   operational rules ([0047](./0047-skills-are-self-contained.md)); rationale is a human concern, upstream.
-- **Neutral:** `install/.agents/{passes,language,conformance}` remain in the `swarm` repo (the reference +
+- **Neutral:** `starter-kit/.agents/{passes,language,conformance}` remain in the `swarm` repo (the reference +
   the corpus a future `swarm-core` checker tests against); they are simply outside the installed subset.
 
 ## Update (2026-06-06): the compact reference is shipped after all
@@ -94,6 +94,6 @@ upstream).
 ## Affected obligations / constraints
 
 - Refines: [0044](./0044-kernel-is-derived-and-self-contained.md) (kernel no longer ships passes/language
-  twins), [0040](./0040-kernel-payload-directory.md) (payload = a defined subset of `install/.agents/`).
+  twins), [0040](./0040-kernel-payload-directory.md) (payload = a defined subset of `starter-kit/.agents/`).
 - Depends on: [0047](./0047-skills-are-self-contained.md) (self-contained skills make the trim safe).
 - Does NOT change: `docs/` as canonical, any closed set, or the obligation grammar.

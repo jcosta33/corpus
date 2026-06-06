@@ -60,7 +60,7 @@ The `## Alternatives` section is a table — `Alternative | Why weaker than the 
 The copyable skeleton ships in the kernel at:
 
 ```
-install/.agents/templates/rfc.md
+starter-kit/.agents/templates/rfc.md
 ```
 
 That file is the skeleton you copy to start a new RFC; **this page is its contract**. The template carries the frontmatter, the six section headings in order, and inline guidance that restates the proposal-only, no-obligation stance; this page is the authority on what each section means and what the RFC is forbidden to do. Where you are authoring an RFC by hand, copy the template, fill the six sections, and keep every statement on the proposal side of the line — the moment a sentence reads as an approved behavioral contract it belongs in the `spec.swarm.md` the author pass will produce, and the moment it reads as a settled choice it belongs in the `adr.md`, not here.

@@ -123,7 +123,7 @@ A spec is not born only from research. Swarm normalizes many requirements-practi
 
 ## 5. What conformance requires (pointer)
 
-Per §20.4, a repository is **Swarm-conformant** iff *all four* hold: (1) self-contained copies of all six Tier-2 docs; (2) a copyable template for each of the seven Tier-1 artifacts, each satisfying its §21 contract; (3) a populated `AGENTS.md` bootloader within the ≤200-line / ≤25 KB density cap (§2, §31.1); (4) the version file (`install/.agents/.swarm-version` in the framework repo, `.agents/swarm.version` in an adopted project; §25). Conditional Tier-3 artifacts and the reserved `.swarm.*.json` contract files are **not** required for conformance. The full mechanically-checkable contract is §32; the golden corpus that exercises it is §33. This projection states the artifact set those checks range over; it does not restate the checks themselves.
+Per §20.4, a **spec/authoring repo** is **Swarm-conformant** iff *all three* hold: (1) self-contained copies of all six Tier-2 docs; (2) a copyable template for each of the seven Tier-1 artifacts, each satisfying its §21 contract; (3) a populated `AGENTS.md` bootloader within the ≤200-line / ≤25 KB density cap (§2, §31.1). There is no version-file clause (an adopted project keeps no per-repo version marker — [ADR-0050](../adrs/0050-swarm-is-a-spec-repo-discipline.md)), and a **code repo** that only consumes specs is not measured against (1)/(2). Conditional Tier-3 artifacts and the reserved `.swarm.*.json` contract files are **not** required for conformance. The full mechanically-checkable contract is §32; the golden corpus that exercises it is §33. This projection states the artifact set those checks range over; it does not restate the checks themselves.
 
 ## Related
 

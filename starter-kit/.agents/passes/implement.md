@@ -68,7 +68,7 @@ An owned path that touches a file outside any assigned obligation's declared wri
 
 ## `implement` ships nine per-kind implement guides
 
-`implement` is not served by a single guide. Because its carrier profile is selected **by task kind**, not fixed, the kernel ships **nine per-kind implement guides** under `install/.agents/skills/`, each a `SKILL.md` (ADR-0042): `../skills/write-feature/SKILL.md`, `../skills/write-fix/SKILL.md`, `../skills/write-refactor/SKILL.md`, `../skills/write-rewrite/SKILL.md`, `../skills/write-migration/SKILL.md` (covering migration + upgrade), `../skills/write-performance/SKILL.md`, `../skills/write-testing/SKILL.md`, `../skills/write-documentation/SKILL.md`, plus the narrow `../skills/fix-flaky-test/SKILL.md` (under `task_kind: fix`). The rationale: `implement` runs on nearly every obligation that reaches code, so each task kind benefits from its own written procedure tuned to that kind's discipline. A pass guide is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
+`implement` is not served by a single guide. Because its carrier profile is selected **by task kind**, not fixed, the kernel ships **nine per-kind implement guides** under `starter-kit/.agents/skills/`, each a `SKILL.md` (ADR-0042): `../skills/write-feature/SKILL.md`, `../skills/write-fix/SKILL.md`, `../skills/write-refactor/SKILL.md`, `../skills/write-rewrite/SKILL.md`, `../skills/write-migration/SKILL.md` (covering migration + upgrade), `../skills/write-performance/SKILL.md`, `../skills/write-testing/SKILL.md`, `../skills/write-documentation/SKILL.md`, plus the narrow `../skills/fix-flaky-test/SKILL.md` (under `task_kind: fix`). The rationale: `implement` runs on nearly every obligation that reaches code, so each task kind benefits from its own written procedure tuned to that kind's discipline. A pass guide is SOFT control (Invariant 2): it MUST NOT define SOL/APS semantics, modality, authority order, or verification meaning — those live only in SOL and the IR.
 
 ## The input: the `task.md` pass frame
 
@@ -141,7 +141,7 @@ The pass frame and the trace contract together fence the change:
 
 ## Related
 
-Sibling payload files under `install/.agents/`:
+Sibling payload files under `starter-kit/.agents/`:
 
 - `../skills/write-feature/SKILL.md`, `../skills/write-fix/SKILL.md`, `../skills/write-refactor/SKILL.md`, `../skills/write-rewrite/SKILL.md`, `../skills/write-migration/SKILL.md`, `../skills/write-performance/SKILL.md`, `../skills/write-testing/SKILL.md`, `../skills/write-documentation/SKILL.md`, `../skills/fix-flaky-test/SKILL.md` — the nine per-kind implement guides for `implement` (one per-task-kind procedure; SOFT control).
 - `../passes/decompose.md` — the upstream pass that partitions the IR into write-disjoint `task.md` packets and computes the COVERAGE gate by hand.

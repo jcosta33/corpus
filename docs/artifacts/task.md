@@ -93,7 +93,7 @@ The frontmatter MUST carry the full field set below — including the orchestrat
 The copyable skeleton for this artifact is shipped at:
 
 ```
-install/.agents/templates/task.md
+starter-kit/.agents/templates/task.md
 ```
 
 That template is the skeleton you copy to start a task; **this page is its contract**. Where the template gives empty slots and the field enum, this page gives the meaning of each slot and the rules a conformant `task.md` MUST satisfy. There is **one** task template for every kind of work; a `task_kind` value specializes it.

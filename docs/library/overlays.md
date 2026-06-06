@@ -4,7 +4,7 @@
 
 An **overlay** is the project-scoped guidance layer of the Swarm kernel. Where a pass guide documents *how* to perform one of the nine passes, and a heuristic profile documents *what an agent looks for and refuses* while performing a pass, an overlay documents *what this one project additionally expects* on top of both. It is how a repository encodes its house rules — its architecture conventions, its testing policy, its domain refusals, its local command bindings — without editing or forking the kernel that ships those passes and profiles.
 
-Like every Swarm artifact, an overlay is **markdown-only** and has no runtime: it is a guidance file a human or an agent reads while performing a pass, never shipped code. A project's overlays live in **`.swarm/overlays/`** — a **project-owned** directory and a sibling of `.swarm/kernel/`, deliberately *outside* the framework-owned payload so they survive a kernel upgrade (ADR-0045). The standard library seeds it empty (from the framework's `install/overlays/`), because the kernel is complete without any overlay at all.
+Like every Swarm artifact, an overlay is **markdown-only** and has no runtime: it is a guidance file a human or an agent reads while performing a pass, never shipped code. A project's overlays live in **`.swarm/overlays/`** — a **project-owned** directory and a sibling of `.swarm/kernel/`, deliberately *outside* the framework-owned payload so they survive a kernel upgrade (ADR-0045). The standard library seeds it empty (from the framework's `starter-kit/overlays/`), because the kernel is complete without any overlay at all.
 
 ## What an overlay is
 
@@ -105,7 +105,7 @@ The split matters because each layer has a different lifecycle: a pass guide is 
 
 | Path | Holds |
 |---|---|
-| `.swarm/overlays/` | The project's overlay directory — **project-owned**, a sibling of `.swarm/kernel/` so it survives a kernel upgrade (ADR-0045). Seeded empty (a README) from the framework's `install/overlays/`; the project populates it. |
+| `.swarm/overlays/` | The project's overlay directory — **project-owned**, a sibling of `.swarm/kernel/` so it survives a kernel upgrade (ADR-0045). Seeded empty (a README) from the framework's `starter-kit/overlays/`; the project populates it. |
 | `.swarm/overlays/<name>/` | One overlay — a `*.md` file or a directory of them, per [the contract](#the-overlay-contract). |
 
 ## Related

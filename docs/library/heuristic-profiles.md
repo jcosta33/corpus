@@ -50,7 +50,7 @@ For example, the Skeptic stance — the canonical reference profile — refuses 
 
 ## The thirteen stdlib profiles
 
-The kernel models **thirteen** heuristic stances, and **all thirteen ship as standalone `install/.agents/skills/persona-*/SKILL.md` profiles** — installed, ready-to-load carriers discoverable and surgically activated by their `description`. There is no separate `profiles/` directory and no smaller installed subset: the full set ships, and the stances that cover the most common entry points carry the same weight as the rest.
+The kernel models **thirteen** heuristic stances, and **all thirteen ship as standalone `starter-kit/.agents/skills/persona-*/SKILL.md` profiles** — installed, ready-to-load carriers discoverable and surgically activated by their `description`. There is no separate `profiles/` directory and no smaller installed subset: the full set ships, and the stances that cover the most common entry points carry the same weight as the rest.
 
 | Stdlib profile | Stance | Pass(es) it parameterizes |
 |---|---|---|
@@ -80,7 +80,7 @@ Routing is this **single axis** — profile × pass — rather than a pair of lo
 
 ## Where profiles ship
 
-The thirteen stdlib profiles ship in the kernel payload under **`install/.agents/skills/`** — one directory per profile (`persona-skeptic/`, `persona-architect/`, `persona-auditor/`, `persona-surveyor/`, `persona-researcher/`, `persona-bug-hunter/`, `persona-builder/`, `persona-janitor/`, `persona-migrator/`, `persona-performance-surgeon/`, `persona-test-author/`, `persona-documentarian/`, `persona-lead-engineer/`), each carrying a `SKILL.md` of `type: profile`. There is no separate `install/.agents/profiles/` directory — profiles live among the pass guides and fragments under `skills/`, discoverable and surgically activated by `description`. In an adopted project the same directories are installed under the project's skills path. A profile a project authors itself lives alongside them. Because a profile's carrier is incidental, a project that prefers to inline a stance into its pass guide is equally conformant, so long as the seven-section contract is satisfied.
+The thirteen stdlib profiles ship in the kernel payload under **`starter-kit/.agents/skills/`** — one directory per profile (`persona-skeptic/`, `persona-architect/`, `persona-auditor/`, `persona-surveyor/`, `persona-researcher/`, `persona-bug-hunter/`, `persona-builder/`, `persona-janitor/`, `persona-migrator/`, `persona-performance-surgeon/`, `persona-test-author/`, `persona-documentarian/`, `persona-lead-engineer/`), each carrying a `SKILL.md` of `type: profile`. There is no separate `starter-kit/.agents/profiles/` directory — profiles live among the pass guides and fragments under `skills/`, discoverable and surgically activated by `description`. In an adopted project the same directories are installed under the project's skills path. A profile a project authors itself lives alongside them. Because a profile's carrier is incidental, a project that prefers to inline a stance into its pass guide is equally conformant, so long as the seven-section contract is satisfied.
 
 ## Authoring a profile
 

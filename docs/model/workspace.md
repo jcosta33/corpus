@@ -1,11 +1,18 @@
 # Workspace Model
 
-> Where an adopted project keeps Swarm's files and its own source artifacts. Swarm imposes **no runtime
-> and no filing cabinet**: it ships skills, templates, and reference cards you copy in, plus the SOL
-> language. Nothing else is created until something actually writes it.
+> Where Swarm's files and a project's source artifacts live. Swarm is a **spec-repo discipline** with **no
+> runtime and no filing cabinet**: intent lives in a spec repo; code repos stay pristine. ([ADR-0050](../adrs/0050-swarm-is-a-spec-repo-discipline.md))
 
-This page describes the **adopted project** (the product). It is distinct from the framework-dev repo
-(the producer: `docs/`, `examples/`, `evals/`, and the installable files). The two MUST NOT be conflated.
+This page describes the **adopted project** (the product), distinct from the framework-dev repo (the
+producer: `docs/`, `examples/`, `evals/`, and the starter kit). Adoption depends on the repo's **role**:
+
+- A **spec / documentation repo** is where Swarm lives — intent is authored and reviewed here (the
+  *desired truth*).
+- A **code repo** implements against specs and stays clean — it holds the *reality*.
+- **Co-located** (solo / single repo) plays both roles in one repo.
+
+The intent/reality split *is* the repo boundary: spec repo = desired truth; code = reality; a coverage
+record (the spec repo, or the PRs that satisfy obligations) = observed satisfaction.
 
 ## No runtime (Invariant 1)
 
@@ -16,39 +23,40 @@ durably writes; anything that would serve only a future tool is created lazily, 
 install. The goal is the goldilocks middle: enough structure to be intuitive out of the box, no filing
 cabinet for a clerk who doesn't exist yet.
 
-## Install: a small folder set under `.agents/`
+## The spec repo — a small folder set under `.agents/`
 
-Everything Swarm lives under `.agents/` — the cross-tool agent directory your repo likely already has.
-Adoption prescribes **six** folders, every one earned by the flow:
+A spec repo holds Swarm under `.agents/` — the cross-tool agent directory — prescribing only the folders
+the authoring flow uses:
 
 ```text
 .agents/
-  skills/        # install — Swarm's pass/persona/author skills, beside your own (names don't collide)
-  reference/     # install — the closed-set rule cards (sol.md, proofs.md, ir.md) the skills name
-  templates/     # install — starting points for specs, audits, traces, …
-  specs/         # your *.swarm.md sources (the `author` pass writes here)
-  tasks/         # task frames the run produces — gitignored (recreatable execution state)
-  memory/        # durable recall the `promote` pass writes — INDEX.md + findings/patterns
-  swarm.version  # the adopted Swarm version
-AGENTS.md        # repo root — the bootloader; fill its Commands table + project facts
+  skills/      # install — the authoring kit (author/lint/improve/lower/decompose/review/promote + personas)
+  reference/   # install — the rule cards (sol.md, proofs.md, ir.md) the authoring skills name
+  templates/   # install — artifact skeletons (spec, prd, rfc, audit, finding, adr, …)
+  specs/       # the *.swarm.md sources (the `author` pass writes here) — desired truth
+  memory/      # durable recall the `promote` pass writes — INDEX.md + findings/patterns
+AGENTS.md      # repo root — the bootloader; fill its Commands table + project facts
 ```
 
-The three *install* folders (`skills/`, `reference/`, `templates/`) are re-copied on upgrade; the three
-*flow* folders are yours and grow as you work. If your agent CLI scans a fixed skills directory (Claude
-Code scans `.claude/skills/`), the skills go **there** instead — beside your own as ordinary entries, no
-separate home and no symlink bridge. Upgrade re-copies the `pass-*`/`persona-*`/`write-*` files; your own
-(differently-named) skills are untouched. That naming is the whole upgrade story.
+The three *install* folders are re-copied on upgrade (`pass-*`/`persona-*`/`write-*` names can't collide
+with your own; that naming is the whole upgrade story). If your CLI scans a fixed skills dir (Claude Code →
+`.claude/skills/`), skills go there instead — no separate home, no symlink bridge. Other intent artifacts —
+PRDs, RFCs, audits, findings, ADRs — are normal `type:`-tagged docs kept under `.agents/` however suits you;
+Swarm reads the **frontmatter**, not a mandated path. There is **no version file** (the framework version is
+a producer release tag) and **no `.swarm/` mount**.
 
-Other source artifacts — PRDs, RFCs, audits, findings, ADRs, interfaces — are normal `type:`-tagged
-documents; keep them under `.agents/` however suits you (a flat `.agents/`, or subfolders like
-`.agents/audits/`). Swarm reads the **frontmatter**, not a mandated path, so this is **suggested, not
-prescribed**: only `specs/`, `tasks/`, and `memory/` are fixed, because the flow keys off them.
+## The code repo — pristine
 
-## Why these three flow folders (and not the rest)
+A code repo that *consumes* specs keeps **almost nothing**: a great SOL spec is self-legible, so no
+reference cards and no specs belong here. At most the developer copies the one `implement-and-verify` skill
+(the trust backbone for parallel worktree runs) and appends the kit's `.gitignore.additions`. Everything an
+agent generates while implementing (task frames, transient traces) is **gitignored**; the **PR** (naming the
+obligation ids, with CI + review) is the trace and verdict; anything durable flows **back to the spec repo
+as a linked PR**. Nothing litters the code repo.
+
+## Why the spec repo prescribes these folders (and not the rest)
 
 - **`specs/`** — `author` produces the `*.swarm.md` source; intent has to live somewhere findable.
-- **`tasks/`** — `decompose`/`implement` write task frames; they're recreatable execution state, so they're
-  **gitignored** (`/.agents/tasks/`). The durable record is the spec, the code, and what `promote` keeps.
 - **`memory/`** — `promote` lifts durable findings and patterns out of throwaway task state so a later
   session **recalls** them instead of re-deriving them. Externalising state to disk rather than holding it
   in a context window is what makes multi-session work tractable [[CTXENG]](../research/sources.md#CTXENG);

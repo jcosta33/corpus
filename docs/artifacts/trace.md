@@ -4,6 +4,8 @@ A **trace** is the artifact in which an implementation pass *claims* which oblig
 
 Swarm ships **no runtime**. Every hash, verdict, and surface reference in a trace is a content-hash *contract* a future tool computes; today the trace is written by a human or an agent in markdown and re-checked by hand or by CI scaffolding that does not yet exist. Nothing in this page is automatically enforced.
 
+**Where a trace lives ([ADR-0050](../adrs/0050-swarm-is-a-spec-repo-discipline.md)).** In a **code repo**, the **PR is the default trace** — it names the obligation ids it satisfies, CI is the proof, and review is the verdict; this page's structured `trace.md` is **opt-in**, for audit/compliance or once a tool consumes it, and is **not** written into a pristine code repo by default. The contract below is what such a structured trace MUST satisfy *when you do keep one* (or in a co-located repo); a durable trace outcome can also be contributed back to the spec repo as a linked PR.
+
 ## Purpose and epistemic stance
 
 A trace asserts **claims plus evidence references**. It is a record of *what was done* in one pass and *where the proof of it lives* — not a verdict, not intent, and not a discovery.
@@ -90,7 +92,7 @@ Two optional adjuncts MAY extend a verdict's provenance without altering this ba
 
 ## Copyable template
 
-The copyable skeleton is the framework template at **`install/.agents/templates/trace.md`** (installed into an adopted project at `.swarm/kernel/templates/trace.md`). Copy that file to start a new trace; this page is its contract. A shipped, uninstantiated template MAY leave `{{...}}` placeholders, but a *built* trace MUST NOT leave a binding clause as a `{{...}}` placeholder, and an unfilled `VERIFY BY`/`PROOF` clause in a built trace is a `SOL-V001` defect.
+The copyable skeleton is the framework template at **`starter-kit/.agents/templates/trace.md`** (installed into an adopted project at `.swarm/kernel/templates/trace.md`). Copy that file to start a new trace; this page is its contract. A shipped, uninstantiated template MAY leave `{{...}}` placeholders, but a *built* trace MUST NOT leave a binding clause as a `{{...}}` placeholder, and an unfilled `VERIFY BY`/`PROOF` clause in a built trace is a `SOL-V001` defect.
 
 ## Related
 

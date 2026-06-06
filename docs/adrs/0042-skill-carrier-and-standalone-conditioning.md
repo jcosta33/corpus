@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-The kernel's procedural conditioning layer shipped as eight files named `GUIDE.md` under `install/.agents/skills/`. Four problems compounded:
+The kernel's procedural conditioning layer shipped as eight files named `GUIDE.md` under `starter-kit/.agents/skills/`. Four problems compounded:
 
 1. **The carrier filename is not the one agent tools discover.** The Open Agent Skills convention and the agent CLIs that load skills discover and activate a `SKILL.md` by its `name` + `description` frontmatter. The framework's own activation evidence [[ACTIVATION-BLOG]](../research/sources.md#ACTIVATION-BLOG) treats the `SKILL.md` `description` as the most load-bearing line — the field an agent scans to decide whether to pull a skill into context. A file named `GUIDE.md` carries the same skill-shaped frontmatter but is not discovered as a skill, so the kernel's pass guides silently opted out of the "load what the task names / description-match fallback" activation path (§26.4, [0037](./0037-load-what-the-task-names.md)). The build-source layout never specified the filename; `GUIDE.md` was a generation-time choice that leaked the "pass guide, not standalone skill" relabeling ([0036](./0036-heuristic-profile-model.md)) into the filename, where it breaks interoperability.
 

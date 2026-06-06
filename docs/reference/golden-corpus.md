@@ -12,10 +12,10 @@ The corpus ships in two locations, each serving a different audience:
 
 | Location | Holds | Audience |
 | --- | --- | --- |
-| `install/.agents/conformance/fixtures/` | positive + negative fixtures, each carrying its expected verdict in its header | the conformance regression suite — the artifacts a checker (or hand-review) is run against |
+| `starter-kit/.agents/conformance/fixtures/` | positive + negative fixtures, each carrying its expected verdict in its header | the conformance regression suite — the artifacts a checker (or hand-review) is run against |
 | `docs/examples/` | the three pipeline-complete positive walkthroughs | human readers and authors learning the pipeline end to end |
 
-The fixtures directory is the oracle; `docs/examples/` is the same three positive chains rendered as readable walkthroughs. The corpus is one of three inert-data artifacts that together encode the conformance contract: the [conformance manifest](../model/conformance.md) (`install/.agents/conformance/conformance.yaml`) encodes the schema and rules, the [lint catalogue](../language/errors.md) encodes every `SOL-<LAYER>NNN` code, and the golden corpus pins the verdicts. This page is the corpus's contract: what it must contain and what each fixture asserts.
+The fixtures directory is the oracle; `docs/examples/` is the same three positive chains rendered as readable walkthroughs. The corpus is one of three inert-data artifacts that together encode the conformance contract: the [conformance manifest](../model/conformance.md) (`starter-kit/.agents/conformance/conformance.yaml`) encodes the schema and rules, the [lint catalogue](../language/errors.md) encodes every `SOL-<LAYER>NNN` code, and the golden corpus pins the verdicts. This page is the corpus's contract: what it must contain and what each fixture asserts.
 
 ## The three recurring domains
 
@@ -225,7 +225,7 @@ Drift-detection is defined without a runtime: drift is found by the `review` and
 
 ## Evaluation hygiene: held-out and mutated variants
 
-A corpus that ships only the canonical fixtures has a latent failure of its own. Once the fixtures and their expected verdicts are public — and they are, in `install/.agents/conformance/fixtures/`, read by every adopter — an agent-as-compiler can be tuned (by training, by an over-stuffed instruction file, or simply by an author copying the corpus) to reproduce the **labels** without performing the **passes**. That is benchmark contamination: memorizing the evaluation data yields a recognized string, not a measurement of capability. The corpus must therefore be designed so that a passing verdict evidences a correctly executed pass, not a recognized label.
+A corpus that ships only the canonical fixtures has a latent failure of its own. Once the fixtures and their expected verdicts are public — and they are, in `starter-kit/.agents/conformance/fixtures/`, read by every adopter — an agent-as-compiler can be tuned (by training, by an over-stuffed instruction file, or simply by an author copying the corpus) to reproduce the **labels** without performing the **passes**. That is benchmark contamination: memorizing the evaluation data yields a recognized string, not a measurement of capability. The corpus must therefore be designed so that a passing verdict evidences a correctly executed pass, not a recognized label.
 
 ### Held-out and mutated-variant fixtures
 

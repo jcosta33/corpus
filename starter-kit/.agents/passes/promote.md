@@ -102,7 +102,7 @@ A universal-workflow-rule promotion collides with the ≤200-line bootloader cap
 
 | Where it goes | What goes there |
 |---|---|
-| Pass guide (a sibling skill / pass-guide file under `install/.agents/`) | The actual procedure / steps |
+| Pass guide (a sibling skill / pass-guide file under `starter-kit/.agents/`) | The actual procedure / steps |
 | `AGENTS.md` | One line: the pointer + its load-when, nothing procedural |
 
 > Example — promoting "always run the migration dry-run before applying": the dry-run procedure is added to the `implement` pass guide; `AGENTS.md` gains only `- Before applying a migration, load the implement pass guide (migration section).`
@@ -126,7 +126,7 @@ This file fixes the *requirements* of the pass, not its step-by-step procedure �
 
 ## Related
 
-Sibling payload files under `install/.agents/`:
+Sibling payload files under `starter-kit/.agents/`:
 
 - `../passes/author.md` and `../passes/lint.md` — the start of the pipeline, where promoted intent re-enters as obligations.
 - `../passes/review.md` — the pass before `promote`; its verdicts (`CONTRADICTED`, `STALE`) feed the rollback path.

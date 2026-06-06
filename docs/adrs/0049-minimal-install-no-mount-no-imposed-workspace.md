@@ -10,6 +10,11 @@ superseded_by:
 
 # ADR-0049: Minimal install — `.agents/`, no mount, a small flow-based folder set
 
+> **Refined by [ADR-0050](./0050-swarm-is-a-spec-repo-discipline.md).** The goldilocks six-folder `.agents/`
+> set below is the **spec repo's** authoring workspace. A **code repo** that only *consumes* specs gets
+> near-zero — no specs, no SOL cards, at most one opt-in `implement-and-verify` skill, with all Swarm
+> scratch gitignored. The per-repo version marker named here is **dropped** (see 0050 §6).
+
 ## Context
 
 A pragmatic skeptic review of the adopted-project scaffold (grounded in what the shipped skills actually
@@ -65,7 +70,7 @@ that, nothing requires a separate mount, a bridge, or a pre-built workspace tree
    directory (this is what supersedes [0045](./0045-overlays-are-project-owned.md)).
 5. **"kernel" is retired everywhere** — adopter-facing *and* in the producer repo. It is OS-runtime jargon
    for a folder of markdown in a NO-RUNTIME framework. The concept is "the install" / "the installed files"
-   / "Swarm ships X"; the producer directory `install/` is renamed `install/`. (The repo-wide text sweep is a
+   / "Swarm ships X"; the producer directory `starter-kit/` is renamed `starter-kit/`. (The repo-wide text sweep is a
    tracked follow-up wave; this ADR fixes the decision.)
 
 This **supersedes [0048](./0048-installed-payload-is-the-runtime-surface.md)** (the payload no longer mounts

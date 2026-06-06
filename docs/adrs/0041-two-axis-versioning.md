@@ -10,6 +10,12 @@ superseded_by:
 
 # ADR-0041: Two-axis versioning (language axis added alongside the package axis)
 
+> **Refined by [ADR-0050](./0050-swarm-is-a-spec-repo-discipline.md).** The **language axis** below
+> (`swarm_language: SOL/0.1` in spec frontmatter) is unchanged and is the only load-bearing version. The
+> **package axis's adopter-side marker** (the `.swarm-version` mirror an adopted repo kept) is **dropped** —
+> nothing reads it in a no-runtime, copy-the-files world, and the language version already travels with each
+> spec. The producer keeps its own `.swarm-version` only as a release tag.
+
 ## Context
 
 [0015](./0015-versioning-scheme.md) established a single framework version (`.agents/.swarm-version`) so a consuming repo could pin *which package* of templates and skills it vendored. The kernel introduces a second thing that versions independently: the **language** itself — the SOL grammar, the seven block types, the five modals, the clause keywords, and the `SOL-<LAYER><NNN>` lint codes (§4–§8). The meaning of the language and the package that delivers it move on different cadences: a template typo fix ships a new package without touching the grammar, and a new modal or lint code changes what every template must teach. Conflating the two into one number is a category error (§25) — the same mistake as versioning a language and its toolchain together. [0015](./0015-versioning-scheme.md)'s decision is correct for the package axis but silent on the language axis, and Nygard immutability (§30.1) forbids editing it in place to add one.
@@ -19,7 +25,7 @@ superseded_by:
 ADR 0015 is **extended, not replaced** (§30.2): the package axis it established is kept verbatim, and a **second, independent language axis is added alongside it**. A conformant repo MUST track both and MUST NOT merge them (§25.1):
 
 - **Language version** — the SOL + APS feature set. Carried **per file** in frontmatter as `swarm_language` (the SOL discriminator, e.g. `SOL/0.1`) and `aps_version` (e.g. `0.1`), so one repo MAY hold `spec.swarm.md` files at different language versions mid-migration (§25.1.1).
-- **Framework / package version** — the kernel payload, templates, pass guides, profiles, flow-graph. A single semver in `install/.agents/.swarm-version`, mirrored by an adopted project as `.agents/swarm.version` (§25.1.2). This is exactly [0015](./0015-versioning-scheme.md)'s field, unchanged.
+- **Framework / package version** — the kernel payload, templates, pass guides, profiles, flow-graph. A single semver in `starter-kit/.agents/.swarm-version`, mirrored by an adopted project as `.agents/swarm.version` (§25.1.2). This is exactly [0015](./0015-versioning-scheme.md)'s field, unchanged.
 
 The axes are coupled by **one directional rule** (§25.2): any change to the language version MUST force at least a framework MINOR (additive) or MAJOR (breaking) release; a framework release MAY occur with no language change. The trigger is one-way — language ⇒ framework, never framework ⇒ language — and is advisory while either axis is at major-version-zero (SemVer 2.0.0 §4). The emitted IR/plan MUST echo three distinct fields and merge none of them: `meta.language` (the grammar discriminator), `meta.version` (the spec-content semver), and `provenance.compiler_version` (the tool version, unset today — NO RUNTIME) (§25.3).
 

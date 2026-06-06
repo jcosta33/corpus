@@ -123,7 +123,7 @@ What a review MUST reject as a non-proof (never `PASS`): schema-valid output (sh
 
 ## Copyable template
 
-The copyable skeleton is `install/.agents/templates/review.md`. That template is the starting point you copy and fill; **this page is its contract** — it states what each section means and which rules a built `review.md` MUST satisfy. A built review MUST NOT leave a `VERDICT` core or a lifecycle field as a `{{...}}` placeholder; an empty status cell in a built matrix is treated as `UNVERIFIED`.
+The copyable skeleton is `starter-kit/.agents/templates/review.md`. That template is the starting point you copy and fill; **this page is its contract** — it states what each section means and which rules a built `review.md` MUST satisfy. A built review MUST NOT leave a `VERDICT` core or a lifecycle field as a `{{...}}` placeholder; an empty status cell in a built matrix is treated as `UNVERIFIED`.
 
 ## Related
 
