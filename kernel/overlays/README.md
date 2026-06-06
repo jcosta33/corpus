@@ -6,5 +6,8 @@
 > project-owned **`.swarm/overlays/`** (a sibling of `.swarm/kernel/`, *outside* the framework-owned tree),
 > so a project's overlays **survive a kernel upgrade** — the upgrade replaces `.swarm/kernel/` wholesale but
 > never touches `.swarm/overlays/`. The standard library ships this directory empty with this README; a
-> project populates it. See `docs/library/overlays.md` for the overlay contract and ADR-0045 for the
-> ownership rationale.
+> project populates it.
+>
+> An overlay is SOFT, additive, lazily-loaded-by-name guidance: it MAY add project rules (architecture
+> conventions, extra refusals, local command bindings) but MUST NOT override an approved obligation or
+> redefine kernel semantics. One overlay per concern, under `.swarm/overlays/<name>/`.

@@ -5,10 +5,10 @@
 # (the upgrade replaces .swarm/kernel/ wholesale but never touches this file).
 # NO RUNTIME: this is inert data a future toolchain reads; nothing here executes.
 #
-# Three sections, each a contract the docs already fix:
-#   surfaces:  the per-path source-code surface-policy map  (docs/model/workspace.md, "surface policies")
-#   agents:    the agent-CLI worker adapters                (docs/model/conformance.md, the adapter contract)
-#   lint:      severity overrides + waivers                 (docs/language/errors.md, schema swarm.config/0.1)
+# Three sections, each a fixed contract:
+#   surfaces:  the per-path source-code surface-policy map  (the "surface policies" model)
+#   agents:    the agent-CLI worker adapters                (the worker-adapter contract)
+#   lint:      severity overrides + waivers                 (schema swarm.config/0.1; codes in .swarm/kernel/language/errors.md)
 
 language: SOL/0.1            # the language version this project's specs speak
 
@@ -44,7 +44,7 @@ agents:
     startup_instruction: "Read AGENTS.md, then read the Swarm task file."
 
 # --- lint: severity overrides + waivers (schema swarm.config/0.1) -----------
-# Exactly two legal moves (docs/language/errors.md):
+# Exactly two legal moves (see .swarm/kernel/language/errors.md):
 #   1. PROMOTE an ADVISORY code to `error` (strict mode) — no record needed.
 #   2. DEMOTE a BLOCKING code to `warning`|`off` — ONLY with a complete waiver record.
 # A swarm.config MUST NOT redefine / rename / invent / re-layer codes, or change a code's layer.
