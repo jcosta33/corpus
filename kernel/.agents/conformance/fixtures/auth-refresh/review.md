@@ -1,10 +1,10 @@
 <!--
 auth-refresh golden-corpus POSITIVE fixture — Stage 7 (review + merge gate, pass: review,
-run under the `skeptic` profile, §27). The `review` pass consumes the trace and emits
+run under the `skeptic` profile). The `review` pass consumes the trace and emits
 per-obligation VERDICT lines carrying a core value optionally decorated with a lifecycle
-value (§14). IF-001 (the interface contract), AC-001, and I-001 are clean PASS. AC-002 carries the STALE lifecycle decorator:
+value (see [the verdict model](../../../passes/review.md)). IF-001 (the interface contract), AC-001, and I-001 are clean PASS. AC-002 carries the STALE lifecycle decorator:
 its bound test PASSed, but web/src/http/client.ts was edited after the recorded PASS, so its
-source no longer matches (§16). A STALE required obligation is NOT mergeable until reconciled,
+source no longer matches (see [STALE and reconcile](../../../passes/review.md)). A STALE required obligation is NOT mergeable until reconciled,
 so the gate is BLOCKED. The reconcile note records option 1 (re-run the bound proof against the
 current surface); after re-run AC-002 -> PASS and the gate opens. Inert oracle data.
 -->
@@ -42,10 +42,10 @@ Result: BLOCKED — AC-002 is STALE. Re-run the bound proof against the current 
 (reconcile option 1), then re-evaluate. After re-run AC-002 → PASS, the gate opens.
 
 ## Reconcile note
-Reconcile applied (option 1 of the 3-way reconcile, §16): the bound proof
+Reconcile applied (option 1 of the 3-way reconcile, see [the verdict model](../../../passes/review.md)): the bound proof
 `test:cmdTest:web/tests/auth-refresh-expired.spec.ts#clears-and-redirects` was re-run against
 the current `web/src/http/client.ts`. The proof passed and the recorded per-surface hash now
 matches the live surface; AC-002 drops its STALE decorator and resolves to a clean PASS.
 With every required obligation now PASS, the merge gate opens: final outcome PASS.
-Note (§16): a STALE verdict is never silently re-blessed — reconcile re-runs, amends, or fixes
+Note (see [the verdict model](../../../passes/review.md)): a STALE verdict is never silently re-blessed — reconcile re-runs, amends, or fixes
 the code; here the re-run produced a fresh matching PASS.

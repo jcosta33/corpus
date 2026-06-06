@@ -11,7 +11,7 @@ status: draft
 
 <!--
 payment-5xx golden-corpus POSITIVE fixture — Stage 1 (authored source, pass: author).
-This is the only `.swarm.` artifact a human writes (§20); the `.swarm.` infix marks it
+This is the only `.swarm.` artifact a human writes (see [../../../templates/spec.swarm.md](../../../templates/spec.swarm.md)); the `.swarm.` infix marks it
 human-authored. It is inert oracle data: nothing runs it. As authored it carries the
 payment-5xx canonical defect cluster that the `lint` pass (see EXPECTED.md) surfaces —
   SOL-M002 (AC-020 asserts MUST retry AND MUST NOT retry on one trigger — a contradiction),

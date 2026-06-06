@@ -1,11 +1,11 @@
 <!--
 payment-5xx golden-corpus POSITIVE fixture — Stage 5 (work packet, passes: decompose, implement).
 The `decompose` pass projects the IR into a work packet whose write surfaces are a subset of
-the assigned obligations' WRITES (the two-tier lowering rule, §11.4, §18; a packet writing a
+the assigned obligations' WRITES (the two-tier lowering rule, [lower](../../../passes/lower.md); a packet writing a
 path outside its declared WRITES is SOL-O005, G7). AC-020 and AC-021 share the single write
 surface server/src/payments/charge.ts, so they form one serial packet (no parallel split to
 guard). The `implement` pass executes it. I-001 is verified by a `monitor` proof, which has no
-merge-time execution (§15) — so its row is `pending` here and resolves at the verify/review
+merge-time execution (see [verify](../../../passes/verify.md)) — so its row is `pending` here and resolves at the verify/review
 stage from the production dashboard, not from this packet. Only the load-bearing frame is
 shown. Inert oracle data — Swarm runs nothing.
 -->

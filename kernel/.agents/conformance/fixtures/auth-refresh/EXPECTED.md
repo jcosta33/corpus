@@ -1,9 +1,9 @@
 # auth-refresh — expected outcome (golden-corpus POSITIVE fixture)
 
 This manifest pins the expected outcome of the `auth-refresh` positive (must-compile)
-fixture, the inert oracle a conformant tool is checked against (§33). It is the authority
-for this directory: the per-stage files reproduce the full `intent → promotion` pipeline
-(§9), and this manifest records the verdict a correct run must produce at each gate.
+fixture, the inert oracle a conformant tool is checked against (see [`../../conformance.yaml`](../../conformance.yaml)). It is the authority
+for this directory: the per-stage files reproduce the full `intent → promotion` pipeline,
+and this manifest records the verdict a correct run must produce at each gate.
 
 **Expected verdict: PASS after reconcile.**
 
@@ -26,15 +26,15 @@ for this directory: the per-stage files reproduce the full `intent → promotion
 | 4 | lower | `auth-refresh.swarm.ir.json` | typed IR; the two chained REQs each split per clause — `AC-001` → `AC-001.1`/`AC-001.2`, `AC-002` → `AC-002.1`/`AC-002.2` (six nodes: `IF-001`, `AC-001.1/.2`, `AC-002.1/.2`, `I-001`); `edges[]` the sole relationship source |
 | 5 | decompose, implement | `task.md` | work packet frame; write surfaces ⊆ assigned `WRITES` |
 | 6 | verify | `trace.md` | `TRACE T-001` + the 7-field provenance table; one binding per surface obligation (`IF-001`, `AC-001`, `AC-002`, `I-001`) |
-| 7 | review | `review.md` | one `VERDICT` per required binding **including the `IF-001` interface contract** (an INTERFACE in scope is a judged obligation, merge-gate §); merge-gate outcome |
+| 7 | review | `review.md` | one `VERDICT` per required binding **including the `IF-001` interface contract** (an INTERFACE in scope is a judged obligation, merge-gate); merge-gate outcome |
 | 8 | promote | `finding.md` | the durable finding promoted with full provenance |
 
-> The `task.md` here shows the **pipeline-relevant work-packet frame** (scope + the verification matrix the trace consumes), not a full task-file. The task-file-schema `required_sections` rule (§32.3) is exercised by the dedicated schema fixtures [`../conformant-task.md`](../conformant-task.md) (positive) and [`../violations.md`](../violations.md) (negatives).
+> The `task.md` here shows the **pipeline-relevant work-packet frame** (scope + the verification matrix the trace consumes), not a full task-file. The task-file-schema `required_sections` rule ([`../../conformance.yaml`](../../conformance.yaml)) is exercised by the dedicated schema fixtures [`../conformant-task.md`](../conformant-task.md) (positive) and [`../violations.md`](../violations.md) (negatives).
 
 ## Expected lint diagnostics (stage 2, on the authored `spec.swarm.md`)
 
-Three BLOCKING diagnostics fire, each in the unified `SOL-<LAYER><NNN>` namespace (§8). Each
-is BLOCKING because it changes *what* gets built. Each names the closed `improve` op (§10) or
+Three BLOCKING diagnostics fire, each in the unified `SOL-<LAYER><NNN>` namespace ([`../../../language/errors.md`](../../../language/errors.md)). Each
+is BLOCKING because it changes *what* gets built. Each names the closed `improve` op ([`../../../passes/improve.md`](../../../passes/improve.md)) or
 direct edit that repairs it.
 
 | Code | Layer | Severity | Span | Defect | Repair |
@@ -45,7 +45,7 @@ direct edit that repairs it.
 
 Plus a blocking-QUESTION risk recorded as a note: `Q-001` is `[blocking]` and `AFFECTS AC-002`.
 `AC-002` MUST NOT reach the `lower` pass while `Q-001` is open; a blocking `QUESTION` that does
-reach `lower` is **`SOL-O003`** (blocking-question-reaches-lowering, §18). In this fixture
+reach `lower` is **`SOL-O003`** (blocking-question-reaches-lowering, [`../../../language/errors.md`](../../../language/errors.md)). In this fixture
 `Q-001` is resolved at the `improve` stage, so `SOL-O003` does **not** fire downstream — it is
 the risk the open question would have raised had it survived to lowering.
 
@@ -58,25 +58,25 @@ All three BLOCKING diagnostics clear and no blocking `QUESTION` remains:
 - `CONCRETIZE` fixed `I-001`'s threshold to the literal `1` and named the measured quantity —
   clears `SOL-P005`.
 - `BIND` attached a `test` proof to `AC-002` and a `property` proof to `I-001` (an `INVARIANT`
-  prefers `property`/`model`/`static`, §15) — clears `SOL-V001`.
+  prefers `property`/`model`/`static`, [`../../../passes/verify.md`](../../../passes/verify.md)) — clears `SOL-V001`.
 - `Q-001` resolved out-of-band (decision: redirect to `/login`) and removed — clears the
   `SOL-O003` risk before lowering.
 
 ## Expected merge-gate outcome (stage 7) → final
 
-`AC-001` and `I-001` are clean `PASS`. `AC-002` is `PASS (STALE …)`: its bound test PASSed, but
+`IF-001` (the interface contract), `AC-001`, and `I-001` are clean `PASS`. `AC-002` is `PASS (STALE …)`: its bound test PASSed, but
 `web/src/http/client.ts` was edited after the recorded PASS, so its source no longer matches
-(§16). A STALE required obligation is not mergeable.
+([`../../../passes/review.md`](../../../passes/review.md)). A STALE required obligation is not mergeable.
 
 ```text
 Gate (first evaluation): BLOCKED — AC-002 is STALE.
-Reconcile (option 1, §16):  re-run the bound proof against the current surface.
+Reconcile (option 1):       re-run the bound proof against the current surface.
 Gate (re-evaluation):       AC-002 → PASS; every required obligation PASS.
 Final outcome:              PASS.
 ```
 
 **Final gate: BLOCKED → (reconcile) → PASS.** A STALE verdict is never silently re-blessed
-(§16); the reconcile re-ran the proof and produced a fresh matching PASS.
+([`../../../passes/review.md`](../../../passes/review.md)); the reconcile re-ran the proof and produced a fresh matching PASS.
 
 ## Stable identifiers and hashes (consistent across all stages)
 
@@ -88,8 +88,8 @@ Final outcome:              PASS.
 
 ## How this is validated (no runtime)
 
-This is **inert data** (Invariant 1, NO RUNTIME — §2). Swarm ships no parser, linter, lowerer,
+This is **inert data** (Invariant 1, NO RUNTIME). Swarm ships no parser, linter, lowerer,
 or checker; nothing in this directory executes. The verdicts above are **known independent of
-any tool** and are **validated by hand** until a checker (a deferred launcher concern, §32)
+any tool** and are **validated by hand** until a checker (a deferred launcher concern, see [`../../conformance.yaml`](../../conformance.yaml))
 exists. When a tool does exist it MAY validate against these files; this manifest is the
 expected-outcome contract it would be checked against, not a tool Swarm provides.

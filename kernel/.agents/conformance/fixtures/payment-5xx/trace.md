@@ -1,14 +1,14 @@
 <!--
 payment-5xx golden-corpus POSITIVE fixture — Stage 6 (trace, pass: verify).
 The `verify` pass records a TRACE block plus the provenance the drift join depends on — the
-canonical seven §16.1/G11 fields: source_hash (echoing the IR node content_hash),
-per_surface_hash[] (each entry {surface, hash, exercised}, §16.5), adapter, verdict,
-tier (the PROOF TYPE of §15.1, never a RISK value), origin_obligations[], origin_traces[].
+canonical seven G11 fields (see [../../../passes/verify.md](../../../passes/verify.md)): source_hash (echoing the IR node content_hash),
+per_surface_hash[] (each entry {surface, hash, exercised}), adapter, verdict,
+tier (the PROOF TYPE — see [../../../passes/verify.md](../../../passes/verify.md) — never a RISK value), origin_obligations[], origin_traces[].
 The AC-020/AC-021 `test` proofs PASS in the harness. The I-001 `monitor` proof reports a
 FAIL: the production duplicate-captures dashboard observed a non-zero double-capture count
 over the window — runtime evidence that the harness never saw. The harness test (AC-020) and
 the production monitor (I-001) thus disagree about the same no-double-charge property, which
-the `review` pass will decorate CONTRADICTED (§17.4). Inert oracle data; the proof results
+the `review` pass will decorate CONTRADICTED (see [../../../passes/review.md](../../../passes/review.md)). Inert oracle data; the proof results
 below are recorded, not executed here.
 -->
 

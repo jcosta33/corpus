@@ -11,7 +11,7 @@ status: draft
 
 <!--
 payment-5xx golden-corpus POSITIVE fixture — Stage 3 (improved source, pass: improve).
-The `improve` pass applied the closed, intent-preserving ops (§10):
+The `improve` pass applied the closed, intent-preserving ops (see [../../../passes/improve.md](../../../passes/improve.md)):
   - DECONFLICT resolved AC-020's MUST-retry / MUST-NOT-retry contradiction. The owner's
                intent was a *bounded* retry, never an unconditional one: AC-020 becomes
                "retry at most 3 times under the same idempotency key", and the no-double-
