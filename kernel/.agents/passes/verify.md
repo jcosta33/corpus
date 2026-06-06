@@ -300,6 +300,48 @@ Honouring adequacy over rank is what stops the order from becoming astrology-by-
 
 A surface participates in a proof's freshness only if it lies on the proof's `evidence_path`. A write surface the obligation declares in `WRITES` but the oracle never exercised does not, on its own, falsify *that proof's* `PASS`. Conversely, a modified surface that **is** on the `evidence_path` forces `STALE`. (The full drift/staleness mechanism — the trace-provenance schema, the four `STALE` conditions, and the 3-way reconcile — lives in the drift pass; this page only fixes the adequacy ↔ evidence-path link.) An empty or unrecorded `evidence_path` on a `RISK high|critical` obligation is itself a `SOL-V011` finding: an oracle that cannot say what it exercised cannot be shown adequate.
 
+## The soft/hard control boundary
+
+This is the single most important honesty constraint in Swarm, and it governs what a verdict is *allowed to mean*. Everything Swarm ships is markdown, and markdown cannot stop an agent from doing anything. So Swarm MUST be precise about what is *guidance* and what is *enforcement*, and MUST NOT dress up the former as the latter.
+
+> **Soft control.** Swarm prose, SOL, APS, skills/pass guides, heuristic profiles, and `AGENTS.md` are **SOFT control**: they are context and guidance for a model. They influence behaviour; they do not constrain it. They **MUST NEVER** be presented as enforcement.
+
+> **Hard control.** Anything that must hold **regardless of the model** — a `CONSTRAINT`, an `INVARIANT`, a stop-rule, secret redaction, a write-surface gate, the proof-required merge gate — MUST be specified as a **deterministic check OUTSIDE the model**: a PreToolUse hook, a CI gate, a permission deny-rule, or a schema validator.
+
+> **No runtime today.** Swarm is markdown-only. The hard lane is therefore **aspirational/manual today**. This page MUST NOT claim any deterministic check *exists* or *runs*. Every enforcement statement is "the deterministic home a future harness MUST provide," never "Swarm enforces."
+
+Three corollaries follow directly, each normative:
+
+- **Schema-valid output is not verification.** That a model emitted JSON matching a schema constrains *shape*, not *truth*. Schema validation MAY be a gate *input*; it MUST NOT be presented as proof an obligation is met.
+- **Every completion claim maps to independent verification.** No obligation is `PASS` on the model's say-so; it is `PASS` only against an independent deterministic or evidentiary oracle — the merge gate over the proof taxonomy.
+- **A SOFT-control artifact MUST NOT define hard semantics.** No skill, persona/profile, or `AGENTS.md` section may define modality, authority order, or verification semantics — those live in SOL and the typed IR.
+
+The rationale is empirical: model adherence is probabilistic (prompt-format sensitivity, multi-turn reliability decay, lost-in-the-middle / context-rot), so a model is an unsound enforcement substrate. Only an external deterministic check can guarantee a property holds. Honesty about this boundary is what lets a Swarm verdict be trusted: the markdown layer makes an omission *conspicuous*; it cannot make a property *hold*.
+
+## The enforcement-lane artifact
+
+Because the hard lane is manual today, Swarm makes the gap **visible and accountable** rather than letting it hide. The **enforcement lane** is a first-class, currently-manual artifact: a markdown table that maps each hard-control obligation to its **eventual deterministic home**. It is the explicit ledger of "this is soft today; here is where it becomes hard," and it MUST be maintained as a table (no runtime).
+
+Each row maps one `CONSTRAINT` / `INVARIANT` / stop-rule / secret-redaction rule to its deterministic home and current status:
+
+```text
+| Obligation / rule          | Kind        | Deterministic home (eventual)    | Status today  |
+| -------------------------- | ----------- | -------------------------------- | ------------- |
+| C-001 (no server/* import) | CONSTRAINT  | CI: cmdLint dependency-boundary  | manual review |
+| I-001 (one token family)   | INVARIANT   | CI: property test in cmdTest     | manual review |
+| stop-rule: no force-push   | stop-rule   | PreToolUse hook (git deny)       | aspirational  |
+| secret redaction           | redaction   | PreToolUse hook + CI secret scan | aspirational  |
+```
+
+| Column | Meaning |
+| --- | --- |
+| Obligation / rule | The id or name of the hard-control item. |
+| Kind | `CONSTRAINT` \| `INVARIANT` \| `stop-rule` \| `redaction`. |
+| Deterministic home (eventual) | The PreToolUse hook / CI gate / permission deny-rule / schema validator that WILL enforce it when a harness exists. |
+| Status today | `manual review`, `aspirational`, or — only when a harness genuinely runs it — `enforced by <mechanism>`. |
+
+The four deterministic-home categories are exactly: **PreToolUse hook**, **CI gate**, **permission deny-rule**, **schema validator**. The lane MUST NOT mark any row `enforced` unless a deterministic check outside the model genuinely runs it; until then every hard-control obligation is honestly `manual review` or `aspirational`. The lane is the operational form of the soft/hard control boundary: the merge gate, the `SOL-V` lint diagnostics, the `RISK high|critical` oracle thresholds, and secret redaction are all hard-control obligations whose rows sit in this lane reading `manual review` or `aspirational` today.
+
 ---
 
 ## Related
@@ -313,5 +355,6 @@ A surface participates in a proof's freshness only if it lies on the proof's `ev
 
 <!-- Derived per the ADR-0044 derivation transform.
      TABLE-1 subset (per-task-kind default suites): {feature, fix, refactor, migration, performance, spec-writing, review} of the 17 canonical task_kind rows.
-     STRUCTURE-1 pruned sections (carried by other shipped files, not by this pass): the per-task-kind verification-contract rationale (see ./implement.md and the execution research), the soft/hard control boundary, and the enforcement-lane artifact (both the SOFT-vs-HARD control principle and its operational ledger live in PRINCIPLES and the decompose pass). -->
+     STRUCTURE-1 pruned section (carried by another shipped payload file, not by this pass): the per-task-kind verification-contract rationale lives in `./implement.md` ("Task-kind contracts").
+     STRUCTURE-1 inlined (no other payload file carries them, so they are rendered here for offline resolution): the soft/hard control boundary and the enforcement-lane artifact. -->
 
