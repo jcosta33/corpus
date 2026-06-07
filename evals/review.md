@@ -35,5 +35,5 @@ The suite scores three cross-step predicates at the `review` output:
 ## Related
 
 - [The `review` step guide](../../docs/passes/review.md) — the skeptic-profile contract, the decorator conditions (R2), and the merge-gate rule (R5) this rubric grades.
-- [The flow graph](../../docs/reference/flow-graph.md) — the 7-value verdict model (4 core + 3 lifecycle) R2 checks against.
+- [The flow graph](../../docs/reference/cheatsheet.md) — the 7-value verdict model (4 core + 3 lifecycle) R2 checks against.
 - [Drift and staleness](../../docs/reference/drift-and-staleness.md) — the four staleness conditions the drift-detection predicate scores.

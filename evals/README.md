@@ -28,7 +28,7 @@ The rubrics are indexed in flow order. Each page states that step's output-gradi
 | `review` | REVIEW | [review.md](review.md) | verdict completeness/correctness, sceptical independence, gate |
 | `promote` | PROMOTE | [promote.md](promote.md) | nothing durable left task-local, provenance, stance, no spurious |
 
-The nine steps and their phase mapping are the canonical set fixed in the [flow graph](../../docs/reference/flow-graph.md); these rubrics add no step and remove none.
+The nine steps and their phase mapping are the canonical set fixed in the [flow graph](../../docs/reference/cheatsheet.md); these rubrics add no step and remove none.
 
 ## The four cross-step predicates
 
@@ -57,7 +57,7 @@ Because every predicate is decidable from the two artifacts alone, the score is 
 ## Related references
 
 - [The golden corpus](../../docs/reference/golden-corpus.md) — the inert fixture suite these rubrics are scored over; defines the nine rubrics and the cross-step predicates this directory expands.
-- [The flow graph](../../docs/reference/flow-graph.md) — the canonical counts (7 blocks, 5 modals, 7 verdicts, 9 proof types, 9 steps, 10 improve operations, 5 lint layers) every rubric cites.
+- [The flow graph](../../docs/reference/cheatsheet.md) — the canonical counts (7 blocks, 5 modals, 7 verdicts, 9 proof types, 9 steps, 10 improve operations, 5 lint layers) every rubric cites.
 - [The step guides](../../docs/passes/) — the per-step contracts each rubric grades against.
 - [The lint catalogue](../../docs/language/errors.md) — every `SOL-<LAYER>NNN` code a rubric references.
 - [Drift and staleness](../../docs/reference/drift-and-staleness.md) — the four staleness conditions the drift-detection cross-step predicate scores.

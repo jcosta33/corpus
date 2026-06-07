@@ -33,4 +33,4 @@ The suite scores one cross-step predicate at the `improve` output:
 
 - [The `improve` step guide](../../docs/passes/improve.md) — the ten operations, the R-IMPROVE rule (I1/I5), and the twelve-category semantic-diff this rubric grades against.
 - [The distillation-loss budget](../../docs/reference/distillation-loss-budget.md) — the no-distillation-loss discipline I2 enforces.
-- [The flow graph](../../docs/reference/flow-graph.md) — the closed set of exactly ten improve operations I3 checks membership against.
+- [The flow graph](../../docs/reference/cheatsheet.md) — the closed set of exactly ten improve operations I3 checks membership against.
