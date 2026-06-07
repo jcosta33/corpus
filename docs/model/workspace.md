@@ -25,25 +25,39 @@ cabinet for a clerk who doesn't exist yet.
 
 ## The spec repo — specs are content, `.agents/` is tooling
 
-Specs and intent artifacts live **top-level, as content** — they are the product. `.agents/` holds **only**
-the agent tooling the authoring flow loads ([ADR-0051](../adrs/0051-complete-the-spec-repo-pivot.md)):
+Specs and intent artifacts live **as content**; `.agents/` holds **only** the agent tooling the authoring
+flow loads. A **feature is a folder**: its contract and its supporting docs sit together, so the
+requirement→evidence trail is one place ([ADR-0052](../adrs/0052-per-feature-spec-folders.md), refining
+[ADR-0051](../adrs/0051-complete-the-spec-repo-pivot.md)):
 
 ```text
-specs/         # the *.swarm.md sources (the `author` step writes here) — desired truth, top-level
-adrs/  audits/  findings/  …   # other intent artifacts, top-level (type:-tagged docs, kept how you like)
+specs/
+  <feature>/                 # one folder per feature (e.g. 001-contact-form/)
+    spec.swarm.md            # the *.swarm.md source (the `author` step writes here) — desired truth
+    audit.md  research.md …  # feature-scoped supporting docs, co-located (type:-tagged)
+decisions/     # project-wide ADRs — sequentially numbered (0001-, 0002-, …), one per file
 .agents/
   skills/      # the authoring kit (author/lint/improve/lower/decompose/review/promote + 6 authoring personas)
   reference/   # the rule cards (sol.md, proofs.md, ir.md) the authoring skills name
-  templates/   # source-doc skeletons (spec, prd, rfc, audit, finding, adr, review, …)
+  templates/   # artifact skeletons (spec, prd, rfc, audit, finding, adr, review, …)
   memory/      # durable recall the `promote` step writes — INDEX.md + findings/patterns
 AGENTS.md      # repo root — the bootloader; fill its Commands table + project facts
 ```
 
+The home rule: **feature-scoped** source docs (audit, research, bug-report, prd, rfc, threat-model) live in
+`specs/<feature>/` beside the spec they serve; **project-wide decisions** (ADRs) live in `decisions/`;
+**durable findings** live in `.agents/memory/`. Execution scratch (task frames, traces, reviews) is
+gitignored or the linked PR — a review you deliberately keep lands in the feature folder. This is the convergent convention of the
+leading spec-driven tools — per-feature folders that co-locate a feature's artifacts
+[[SPECKIT]](../research/sources.md#SPECKIT) [[KIRO]](../research/sources.md#KIRO) and a numbered decision
+ledger [[ADR-CONV]](../research/sources.md#ADR-CONV).
+
 The `.agents/` install folders are re-copied on upgrade (`pass-*`/`persona-*`/`write-*` names can't collide
 with your own — that naming is the whole upgrade story). If your CLI scans a fixed skills dir (Claude Code →
-`.claude/skills/`), skills go there instead — no separate home, no symlink bridge. Swarm reads each
-artifact's **frontmatter**, not a mandated path, so where you keep `specs/`/`adrs/`/etc. is your call. There
-is **no version file** (the framework version is a producer release tag) and **no `.swarm/` mount**.
+`.claude/skills/`), skills go there instead — no separate home, no symlink bridge. Swarm identifies an
+artifact by its **frontmatter `type:`**, not its path — so a tool finds it wherever it sits; the homes above
+are the legible default. There is **no version file** (the framework version is a producer release tag) and
+**no `.swarm/` mount**.
 
 ## The code repo — pristine
 
@@ -56,7 +70,12 @@ as a linked PR**. Nothing litters the code repo.
 
 ## Why the spec repo prescribes these folders (and not the rest)
 
-- **`specs/`** — `author` produces the `*.swarm.md` source; intent has to live somewhere findable.
+- **`specs/<feature>/`** — `author` produces the `*.swarm.md` source; intent has to live somewhere findable,
+  and a per-feature folder keeps the contract and its supporting docs (the audit/research that fed it) in one
+  place, so the requirement→evidence trail doesn't scatter [[SPECKIT]](../research/sources.md#SPECKIT)
+  [[KIRO]](../research/sources.md#KIRO).
+- **`decisions/`** — ADRs are the one genuinely **project-wide** artifact (not bound to a single feature); a
+  sequentially-numbered ledger is the settled convention [[ADR-CONV]](../research/sources.md#ADR-CONV).
 - **`memory/`** — `promote` lifts durable findings and patterns out of throwaway task state so a later
   session **recalls** them instead of re-deriving them. Externalising state to disk rather than holding it
   in a context window is what makes multi-session work tractable [[CTXENG]](../research/sources.md#CTXENG);

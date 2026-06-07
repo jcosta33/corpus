@@ -1,16 +1,18 @@
 ---
 type: spec
-id: example
+id: contact-form
 swarm_language: SOL/0.1
 aps_version: 0.1
 spec_version: 0.1.0
 status: draft
 ---
 
-# Example spec
+# Contact form — example spec
 
 A minimal `*.swarm.md` to copy. Prose explains; the **SOL blocks** carry the load-bearing requirements an
-agent must satisfy. Delete this file once you have a real spec.
+agent must satisfy. This spec anchors its feature folder `specs/001-contact-form/`; its supporting docs (see
+`research.md` beside it) live in the same folder. Rename the folder and delete these examples once you have a
+real feature.
 
 ## Intent
 

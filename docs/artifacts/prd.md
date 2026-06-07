@@ -19,7 +19,7 @@ The PRD obeys the `.swarm.` infix partition that separates compiler-visible file
 - A `prd.md` is a **working artifact**: its filename **MUST NOT** contain the `.swarm.` infix, and it uses a plain `.md` extension. It is structured Markdown governed by this artifact contract, not by the SOL grammar, and it is never parsed or emitted by Swarm.
 - The one human-authored compiler-visible spec is `*.swarm.md`; emitted artifacts take a `*.swarm.*` name (e.g. `*.swarm.ir.json`, `*.swarm.trace.md`). A PRD is neither — it is a hand-authored source that *feeds* a spec, so it stays plain `.md`.
 
-In an adopted project, a PRD is a durable source artifact — a `type: prd` document committed to the spec repo. It sits beside the other parents of a spec — the `*.swarm.md` it promotes into, plus RFCs, research, audits, findings, and ADRs. A PRD is **never** execution scratch (the derived task frames, traces, and reviews a run produces, recreatable from sources) and **never** durable recall (the index, glossary, patterns, and stale records). A PRD is desired-state source, so the committed source-docs are its only home.
+In an adopted project, a PRD is a durable source artifact — a `type: prd` document committed in `specs/<feature>/`, beside the `spec.swarm.md` it promotes into (a pre-spec PRD starts the feature folder). A PRD is **never** execution scratch (the derived task frames, traces, and reviews a run produces, recreatable from sources) and **never** durable recall (the index, glossary, patterns, and stale records). A PRD is desired-state source, so the feature folder is its home.
 
 ## Required sections / fields, in order
 

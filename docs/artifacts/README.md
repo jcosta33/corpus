@@ -100,13 +100,14 @@ The copyable skeleton for each artifact lives in the starter kit under `starter-
 
 Each page restates the `.swarm.` infix rule for its own class: `spec.swarm.md` is the one human-authored compiler-visible source (`.swarm.md`); a built trace MAY take the emitted `*.swarm.trace.md` name; every other working artifact and source document is a plain `.md`.
 
-In an adopted project, artifacts are not held in any imposed tree; they live by role:
+In an adopted project a **feature is a folder**, and an artifact lives with the thing it serves ([ADR-0052](../adrs/0052-per-feature-spec-folders.md)):
 
-- **Durable source documents** (the obligation source) — `type`-tagged docs committed to the spec repo: specs (`*.swarm.md`), PRDs, RFCs, research, audits, bug-reports, findings, ADRs, interfaces, NFRs.
+- **Feature-scoped source documents** — the contract `spec.swarm.md` and its supporting docs (`audit`, `research`, `bug-report`, `prd`, `rfc`, `threat-model`) live together in `specs/<feature>/`. Co-locating a feature's evidence with its contract keeps the requirement→evidence trail in one place [[SPECKIT]](../research/sources.md#SPECKIT) [[KIRO]](../research/sources.md#KIRO).
+- **Project-wide decisions** — ADRs live in `decisions/`, sequentially numbered, one per file [[ADR-CONV]](../research/sources.md#ADR-CONV).
+- **Durable recall** — `INDEX.md`, `glossary.md`, `patterns/`, and `stale/` live in `.agents/memory/`; a finding is committed here and indexed by `INDEX.md`.
 - **Recreatable execution packets** — task frames (`task.md`), traces (`trace.md`), reviews (`review.md`), generated tests and docs: execution scratch, gitignored or created lazily by a future tool.
-- **Durable recall** — `INDEX.md`, `glossary.md`, `patterns/`, and `stale/`, committed.
 
-The copyable templates themselves ship with the installed starter kit.
+Swarm identifies an artifact by its frontmatter `type:`, not its path, so a tool finds it wherever it sits — these homes are the legible default. The copyable templates themselves ship with the installed starter kit, each carrying a "Lives in:" line naming its home.
 
 ## 6. The artifact contract pages
 

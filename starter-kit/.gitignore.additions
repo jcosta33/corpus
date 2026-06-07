@@ -8,5 +8,6 @@
 # Per-worker worktrees used during parallel decomposition.
 .worktrees/
 
-# NOTE: do NOT gitignore specs/ or .agents/memory/ — those are the durable record
-# (your sources and your learned recall). Everything else under .agents/ is committed too.
+# NOTE: do NOT gitignore specs/, decisions/, or .agents/memory/ — those are the durable
+# record (your specs + their supporting docs, your decisions, your learned recall).
+# Everything else under .agents/ is committed too.

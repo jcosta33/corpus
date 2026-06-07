@@ -12,17 +12,20 @@ It is **one kit, one purpose.** A code repo is not set up from here — see *Cod
 starter-kit/.agents/skills/      →  <skills dir>        # the 20 authoring skills (author + lint/improve/
                                                         #   lower/decompose/review/promote + authoring personas)
 starter-kit/.agents/reference/   →  .agents/reference/  # the rule cards: sol.md, proofs.md, ir.md
-starter-kit/.agents/templates/   →  .agents/templates/  # source-doc skeletons (spec, prd, rfc, audit,
+starter-kit/.agents/templates/   →  .agents/templates/  # artifact skeletons (spec, prd, rfc, audit,
                                                         #   finding, adr, research, bug-report, review, …)
 starter-kit/.agents/memory/      →  .agents/memory/     # the recall seed (INDEX.md, glossary.md)
+starter-kit/specs/               →  specs/              # per-feature folders (example: 001-contact-form/)
+starter-kit/decisions/           →  decisions/          # numbered ADRs (seed: 0001-adopt-swarm.md)
 starter-kit/AGENTS.md            →  AGENTS.md           # repo-root bootloader (fill Commands + project facts)
 ```
 
 Skills go in whatever dir your agent CLI scans (`.claude/skills/` for Claude Code, else `.agents/skills/`),
 beside your own — the `pass-*`/`persona-*`/`write-*` names don't collide. `.agents/` holds **only** this
-tooling. Your **specs and intent artifacts live top-level**, as content: `specs/*.swarm.md`, plus `adrs/`,
-`audits/`, `findings/`, PRDs, RFCs wherever you keep docs. No `.swarm/` mount, no symlink bridge, no version
-file. ([ADR-0051](../docs/adrs/0051-complete-the-spec-repo-pivot.md))
+tooling. Your **specs live in per-feature folders** — `specs/<feature>/spec.swarm.md` with each feature's
+supporting docs (audit / research / bug-report / …) co-located beside it; **ADRs** go in numbered
+`decisions/`; **findings** in `.agents/memory/`. No `.swarm/` mount, no symlink bridge, no version
+file. ([ADR-0052](../docs/adrs/0052-per-feature-spec-folders.md))
 
 ## Code repos (not set up from this kit)
 

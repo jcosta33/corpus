@@ -27,9 +27,9 @@ Where a finding governs once accepted: it carries weight as durable evidence in 
 
 A finding is structured Markdown governed by this contract; it is **not** parsed as SOL source, and it **MUST NOT** be given a per-artifact `.swarm.*` name. A conformant tool treats the missing infix as sufficient proof not to parse the file as a spec.
 
-In an adopted project, a finding is a durable source artifact — a `type: finding` document committed to the spec repo, where the recall map indexes it and patterns generalize from it:
+In an adopted project, a finding is a durable recall artifact — a `type: finding` document committed in **`.agents/memory/`**, where the recall map indexes it and patterns generalize from it:
 
-- A finding is durable discovery, committed alongside the other source-docs.
+- A finding is durable discovery, committed in `.agents/memory/` (the recall store), not a per-feature source doc.
 - The Tier-1 recall map (`memory/INDEX.md`) links each promoted finding with a "Load when".
 - A Tier-2 pattern is recurring knowledge that **generalizes** several findings.
 

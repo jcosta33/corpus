@@ -32,9 +32,12 @@ pristine** — a good SOL spec is self-legible, so a developer's repo needs esse
 >    - Put `starter-kit/AGENTS.md` at my repo **root** as `AGENTS.md`. If one already exists, **merge** by
 >      heading — keep my content and stop for my approval on any conflict. Add `CLAUDE.md` and `GEMINI.md` as
 >      **symlinks** to `AGENTS.md` (or one-line `@AGENTS.md` aliases where symlinks don't survive).
->    - Create a **top-level `specs/`** directory for my `*.swarm.md` source specs (where the `author` pass
->      writes). Other intent docs — ADRs, audits, findings, PRDs, RFCs — are normal `type:`-tagged documents;
->      keep them top-level wherever I keep docs. **`.agents/` holds only tooling.**
+>    - Create a top-level **`specs/`** with **one folder per feature** — `specs/<feature>/spec.swarm.md` is
+>      the contract (where the `author` step writes), and that feature's supporting docs (audit, research,
+>      bug-report, PRD, RFC, …) sit beside it in the same folder. Create a top-level **`decisions/`** for ADRs
+>      (numbered `0001-`, `0002-`, …); findings live in `.agents/memory/`. **`.agents/` holds only tooling.**
+>      The kit ships an example `specs/001-contact-form/` and a seed `decisions/0001-adopt-swarm.md` — copy
+>      their shape, then replace them.
 >    - Append `starter-kit/.gitignore.additions` to my `.gitignore`.
 >    - Fill the `AGENTS.md` `## Commands` table from my real test/lint/build commands (read
 >      `package.json`/`Makefile`/CI and confirm with me) and `## Project facts` from my stack and conventions.
@@ -54,8 +57,8 @@ pristine** — a good SOL spec is self-legible, so a developer's repo needs esse
 A **spec / docs repo:**
 
 ```text
-specs/                 # your *.swarm.md sources (the product)
-adrs/  audits/  …      # other intent docs, top-level (type:-tagged)
+specs/<feature>/       # one folder per feature: spec.swarm.md + its supporting docs (audit/research/…)
+decisions/             # project-wide ADRs, numbered (0001-, …)
 .agents/
   skills/  reference/  templates/  memory/   # Swarm tooling, nothing else
 AGENTS.md  (+ CLAUDE.md, GEMINI.md symlinks)

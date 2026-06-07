@@ -16,7 +16,7 @@ The model is **two-tier and provenance-anchored**. Rationale: chat transcripts a
 |---|---|
 | Phase | **PROMOTE** — the seventh and final phase |
 | Input | the task's discoveries + the resolved-or-pending promotion queue |
-| Output | durable writes to `.agents/memory/` and the durable source artifacts under `.agents/` (plus the `AGENTS.md` pointer case) and a fully-resolved promotion queue |
+| Output | durable writes to `.agents/memory/` (findings/patterns/glossary), the feature folder `specs/<feature>/` (specs + their supporting docs), and `decisions/` (ADRs) — plus the `AGENTS.md` pointer case — and a fully-resolved promotion queue |
 | Close gate | a task MUST NOT close while any promotion item is `pending` |
 | Ships a step guide? | **Yes** — `promote` ships a dedicated step guide, as do all six analysis steps (`lint`/`improve`/`lower`/`decompose`/`review`/`promote`); `implement` is served by the nine per-`task_kind` guides, `author` by the six author guides, and `verify` by the `empirical-proof` fragment ([ADR-0042](../adrs/0042-skill-carrier-and-standalone-conditioning.md)/[0051](../adrs/0051-complete-the-spec-repo-pivot.md)) |
 
@@ -85,10 +85,10 @@ The kinds are mutually exclusive by intent; a discovery with two faces (e.g. bot
 | Discovery | Promote to |
 |---|---|
 | New intended behaviour (a real obligation to build against) | `spec.swarm.md` (new/amended `REQ`/`CONSTRAINT`/`INVARIANT`/`INTERFACE`), or an ADR when gated on an undecided architectural/product choice |
-| Durable architectural/product decision (choice + alternatives + trade-offs) | An ADR (a `type: adr` doc under `.agents/`, `<nnnn>-<slug>.md`) |
-| Present-state risk or debt (what *is*, observed, not yet a chosen change) | An audit (a `type: audit` doc under `.agents/`, `<slug>.md`) — observation-only, never prescriptive |
-| Reproduced defect evidence (root cause + expected vs actual) | A bug-report (a `type: bug-report` doc under `.agents/`, `<slug>.md`) — diagnosis-only; the fix promotes onward to a `task_kind: fix` task |
-| Reusable project fact (durable evidenced claim) | A finding (a `type: finding` doc under `.agents/`, `<slug>.md`), indexed in `memory/INDEX.md` with `Load when` + full provenance |
+| Durable architectural/product decision (choice + alternatives + trade-offs) | An ADR (a `type: adr` doc in `decisions/`, `<nnnn>-<slug>.md`) — project-wide, sequentially numbered |
+| Present-state risk or debt (what *is*, observed, not yet a chosen change) | An audit (a `type: audit` doc in `specs/<feature>/`, beside the spec it concerns) — observation-only, never prescriptive |
+| Reproduced defect evidence (root cause + expected vs actual) | A bug-report (a `type: bug-report` doc in `specs/<feature>/`, beside the spec whose obligation it breaks) — diagnosis-only; the fix promotes onward to a `task_kind: fix` task |
+| Reusable project fact (durable evidenced claim) | A finding (a `type: finding` doc in `.agents/memory/`), indexed in `memory/INDEX.md` with `Load when` + full provenance |
 | Repeated cross-task pattern (recurring solution shape across >1 task) | `memory/patterns/*.md` |
 | Terminology clarification (ambiguous/drifted term) | `memory/glossary.md` (resolves `SOL-P006` undefined-term / `SOL-P057` terminology-drift at the source) |
 | Universal workflow rule (a procedure for every future task) | A **step-guide edit (the procedure) PLUS at most a one-line `AGENTS.md` pointer** — never inline procedure in `AGENTS.md` (the G9 tie-break) |

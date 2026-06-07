@@ -28,7 +28,7 @@ Therefore the file is named `bug-report.md` (or a descriptive `<topic>.bug-repor
 
 In an adopted project, a bug-report is **durable source material** — a `type: bug-report` document committed to the spec repo:
 
-- It records durable diagnostic knowledge about a defect, committed alongside the other source-docs.
+- It records durable diagnostic knowledge about a defect, committed in `specs/<feature>/` beside the spec whose obligation it breaks.
 - It is **not** execution scratch (the recreatable task frames, traces, and reviews a run produces) and it is not an observed-state status (satisfaction and drift, which never redefines intent).
 - On resolution, a retired bug-report is marked resolved and linked to the fix task it promoted into — it is not silently deleted.
 

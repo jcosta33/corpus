@@ -80,6 +80,21 @@ These were already verified by the framework's bibliography elsewhere; the entri
 <a id="CCTASKS"></a>
 **[CCTASKS] Claude Code Tasks / Todo system.** Anthropic, Claude Code (2026). Disk-persistent, dependency-aware task tracking — vendor-scale validation of externalised task state. <https://docs.anthropic.com/en/docs/claude-code/changelog> — *vendor doc.*
 
+<a id="SPECKIT"></a>
+**[SPECKIT] GitHub Spec Kit — Spec-Driven Development toolkit.** GitHub, 2025. *Verified (June 2026, repo + docs + GitHub blog).* Scaffolds **per-feature spec folders** — `specs/<NNN-feature>/` holding the spec + plan + tasks + research co-located — alongside a project-wide principles file (`memory/constitution.md`) and shared `templates/`; the flow is Spec → Plan → Tasks → Implement across 30+ agents. <https://github.com/github/spec-kit> · <https://github.github.com/spec-kit/> — *vendor toolkit; cite as convention, not a measured study.* Grounds: the per-feature `specs/<feature>/` home (a feature's supporting artifacts co-located with the spec they serve).
+
+<a id="KIRO"></a>
+**[KIRO] Amazon Kiro — spec-driven development.** AWS, 2025. *Verified (June 2026, kiro.dev/docs/specs).* Organizes each feature as `.kiro/specs/<feature>/` with `requirements.md` + `design.md` + `tasks.md`, and writes requirements in **EARS** (Easy Approach to Requirements Syntax) — the same controlled-clause shape Swarm's SOL uses. <https://kiro.dev/docs/specs/> — *vendor; cite as convention.* Grounds (with [SPECKIT]): the convergent per-feature-folder convention, and EARS as an established requirements-clause syntax.
+
+<a id="ADR-CONV"></a>
+**[ADR-CONV] Architecture Decision Records — the convention.** Nygard (2011); MADR template (adr.github.io); Fowler. *Verified (June 2026).* Decisions are recorded as short, immutable, **sequentially-numbered** Markdown files in a dedicated in-repo directory (`decisions/` or `docs/adr/`), one decision per file, superseded rather than rewritten. <https://adr.github.io/madr/> · <https://martinfowler.com/bliki/ArchitectureDecisionRecord.html> — *established convention.* Grounds: the project-wide `decisions/` home for ADRs and the supersession ledger.
+
+<a id="DIATAXIS"></a>
+**[DIATAXIS] Diátaxis — a systematic framework for technical documentation.** Procida. *Verified (June 2026, diataxis.fr).* Organizes documentation by user need into four distinct modes — tutorials, how-to guides, reference, explanation — kept separate because each serves a different purpose. <https://diataxis.fr/> — *reference framework.* Grounds: doc-organization-by-purpose (informs the skills / reference split; a full re-org of `docs/` was considered and declined as high-churn, low-payoff).
+
+<a id="REDEFO"></a>
+**[REDEFO] Requirements Development and Formalization for Reliable Code Generation: A Multi-Agent Vision.** Sun et al. (Weisong Sun, corresponding). **ASE 2025 (NIER track)**, arXiv:2508.18675. *Verified (June 2026, conf.researchr.org + arXiv).* A **vision** paper (New Ideas & Emerging Results — peer-reviewed venue, **no measured outcomes**): proposes Analyst + Formalizer agents that turn ambiguous NL requirements into **formal specifications** to bridge NL→code, with human-in-the-loop review at critical points. Cite as **design rationale / corroboration only** (never a measured `MUST`) — it corroborates the spec-as-contract + clarify-before-build direction; the *measured* grounding for that spine remains [PLANCODER]/[SEMAP]/[MAST]/[SMELLS].
+
 ## Caveated — non-peer-reviewed (cite ONLY as preliminary; never load-bearing)
 
 Treated as the kernel treats its own non-peer-reviewed sources: usable to *illustrate* a direction, never to ground a `MUST`. Their headline statistics are single-author/blog measurements, not controlled peer-reviewed studies.

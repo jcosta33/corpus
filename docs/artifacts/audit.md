@@ -28,7 +28,7 @@ Therefore the file is named `audit.md` (or a descriptive `<topic>.audit.md` / `<
 
 In an adopted project, an audit is **desired-side durable source material** — a `type: audit` document committed to the spec repo:
 
-- It is durable knowledge about the present state, committed alongside the other source-docs.
+- It is durable knowledge about the present state, committed in `specs/<feature>/` beside the spec it concerns (a pre-spec audit starts the feature folder it explores).
 - It is **not** execution scratch (the recreatable task frames, traces, and reviews a run produces) and it is not an observed-state status (satisfaction and drift, which never redefines intent).
 - On resolution, a retired audit is marked resolved and linked to the spec, finding, or task it promoted into — it is not silently deleted.
 

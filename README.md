@@ -36,9 +36,10 @@ The notation is small and closed — **7 obligation block types**, **5 modals** 
 Swarm lives in a **spec / documentation repo** — where intent is authored and reviewed. **Code repos stay
 pristine.** ([ADR-0050](docs/adrs/0050-swarm-is-a-spec-repo-discipline.md))
 
-- A **spec repo** adopts the **starter kit** (the authoring skills, the rule cards, the templates) and holds
-  the specs (`specs/`) and durable memory (`.agents/memory/`). One spec can govern **many** code repos —
-  obligation ids are namespaced (`spec-id#AC-001`).
+- A **spec repo** adopts the **starter kit** (the authoring skills, the rule cards, the templates). Specs
+  live in **per-feature folders** — `specs/<feature>/` holds the contract plus its supporting docs (audit,
+  research, …); decisions live in **`decisions/`** (numbered ADRs); durable memory in **`.agents/memory/`**.
+  One spec can govern **many** code repos — obligation ids are namespaced (`spec-id#AC-001`).
 - A **code repo** takes **almost nothing**: a good SOL spec is self-legible, so no rule cards and no specs go
   there. At most one optional `implement-and-verify` skill. The **PR** (naming the obligation ids it
   satisfies, with CI + review) is the record; durable outcomes flow back to the spec repo as linked PRs.

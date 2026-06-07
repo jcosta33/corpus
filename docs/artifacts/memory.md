@@ -35,7 +35,7 @@ A conformant tool keys off the infix as the sole discriminator for "do I parse t
 In an adopted project the index lives in the spec repo's durable recall, beside its Tier-1 and Tier-2 neighbors:
 
 - **`memory/`** — durable recall, committed and populated by the promote step: `INDEX.md` (this artifact, the Tier-1 recall map), `glossary.md` (the Tier-1 one-word-one-meaning term store), `patterns/` (Tier-2 recurring multi-finding knowledge), and `stale/` (superseded/contradicted memory, linked to replacements).
-- The durable source artifacts the index points at — findings and ADRs (the Tier-2 evidence store) — are committed source-docs.
+- The durable artifacts the index points at — findings (committed in `.agents/memory/`) and ADRs (committed in `decisions/`) — together form the Tier-2 evidence store.
 - The recreatable execution packets a run produces (task frames, traces, reviews) are ephemeral scratch, gitignored or created lazily by a future tool.
 
 Placement follows one rule: anything that defines, tracks, or reconciles durable project knowledge is committed durable recall. The index is durable recall, so it is committed under `memory/`. It points *into* the committed source-docs (the findings and ADRs it indexes) and is never confused with the ephemeral execution scratch. It is the `promote` step that adds, advances, retracts, and supersedes the index's rows.

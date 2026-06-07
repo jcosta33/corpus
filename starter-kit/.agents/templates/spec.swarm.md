@@ -15,6 +15,8 @@ updated: {{createdAt}}
 
 # Spec: {{title}}
 
+*Lives in: `specs/<feature>/spec.swarm.md` — the contract; this file anchors the feature folder, and its supporting docs (audit / research / bug-report / …) sit beside it.*
+
 <!--
 COPYABLE SKELETON — spec.swarm.md (the source spec).
 Fill every {{placeholder}} and replace each "<what goes here>" guide.

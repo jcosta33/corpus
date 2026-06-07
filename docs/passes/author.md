@@ -20,7 +20,7 @@ The `author` step **captures human intent as SOL obligations and APS prose**, pr
 
 ## Where it sits in the flow
 
-The seven **phases** are `PARSE -> NORMALIZE -> LOWER -> EXECUTE -> VERIFY -> REVIEW -> PROMOTE`. `author` is deliberately **outside** that phase taxonomy: it is the *entry step* that runs **before `PARSE`**, because its output (`spec.swarm.md`) is the first artifact Swarm can analyze.
+The seven **phases** are `PARSE -> NORMALIZE -> LOWER -> EXECUTE -> VERIFY -> REVIEW -> PROMOTE`. `author` is deliberately **outside** that phase taxonomy: it is the *entry step* that runs **before `PARSE`**, because its output (`spec.swarm.md`, written to the feature folder `specs/<feature>/` beside any source docs it normalized) is the first artifact Swarm can analyze.
 
 Two contract notes follow from this position:
 

@@ -28,7 +28,7 @@ Because research is the *detached* evidence store, its scope is wider than a sin
 
 A research artifact is structured Markdown governed by this contract; it is **not** parsed as SOL source, and it **MUST NOT** be given a per-artifact `.swarm.*` name. A conformant tool treats the missing infix as sufficient proof not to parse the file as a spec.
 
-In an adopted project, research is a durable source artifact — a `type: research` document committed to the spec repo: desired-truth-adjacent evidence, committed and never recreated. It sits beside its source-doc neighbors — the accepted `R-NNN` findings it promotes into (as `finding.md` instances) and the `*.swarm.md` a research artifact promotes INTO.
+In an adopted project, research is a durable source artifact — a `type: research` document committed in `specs/<feature>/` beside the `spec.swarm.md` it informs: desired-truth-adjacent evidence, committed and never recreated. A detached inquiry that feeds many specs may start its own feature folder; its accepted `R-NNN` findings promote to `finding.md` instances in `.agents/memory/`.
 
 It is **not** execution scratch: it is never one of the recreatable execution packets (task frames, traces, reviews) or transient scratch. As a Tier-3 stdlib source-doc it is **conditional** — the starter kit MUST ship the template, but a conformant repo need not have instantiated any research artifact, and a missing instance is not a conformance gap.
 

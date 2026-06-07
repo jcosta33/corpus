@@ -12,7 +12,7 @@ A `threat-model.md` is a **conditional Tier-3 source-doc** the stdlib SHOULD mak
 
 ## Filename & placement
 
-Plain `.md` (a working source artifact — **no** `.swarm.` infix). In an adopted project it is a `type: threat-model` document committed to the spec repo, alongside the other source-docs. It carries `type` + `id` frontmatter and no obligation blocks.
+Plain `.md` (a working source artifact — **no** `.swarm.` infix). In an adopted project it is a `type: threat-model` document committed in `specs/<feature>/` beside the spec it hardens. It carries `type` + `id` frontmatter and no obligation blocks.
 
 ## Required sections
 

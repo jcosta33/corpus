@@ -43,10 +43,10 @@ Given the *kind* of discovery, the protocol fixes the single durable target the 
 | Discovery | Promote to |
 | --------- | ---------- |
 | New intended behaviour (a real obligation/constraint to build against) | `spec.swarm.md` (a new or amended `REQ`/`CONSTRAINT`/`INVARIANT`/`INTERFACE`), or an ADR when the behaviour is gated on an undecided architectural/product choice. |
-| Durable architectural or product decision (a choice with consequences, alternatives, trade-offs) | An ADR — a `type: adr` doc kept under `.agents/`. |
-| Present-state risk or debt (what *is*, observed but not yet a chosen change) | An audit — a `type: audit` doc, observation-only, never prescriptive. |
-| Reproduced defect evidence (root cause + expected vs actual, reproducible) | A bug-report — a `type: bug-report` doc, diagnosis-only; the fix promotes onward to a `task_kind: fix` task. |
-| Reusable project fact (a durable claim learned during work, with evidence) | A finding — a `type: finding` doc, indexed in `memory/INDEX.md` with a `Load when` and full provenance. |
+| Durable architectural or product decision (a choice with consequences, alternatives, trade-offs) | An ADR — a `type: adr` doc in `decisions/`, project-wide and sequentially numbered. |
+| Present-state risk or debt (what *is*, observed but not yet a chosen change) | An audit — a `type: audit` doc in `specs/<feature>/` beside the spec it concerns, observation-only, never prescriptive. |
+| Reproduced defect evidence (root cause + expected vs actual, reproducible) | A bug-report — a `type: bug-report` doc in `specs/<feature>/`, diagnosis-only; the fix promotes onward to a `task_kind: fix` task. |
+| Reusable project fact (a durable claim learned during work, with evidence) | A finding — a `type: finding` doc in `.agents/memory/`, indexed in `memory/INDEX.md` with a `Load when` and full provenance. |
 | Repeated cross-task pattern (a recurring solution shape seen across more than one task) | `memory/patterns/*.md`. |
 | Terminology clarification (a term whose meaning was ambiguous or drifted) | `memory/glossary.md` (the canonical lexicon; resolves `SOL-P`-layer terminology drift — `SOL-P006` undefined-term, `SOL-P057` terminology-drift — at the source). |
 | Universal workflow rule (a procedure that should apply to every future task) | A step-guide edit (the procedure) **plus at most a one-line `AGENTS.md` pointer** — NEVER inline procedure in `AGENTS.md`; the bootloader holds persistent facts, not steps. |
@@ -133,7 +133,7 @@ The ledger fixes the durability boundary across the three knowledge layers:
 | ----- | ---------- | ---------- | --------------- |
 | Execution packets | task frames, traces, reviews (`{tasks,traces,reviews}`) | **Ephemeral** — recreatable from sources; compacted into the ledger on reconciliation | Gitignored (task frames always, and optionally traces/reviews once governance accepts ledger compaction as the system of record) |
 | Ledger | the compacted history (`{changes,merges,promotions}`) | **Durable** — the compact audit trail that outlives the packets | Committed |
-| Memory + sources | the `memory/` recall and the `type:`-tagged source docs under `.agents/` | **Durable** — recall + desired truth | Committed |
+| Memory + sources | the `.agents/memory/` recall, plus the `type:`-tagged source docs in `specs/<feature>/` and `decisions/` | **Durable** — recall + desired truth | Committed |
 
 Because the ledger captures the load-bearing summary of a trace/review on reconciliation, a project MAY gitignore the verbose execution packets without losing auditability — the ledger is what survives. By contrast, the ledger, the memory, and the source docs are never gitignored as a matter of governance: deleting them deletes the project's reconciled history, durable recall, and desired truth respectively. Whether a given repo gitignores active traces/reviews is a per-project governance choice, not a Swarm mandate; the only mandate is that *if* they are dropped, their load-bearing content MUST first have compacted into a ledger entry.
 
