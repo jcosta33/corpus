@@ -11,7 +11,7 @@ type: task
 id: export-json-flag
 status: done # active | blocked | done | abandoned (done is terminal)
 task_kind: feature
-source: .agents/specs/export-json-flag.swarm.md
+source: specs/export-json-flag/spec.swarm.md
 assigned_obligations: [AC-001, AC-002]
 constraints: [C-001]
 invariants: [I-001]

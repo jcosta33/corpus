@@ -12,7 +12,7 @@ below are recorded, not executed here.
 type: trace
 id: checkout-trace
 source_task: tasks/checkout-submit.md
-source_spec: .agents/specs/checkout.swarm.md
+source_spec: specs/checkout/spec.swarm.md
 ---
 
 # Trace: checkout

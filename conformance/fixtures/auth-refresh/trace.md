@@ -12,7 +12,7 @@ Inert oracle data; the proof results below are recorded, not executed here.
 type: trace
 id: auth-refresh-client-trace
 source_task: tasks/auth-refresh-client.md
-source_spec: .agents/specs/auth-refresh.swarm.md
+source_spec: specs/auth-refresh/spec.swarm.md
 ---
 
 # Trace: auth-refresh client

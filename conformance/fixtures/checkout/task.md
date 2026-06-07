@@ -17,7 +17,7 @@ type: task
 id: checkout-submit
 status: active
 task_kind: feature
-source: .agents/specs/checkout.swarm.md
+source: specs/checkout/spec.swarm.md
 assigned_obligations: [AC-010, AC-013, AC-014, AC-011]
 invariants: [I-010]
 interfaces: [IF-010]

@@ -95,7 +95,7 @@ no reconcile is needed (unlike auth-refresh, this chain is clean on first evalua
   `AC-010` `sha256:4b1f…12`, `AC-013` `sha256:5c2a…34`, `AC-014` `sha256:6d3b…56`,
   `AC-011` `sha256:7e4c…78`, `AC-012` `sha256:8f5d…9a`, `I-010` `sha256:3b90…ee`; the promoted
   finding pins `content_hash: sha256:5c2a…34` (the `AC-013` charge source span).
-- Source specs live under `.agents/specs/`; task/trace scratch is gitignored (e.g. `.agents/specs/checkout.swarm.md`).
+- Source specs live in `specs/<feature>/`; task/trace scratch is gitignored (e.g. `specs/checkout/spec.swarm.md`).
 
 ## How this is validated (no runtime)
 

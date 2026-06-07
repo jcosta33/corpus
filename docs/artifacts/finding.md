@@ -75,7 +75,7 @@ The copyable skeleton is `starter-kit/.agents/templates/finding.md`. That file i
 
 ## Related
 
-- `docs/passes/promote.md` — the step that dispositions each discovery, writes a promoted finding to `sources/findings/`, and indexes it in `memory/INDEX.md` with a `Load when`.
+- `docs/passes/promote.md` — the step that dispositions each discovery, writes a promoted finding to `.agents/memory/findings/`, and indexes it in `memory/INDEX.md` with a `Load when`.
 - `docs/passes/review.md` and `docs/passes/verify.md` — the steps that most often surface findings (against obligations and traces).
 - `docs/artifacts/audit.md` — the sibling observation-only source artifact; a present-state risk promotes into a spec rather than carrying obligation force here.
 - `docs/artifacts/adr.md` — the sibling decision artifact; a finding that captures a chosen architectural trade-off promotes into an ADR.

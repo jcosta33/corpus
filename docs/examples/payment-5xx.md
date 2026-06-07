@@ -87,7 +87,7 @@ VERIFY BY monitor:cmdMonitor:dashboards/payments/duplicate-captures#zero_double_
 
 ## The work packet (Stage 5) — a pending monitor row
 
-Both obligations write the same surface (`server/src/payments/charge.ts`), so they cannot run in parallel against it; the decomposer assigns them to **one serialized packet** rather than splitting across parallel tasks — satisfying the safe-parallelism predicate without any `SCOPE`-style split. The packet's `source` is `specs/payment-5xx.swarm.md`.
+Both obligations write the same surface (`server/src/payments/charge.ts`), so they cannot run in parallel against it; the decomposer assigns them to **one serialized packet** rather than splitting across parallel tasks — satisfying the safe-parallelism predicate without any `SCOPE`-style split. The packet's `source` is `specs/payment-5xx/spec.swarm.md`.
 
 The distinctive detail is `I-001`'s `monitor` proof: a production dashboard cannot be "run" inside the packet, so its verification-matrix row stays `pending` at merge and resolves at verify/review from the production observation, not from this build:
 

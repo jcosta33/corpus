@@ -11,7 +11,7 @@ type: task
 id: auth-refresh-client
 status: active
 task_kind: feature
-source: .agents/specs/auth-refresh.swarm.md
+source: specs/auth-refresh/spec.swarm.md
 assigned_obligations: [AC-001, AC-002]
 invariants: [I-001]
 interfaces: [IF-001]

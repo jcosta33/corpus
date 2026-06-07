@@ -46,9 +46,9 @@ created, updated.
 
 <!-- OPTIONAL (delete if there's no upstream provenance to record). The upstream artifacts this spec
      normalizes, as plain link rows — tool-agnostic: a ticket, PRD, RFC, doc, research, or audit appears as a
-     link, never via a connector. `class` is a recognized source class (intent | evidence | decision |
-     observation | example | interface | quality | memory; see the artifacts reference). Keep this section
-     immediately after ## Context when present. -->
+     link, never via a connector. `class` is a recognized source class (intent | evidence | proposal |
+     decision | observation | defect | discovery | scenario | interface | quality; see the artifacts
+     reference §3). Keep this section immediately after ## Context when present. -->
 
 | Source | Class | Contribution | Must preserve |
 | ------ | ----- | ------------ | ------------- |

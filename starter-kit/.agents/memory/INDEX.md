@@ -28,7 +28,7 @@ weight against the loss budget and the bootloader density cap (see the `promote`
      its claim. The Load when mirrors the finding's applies_when scope envelope.
      Illustrative seed entry (commented out — a consumer activates real rows like it):
 
-- [Refresh storm on a shared 401](../sources/findings/refresh-storm-on-shared-401.md) — Load when: touching auth token rotation, refresh endpoints, or concurrent-request handling
+- [Refresh storm on a shared 401](findings/refresh-storm-on-shared-401.md) — Load when: touching auth token rotation, refresh endpoints, or concurrent-request handling
 -->
 
 _(empty — the consumer adds the first durable finding here.)_

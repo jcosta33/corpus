@@ -84,7 +84,7 @@ Final outcome:              PASS.
 - Content hashes carried unchanged stage to stage: `AC-001` source `sha256:9b2e…41`,
   `I-001` source `sha256:7d10…aa`, `IF-001` source `sha256:1f4a…c0`; the promoted finding
   pins `content_hash: sha256:9b2e…41` (the `AC-001` source span).
-- Source specs live under `.agents/specs/`; task/trace scratch is gitignored (e.g. `.agents/specs/auth-refresh.swarm.md`).
+- Source specs live in `specs/<feature>/`; task/trace scratch is gitignored (e.g. `specs/auth-refresh/spec.swarm.md`).
 
 ## How this is validated (no runtime)
 

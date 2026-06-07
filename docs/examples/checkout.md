@@ -112,7 +112,7 @@ In the structured form, the atomized `AC-010`/`AC-013`/`AC-014` are three indepe
 
 `decompose` is the stage that would have **halted** on the authored spec: the safe-parallelism predicate requires any two parallel packets have pairwise-disjoint write surfaces, and the original `AC-011`/`AC-012` shared `db/orders`. The cleared structured form decomposes into two packets:
 
-- **`checkout-submit`** owns `api/src/checkout/submit.ts` + `db/orders`, covering `AC-010`, `AC-013`, `AC-014`, `AC-011`, preserving `I-010`. Its `source` is `specs/checkout.swarm.md`.
+- **`checkout-submit`** owns `api/src/checkout/submit.ts` + `db/orders`, covering `AC-010`, `AC-013`, `AC-014`, `AC-011`, preserving `I-010`. Its `source` is `specs/checkout/spec.swarm.md`.
 - **`checkout-inventory`** owns the disjoint surface `db/inventory`, covers `AC-012`, and carries `blocked_by: [checkout-submit]` (the lowered form of the `AC-012 DEPENDS ON AC-011` edge). Its single binding is `test:cmdTest:api/tests/inventory.spec.ts#writes-ledger`.
 
 Disjoint `WRITES` plus explicit ordering satisfy the safe-parallelism predicate — the `SOL-O001` the authored source tripped is cleared, not merely re-marked. (Each packet's owned paths MUST be a subset of its obligations' `WRITES`, or it is the hard error `SOL-O005`, owned-path-outside-write-surface — the same two-tier rule `auth-refresh` shows.)

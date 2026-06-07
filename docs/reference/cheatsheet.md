@@ -136,6 +136,25 @@ model  >  property | contract  >  test  >  static  >  manual | monitor
 
 A reconciliation caveat: only the **counts** are frozen, not every row of the default-suite matrix. The suites are recommendations — an author MAY override per obligation, and a kind's suite may evolve without a language-version change. Likewise the `cmd*` slot names in the manifest shadow (`cmdValidate`, `cmdValidateDeps`, etc.) are project-resolved through `AGENTS.md > Commands`; their exact spelling is a manifest convention, while the proof-type matrix above is the canonical layer.
 
+## Artifact homes (where everything lives)
+
+An artifact is homed by **scope**, not by type ([ADR-0052](../adrs/0052-per-feature-spec-folders.md)): a
+feature is the unit of organization, and feature-scoped artifacts co-locate with the spec they serve. One
+table, so "where does X go?" is answerable in one place.
+
+| Artifact | Scope | Home |
+| --- | --- | --- |
+| `spec.swarm.md` | feature | `specs/<feature>/spec.swarm.md` |
+| `audit` · `research` · `bug-report` · `prd` · `rfc` · `threat-model` | feature | `specs/<feature>/` — co-located beside the spec |
+| `adr` | project-wide | `decisions/` — sequentially numbered, one per file |
+| `finding` | durable recall | `.agents/memory/findings/<slug>.md` |
+| `memory/INDEX.md` · `glossary.md` · `patterns/` | durable recall | `.agents/memory/` |
+| `task` · `trace` · `review` · `status` · `task-orchestration` | execution scratch | gitignored (`.agents/tasks/`) or the linked PR — a *kept* review may land in `specs/<feature>/` |
+
+The asymmetry — `specs/` is per-feature folders, `decisions/` is flat numbered files — is deliberate: an ADR
+is the one genuinely project-wide artifact, not bound to a single feature. The `.swarm.` infix marks the
+**Swarm-format** files (the spec + emitted `*.swarm.*`); everything else is a plain-`.md` working artifact.
+
 ## Related
 
 - [SOL](../language/SOL.md) — the block-type and modal semantics behind their counts here.

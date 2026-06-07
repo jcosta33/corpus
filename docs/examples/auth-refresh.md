@@ -232,7 +232,7 @@ type: task
 id: auth-refresh-client
 status: active
 task_kind: feature
-source: specs/auth-refresh.swarm.md
+source: specs/auth-refresh/spec.swarm.md
 assigned_obligations: [AC-001, AC-002]
 invariants: [I-001]
 interfaces: [IF-001]
@@ -275,7 +275,7 @@ blocked_by: []
 type: trace
 id: auth-refresh-client-trace
 source_task: tasks/auth-refresh-client.md
-source_spec: specs/auth-refresh.swarm.md
+source_spec: specs/auth-refresh/spec.swarm.md
 ---
 
 # Trace: auth-refresh client
@@ -307,7 +307,7 @@ PROOF property:cmdTest:web/tests/auth-refresh.properties.ts#no_unbounded_retry p
 type: review
 id: auth-refresh-client-review
 source_trace: traces/auth-refresh-client-trace.md
-source_spec: specs/auth-refresh.swarm.md
+source_spec: specs/auth-refresh/spec.swarm.md
 ---
 
 # Review: auth-refresh client
