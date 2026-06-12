@@ -2,7 +2,7 @@
 type: change-plan
 id: CHANGE-dx-formats
 title: Amend the frozen artifact formats the DX audit faulted
-status: draft
+status: done
 kind: schema-change
 owner: José Costa
 sources: [SPEC-dx-remediation, .agents/audits/dx-audit-2026-06-12.md]
