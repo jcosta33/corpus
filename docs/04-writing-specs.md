@@ -62,7 +62,10 @@ until then they are review checklist items.
 1. **Give every requirement a `Verify with:` line.** It is the highest-value line in the file —
    a runnable check outperforms prose plans as task input (preliminary evidence)
    [[ORACLESWE]](research/sources.md#ORACLESWE). Naming a test that doesn't exist yet is fine;
-   the review result reads Unverified until it does.
+   the review result reads Unverified until it does. A check over stochastic output (an eval
+   metric, a benchmark, an LLM behavior) pins its protocol on the same line — same seed or
+   fixed dataset, the metric, the threshold — or two honest runs can disagree about the same
+   code.
 2. **Use observable verbs.** "Returns 401", "redirects to `/login`", "writes the audit row" —
    not "handles", "supports", "manages", "improves".
 3. **One behavior per requirement.** If the sentence needs an "and", it is usually two

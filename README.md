@@ -28,7 +28,7 @@ snapshot                  + code   packet     + status
 1. **Pull** the work — snapshot the ticket into `intake/`.
 2. **Spec** it — a one-page contract: requirements with IDs and `Verify with:` notes.
 3. **Task** it — a bounded packet an agent can finish in one sitting.
-4. **Run** it — your agent CLI, in its own git worktree.
+4. **Run** it — your agent CLI, in its own git worktree (a parallel checkout: its own folder and branch).
 5. **Review** it — coverage, evidence, and a human-attention list, not a 3,000-line diff.
 6. **Close** it — save what you learned as a finding; update the board.
 

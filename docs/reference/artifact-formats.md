@@ -29,7 +29,7 @@ Two frontmatter selectors matter beyond `type:`:
   reads both forms identically.
 - Everything else is per-artifact, listed below.
 
-**ID conventions.** Artifacts: `SPEC-*`, `TASK-*`, `REVIEW-*`, `FINDING-*`, `INV-*`, `CHANGE-*`.
+**ID conventions.** Artifacts: `SPEC-*`, `TASK-*`, `REVIEW-*`, `FINDING-*`, `AUDIT-*`, `INV-*`, `CHANGE-*`.
 Within a spec: requirements `AC-NNN` (constraints `C-NNN` and invariants `I-NNN` in SOL form).
 Within a research doc: findings `R-NNN`. A preservation guarantee with no spec id: `PG-NNN`.
 Cross-file references join with `#`: `SPEC-checkout#AC-003`, `payments-survey#R-002`.
@@ -91,7 +91,9 @@ touch, and how to verify.
 - Frontmatter: `type: task`, `id: TASK-*`, `source` (a spec and/or a change plan),
   `scope` (requirement ids), `status` (ready / running / review-ready / closed).
 - Sections: Source · Scope ("Implement or preserve") · Do not change · Affected areas · Verify ·
-  Agent instructions · Findings.
+  Agent instructions · Findings · Run summary (the handoff digest — changed files, results
+  citing the Verify pastes, out-of-scope edits, blocked questions; it cites the evidence,
+  never re-pastes it).
 - Every Verify item is a runnable command tied to a requirement id; the agent pastes real
   output — a claim without output counts as unverified.
 - The agent instructions tell the agent to stop and say why when a requirement can't be met as
@@ -108,8 +110,10 @@ The review packet turns an agent run into requirement coverage, evidence, and a 
 human-attention list. It is the durable record of the work — the PR links it; reviewing the
 packet is reviewing the change.
 
-- Frontmatter: `type: review`, `id: REVIEW-*`, `task`, `pr`,
-  `status: draft | pass | blocked | needs-human`.
+- Frontmatter: `type: review`, `id: REVIEW-*`, `task`, `pr`, `reviewer` (the named human or
+  fresh session — never the implementing one),
+  `status: draft | pass | waived | blocked | needs-human` (`waived` = merged with a recorded
+  waiver: who · which rows · why · expiry).
 - Sections: Summary · Changed files · Requirement coverage · Change-plan coverage (only when
   the task executes a change plan) · Human attention · Suggested decision.
 - Coverage rows are `ID | Result | Evidence | Human attention`, results
@@ -117,8 +121,9 @@ packet is reviewing the change.
 
 The load-bearing rules:
 
-- **A Pass needs pasted output or a CI link. An empty Evidence cell means Unverified, never
-  Pass** (checklist level). "Tests passed" without the output is not evidence
+- **A Pass needs pasted output, a CI link, or, for a manual Verify method, a named human's
+  recorded observation (who judged, what they saw). An empty Evidence cell means Unverified,
+  never Pass** (checklist level). "Tests passed" without the output is not evidence
   [[EVIBOUND]](../research/sources.md#EVIBOUND).
 - **Spot-check at least one green row's evidence yourself** (convention level) — structure alone
   doesn't remove the reviewer's bias toward agent output

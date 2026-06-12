@@ -65,16 +65,17 @@ Artifact: [task](../starter-kit/templates/task.md) → `tasks/`. How to split wo
 ## 4 · Run — let the agent work, isolated
 
 Hand the packet to your agent on its own branch and worktree. The agent implements, runs every
-Verify item and pastes the real output — a claim without output counts as unverified — and leaves
-a run summary: changed files, commands run, anything learned.
+Verify item and pastes the real output — a claim without output counts as unverified — and fills
+the packet's `## Run summary` section: changed files, results citing the Verify pastes, anything
+learned.
 
 How: [07-running-agents.md](07-running-agents.md).
 
 ## 5 · Review — read the evidence, not the whole diff
 
 Fill the review packet: one row per requirement with a result — Pass, Fail, Unverified, or
-Blocked — and its evidence. A Pass needs pasted output or a CI link; an empty Evidence cell means
-Unverified, never Pass. Then route the exceptions (failed or unverified rows, out-of-scope
+Blocked — and its evidence. A Pass needs pasted output, a CI link, or, for a manual Verify method, a named human's recorded observation
+(who judged, what they saw); an empty Evidence cell means Unverified, never Pass. Then route the exceptions (failed or unverified rows, out-of-scope
 changes, risky files) to human attention instead of re-reading every line.
 
 Artifact: [review](../starter-kit/templates/review.md) → `reviews/`. How:
@@ -82,8 +83,9 @@ Artifact: [review](../starter-kit/templates/review.md) → `reviews/`. How:
 
 ## 6 · Close — merge, record, keep the lesson
 
-Update the board, merge or block, and save anything durable — a fact, a decision, a gotcha — as
-a finding so the next session doesn't re-learn it.
+Merge or block, and save anything durable — a fact, a decision, a gotcha — as a finding so the
+next session doesn't re-learn it. The sessions keep the board honest — the finishing agent flips
+its task's row, the reviewing session closes it — you read it.
 
 Artifacts: [finding](../starter-kit/templates/finding.md) → `findings/`,
 [status board](../starter-kit/templates/status.md) → `status.md`. How:
@@ -101,8 +103,11 @@ Artifacts: [finding](../starter-kit/templates/finding.md) → `findings/`,
 | **Spike**         | Question → Research (an options survey — advanced) → decision                              |
 
 _Spec amend_ means: find the spec the bug contradicts and amend it if the bug reveals a gap —
-most bugs don't need a new spec. _Audit_ and _Research_ are advanced artifacts; see
-[reference/artifact-formats.md](reference/artifact-formats.md).
+most bugs don't need a new spec. A bug with **no covering spec** at all takes the
+arrives-as-code path in [08-reviewing-output.md](08-reviewing-output.md). Performance work runs
+the Bug or Refactor flow with a numeric target and baseline-first discipline (the
+write-performance guide in the implementation library). _Audit_ and _Research_ are advanced
+artifacts; see [reference/artifact-formats.md](reference/artifact-formats.md).
 
 ## When to skip steps
 
@@ -120,6 +125,9 @@ design judgment)
   only when existing behavior must provably survive a structural change.
 - **Skip Spec and Change Plan both** for a small cleanup — the task packet alone bounds it.
 - **Trivial work skips the board too:** a one-line cleanup needs no status row — the PR is enough.
+- **The board is optional when a tracker owns task state** (Jira, Linear): keep the
+  review-packet links in the tracker rows instead — the board earns its keep where it is the
+  single surface.
 - **A spike skips nearly everything** — it is the degenerate flow: none of the six steps
   run until its outcome becomes a spec or a change plan. In the table: ask the question, do the research, record the decision.
 

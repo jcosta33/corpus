@@ -88,7 +88,10 @@ swarm-cli could compute the first; nothing enforces either).
   exactly what strands a coding agent mid-run
   [[HILBENCH]](../research/sources.md#HILBENCH).
 - **Coverage before running** (between `decompose` and `implement`). Every in-scope requirement is
-  assigned to exactly one task — none unassigned, none assigned twice — and everything a task
+  assigned to exactly one task — none unassigned, none assigned twice, with one platform
+  carve-out: the same requirement may scope to N platform tasks when each verifies it on its
+  own platform, and it reads green at spec level only when every platform task shows Pass —
+  and everything a task
   points at (a requirement ID, a verification method) resolves to something that exists. The first
   half forbids stranding a requirement; the second forbids a task built on a phantom.
 
@@ -175,6 +178,13 @@ waiver lapses when the waived requirement's text changes.
 One guard rail: an empty scope never passes by vacuity. A change no requirement covers does not
 merge "because nothing failed" — it waits until a spec amendment covers it, the change is reverted,
 or the review packet records it as an accepted out-of-scope change with a reason.
+
+**Post-merge evidence** (infra applies, soak metrics): when a requirement's only honest
+evidence is producible after merge, the row records **Blocked** — never a courtesy Unverified —
+the human routes it as an exception and records the waiver (who · why · expiry, the annotation's
+required fields), and the merge proceeds on the waiver with the packet status `waived`. A
+follow-up review row supplies the Pass when the post-merge evidence lands, and the waiver
+lapses. Merged packets are never edited — closure is a new row, not a mutation.
 
 This is a review checklist item today — the reviewer reads the gate off the packet's coverage
 table. It is toolable: a future `swarm review` in swarm-cli could compute it mechanically from the

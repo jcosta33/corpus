@@ -9,7 +9,7 @@ contexts, the definition names it; the reverse map is at the bottom.
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **acceptance criterion (AC)** | One verifiable requirement in a spec, labeled `AC-NNN`; the unit a review packet reports a result on.                                                                                           |
 | **ADR (decision record)**     | One recorded project decision with its rationale, numbered in `decisions/`.                                                                                                                     |
-| **agent run summary**         | The worker agent's closing report — changed files, commands run with their output, candidate findings; it feeds the review packet's Evidence column (internally, and in the future CLI: trace). |
+| **agent run summary**         | The worker agent's closing report, filled in the task packet's `## Run summary` section — changed files, results citing the Verify pastes, candidate findings; the review packet reads it (internally, and in the future CLI: trace). |
 | **AGENTS.md**                 | The short, always-loaded context file an agent reads on every task; aim for ~100 lines — Swarm's own convention, nothing enforces it.                                                           |
 | **audit**                     | An observation-only report on present-state risk or debt, each observation evidence-grounded; it observes, never prescribes. Advanced artifact.                                                 |
 | **bug report**                | The diagnosis of one defect: reliable reproduction, expected vs actual, root-cause evidence. Advanced artifact.                                                                                 |
@@ -51,6 +51,7 @@ contexts, the definition names it; the reverse map is at the bottom.
 | **wave**                      | One stage of a change plan; each wave leaves the codebase green and names its verify step.                                                                                                      |
 | **workboard**                 | `status.md`, the hand-edited table of open specs, tasks, reviews, and findings — see **status board**.                                                                                          |
 | **workspace**                 | The small repo holding specs, tasks, reviews, findings, and the board (internally: spec repo). Code repos stay pristine.                                                                        |
+| **worktree**                  | A parallel git checkout of the same repo — its own folder and branch — so each task's run stays isolated and parallel tasks never share files.                                                  |
 | **writing rules**             | The word-level spec hygiene — one strength word, no vague qualifiers without a pin on the same line (internally: APS). The watchlist is in [checks](checks.md).                                 |
 
 ## If you meet the internal term first
@@ -70,6 +71,7 @@ Advanced pages and tooling contracts sometimes use the precise internal vocabula
 | spec repo              | workspace                      |
 | trace                  | agent run summary              |
 | verdict                | review result                  |
+| Waived (annotation)    | merged with a recorded waiver (who · which rows · why · expiry) |
 
 
 ## Related

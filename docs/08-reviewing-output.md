@@ -30,7 +30,9 @@ filled example lives in [`examples/`](examples/). Walking through it:
 - **Changed files** — the touched paths, so out-of-scope edits are visible at a glance.
 - **Requirement coverage** — the heart of the packet. One row per requirement in the task's
   scope: `ID | Result | Evidence | Human attention`. The evidence cell holds pasted command
-  output or a CI link, not a sentence about output.
+  output or a CI link (for a manual method: the named human's recorded observation), not a
+  sentence about output. Read the task packet's Run summary section first — it indexes the
+  Verify pastes the cells cite.
 - **Change-plan coverage** — only when the task executes a change plan (see below).
 - **Human attention** — the exception list: each item, why it matters, a suggested action.
 - **Suggested decision** — merge, or block until a named item is resolved.
@@ -38,21 +40,30 @@ filled example lives in [`examples/`](examples/). Walking through it:
 A packet should fit on one page. If it doesn't, the task was probably too big — that is
 feedback for [task splitting](06-creating-tasks.md), not a reason to write a longer packet.
 
-(Future CLI: `swarm review` will draft this packet — today you or your agent fills the template.)
+(Future CLI: `swarm review` will draft this packet — today you, or a fresh agent session that
+did not write the diff, fill the template.)
 
 ## The evidence rules
 
 These are checklist-level rules: nothing in this repo enforces them — the reviewer inspects
 them, and they are on the review checks in [`reference/checks.md`](reference/checks.md).
 
-1. **A Pass needs pasted output or a CI link.** A bare "tests passed" is a claim, not
-   evidence — unsupported done-claims are the failure this rule exists to catch, illustrated
-   (small-N, preliminary) by [[EVIBOUND]](research/sources.md#EVIBOUND).
+1. **A Pass needs pasted output, a CI link, or — for a manual Verify method — a named
+   human's recorded observation (who judged, what they saw).** A bare "tests passed" is a
+   claim, not evidence — unsupported done-claims are the failure this rule exists to catch,
+   illustrated (small-N, preliminary) by [[EVIBOUND]](research/sources.md#EVIBOUND).
 2. **An empty Evidence cell means Unverified, never Pass.** If nobody can point at the
    output, the requirement was not verified, whatever the prose says.
 3. **Don't merge with an open critical item.** A failed or blocked requirement, or an
    unanswered blocking question, holds the merge until it is resolved or explicitly waived
-   by a human.
+   by a human. A waiver is a record — who waived · which rows · why · expiry — and the
+   packet's status becomes `waived` at merge; the row's Result stays what the evidence says.
+4. **A known-flaky check cannot buy a Pass with one green run.** Reproduce per the
+   fix-flaky-test discipline (loop it) before the row reads Pass.
+
+Solo? The independence rule holds by actor: whoever produced the diff — your hands or an
+agent session — does not fill the packet. Agent implements → you review; you implement → a
+fresh agent session reviews. Self-review stays mandatory and yields fixes, never a result.
 
 ## Spot-check one green row
 
@@ -72,7 +83,8 @@ listing an exception or having nothing to list:
 
 - unverified or failed requirements
 - out-of-scope changes (edits not traceable to the task's scope)
-- risky files (auth, payments, anything with a blast radius)
+- risky files (auth, payments, IAM policies, security groups, state moves, destroys —
+  anything with a blast radius)
 - missing test output
 - changed public interfaces
 - DB migrations
@@ -103,19 +115,37 @@ guarantees are rows too. The packet's **Change-plan coverage** table gives each 
 behave exactly as before" guarantee the same `ID | Result | Evidence | Human attention`
 treatment as the requirements. "Nothing broke" is a claim like any other — it needs evidence.
 
+## When the work arrives as code
+
+Sometimes there is no upstream artifact at all — an external PR from a stranger, a vendor
+patch, a bug in code no spec covers. The loop still works, run post-hoc:
+
+1. **Intake the code-shaped work** — snapshot the PR description and diff stats verbatim
+   (`source: gh-pr`), exactly like a ticket.
+2. **Write the spec as an acceptance bar** — what must be true for this change to merge,
+   one `AC-NNN` per behavior, written *after* the code exists. It bounds the review, not
+   the build.
+3. **The reviewer produces all evidence.** A silent or unavailable author pastes nothing —
+   your own runs fill the Evidence column, which is the stronger position anyway: the
+   worker's paste is a claim; your run is evidence.
+
+The packet then reads identically to any other review — without a task packet, the spec's
+requirement ids key the coverage table directly.
+
 ## Results and packet status
 
 Each coverage row carries one result:
 
 | Result         | Meaning                                                        |
 | -------------- | -------------------------------------------------------------- |
-| **Pass**       | Verified, with pasted output or a CI link in the Evidence cell |
+| **Pass**       | Verified — pasted output, a CI link, or a named human's recorded observation (manual method) |
 | **Fail**       | Verified and the requirement is not met                        |
 | **Unverified** | No evidence — including every empty Evidence cell              |
 | **Blocked**    | Cannot be verified until something else is resolved            |
 
 The packet itself carries a status in its frontmatter: `draft` (being filled) · `pass`
-(every row Pass, decision is merge) · `blocked` (an open critical item holds the merge) ·
+(every row Pass, decision is merge) · `waived` (merged with a recorded waiver) · `blocked`
+(an open critical item holds the merge) ·
 `needs-human` (exceptions routed, awaiting a human call). A richer result vocabulary exists
 for advanced workflows — see [`reference/advanced-lifecycle.md`](reference/advanced-lifecycle.md).
 

@@ -58,7 +58,7 @@ One result per requirement row in the review packet (internally: verdicts).
 
 | Result         | Meaning                                                                 |
 | -------------- | ----------------------------------------------------------------------- |
-| **Pass**       | Verified — pasted output or a CI link sits in the Evidence cell.        |
+| **Pass**       | Verified — pasted output, a CI link, or a named human's recorded observation (manual method) sits in the Evidence cell. |
 | **Fail**       | Verified, and the requirement is not met.                               |
 | **Unverified** | No evidence. Every empty Evidence cell reads as Unverified, never Pass. |
 | **Blocked**    | Cannot be verified until something else is resolved.                    |

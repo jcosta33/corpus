@@ -59,8 +59,9 @@ confident "tests passed" — these are *shape*. Evidence is the pasted output or
 reader can inspect; unsupported done-claims are the failure this principle exists to catch,
 illustrated (small-N, preliminary) by [[EVIBOUND]](../research/sources.md#EVIBOUND).
 
-- **Consequence.** A Pass needs pasted output or a CI link; an empty Evidence cell means
-  Unverified, never Pass; reviewers spot-check at least one green row. These are checklist-level
+- **Consequence.** A Pass needs pasted output, a CI link, or, for a manual Verify method, a
+  named human's recorded observation; an empty Evidence cell means Unverified, never Pass;
+  reviewers spot-check at least one green row. These are checklist-level
   rules — review inspects them; nothing in this repo enforces them.
 - **Tiebreaker.** When a claim rests on "it parsed" or "the build is green" with nothing
   pasted: demand the output.

@@ -127,9 +127,9 @@ forbids *silent* ones — declared, they become a Human attention row at Review.
 | # | Predicate | Holds when | Fails when |
 |---|---|---|---|
 | V1 | **Coverage complete** | Every requirement in the task's scope has a row in the coverage table — plus one row per preservation guarantee when the task executes a change plan. | A scoped requirement has no row; it can neither pass nor route to a human. |
-| V2 | **Empty evidence means Unverified** | Every Pass row carries pasted output or a CI link; a row with an empty Evidence cell is recorded Unverified, never Pass. | A Pass stands on no evidence — "tests passed" with nothing under it is not evidence. |
+| V2 | **Empty evidence means Unverified** | Every Pass row carries pasted output, a CI link, or a named human's recorded observation (manual method); a row with an empty Evidence cell is recorded Unverified, never Pass. | A Pass stands on no evidence — "tests passed" with nothing under it is not evidence. |
 | V3 | **Exceptions routed** | Every exception trigger present in the work has a Human attention entry (the trigger list is in the review template). | A triggering condition exists in the inputs with no entry routing it. |
-| V4 | **Gate honest** | The packet's status and Suggested decision follow the table: no merge suggestion while any row shows Fail, or Unverified without a routed exception. | The decision contradicts the table — asserted past a Fail or an unrouted Unverified. |
+| V4 | **Gate honest** | The packet's status and Suggested decision follow the table: no merge suggestion past a Fail or unrouted Unverified without a recorded waiver (who · which rows · why · expiry). | The decision contradicts the table — asserted past a Fail or an unrouted Unverified with no waiver on record. |
 | V5 | **Spot-check recorded** | The reviewer re-checked at least one green row's evidence and the packet says so. | No spot-check is recorded — the table was rubber-stamped. |
 
 Independence is the spine of V2–V4: results are judged against the spec, the diff, and the
@@ -169,7 +169,7 @@ Four predicates assert loop-wide invariants, scored wherever the relevant artifa
 |---|---|---|
 | **Re-parses clean** | Every file a step writes still reads as its `type:` — frontmatter fields and required sections per its template, so a second reader reconstructs the same artifact. | Pull, Spec, Task, Review, Close |
 | **Chain unbroken** | The requirement → task → review chain holds end to end: every scoped requirement reaches a review row, and every task scope item, verify item, and review row names a requirement that exists upstream. | Task, Run, Review |
-| **Result consistent with evidence** | Every recorded result matches what its evidence actually shows: a Pass carries pasted output or a CI link; an empty Evidence cell means Unverified, never Pass. | Run, Review |
+| **Result consistent with evidence** | Every recorded result matches what its evidence actually shows: a Pass carries pasted output, a CI link, or a named human's recorded observation (manual method); an empty Evidence cell means Unverified, never Pass. | Run, Review |
 | **Drift surfaced** | A mismatch between what the spec says and what was built is named somewhere visible — a coverage row, a Human attention entry, a board item — never silently passed. | Review, Close |
 
 ## Bars for the advanced lifecycle
@@ -198,7 +198,9 @@ reference-tier names — the [glossary](glossary.md) maps them back.
   dependency serializes them; the partition respects dependency order, no cycles; every
   in-scope requirement is assigned to exactly one task; each task carries its requirements as
   stated, not paraphrased. When several agents run at once, any coordination record's owned
-  paths are pairwise disjoint across workers, confirmed before anyone spawns.
+  paths are pairwise disjoint across workers, confirmed before anyone spawns. One platform
+  carve-out: the same requirement may scope to N platform tasks when each verifies it on its
+  own platform — it reads green at spec level only when every platform task shows Pass.
 - **`implement`** — scored by the Run bar, sharpened by one scope predicate: the diff stays
   inside the task's affected areas, and the recorded changed-file set is never narrower than
   the diff.

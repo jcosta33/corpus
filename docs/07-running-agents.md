@@ -56,17 +56,23 @@ doubt, serialize: tasks are cheap to queue.
 
 ## What you get back
 
-The last agent instruction asks for a **run summary**: changed files, the
-commands it ran with their real output, and anything learned worth saving as
-a finding. That summary is the raw material for the
-[review packet](08-reviewing-output.md)'s Evidence column — which is why
+The last agent instruction has the agent fill the packet's **`## Run summary`**
+section: changed files, one line per command citing its Verify paste, out-of-scope
+edits, blocked questions. The pasted output lives under the Verify items; the
+summary indexes it — the raw material the
+[review packet](08-reviewing-output.md) reads, which is why
 output must be pasted, not described. "Tests passed" without the output is
 not evidence [[EVIBOUND]](research/sources.md#EVIBOUND); at review it is
 recorded as Unverified, not Pass.
 
 If the summary is missing or thin, ask for it before tearing anything down —
 the worktree still exists and re-running a command costs seconds. Later, it's
-archaeology.
+archaeology. When the agent cannot write the workspace — an external workspace
+repo, a sandboxed runner — it emits the summary at the end of its run and the
+runner or human relays it into the task packet at handoff. For per-kind depth
+(a fix, a refactor, a migration, performance work), load the matching guide
+from `docs/library/code-skills/` in the Swarm repo on top of the kit's
+implement-task.
 
 ## Self-review before handoff
 

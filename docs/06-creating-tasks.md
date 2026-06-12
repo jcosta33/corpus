@@ -47,7 +47,9 @@ say why — the fix is a spec amendment, not mid-task improvisation.
 Fill Verify with real commands, not intentions. Executable acceptance criteria
 are the part an agent benefits from most — a runnable check outperforms prose plans as task input (preliminary evidence)
 [[ORACLESWE]](research/sources.md#ORACLESWE): a requirement whose check the
-agent can actually run is the one most likely to come back done.
+agent can actually run is the one most likely to come back done. Where no command can exist —
+a physical-rig check, a visual pass — name the manual check; at review its evidence is a named
+human's recorded observation (who judged, what they saw).
 
 ## "Do not change" is the scope wall
 

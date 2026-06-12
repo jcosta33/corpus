@@ -5,37 +5,47 @@
 Swarm is files, not software. The starter kit **is** a complete workspace — adoption is one
 copy plus one bootloader to fill in. Three paths, in order of preference.
 
-## 1. Manual adoption (two minutes)
+## 1. Manual adoption (one copy, ~15 minutes)
 
 Copy the kit whole, as a dedicated workspace repo or a folder inside your project
 ([where files live](03-where-files-live.md)):
 
 ```sh
-cp -R starter-kit my-workspace && cd my-workspace && git init   # dedicated repo
+cp -R starter-kit my-workspace && cd my-workspace && git init \
+  && git add -A && git commit -m "adopt Swarm"                  # dedicated repo
 cp -R starter-kit <your-project>/workspace                      # or co-located
 # (-R, not -r: on macOS, -r would replace the kit's symlinks with stale copies)
 ```
 
+Windows: a default clone or copy materializes the kit's three symlinks as small text files
+(git `core.symlinks=false`). Either enable Developer Mode and clone with
+`-c core.symlinks=true`, or replace `.claude/skills` with a real copy of `.agents/skills/`.
+
 Then:
 
-1. **Fill the `{{placeholders}}`** — `AGENTS.md` (Commands table, project facts) and the
-   seed ADR's date and team in `decisions/0001-adopt-swarm.md`.
+1. **Fill the `{{placeholders}}`** — `AGENTS.md` (Commands table, project facts), the
+   seed ADR's date and team in `decisions/0001-adopt-swarm.md`, and seed `status.md`:
+   the board is yours — replace the example row shape with your first spec and task rows.
    In a dedicated workspace repo the Commands table names the commands of the code repos
-   this workspace governs (or stays as placeholders until that's decided); the
-   `For code repos:` line is the pointer you copy *out* to each code repo's own
-   `AGENTS.md`, then remove here.
-2. **Point your agent at the guides.** Claude Code already finds them — the kit ships
+   this workspace governs (or stays as placeholders until that's decided).
+2. **Copy the `For code repos:` pointer out** of `AGENTS.md` into each code repo's own
+   `AGENTS.md`, then remove the line here.
+3. **Point your agent at the guides.** Claude Code already finds them — the kit ships
    `.claude/skills` as a symlink to `.agents/skills/`. For another tool, add its
    equivalent symlink or copy the guide folders to wherever it scans (the per-tool table
    is in [integrations](10-integrations.md)).
-3. **Read `examples/feature-from-ticket/`**, then delete it when you no longer need it.
-4. **Write one spec** for your next non-trivial change: `specs/<feature>/spec.md`. Run the
+4. **Read `examples/feature-from-ticket/`**, then delete it when you no longer need it.
+5. **Write one spec** for your next non-trivial change: `specs/<feature>/spec.md`. Run the
    loop once.
 
+Team defaults, stated once: whoever owns the change writes the spec; who reviews is whoever
+did not write the diff — the implementing agent's session never fills its own review packet.
+
 Optional, when you need them: copy pieces of `starter-kit/advanced/` — templates are used
-in place; guides are copied into `.agents/skills/` (audit, research, bug, ADR, RFC, PRD
-templates, plus guides for the audit, research, bug, RFC, and PRD work). The advanced
-audit template is the recommended first taste for brownfield teams.
+in place; guides are copied into `.agents/skills/` (their references are
+workspace-root-relative, so they read correctly from either home). The full inventory is in
+`starter-kit/advanced/README.md`. The advanced audit template is the recommended first taste
+for brownfield teams.
 
 ## 2. Agent-assisted adoption
 
