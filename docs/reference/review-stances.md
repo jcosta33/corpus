@@ -29,8 +29,10 @@ code, or output (record Unverified) and an implementer judging their own change 
 independent reviewer).
 
 The carrier is incidental: a stance may ship as a standalone guide or be folded into the guide for
-the step it sharpens — what matters is that the seven sections are present and crisp. This is a
-convention; nothing in this repo enforces it.
+the step it sharpens — what matters is that the seven sections are present and crisp. The kit's
+guides carry the folded forms; every stance also ships standalone as a `persona-*` skill in
+[the swarm-skills catalog](https://github.com/jcosta33/swarm-skills), for loading a posture
+without its host guide. This is a convention; nothing in this repo enforces it.
 
 ## The stances
 
@@ -39,14 +41,14 @@ convention; nothing in this repo enforces it.
 Intent, not implementation. Prevents specs that smuggle in an algorithm where a requirement
 belongs. Demands that every requirement be verifiable as written, and a survey of what already
 exists before a new boundary is invented. Refuses a requirement no one could check, and a "how"
-dressed as a "what". Ships inside `starter-kit/.agents/skills/write-spec/`.
+dressed as a "what". Ships inside the kit's `.agents/skills/write-spec/`.
 
 ### Skeptic — folded into the `review-output` guide
 
 Refute by default: a completion claim is unproven until evidence forces the opposite conclusion.
 Prevents rubber-stamped reviews. Demands re-run checks and pasted output; refuses a worker's
 summary as proof, a green row with an empty evidence cell, and any softening of a finding to avoid
-blocking. Ships inside `starter-kit/.agents/skills/review-output/` — and, turned on one's own diff before
+blocking. Ships inside the kit's `.agents/skills/review-output/` — and, turned on one's own diff before
 handoff, it is the self-review posture the `implement-task` guide ends on (that yields fixes and a
 recorded critique, never a self-issued result).
 
@@ -64,14 +66,14 @@ not fold cleanly into any single guide; ships standalone as `persona-surveyor` i
 Observation, not prescription. Prevents audits that editorialize or quietly fix. Demands a
 file-and-line reference per finding and severity calibrated by blast radius, not a flat list;
 refuses prescribing fixes inline and asserting a structural claim nobody grepped for. Ships inside
-the catalog's `write-audit`.
+the kit's `write-audit`.
 
 ### Researcher — folded into the `write-research` guide
 
 Depth inquiry against primary sources, committing to no decision. Prevents research that hardens
 into a recommendation or lets a claim outrun its evidence. Demands checkable primary sources and a
 visible seam between what was observed and what is asserted; refuses citing a blog post without its
-primary source. Ships inside the catalog's `write-research`.
+primary source. Ships inside the kit's `write-research`.
 
 ### Documentarian — folded into the documentation guide
 
@@ -110,5 +112,7 @@ risk is highest.
   review-result model, and contradiction handling.
 - [Reviewing output](../08-reviewing-output.md) — the review packet the Skeptic stance fills.
 - [Agent guides](agent-guides.md) — the guide model the folded stances live inside.
-- The kit guides themselves: `starter-kit/.agents/skills/{write-spec,implement-task,review-output}/` and
-  `starter-kit/advanced/`.
+- The kit guides themselves:
+  [`.agents/skills/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/.agents/skills)
+  in the swarm-starter-kit repo; the standalone stances:
+  [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills).

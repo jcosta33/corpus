@@ -32,7 +32,7 @@ _cannot_ see from here. It observes and maps; it never judges (that's an audit) 
 prescribes (that's the change plan it feeds).
 
 The format is frozen in the kit —
-[`starter-kit/templates/inventory.md`](../starter-kit/templates/inventory.md).
+[`templates/inventory.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md).
 
 **Write one before:** a major refactor or rewrite, a migration, a module split or subsystem
 replacement, a wide dependency upgrade, or sending an agent into unfamiliar brownfield code.
@@ -65,7 +65,7 @@ several agents, or will land as a diff too large to interpret without a map.
 ## Walking the template
 
 The format is frozen in the kit —
-[`starter-kit/templates/change-plan.md`](../starter-kit/templates/change-plan.md). The
+[`templates/change-plan.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md). The
 load-bearing sections:
 
 - **Baseline → Target state.** What the code does today (cite the inventory, don't re-derive
@@ -111,5 +111,5 @@ the diff existed.
 - [Writing specs](04-writing-specs.md) — the behavior side of the division table.
 - Deeper planning technique — equivalence checks beyond a green suite, behavior-delta tables
   for rewrites, baseline/target measurement for performance work — lives in the
-  `write-change-plan` agent guide in
-  [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills).
+  [`write-change-plan`](https://github.com/jcosta33/swarm-starter-kit/blob/main/.agents/skills/write-change-plan/SKILL.md)
+  agent guide, shipped in the kit.

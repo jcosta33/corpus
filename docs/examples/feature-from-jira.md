@@ -4,7 +4,7 @@
 
 One small feature — silent token refresh on 401 — carried through the whole loop:
 **Pull → Spec → Task → Run → Review → Close**. Every artifact appears in full, in the exact
-shape its kit template freezes ([`starter-kit/templates/`](../../starter-kit/templates/)).
+shape its kit template freezes ([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)).
 This page is [the basic workflow](../02-basic-workflow.md) with real content in every slot.
 
 ## Step 1 — Pull: capture the ticket

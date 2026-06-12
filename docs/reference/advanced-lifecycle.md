@@ -30,15 +30,15 @@ concession. This is a convention — nothing in this repo enforces it.
 
 | Step | What it does | Covered by |
 |---|---|---|
-| `author` | Write the source document — usually a spec; for brownfield or structural work, an inventory, change plan, or audit. | the `write-spec` guide (kit core); `write-inventory`, `write-change-plan`, `write-audit` (swarm-skills catalog) |
-| `lint` | Read the spec against the [common mistakes to check for](checks.md) without changing a word. Diagnose only. | the `spec-check` guide (swarm-skills catalog) |
-| `improve` | Repair what `lint` found — the operations below — without changing what the spec means. | the `spec-check` guide (swarm-skills catalog) |
-| `lower` | Restate each requirement as a structured item with a stable ID, its verification method, its dependencies, and the files it may touch. | the `split-work` guide (swarm-skills catalog) |
-| `decompose` | Split the structured requirements into bounded tasks whose written files do not overlap, and order them by dependency. | the `split-work` guide (swarm-skills catalog) |
+| `author` | Write the source document — usually a spec; for brownfield or structural work, an inventory, change plan, or audit. | the `write-spec` guide (kit core); `write-inventory`, `write-change-plan`, `write-audit` (kit) |
+| `lint` | Read the spec against the [common mistakes to check for](checks.md) without changing a word. Diagnose only. | the `spec-check` guide (kit) |
+| `improve` | Repair what `lint` found — the operations below — without changing what the spec means. | the `spec-check` guide (kit) |
+| `lower` | Restate each requirement as a structured item with a stable ID, its verification method, its dependencies, and the files it may touch. | the `split-work` guide (kit) |
+| `decompose` | Split the structured requirements into bounded tasks whose written files do not overlap, and order them by dependency. | the `split-work` guide (kit) |
 | `implement` | Do the work inside one task's scope; record what changed, the commands run, and their real output. | the `implement-task` guide (kit core) |
 | `verify` | Run every verification method named by the task and record a result per requirement. Evidence-gathering only — no judgment. | the `implement-task` guide; the reviewer re-runs |
 | `review` | Judge the agent's claims against the requirements and the evidence; fill the review packet; decide the merge gate. | the `review-output` guide (kit core) |
-| `promote` | Save anything durable as a finding, update the workboard, close. | the `save-findings` guide (swarm-skills catalog) |
+| `promote` | Save anything durable as a finding, update the workboard, close. | the `save-findings` guide (kit) |
 
 Three boundaries keep the steps honest:
 

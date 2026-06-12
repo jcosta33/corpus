@@ -11,7 +11,7 @@ Inventory → Change Plan → Task → Run → Review → Close
 ```
 
 Every artifact below sits in the workspace in the shipped template shapes
-([`starter-kit/templates/`](../../starter-kit/templates/)). The punchline up front: the
+([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)). The punchline up front: the
 reviewer read eighteen table rows and four exception items across two packets, spot-checked
 one green row by hand, and opened three files out of 41 — the three the packet pointed at.
 
@@ -578,7 +578,7 @@ and a drive-by edit two waves early.
   a change plan are worth writing, and when they are not
 - [feature-from-jira](feature-from-jira.md) — the six-step happy path, including authoring a
   spec like SPEC-checkout · [bug-fix](bug-fix.md) — the shortest loop, same review discipline
-- Templates used here: [inventory](../../starter-kit/templates/inventory.md) ·
-  [change-plan](../../starter-kit/templates/change-plan.md) ·
-  [task](../../starter-kit/templates/task.md) · [review](../../starter-kit/templates/review.md) ·
-  [finding](../../starter-kit/templates/finding.md) · [status](../../starter-kit/templates/status.md)
+- Templates used here: [inventory](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) ·
+  [change-plan](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) ·
+  [task](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) · [review](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) ·
+  [finding](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) · [status](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md)

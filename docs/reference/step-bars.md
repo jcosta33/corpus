@@ -7,7 +7,7 @@ step's **input artifact** and **output artifact**. A predicate either holds or i
 it is decidable by reading the two files alone. **A single failing predicate fails the step.**
 
 Bars exist because a well-formed file is not a well-performed step. A task packet can match
-[the template](../../starter-kit/templates/task.md) perfectly and still pull a requirement its
+[the template](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) perfectly and still pull a requirement its
 spec never stated; a review packet can have every column filled and still rest on the agent's
 own summary. The [checks catalogue](checks.md) covers format and hygiene; the bars grade the
 **transformation between the files** — fidelity, honesty, and the unbroken chain from
@@ -227,5 +227,5 @@ them.
 
 - [Basic workflow](../02-basic-workflow.md) — the loop these bars grade.
 - [Checks](checks.md) — the format and hygiene catalogue the bars build on.
-- [Templates](../../starter-kit/templates/) — the frozen artifact formats every bar reads against.
+- [Templates](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/) — the frozen artifact formats every bar reads against.
 - [The advanced lifecycle](advanced-lifecycle.md) — the finer steps and the full result model.

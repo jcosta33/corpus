@@ -35,7 +35,7 @@ politeness: forcing clarification onto already-clear work measurably hurts outco
 ## The template
 
 The format is frozen in the kit — copy
-[`starter-kit/templates/spec.md`](../starter-kit/templates/spec.md) rather than reinventing it.
+[`templates/spec.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/spec.md) rather than reinventing it.
 What each part is for:
 
 - **Frontmatter** — `type: spec`, an `id` (`SPEC-<slug>`), `title`, `status` (`draft` until the

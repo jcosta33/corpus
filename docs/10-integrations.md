@@ -34,7 +34,7 @@ Work usually starts in Jira, Linear, GitHub Issues, or Notion. **Pull** — the 
 
 1. Open the ticket. Copy its content — title, description, acceptance notes, the lot.
 2. Paste it **verbatim** into a new file in `intake/`, using the
-   [intake template](../starter-kit/templates/intake.md). Record the source, URL, and capture date
+   [intake template](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/intake.md). Record the source, URL, and capture date
    in the frontmatter. Don't edit the paste — the intake preserves what was actually asked; the
    spec is where interpretation happens.
 3. When you write the spec, cite the intake file in its `sources` list.

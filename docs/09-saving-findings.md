@@ -23,7 +23,7 @@ so beats pretending otherwise.
 
 This is a convention — nothing in this repo enforces it. It costs one short file in
 `findings/`, written from the frozen template at
-[`starter-kit/templates/finding.md`](../starter-kit/templates/finding.md): what we learned,
+[`templates/finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md): what we learned,
 the evidence, where it applies, where it does not, and what to do differently next time.
 The task packet's Findings section is the staging area — at Close, anything sitting there
 moves to `findings/` or gets dropped deliberately.
@@ -57,7 +57,7 @@ its sources. That is the whole feedback loop: lessons from one task become input
 ## Update the board
 
 Close ends with a board update in `status.md`
-([template](../starter-kit/templates/status.md)): mark the task closed, link its review
+([template](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md)): mark the task closed, link its review
 packet, list the new finding as pending acceptance, and refresh the Human attention list
 (blocking questions on draft specs · tasks with no review packet · findings pending
 acceptance). One honest rule, at checklist level: **a "verified" or "done" claim on the

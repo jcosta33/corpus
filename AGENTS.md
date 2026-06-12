@@ -11,13 +11,13 @@ anything described as checkable names its checker (the reference implementation 
   structured requirements, checks, step bars, artifact formats, advanced lifecycle, future CLI,
   memory), `examples/` (three flagship walkthroughs; `large-pr-review.md` is the demo),
   `ADOPTING.md`, `adrs/` (the decision ledger), `research/sources.md` (the evidence bibliography).
-- `starter-kit/` — a complete workspace adopters copy whole (ADR-0069): `AGENTS.md` + symlinks,
-  `.agents/skills/` (3 core guides; `.claude/skills` symlink), `templates/` (8), seeded flow
-  folders, `status.md`, `examples/`, `decisions/`, `advanced/` (optional templates + reference
-  cards; optional guides live in the swarm-skills sibling repo).
 - `checks/` — the checks contract as data (`checks.yaml`) + fixtures (test data for
   `docs/reference/checks.md`; swarm-cli's oracle). `.agents/` — a small dev-skills subset
   (see `.agents/SKILLS-MANIFEST.md`).
+- The starter kit ships as its own template repo, `../swarm-starter-kit` (ADR-0075): a
+  complete workspace adopters copy whole — the core loop guides plus the workspace
+  authoring guides at `.agents/skills/`, `templates/` (8), `advanced/` (optional templates +
+  reference cards). Conditioning stances and code-depth guides live in `../swarm-skills`.
 
 ## Swarm workspace
 
@@ -53,16 +53,19 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
   Non-verified sources never carry a MUST-level claim; fact-shaped statements without a
   source are labeled design rationale. Web-verify before adding to `sources.md`.
 - **Single-sourcing.** Formats are frozen in ADRs 0058/0060/0061/0067/0068 and shipped at
-  `starter-kit/templates/` — everything else links, never restates. A rule lands in `docs/`
-  first; the kit, the swarm-skills catalog, and the dev skills derive from it.
+  the kit repo's `templates/` (`../swarm-starter-kit`) — everything else links, never
+  restates. A rule lands in `docs/` first; the kit repo, the swarm-skills catalog, and the
+  dev skills derive from it (a format change is a two-repo change, cut and reviewed from
+  swarm-hq).
 
 ## Pointers
 
-- Decisions: `docs/adrs/README.md` (0001–0074; 0057–0074 are the current architecture)
+- Decisions: `docs/adrs/README.md` (0001–0075; 0057–0075 are the current architecture)
 - Workspace (specs, audits, plans, board): `../swarm-hq`
+- The starter kit: `../swarm-starter-kit` (github.com/jcosta33/swarm-starter-kit)
+- Optional guide catalog: `../swarm-skills` (github.com/jcosta33/swarm-skills)
 - Dev skills (the small subset for working on this repo): `.agents/skills/` — see
   `.agents/SKILLS-MANIFEST.md`
-- Optional guide catalog: `../swarm-skills` (github.com/jcosta33/swarm-skills)
 - Evidence: `docs/research/sources.md` (verified / caveated / rejected — never cite rejected)
 
 ## Commands

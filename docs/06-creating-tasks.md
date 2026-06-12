@@ -17,7 +17,7 @@ written down where you can inspect it.
 
 ## The template
 
-Copy [`templates/task.md`](../starter-kit/templates/task.md) and save it under
+Copy [`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) and save it under
 `tasks/` in your workspace (see [Where files live](03-where-files-live.md)).
 The template is the format — this page only explains what each part is for:
 

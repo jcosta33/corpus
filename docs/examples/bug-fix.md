@@ -5,7 +5,7 @@
 The bug shape of the loop: **Pull → Spec check → Task → Run → Review → Close**. A bug is a
 disagreement between the code and the spec — or, as here, a place where the spec was
 silent. Every artifact appears in its frozen template shape
-([`starter-kit/templates/`](../../starter-kit/templates/)).
+([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)).
 
 ## Step 1 — Pull the bug ticket
 

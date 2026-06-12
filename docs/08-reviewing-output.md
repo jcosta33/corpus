@@ -23,7 +23,7 @@ is spent on what the structure flags.
 ## The review packet
 
 The packet is one markdown file in `reviews/`, one per task, named after the task's slug. The format is frozen in the kit
-template — [`starter-kit/templates/review.md`](../starter-kit/templates/review.md) — and a
+template — [`templates/review.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) — and a
 filled example lives in [`examples/`](examples/). Walking through it:
 
 - **Summary** — two or three sentences: what changed, what is verified, what is not.
@@ -95,9 +95,9 @@ listing an exception or having nothing to list:
 ## Read like a skeptic
 
 When a branch warrants more than the packet — high risk, large diff, low trust — the
-`adversarial-review` guide ([the swarm-skills catalog](https://github.com/jcosta33/swarm-skills))
-runs the deep form: re-run validation yourself, walk six adversarial questions, search the
-callers of everything that changed.
+[`adversarial-review`](https://github.com/jcosta33/swarm-starter-kit/blob/main/.agents/skills/adversarial-review/SKILL.md)
+guide (shipped in the kit) runs the deep form: re-run validation yourself, walk six
+adversarial questions, search the callers of everything that changed.
 
 The reviewer's stance is refute-by-default: a claim is unproven until evidence forces you to
 accept it. In practice —
@@ -105,7 +105,7 @@ accept it. In practice —
 - treat confident prose as a claim to check, never as proof;
 - prefer output you ran or watched run over output you were handed;
 - if you authored the change, you don't decide its review result — self-review before
-  finishing is good practice (the [task template](../starter-kit/templates/task.md) asks the
+  finishing is good practice (the [task template](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) asks the
   agent for it), but it produces fixes, not approval.
 
 ## Reviewing transformation work

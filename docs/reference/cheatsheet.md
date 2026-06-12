@@ -4,7 +4,7 @@
 
 One page of lookup tables: labels, results, verification methods, artifact homes, the loop, and
 the check ids. Definitions live in the linked pages; the exact file formats live in the kit
-templates ([`starter-kit/templates/`](../../starter-kit/templates/)) and are never restated here.
+templates ([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)) and are never restated here.
 
 ## The loop
 

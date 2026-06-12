@@ -5,7 +5,7 @@
 The core memory story is one folder and one rule: keep findings in `findings/`, and before
 closing a task, record anything durable as a finding
 ([09-saving-findings.md](../09-saving-findings.md), template:
-[`finding.md`](../../starter-kit/templates/finding.md)). For most teams that is the whole system.
+[`finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md)). For most teams that is the whole system.
 This page is for teams that outgrow it. Everything here is convention — nothing in this
 repository enforces it; the only named future check is swarm-cli's `swarm close` prompting for
 unresolved findings.
@@ -98,7 +98,7 @@ quietly relaxes it.
 ## Provenance
 
 A finding is falsifiable only if it carries enough origin to check. The
-[`finding.md`](../../starter-kit/templates/finding.md) template carries the core (`from`, `date`,
+[`finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) template carries the core (`from`, `date`,
 `related`, Evidence, Where it applies / does not apply); teams running the advanced model record
 the fuller set on each promoted finding:
 
@@ -164,6 +164,6 @@ entry by hand at Close.
 ## Related
 
 - [09-saving-findings.md](../09-saving-findings.md) — the core findings workflow this page extends.
-- [`finding.md`](../../starter-kit/templates/finding.md) · [`status.md`](../../starter-kit/templates/status.md) — the frozen formats; the board's Human attention list tracks findings pending acceptance.
+- [`finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) · [`status.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) — the frozen formats; the board's Human attention list tracks findings pending acceptance.
 - [future-cli.md](future-cli.md) — the `swarm close` findings prompt and optional ledger entry.
 - [drift.md](drift.md) — the wider drift model the staleness signal belongs to.

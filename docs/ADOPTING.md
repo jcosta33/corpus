@@ -7,14 +7,20 @@ copy plus one bootloader to fill in. Three paths, in order of preference.
 
 ## 1. Manual adoption (one copy, ~15 minutes)
 
-Copy the kit whole, as a dedicated workspace repo or a folder inside your project
-([where files live](03-where-files-live.md)):
+Copy the kit whole from its template repo —
+[`jcosta33/swarm-starter-kit`](https://github.com/jcosta33/swarm-starter-kit) — as a dedicated
+workspace repo or a folder inside your project ([where files live](03-where-files-live.md)):
 
 ```sh
-cp -R starter-kit my-workspace && cd my-workspace && git init \
-  && git add -A && git commit -m "adopt Swarm"                  # dedicated repo
-cp -R starter-kit <your-project>/workspace                      # or co-located
-# (-R, not -r: on macOS, -r would replace the kit's symlinks with stale copies)
+# dedicated workspace repo
+gh repo create my-workspace --template jcosta33/swarm-starter-kit   # or clone and re-init:
+git clone https://github.com/jcosta33/swarm-starter-kit my-workspace \
+  && rm -rf my-workspace/.git && git -C my-workspace init
+
+# or co-located inside your project
+git clone https://github.com/jcosta33/swarm-starter-kit /tmp/kit \
+  && cp -R /tmp/kit/. <your-project>/workspace/ && rm -rf <your-project>/workspace/.git
+# (cp -R with the trailing dot keeps the kit's symlinks; -r would replace them with stale copies)
 ```
 
 Windows: a default clone or copy materializes the kit's three symlinks as small text files
@@ -41,20 +47,21 @@ Then:
 Team defaults, stated once: whoever owns the change writes the spec; who reviews is whoever
 did not write the diff — the implementing agent's session never fills its own review packet.
 
-Optional, when you need them: copy templates from `starter-kit/advanced/` (used in place;
-the inventory is in `starter-kit/advanced/README.md`) and install optional agent guides from
+Optional, when you need them: the kit's `advanced/` templates are used in place (the
+inventory is in the kit's `advanced/README.md`; the advanced audit template is the
+recommended first taste for brownfield teams), and conditioning stances plus
+per-change-shape implementation guides install from
 [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills) into `.agents/skills/`
-(`npx skills add jcosta33/swarm-skills --list`, or copy the folders). The advanced audit
-template is the recommended first taste for brownfield teams.
+(`npx skills add jcosta33/swarm-skills --list`, or copy the folders).
 
 ## 2. Agent-assisted adoption
 
 Hand your coding agent this prompt:
 
 > Adopt the Swarm framework into this repository. Read
-> `https://github.com/jcosta33/swarm` — specifically `docs/ADOPTING.md` and
-> `starter-kit/README.md` — then perform the manual-adoption steps above for me:
-> copy the `starter-kit/` folder whole as my workspace, fill its `AGENTS.md` Commands
+> `https://github.com/jcosta33/swarm/blob/main/docs/ADOPTING.md` and
+> `https://github.com/jcosta33/swarm-starter-kit` — then perform the manual-adoption
+> steps for me: copy the starter-kit repo whole as my workspace, fill its `AGENTS.md` Commands
 > table from my real test/lint/build setup (read package.json/Makefile/CI and confirm
 > with me), wire my agent tool to `.agents/skills/` if it is not Claude Code, and append
 > the gitignore additions to my code repos. This is additive — do not delete or

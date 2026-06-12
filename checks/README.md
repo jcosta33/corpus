@@ -91,7 +91,7 @@ Reconciliation duties this note carries:
 - The core check IDs and severities in [`checks.yaml`](./checks.yaml) match
   [the checks reference](../docs/reference/checks.md) row for row.
 - The task and review section lists in [`checks.yaml`](./checks.yaml) match
-  the templates at `starter-kit/templates/` heading for heading.
+  the kit's `templates/` (the swarm-starter-kit repo) heading for heading.
 - Every fixture's pinned expectation agrees with both; a fixture that disagrees means
   the contract, the prose, or the fixture is wrong — find out which before shipping.
 

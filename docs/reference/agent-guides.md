@@ -6,7 +6,9 @@ The guides are short procedural documents an agent CLI loads on demand (each shi
 `SKILL.md`, auto-discoverable by agent tools and plainly readable by humans). They carry
 procedure; the templates carry shape; this page is the index.
 
-## Core (ship in the kit at `.agents/skills/`; tools discover them via symlinks like `.claude/skills`)
+## Shipped in the kit (at `.agents/skills/`; tools discover them via symlinks like `.claude/skills`)
+
+The core loop:
 
 | Guide | Use when |
 |---|---|
@@ -14,14 +16,14 @@ procedure; the templates carry shape; this page is the index.
 | `implement-task` | executing a task packet — stay in scope, run every Verify item, paste real output, self-review the diff before handoff |
 | `review-output` | filling a review packet — refute by default, re-run checks, evidence rules, route the exception triggers |
 
-## Advanced (install from [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills) when needed)
+The workspace authoring guides, beside them:
 
 | Guide | Use when |
 |---|---|
 | `write-audit` | recording the present state of an area — observation only, evidence per finding |
 | `write-inventory` | mapping brownfield code before structural change — the contract map |
 | `write-change-plan` | planning a refactor/rewrite/migration — baseline, preservation guarantees, waves, rollback |
-| `write-research` / `persona-surveyor` | depth research on one question / breadth surveys across many examples |
+| `write-research` | depth research on one question, against primary sources |
 | `write-bug-report` | reproducing and root-causing a defect — diagnosis, never the fix |
 | `write-prd` / `write-rfc` | upstream intent and proposals |
 | `spec-check` | running the checks of `checks.md` by hand |
@@ -29,11 +31,14 @@ procedure; the templates carry shape; this page is the index.
 | `save-findings` | the Close step — routing durable discoveries to findings |
 | `adversarial-review` | a deep, hostile re-review of an agent branch — beyond the packet: re-run validation yourself, six adversarial questions, caller search |
 
-## Implementation guides (for code-side depth)
+## Optional (install from [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills) when needed)
 
-The same catalog carries long-form execution guides per change shape
-(feature, fix, refactor, rewrite, migration, performance, testing, documentation,
-flaky tests) plus `implement-task` in long form. Optional — install what your team uses
+The catalog carries the conditioning stances — `persona-architect`, `persona-auditor`,
+`persona-documentarian`, `persona-researcher`, `persona-skeptic`, `persona-surveyor`
+(breadth surveys across many examples), plus the standalone `empirical-proof` evidence
+discipline — and long-form execution guides per change shape (feature, fix, refactor,
+rewrite, migration, performance, testing, documentation, flaky tests) plus
+`implement-task` in long form. Install what your team uses
 (`npx skills add jcosta33/swarm-skills --list`, or copy the folders).
 
 ## Authoring your own guide

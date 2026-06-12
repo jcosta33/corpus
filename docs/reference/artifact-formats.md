@@ -46,7 +46,7 @@ INV- CHANGE-`, requirement ids `AC-NNN` (`C-`/`I-` in SOL form); keep one casing
 
 ### intake — what was actually asked
 
-Template: [`starter-kit/templates/intake.md`](../../starter-kit/templates/intake.md) · lives in `intake/`
+Template: [`templates/intake.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/intake.md) · lives in `intake/`
 
 A verbatim snapshot of the upstream item — ticket, issue, page — captured before anyone
 interprets it. Recommended when work originates in an external tracker; never required.
@@ -58,7 +58,7 @@ interprets it. Recommended when work originates in an external tracker; never re
 
 ### spec — what should be true
 
-Template: [`starter-kit/templates/spec.md`](../../starter-kit/templates/spec.md) · lives in `specs/<feature>/spec.md`
+Template: [`templates/spec.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/spec.md) · lives in `specs/<feature>/spec.md`
 
 The durable statement of intended behavior: requirements an agent can build from and a review
 can check. Supporting docs (audit, research, prd, rfc) sit in the same feature folder, the
@@ -83,7 +83,7 @@ Full writing guidance: [writing specs](../04-writing-specs.md) and [checks](chec
 
 ### task — the packet that bounds one agent run
 
-Template: [`starter-kit/templates/task.md`](../../starter-kit/templates/task.md) · lives in `tasks/`
+Template: [`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) · lives in `tasks/`
 
 One agent run gets one task packet: its sources, the requirement ids in scope, what not to
 touch, and how to verify.
@@ -104,7 +104,7 @@ touch, and how to verify.
 
 ### review — the record of work
 
-Template: [`starter-kit/templates/review.md`](../../starter-kit/templates/review.md) · lives in `reviews/`
+Template: [`templates/review.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) · lives in `reviews/`
 
 The review packet turns an agent run into requirement coverage, evidence, and a short
 human-attention list. It is the durable record of the work — the PR links it; reviewing the
@@ -139,7 +139,7 @@ The extended result lifecycle (Waived, Stale, Contradicted) belongs to the
 
 ### finding — what survives the session
 
-Template: [`starter-kit/templates/finding.md`](../../starter-kit/templates/finding.md) · lives in `findings/`
+Template: [`templates/finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) · lives in `findings/`
 
 One durable lesson, saved before the task closes. The Close-step rule: _before closing a task,
 record anything durable as a finding._
@@ -162,7 +162,7 @@ outgrow grep-and-board recall graduate to the [advanced memory model](memory.md)
 
 ### status — the workboard
 
-Template: [`starter-kit/templates/status.md`](../../starter-kit/templates/status.md) · lives at the workspace root
+Template: [`templates/status.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) · lives at the workspace root
 
 A hand-edited board: one row per spec, task, review, and finding with its state and link, plus a
 Human-attention list (blocking questions on draft specs · tasks with no review packet · findings
@@ -186,7 +186,7 @@ change plan for an obvious bug fix.
 
 ### inventory — the map of what exists
 
-Template: [`starter-kit/templates/inventory.md`](../../starter-kit/templates/inventory.md) · lives in `inventory/`
+Template: [`templates/inventory.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) · lives in `inventory/`
 
 The brownfield prerequisite: reconstruct what exists before anyone draws new boundaries.
 
@@ -202,7 +202,7 @@ The brownfield prerequisite: reconstruct what exists before anyone draws new bou
 
 ### change-plan — how the codebase changes safely
 
-Template: [`starter-kit/templates/change-plan.md`](../../starter-kit/templates/change-plan.md) · lives in `change-plans/`
+Template: [`templates/change-plan.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) · lives in `change-plans/`
 
 A spec answers "what behavior should exist"; a change plan answers "how does the codebase change
 safely" — for refactors, rewrites, migrations, dependency upgrades, performance, test-infra,
@@ -234,7 +234,7 @@ Each advanced artifact is allowed to assert exactly one kind of knowledge — it
 stances do not mix. The shared rule: **promotion into a spec is an authoring act.** Content from
 any of these gains requirement force only when someone writes it into a spec with its own
 `AC-NNN` and `Verify with:` line; nothing becomes binding by sitting in its source document
-(convention level). Templates ship in [`starter-kit/advanced/`](../../starter-kit/advanced/)
+(convention level). Templates ship in [`advanced/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/advanced/)
 except where noted.
 
 ### audit — observation only
@@ -314,7 +314,7 @@ for one spec is occasionally worth it before a large merge.) The contract lives 
 ## Related
 
 - [Where files live](../03-where-files-live.md) — the workspace tree these artifacts sit in
-- [`starter-kit/templates/`](../../starter-kit/templates/) — the core template texts (the frozen shapes)
+- [`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/) — the core template texts (the frozen shapes)
 - [Structured requirements](structured-requirements.md) — the optional `format: sol` surface
 - [Checks](checks.md) — common mistakes a review inspects, per artifact
 - [Memory](memory.md) — the advanced recall model findings graduate into

@@ -21,7 +21,7 @@ actually asked, so when the upstream item changes or disappears, the spec keeps 
 Recommended whenever work originates in an external tool; never required. (Future CLI:
 `swarm pull` will capture this snapshot — today you copy-paste into the template.)
 
-Artifact: [intake](../starter-kit/templates/intake.md) → `intake/`.
+Artifact: [intake](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/intake.md) → `intake/`.
 
 ## (Inventory) — map before you move _(brownfield work only)_
 
@@ -29,7 +29,7 @@ Before drawing new boundaries through code you didn't write, map what exists: cu
 interfaces and their callers, observed behavior with evidence, existing tests, and the unknowns.
 An inventory observes — it never judges or prescribes.
 
-Artifact: [inventory](../starter-kit/templates/inventory.md) → `inventory/`. When to write one:
+Artifact: [inventory](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) → `inventory/`. When to write one:
 [05-brownfield-and-change-plans.md](05-brownfield-and-change-plans.md).
 
 ## 2 · Spec — interpret it into requirements
@@ -39,7 +39,7 @@ a `Verify with:` line. That line is the highest-value line in the file: a runnab
 check outperforms prose plans as task input (preliminary evidence) [[ORACLESWE]](research/sources.md#ORACLESWE).
 Record open questions; a spec with open questions is not ready.
 
-Artifact: [spec](../starter-kit/templates/spec.md) → `specs/<feature>/spec.md`. How to write one:
+Artifact: [spec](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/spec.md) → `specs/<feature>/spec.md`. How to write one:
 [04-writing-specs.md](04-writing-specs.md).
 
 ## (Change Plan) — plan what must survive _(structural work only)_
@@ -49,7 +49,7 @@ does the codebase change safely". A change plan enumerates the behavior that mus
 each item with a way to verify it — plus the order of changes, cutover conditions, and rollback
 criteria.
 
-Artifact: [change plan](../starter-kit/templates/change-plan.md) → `change-plans/`. When to
+Artifact: [change plan](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) → `change-plans/`. When to
 write one: [05-brownfield-and-change-plans.md](05-brownfield-and-change-plans.md).
 
 ## 3 · Task — bound the agent's work
@@ -59,7 +59,7 @@ the requirement IDs in scope ("implement or preserve"), a "Do not change" list, 
 commands, and the agent instructions — including the instruction to re-read its own diff as a
 skeptic before declaring done.
 
-Artifact: [task](../starter-kit/templates/task.md) → `tasks/`. How to split work:
+Artifact: [task](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) → `tasks/`. How to split work:
 [06-creating-tasks.md](06-creating-tasks.md).
 
 ## 4 · Run — let the agent work, isolated
@@ -78,7 +78,7 @@ Blocked — and its evidence. A Pass needs pasted output, a CI link, or, for a m
 (who judged, what they saw); an empty Evidence cell means Unverified, never Pass. Then route the exceptions (failed or unverified rows, out-of-scope
 changes, risky files) to human attention instead of re-reading every line.
 
-Artifact: [review](../starter-kit/templates/review.md) → `reviews/`. How:
+Artifact: [review](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) → `reviews/`. How:
 [08-reviewing-output.md](08-reviewing-output.md).
 
 ## 6 · Close — merge, record, keep the lesson
@@ -87,8 +87,8 @@ Merge or block, and save anything durable — a fact, a decision, a gotcha — a
 next session doesn't re-learn it. The sessions keep the board honest — the finishing agent flips
 its task's row, the reviewing session closes it — you read it.
 
-Artifacts: [finding](../starter-kit/templates/finding.md) → `findings/`,
-[status board](../starter-kit/templates/status.md) → `status.md`. How:
+Artifacts: [finding](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) → `findings/`,
+[status board](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) → `status.md`. How:
 [09-saving-findings.md](09-saving-findings.md).
 
 ## Pick the flow for the shape of the work

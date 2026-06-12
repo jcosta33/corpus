@@ -106,7 +106,7 @@ honesty rule: anything not enforced by a tool says so.
 
 ## Get started
 
-1. Copy the kit whole — it is a ready workspace: `cp -R starter-kit my-workspace` (a new repo, or a folder in your project).
+1. Copy the kit whole — it is a ready workspace: use [jcosta33/swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit) as a template (a new repo, or a folder in your project).
 2. Fill its `AGENTS.md` with your commands and facts.
 3. Claude Code finds the guides via the shipped `.claude/skills` symlink; point any other tool at `.agents/skills/`.
 4. Write one spec for your next non-trivial change. Run the loop once.

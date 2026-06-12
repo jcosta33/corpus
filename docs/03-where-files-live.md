@@ -6,7 +6,7 @@ Three pieces, three homes:
 
 | Piece                   | What it is                                                            | Where it lives                                                 |
 | ----------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **The Swarm framework** | This repository — the docs, templates, and agent guides you copy from | Upstream. You read and copy from it; your work never goes here |
+| **The Swarm framework** | The docs (this repository) and the [starter kit](https://github.com/jcosta33/swarm-starter-kit) you copy | Upstream. You read and copy from it; your work never goes here |
 | **Your workspace**      | Where your specs, tasks, reviews, and findings live                   | Its own repo, or a folder inside your code repo (below)        |
 | **Your code repos**     | Where the code lives                                                  | Untouched — Swarm adds nothing to them                         |
 
@@ -47,7 +47,7 @@ Two kinds of folder:
 Both naming depths are valid: flat files (`tasks/012-checkout-totals.md`) for small projects, or a
 folder per item with an `NNN-` prefix when items grow attachments. A file declares what it is in
 its frontmatter (`type: spec`, `type: task`, …) — the formats live in the
-[kit templates](../starter-kit/templates/) and [artifact formats](reference/artifact-formats.md);
+[kit templates](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/) and [artifact formats](reference/artifact-formats.md);
 this page never restates them. `.agents/` holds only the tooling your agent CLI loads
 (see [integrations](10-integrations.md)); your content never lives there.
 
@@ -94,7 +94,7 @@ A spec is amended in place after review feedback: edit the requirement, keep its
 material cut under "Dropped from sources". There is no regeneration step. Drift between workspace
 and code surfaces at review time — a coverage row that no longer matches the code reads Fail or
 Unverified — and a spec known to lag reality is marked `stale` on the
-[status board](../starter-kit/templates/status.md) until someone amends it.
+[status board](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) until someone amends it.
 
 ## Next
 
