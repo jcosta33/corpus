@@ -33,7 +33,35 @@ A command that cannot answer all five does not belong in the set.
 **Milestone 1** needs no agent execution at all: `init`, `pull`, `spec new`, `spec check`,
 `task new`, `review`, `status`. It is pure file preparation and checking — useful on day one,
 testable without any model. **Milestone 2** adds the execution conveniences: `inventory new`,
-`change new`, `worktree create`, `run`, `close`.
+`change new`, `worktree create`, `run`, `close`. **Milestone 3** adds the supercharge layer (the
+MCP server, hook generation, deterministic coverage/drift, per-task cost attribution).
+
+## Composable parts: standalone and Swarm-composed
+
+swarm-cli is a **reconcile-only harness**: it *prepares*, *launches*, and *reconciles* agent runs;
+it never *performs* the coding loop (ADR-0077). Three design rules make it both a standalone tool
+for any agentic work and the thing that supercharges the Swarm loop — *parts individually usable,
+maximally valuable together*:
+
+- **Every command is a well-behaved Unix part** (toolable): `--json` output, meaningful exit codes
+  (`0` clean / `1` warnings / `2` error), stdout-for-data / stderr-for-messages, and a
+  `--no-workspace` fallback that degrades like `git` run outside a repo. Extensions are `swarm-*`
+  executables discovered on `PATH` (the `git`/`kubectl` convention), so `pull` connectors and
+  agent adapters drop in without a rebuild. A reconcile-only **core library** holds the logic so
+  editors, CI, and the MCP server reuse it without shelling out.
+- **Standalone primitives** are useful without adopting Swarm at all: `swarm worktree` (a
+  one-worktree-per-task manager with per-worktree runtime-isolation config — port range, scratch
+  DB, copied fixtures — that interops with `claude --worktree`), `swarm run --agent` (a uniform
+  headless wrapper that normalizes each agent CLI's flags and output), `swarm spec check` (a
+  spec linter that drops into pre-commit/CI on its exit code), and `swarm status` (a derived
+  read-model). `cost` and `notify` ship as `swarm-*` plugins, not core.
+- **The workspace composes them** into the loop: one command's `--json` output is the next's input
+  (`spec check`'s diagnostics → `task new`'s scope → `run`'s launch envelope → `review`'s coverage
+  rows → `close`'s gate). Each still runs alone.
+
+The two capabilities Swarm owns that the field leaves open — both depending on the task packet's
+**declared scope** — are **deterministic coverage / executable-criteria checking** (`spec check`)
+and **reconciling the agent's self-report against the actual diff** (`review`).
 
 ## Per-command contracts
 
@@ -71,14 +99,20 @@ testable without any model. **Milestone 2** adds the execution conveniences: `in
 ### `swarm spec check <file>`
 
 - **Reads:** one spec — simple form or SOL form (`format: sol`).
-- **Writes:** nothing (optionally a report file with `--report`). Prints findings under the
-  two-way split from [checks.md](checks.md): hard errors (a checker must reject) and warnings
-  (a checker should flag). Exit code is nonzero on hard errors.
+- **Writes:** nothing (optionally a report file with `--report`, or `--json` for a pipeline).
+  Prints findings under the two-way split from [checks.md](checks.md): hard errors (a checker
+  must reject) and warnings (a checker should flag). Exit codes: `0` clean, `1` warnings, `2` hard
+  errors — so it drops into pre-commit/CI as a standalone linter.
 - **Runs an agent?** No.
 - **State change:** none — purely diagnostic. This is the credibility anchor of the whole
-  command set: the checks catalogue is the contract, `swarm spec check` is its implementation.
-  A workspace-level check would extend this to flag a leftover `{{placeholder}}` in a *live*
-  `AGENTS.md` or board (the clause-(a) workspace-validity gate in [checks.md](checks.md)).
+  command set: the checks catalogue is the contract, `swarm spec check` is its implementation. It
+  parses the spec's markdown into an internal structure (no `ir.json` artifact, ADR-0077) and over
+  that structure runs the **executable-criteria check** (every requirement names a runnable
+  checker, not just prose) and, across the workspace, **deterministic coverage/drift**: a
+  requirement id with no covering task, or an AC whose named check no longer exists, is a finding —
+  computed mechanically, never by an LLM "interpreting". A workspace-level check also flags a
+  leftover `{{placeholder}}` in a *live* `AGENTS.md` or board (the clause-(a) workspace-validity
+  gate in [checks.md](checks.md)).
 - **Next:** fix the gaps; `swarm task new` once clean.
 
 ### `swarm inventory new <slug> [--agent <name>]`
@@ -139,10 +173,14 @@ testable without any model. **Milestone 2** adds the execution conveniences: `in
 - **Reads:** the task packet, the worktree diff, the spec and change plan it names.
 - **Writes:** `reviews/<slug>.md` — a draft packet from the template: changed files listed,
   one coverage row per in-scope requirement, evidence slots filled where output exists,
-  human-attention candidates flagged from the exception triggers.
+  human-attention candidates flagged from the exception triggers. It also **reconciles the agent's
+  self-report against the actual diff** — the run summary's claimed changed-files / Verify pastes
+  vs the worktree diff — and routes the mismatches (claimed-but-not-changed, changed-but-unclaimed,
+  out-of-scope edits) to Human attention. This is distinctive because it needs the packet's
+  declared scope as ground truth (ADR-0077).
 - **Runs an agent?** Optional, to collect evidence into the draft. **Agent fill stays a draft**:
   the review result (Pass / Fail / Unverified / Blocked) is a human decision, and an empty
-  Evidence cell still reads Unverified, never Pass.
+  Evidence cell still reads Unverified, never Pass. The CLI routes exceptions; it never adjudicates.
 - **State change:** the diff has a review packet a human can inspect by exception.
 - **Next:** a human works the Human attention list; then `swarm close`.
 
@@ -280,14 +318,44 @@ Any agent you can launch from a shell fits the record — aider, Cursor's CLI, a
 next. The adapter carries no provider credentials and no model settings; those belong to the
 agent CLI's own configuration.
 
-## Reserved machine records
+A fourth conceptual field is **how to read the agent's structured output back**. Mature agent
+CLIs have converged on the same headless-event vocabulary — `init` · `assistant` · `tool_call` ·
+`result`, plus a final message, cost, and exit code — emitted as JSON / stream-JSON. swarm-cli
+adopts that vocabulary as its **canonical adapter event contract** (carrying a contract version
+against vendor churn) and maps each tool's native schema onto it, normalizing the result into the
+run record. Swarm invents no new event vocabulary; an adapter is thin because the contract already
+exists in the wild.
 
-Two artifact names are reserved for machine emission and exist only as contracts here:
-`<spec>.ir.json` (the typed requirement records + edges of one spec) and `<spec>.plan.json`
-(the schedulable work-packet projection). A third reserved sketch is the **run record** — the
-machine form of an agent run summary the packet's evidence cells are filled from:
-`{ task_id, changed_files[], commands[]: {cmd, exit, output_ref}, out_of_scope[], findings[] }`.
-None of these is produced by anything today; the fixtures deliberately ship none.
+## Beyond the loop: the MCP server and hook generation
+
+Two **toolable** capabilities generalize the adapter model across vendors without N bespoke
+integrations — both strictly *prepare*, never *perform*:
+
+- **A Swarm MCP server.** Instead of one adapter per agent, expose the task packet's scope, the
+  parsed requirements, and the checks contract over MCP — so any MCP-capable agent (Claude, Codex,
+  Gemini, Goose) natively queries "what are this task's requirements, scope, and checks." It is a
+  peer to the shell-out adapters (which cover agents without MCP), shipped after them (M3).
+- **Per-adapter hook generation.** Emit the agent CLI's own hook config (e.g. `hooks.json` /
+  `settings.json`) wiring a task's declared write-set and `checks.yaml` into its PostToolUse/Stop
+  hooks. This is the bridge from a `toolable`/`checklist` rule to **enforcement performed by the
+  agent CLI's hook runtime** — swarm-cli *generates* the config; it does not run the loop, and the
+  enforcement is the agent's, recorded as such (never claimed as Swarm enforcing). Opt-in per
+  adapter capability; agents without hooks simply don't get it.
+
+## The run record
+
+One machine record is reserved: the **run record** — the machine form of an agent run summary the
+review packet's evidence cells are filled from:
+`{ task_id, changed_files[], commands[]: {cmd, exit, output_ref}, out_of_scope[], findings[],
+provenance? }`. It is the reconciliation substrate `swarm run` writes and `swarm review` reads
+(ADR-0072, ADR-0076). Nothing produces it today; the fixtures ship none.
+
+There is **no Swarm `ir.json` / `plan.json` artifact** (ADR-0077). To check a spec, swarm-cli
+parses its markdown into an internal structure; it may project that structure as optional `--json`
+for interop (a CI step or another tool consuming the analysis). That projection is a tool output,
+not a Swarm file — adopters never create or see one, and **markdown stays the only Swarm
+artifact**. The deterministic coverage/drift checks (below) run on the parsed markdown, not on a
+required file.
 
 ## What the CLI must never own
 
@@ -323,89 +391,10 @@ surface carries one of these policies. The policy decides what an edit to that s
 silently treated as governed. The set also rejects the fantasy that code is regenerated from
 specs — only a surface explicitly marked `generated` is emitted, and only from a named artifact.
 
-## Reserved machine artifacts
-
-Two filenames are reserved for the CLI's machine-readable outputs. No tool emits them today;
-they are documented data shapes so that any future producer and consumer interoperate.
-
-| File | What it is |
-|---|---|
-| `<spec>.ir.json` | the **structured form** of one spec — its requirements as typed records |
-| `<spec>.plan.json` | the **plan** — those records grouped into schedulable work packets |
-
-Both are defined once over the requirement record of
-[structured-requirements.md](structured-requirements.md) — the simple form and the SOL form of a
-spec produce the **same** structured form, because they encode the same records.
-
-### The structured form (`*.ir.json`)
-
-A single JSON object with the top-level keys `meta`, `nodes`, `edges`, `diagnostics`,
-`provenance` — all present even when empty; a validating consumer rejects unknown top-level keys.
-
-- **`meta`** mirrors the spec frontmatter: `{ id, title, status, owner, sources[], format? }`.
-  There is no version field; the provenance hash pins the revision.
-- **`nodes[]`** — one record per requirement:
-
-  | Field | Meaning |
-  |---|---|
-  | `id` | the stable id (`AC-001`); addressed across specs as `SPEC-x#AC-001` |
-  | `kind` | `requirement` in the simple form; SOL refines it (`constraint`, `invariant`, `interface`, `question`) |
-  | `strength` | the one binding word: `must`, `must-not`, `should`, `should-not`, `may` |
-  | `statement` | the requirement sentence itself |
-  | `verify_refs[]` | the verification bindings (below) |
-  | `reads[]` / `writes[]` | declared surfaces — the input to parallel-safety |
-  | `result` | `pass` \| `fail` \| `unverified` \| `blocked`; defaults to `unverified` |
-  | `lifecycle[]` | decorators kept separate from `result`: any of `waived`, `stale`, `contradicted` |
-  | `source` | `{ file, line_start, line_end, content_hash }` — the hash drives staleness; it is tool-stamped, and a hand-written hash is untrusted until recomputed |
-
-- **`verify_refs[]`** — each entry `{ method, adapter, ref, selector?, gate }`. `method` is one
-  of the verification methods (`test`, `static`, `contract`, `property`, `model`, `perf`,
-  `security`, `manual`, `monitor`); `gate` is `required` or `advisory`. A simple-form
-  `Verify with:` line populates `ref` alone; a SOL `VERIFY BY <type>:<adapter>:<artifact>`
-  binding fills every field. Same record, two precisions.
-- **`edges[]`** — `{ from, to, type, hard }`, `type` one of `depends_on`, `blocks`,
-  `conflicts_with`, `verified_by`, `affects`, `implements`, `preserves`. **Edges are the single
-  source of relationship truth**: a relationship between two nodes appears exactly once, as an
-  edge, never duplicated as a node field — a relationship stored twice can disagree; one
-  representation cannot.
-- **`diagnostics[]`** — `{ code, level, node | span, message, suggest? }`. `code` is a check id
-  from [checks.md](checks.md); `level` is `error` / `warning` / `note`, matching the
-  hard-error/warning split. Diagnostics never leak into a node's `result`.
-- **`provenance`** — `{ hash, tool_version, emitted_at }`. `tool_version` is `null` today
-  for the most honest reason available: there is no emitter to stamp it.
-
-### The plan (`*.plan.json`)
-
-A single JSON object with the top-level keys `meta`, `packets`, `edges`, `provenance`.
-
-- **`meta`** — `{ id, derived_from, max_parallel? }`; `derived_from` names the source
-  `*.ir.json`; `max_parallel` is an advisory hint, `null` when unspecified.
-- **`packets[]`** — one schedulable unit each:
-
-  | Field | Meaning |
-  |---|---|
-  | `id` | packet id, unique in the plan (`WP-001`) |
-  | `step` | the lifecycle step it runs — `author`, `lint`, `improve`, `lower`, `decompose`, `implement`, `verify`, `review`, `promote` (see [advanced-lifecycle.md](advanced-lifecycle.md)) |
-  | `inputs[]` / `outputs[]` | the requirement ids consumed; the artifacts produced |
-  | `reads[]` / `writes[]` | the surfaces touched; every write surface is a subset of its inputs' declared writes |
-  | `depends_on[]` | packet ids that must finish first (each also present as an edge) |
-  | `lane` / `batch` | launcher hints only; absence changes no safety result |
-  | `merge_safe` | the safety verdict, below |
-
-- **The safe-parallelism predicate.** Two packets may run in parallel **iff** they are
-  dependency-independent (neither reachable from the other along `depends_on` edges) **and**
-  write-disjoint (no shared write surface, no read/write conflict on one surface). Anything
-  unscoped or sharing a surface serializes by default. `merge_safe` is the static verdict;
-  a launcher may serialize further but never parallelizes what the plan marks unsafe.
-- **No `locks` field exists** — a lock group is just a named coarse write surface, so lock
-  analysis *is* write-set analysis.
-- **`edges[]` / `provenance`** — same shapes as the structured form; the relevant packet edge
-  types are `depends_on` and `conflicts_with`.
-
 ## Related
 
 - [checks.md](checks.md) — the catalogue `swarm spec check` implements, with the hard-error/warning split.
-- [structured-requirements.md](structured-requirements.md) — the requirement record both reserved artifacts are defined over.
+- [structured-requirements.md](structured-requirements.md) — the requirement record swarm-cli parses a spec into (tool-internal; optional `--json`).
 - [advanced-lifecycle.md](advanced-lifecycle.md) — the full lifecycle behind the deferred `lower`/`decompose` verbs.
 - [memory.md](memory.md) — findings, promotion, and the ledger entry `swarm close` may append.
 - [artifact-formats.md](artifact-formats.md) — the markdown artifacts every command reads and writes.

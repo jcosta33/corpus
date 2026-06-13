@@ -53,9 +53,10 @@ Three boundaries keep the steps honest:
   judgment that belongs to review.
 
 Checking a spec is toolable — swarm-cli's `swarm spec check` is the reference implementation of the
-checks `lint` reads; until you run it, treat `lint` as a review checklist. The machine file formats
-`lower` and `decompose` would emit are reserved for tooling and defined on
-[future-cli](future-cli.md); today their output is the task files themselves.
+checks `lint` reads; until you run it, treat `lint` as a review checklist. The output of `lower`
+and `decompose` is the **task files themselves** — there is no separate machine artifact; swarm-cli
+parses the markdown internally and may project `--json` for interop (no `ir.json`/`plan.json` file,
+per [ADR-0077](../adrs/0077-swarm-cli-reconcile-only-harness.md)).
 
 ## Six steps ↔ nine steps
 

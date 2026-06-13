@@ -366,4 +366,5 @@ file.
 - [Checks](checks.md) — the common mistakes to check for, over both surfaces.
 - [Artifact formats](artifact-formats.md) — spec frontmatter and the other file types.
 - [Reviewing output](../08-reviewing-output.md) — how verification results become review results.
-- [Future CLI](future-cli.md) — the structured form a parser would emit from this notation.
+- [Future CLI](future-cli.md) — how swarm-cli parses this notation internally (no `ir.json`
+  artifact; optional `--json` for interop, per ADR-0077).
