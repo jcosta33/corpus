@@ -159,6 +159,12 @@ The packet itself carries a status in its frontmatter: `draft` (being filled) ·
 `needs-human` (exceptions routed, awaiting a human call). A richer result vocabulary exists
 for advanced workflows — see [`reference/advanced-lifecycle.md`](reference/advanced-lifecycle.md).
 
+These five are the whole set — don't invent new ones. "Implemented and committed, but human or
+runtime validation is still pending" is **not** a new status: it is this packet `needs-human`
+with the task at `review-ready` on the board. At closeout, confirm the board row **and** the task
+packet's own `status:` move together (a worker that boots from a stale packet inherits stale
+state).
+
 ## What a review is not
 
 - **Not a PR replacement.** The packet links the PR; the PR (and your CI) remains the merge

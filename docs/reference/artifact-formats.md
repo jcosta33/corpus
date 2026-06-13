@@ -92,8 +92,9 @@ touch, and how to verify.
   `scope` (requirement ids), `status` (ready / running / review-ready / closed).
 - Sections: Source · Scope ("Implement or preserve") · Do not change · Affected areas · Verify ·
   Agent instructions · Findings · Run summary (the handoff digest — changed files, results
-  citing the Verify pastes, out-of-scope edits, blocked questions; it cites the evidence,
-  never re-pastes it).
+  citing the Verify pastes, out-of-scope edits, blocked questions, and — for a delegated/worker-run
+  task only — an optional Provenance line: sources read, guide(s) loaded, worker identity,
+  isolation mode; it cites the evidence, never re-pastes it).
 - Every Verify item is a runnable command tied to a requirement id; the agent pastes real
   output — a claim without output counts as unverified.
 - The agent instructions tell the agent to stop and say why when a requirement can't be met as
@@ -115,7 +116,8 @@ packet is reviewing the change.
   `status: draft | pass | waived | blocked | needs-human` (`waived` = merged with a recorded
   waiver: who · which rows · why · expiry).
 - Sections: Summary · Changed files · Requirement coverage · Change-plan coverage (only when
-  the task executes a change plan) · Human attention · Suggested decision.
+  the task executes a change plan) · Human attention · Task status (confirm the board row and the
+  task packet's own `status:` are updated together at closeout) · Suggested decision.
 - Coverage rows are `ID | Result | Evidence | Human attention`, results
   **Pass · Fail · Unverified · Blocked**.
 
@@ -130,7 +132,8 @@ The load-bearing rules:
   [[SELFPREFER]](../research/sources.md#SELFPREFER) [[JUDGEBIAS]](../research/sources.md#JUDGEBIAS).
 - **Human attention routes the exceptions, not the diff**: unverified or failed requirements ·
   out-of-scope changes · risky files · missing test output · changed public interfaces · DB
-  migrations · security-sensitive changes · new finding candidates · blocked questions.
+  migrations · security-sensitive changes · new finding candidates · blocked questions · missing
+  or unconvincing worker-boot provenance for a delegated task.
 - A review judges; it does not author. A gap it uncovers in what _should_ have been required
   becomes a spec amendment or a finding — never a requirement written into the review.
 

@@ -141,11 +141,15 @@ are deferred with the provenance-bundle work.
 
 ## Propagation
 
-task template (Provenance line), review template (boot-provenance trigger + task-status
-checkpoint), docs/06 (rare-state/precondition/diagnostic-runtime/commit-hygiene), docs/07
+task template (Provenance line), review template (boot-provenance trigger + Task-status section),
+docs/06 (rare-state/precondition/commit-hygiene), docs/07
 (worker-vs-scout, isolation recorded, runtime-isolation caution), docs/08 (Fail/Blocked pointer,
-baseline-vs-feature, closeout state mapping), docs/04 + artifact-formats (manual/monitor,
-bug-vs-spec pointer), docs/03 + ADOPTING (workspace version-controlled), checks.md (placeholder as
-checklist failure), future-cli + checks.yaml comment (placeholder gate + handoff-generator note),
-glossary (worker · scout · provenance · isolation mode), research/sources.md (two entries),
-swarm-cli scaffold resync, ledger row.
+baseline-vs-feature, diagnostic-runtime evidence, closeout state mapping), docs/04 + artifact-formats (manual/monitor,
+bug-vs-spec pointer, the new Run-summary Provenance line + review Task-status section + the
+extended Human-attention trigger list), docs/03 + ADOPTING (workspace version-controlled),
+checks.md (placeholder as checklist failure), future-cli (placeholder gate + handoff-generator
+note), **checks/checks.yaml v0.4.1** (review `Task status` added to `optional_sections`;
+`trigger-coverage` gains the worker-boot-provenance trigger — the heading-for-heading
+reconciliation duty in checks/README), glossary (worker · scout · provenance · isolation mode),
+research/sources.md (one entry: [[ANTHROPIC-MULTIAGENT]]), swarm-cli scaffold resync + its
+`AGENTS.md` contract-version reference, ledger row.

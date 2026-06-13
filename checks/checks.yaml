@@ -16,7 +16,7 @@
 #   warning     a checker should flag it; teams may treat any warning as
 #               blocking by policy
 
-version: 0.4.0   # contract version of this file; bump on any rule change
+version: 0.4.1   # contract version of this file; bump on any rule change
 
 # --- Spec form selector -------------------------------------------------------
 # The default spec form is plain structured markdown. A spec opts into the
@@ -91,6 +91,9 @@ review_file:
     - Suggested decision
   optional_sections:
     - Change-plan coverage      # only when the task executes a change plan; same columns
+    - Task status               # v0.4.1: closeout confirmation — board row + the task packet's
+                                # own status: re-synced together; recommended, not required
+                                # (pre-0.4.1 packets without it stay valid)
   coverage_table:
     columns: [ID, Result, Evidence, Human attention]
     result_enum: [Pass, Fail, Unverified, Blocked]
@@ -121,9 +124,10 @@ review_file:
         or marks it n/a: unverified or failed requirements, out-of-scope
         changes, risky files, missing test output, changed public interfaces,
         DB migrations, security-sensitive changes, new finding candidates,
-        blocked questions. The mechanical part a checker can flag: a changed
-        file outside the task's Affected areas that no Human attention entry
-        mentions.
+        blocked questions, missing or unconvincing worker-boot provenance for a
+        delegated task (v0.4.1). The mechanical part a checker can flag: a
+        changed file outside the task's Affected areas that no Human attention
+        entry mentions.
 
 # --- Command slots (advisory) ----------------------------------------------------
 # Adapter slots a Verify item or `Verify with:` line may name instead of a
