@@ -51,6 +51,21 @@ agent can actually run is the one most likely to come back done. Where no comman
 a physical-rig check, a visual pass — name the manual check; at review its evidence is a named
 human's recorded observation (who judged, what they saw).
 
+Two cases need a word before you write the Verify line:
+
+- **A rare runtime state** (a stall, a race, an error path that's hard to trigger) needs a
+  **simulation or fixture strategy** named in the task — how the agent will induce the state.
+  Without one, the agent can only inspect code, and the row is honestly Blocked, not Pass.
+- **A check with a foundational precondition** (the extension must register before any popup
+  assertion; the service must boot before any endpoint test) makes that precondition **its own
+  first requirement**, so a dependent check reads Blocked — truth unknown — rather than a
+  misleading Fail when the precondition isn't met.
+
+If the task may run a repo-wide auto-fixer (formatter, import sorter, codemod), say so, and have
+the worker land a **mechanical-only commit before any behaviour-bearing change** — otherwise the
+fix arrives as one large mixed diff the reviewer can't read. Most tasks should not run repo-wide
+fixers at all; that is a "Do not change" by default.
+
 ## "Do not change" is the scope wall
 
 The most valuable lines in a task packet are often the ones about what _not_

@@ -63,8 +63,11 @@ exists and its output is pasted. The check asks that the line _be there_, not th
 
 The whole bar, nothing more: a workspace is valid when **(a)** it has a populated `AGENTS.md`
 (aim for ~100 lines — Swarm's own convention, not a cap), **(b)** the core templates are present,
-and **(c)** at least one spec satisfies the core checks above. This is a convention — nothing in
-this repository enforces it; `swarm spec check` can verify clause (c).
+and **(c)** at least one spec satisfies the core checks above. "Populated" means filled: an
+unfilled `{{placeholder}}` left in a *live* `AGENTS.md` or board is a clause-(a) checklist failure,
+not a valid workspace (the templates keep their placeholders; the live files must not). This is a
+convention — nothing in this repository enforces it; `swarm spec check` can verify clause (c), and
+a future `swarm init`/`swarm check` should flag a leftover placeholder (toolable, not shipped).
 
 ## Task and review packet checks
 

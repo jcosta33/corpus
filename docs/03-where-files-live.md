@@ -44,6 +44,11 @@ Two kinds of folder:
   is the record of what was done and how it was checked. `inventory/` and `change-plans/` appear
   only when structural work needs them (see [brownfield work](05-brownfield-and-change-plans.md)).
 
+The workspace itself must be **version-controlled** — a git repo of its own, or committed inside
+your code repo. It *is* the durable record; an uncommitted workspace (a local folder that was
+never `git init`'d) silently drifts from the code it describes, leaving the commit but losing the
+spec, review, and finding that explain it. This is a convention — nothing enforces it.
+
 Both naming depths are valid: flat files (`tasks/012-checkout-totals.md`) for small projects, or a
 folder per item with an `NNN-` prefix when items grow attachments. A file declares what it is in
 its frontmatter (`type: spec`, `type: task`, …) — the formats live in the

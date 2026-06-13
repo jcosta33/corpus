@@ -44,7 +44,10 @@ Then:
    equivalent symlink or copy the guide folders to wherever it scans (the per-tool table
    is in [integrations](10-integrations.md)).
 4. **Read `examples/feature-from-ticket/`**, then delete it when you no longer need it.
-5. **Write one spec** for your next non-trivial change: `specs/<feature>/spec.md`. Run the
+5. **Commit the workspace.** A dedicated repo gets `git init` + a first commit; a co-located
+   workspace is committed with the code repo. The workspace *is* the record — an uncommitted
+   local folder drifts from the code it describes ([where files live](03-where-files-live.md)).
+6. **Write one spec** for your next non-trivial change: `specs/<feature>/spec.md`. Run the
    loop once.
 
 Team defaults, stated once: whoever owns the change writes the spec; who reviews is whoever

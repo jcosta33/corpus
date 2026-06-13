@@ -204,6 +204,9 @@ A web-verified arXiv preprint is stronger than a blog post but is **not peer-rev
 
 These sources are **not peer-reviewed**; they ground market-gap observations and should be cited only as preliminary/contextual evidence, never as a `MUST`.
 
+<a id="ANTHROPIC-MULTIAGENT"></a>
+**[ANTHROPIC-MULTIAGENT] How we built our multi-agent research system.** Anthropic Engineering, 2025. *Verified (June 2026, direct fetch).* First-party orchestrator-worker account: states verbatim that "each subagent needs an objective, an output format, guidance on the tools and sources to use, and clear task boundaries," and that "without detailed task descriptions, agents duplicate work, leave gaps, or fail to find necessary information." Does **not** claim subagents are unaware of their orchestrated role (that observation is from other vendors' subagent guidance and is design rationale here). **Tier: first-party engineering analysis, not peer-reviewed — never a `MUST`.** Grounds (illustrative): delegated workers need an explicit brief and a return contract — the worker-provenance surface (ADR-0076).
+
 <a id="PRACTICALLOGIX-PARADOX"></a>
 **[PRACTICALLOGIX-PARADOX] The AI Code Quality Paradox.** Practical Logix, 3 May 2026. *Verified (June 2026, direct fetch).* Synthesizes Stack Overflow 2025 (n=49,000+), DORA 2025 (n≈5,000), CodeRabbit Feb 2026 (470 PRs), and Cortex 2026: **84%** daily AI-tool adoption, **29%** trust in AI-generated code accuracy, AI-generated PRs averaged **1.7×** as many issues as human PRs. Grounds: trust gap and quality-tax are observable market conditions.
 

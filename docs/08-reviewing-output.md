@@ -60,6 +60,15 @@ them, and they are on the review checks in [`reference/checks.md`](reference/che
    packet's status becomes `waived` at merge; the row's Result stays what the evidence says.
 4. **A known-flaky check cannot buy a Pass with one green run.** Reproduce per the
    fix-flaky-test discipline (loop it) before the row reads Pass.
+5. **Separate an environment baseline from a feature regression.** A check that fails for
+   reasons outside this change's scope — a broken build script, a missing toolchain, an
+   environment that can't run the check — is **Blocked**, not Fail (the full Blocked-vs-Fail
+   distinction is in [the advanced lifecycle](reference/advanced-lifecycle.md)). Record such a
+   baseline blocker **once**, not as a Fail on every requirement row it touches. A check that
+   actually ran and the behavior is wrong is a feature-regression **Fail**. And a check that
+   passes only on a **labeled alternate/diagnostic runtime** (e.g. a bundled browser when the
+   target environment is Blocked) is recorded as *diagnostic evidence* — the
+   target-environment requirement stays Blocked until it runs there.
 
 Solo? The independence rule holds by actor: whoever produced the diff — your hands or an
 agent session — does not fill the packet. Agent implements → you review; you implement → a

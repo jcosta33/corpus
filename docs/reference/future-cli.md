@@ -77,6 +77,8 @@ testable without any model. **Milestone 2** adds the execution conveniences: `in
 - **Runs an agent?** No.
 - **State change:** none — purely diagnostic. This is the credibility anchor of the whole
   command set: the checks catalogue is the contract, `swarm spec check` is its implementation.
+  A workspace-level check would extend this to flag a leftover `{{placeholder}}` in a *live*
+  `AGENTS.md` or board (the clause-(a) workspace-validity gate in [checks.md](checks.md)).
 - **Next:** fix the gaps; `swarm task new` once clean.
 
 ### `swarm inventory new <slug> [--agent <name>]`
@@ -124,6 +126,12 @@ testable without any model. **Milestone 2** adds the execution conveniences: `in
   edits of its own. And it makes **no correctness guarantee** — the agent writes the same code
   it would write anyway; the value is the bounded packet going in and the evidence coming out.
 - **State change:** the task is running (or has run) with a recorded start point.
+- **Handoff/provenance (toolable):** because `swarm run` owns the launch, it can generate the
+  worker handoff from the task packet and record the **launch envelope** — sources handed in,
+  guide(s), worker identity, worktree/branch — the same provenance facts the task packet's
+  Provenance line records by hand today (ADR-0076). This single-sources the delegation payload
+  rather than relying on an ad-hoc prompt; it waits on the CLI and does not change the
+  markdown-first model.
 - **Next:** `swarm review`.
 
 ### `swarm review <task> [--agent <name>]`

@@ -32,6 +32,11 @@ politeness: forcing clarification onto already-clear work measurably hurts outco
 [[HUMANEVALCOMM]](research/sources.md#HUMANEVALCOMM)
 [[ASKORASSUME]](research/sources.md#ASKORASSUME).
 
+**Right-size the artifact, too.** A bounded fix or polish against behavior an existing spec
+already covers is a **bug report** (the kit's `advanced/bug.md`: reproduction + root cause) feeding
+a fix task — not a new feature spec. Reach for a fresh spec only when the behavior itself is new
+or changing.
+
 ## The template
 
 The format is frozen in the kit — copy
@@ -65,7 +70,9 @@ until then they are review checklist items.
    the review result reads Unverified until it does. A check over stochastic output (an eval
    metric, a benchmark, an LLM behavior) pins its protocol on the same line — same seed or
    fixed dataset, the metric, the threshold — or two honest runs can disagree about the same
-   code.
+   code. Where no command can run the check, name the method: `manual` (a recorded human
+   observation — who judged, what they saw) or `monitor` (a post-merge signal); the
+   [verification methods](reference/glossary.md) list the kinds.
 2. **Use observable verbs.** "Returns 401", "redirects to `/login`", "writes the audit row" —
    not "handles", "supports", "manages", "improves".
 3. **One behavior per requirement.** If the sentence needs an "and", it is usually two

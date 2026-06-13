@@ -21,6 +21,31 @@ scope or stop and say why, run every Verify item and paste real output,
 self-review the diff, leave a run summary. They travel with every task, so
 every agent gets the same brief.
 
+## Workers and scouts
+
+When you delegate, be clear which of two things you are spawning:
+
+- A **task worker** boots from the packet, owns a write scope, and leaves a run
+  summary — its work merges. A worker that produces edits while bypassing the
+  packet (acting on an ad-hoc prompt) is the failure mode to catch: detailed
+  briefs are what keep delegated agents from duplicating work or leaving gaps
+  [[ANTHROPIC-MULTIAGENT]](research/sources.md#ANTHROPIC-MULTIAGENT).
+- A **scout** is a read/research helper — it gathers, it doesn't merge, and it
+  leaves no packet.
+
+For a delegated task worker, the run summary's optional **Provenance** line
+records the boot facts worth inspecting: which sources it read (`AGENTS.md`, the
+task, the spec, any change plan), which guide(s) it loaded, its identity, and
+its **isolation mode** (its own worktree, the shared tree, or patch-only). These
+are *evidence to check at review*, not a trust token — and a delegated task with
+none of them is itself the [review exception](08-reviewing-output.md) to
+investigate (a guide can silently fail to load; a worker can edit with no packet
+at all). When the worker cannot write the workspace, the lead fills the
+Provenance line on merge-back. Lead-run and trivial tasks skip the line entirely
+— it scales with delegation risk, never ceremony on clear work. For a
+multi-worker run, the heavier [coordination record](reference/advanced-lifecycle.md)
+carries the same facts per worker.
+
 ## One worktree and branch per task
 
 Run each task in its own git worktree, on its own branch off the base —
@@ -53,6 +78,12 @@ naming, two different answers to the same design question. And every parallel
 branch is another review you owe — the bottleneck is your attention, not agent
 count. The practical ceiling is a few parallel streams, not fleets. When in
 doubt, serialize: tasks are cheap to queue.
+
+Worktrees also isolate file state, **not runtime state**. Two parallel tasks
+that bind the same port, database, cache, or secret can still collide even with
+disjoint files — give each task its own runtime fixtures (a port range, a
+scratch DB, a separate cache) or serialize the ones that share. This is a
+convention; nothing enforces it.
 
 ## What you get back
 
