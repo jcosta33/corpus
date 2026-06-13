@@ -40,8 +40,11 @@ testable without any model. **Milestone 2** adds the execution conveniences: `in
 ### `swarm init`
 
 - **Reads:** nothing (an existing workspace, when refreshing templates).
-- **Writes:** the workspace skeleton — `templates/`, `specs/`, `tasks/`, `reviews/`, `findings/`,
-  `decisions/`, `status.md`, a starter `AGENTS.md`.
+- **Writes:** the complete workspace — the copy-whole [swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit)
+  template: `AGENTS.md` (+ the `CLAUDE.md`/`GEMINI.md` symlinks), `.agents/skills/` (the core
+  loop plus the workspace authoring guides), `templates/`, `advanced/`, the seeded flow folders
+  (`specs/`, `intake/`, `tasks/`, `reviews/`, `findings/`, `inventory/`, `change-plans/`),
+  `decisions/`, `examples/`, and `status.md`. Equivalent to copying the template repo whole.
 - **Runs an agent?** No.
 - **State change:** an empty directory becomes a workspace.
 - **Next:** `swarm pull` a ticket, or write a spec from the template.

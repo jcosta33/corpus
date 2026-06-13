@@ -38,8 +38,9 @@ The catalog carries the conditioning stances — `persona-architect`, `persona-a
 (breadth surveys across many examples), plus the standalone `empirical-proof` evidence
 discipline — and long-form execution guides per change shape (feature, fix, refactor,
 rewrite, migration, performance, testing, documentation, flaky tests) plus
-`implement-task` in long form. Install what your team uses
-(`npx skills add jcosta33/swarm-skills --list`, or copy the folders).
+`implement-task` in long form. Install what your team uses with
+`npx skills add jcosta33/swarm-skills` (add `--list` to preview without installing, or copy
+the folders).
 
 ## Authoring your own guide
 

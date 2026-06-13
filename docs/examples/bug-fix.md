@@ -242,7 +242,7 @@ type: review
 id: REVIEW-PAYMENT-RETRY-KEY
 task: TASK-PAYMENT-RETRY-KEY
 pr: https://github.com/acme/payments/pull/233
-reviewer: priya@flowpay (human; the agent implemented)
+reviewer: priya@acme (human; the agent implemented)
 status: pass
 ---
 
@@ -267,6 +267,8 @@ regardless of the green column.
 | AC-003 | Pass   | regression test red-then-green, output pasted in PR #233      | no              |
 | AC-001 | Pass   | `payment-5xx.spec.ts` — 3 tests passed in the same suite run  | no              |
 | AC-002 | Pass   | `payment-fail.spec.ts` — 2 tests passed in the same suite run | no              |
+
+Spot-checked: AC-003 — re-ran `npx vitest run server/tests/payment-retry-idempotency.spec.ts` myself before accepting.
 
 ## Human attention
 

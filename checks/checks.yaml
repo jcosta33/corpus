@@ -4,7 +4,7 @@
 # This file is the machine-readable shadow of the core checks of
 # docs/reference/checks.md (the prose reference is canonical; this file
 # restates it as testable data) and of the packet templates at
-# starter-kit/templates/. It shadows only the core checks and packet schemas —
+# the kit's templates/ (the swarm-starter-kit repo). It shadows only the core checks and packet schemas —
 # the SOL catalogue is prose-only and lives in the reference.
 # Frontmatter lists are minimum-required: extra keys are legal and ignored.
 # The reference consumer is swarm-cli's `swarm spec check`; a reviewer can apply every rule by hand.
@@ -47,7 +47,7 @@ core_checks:
   - { id: C011, name: waves-present,          severity: warning    }   # change plan: kind in {migration, rewrite, schema-change} => non-empty waves, each naming a verify step
 
 # --- The task packet -----------------------------------------------------------
-# Keyed to starter-kit/templates/task.md: a well-formed task presents every
+# Keyed to the kit's templates/task.md (swarm-starter-kit repo): a well-formed task presents every
 # required H2 section and satisfies every content rule.
 task_file:
   frontmatter: [type, id, source, scope, status]
@@ -79,7 +79,7 @@ task_file:
         when its frontmatter status is the terminal value `closed`.
 
 # --- The review packet ----------------------------------------------------------
-# Keyed to starter-kit/templates/review.md.
+# Keyed to the kit's templates/review.md (swarm-starter-kit repo).
 review_file:
   frontmatter: [type, id, task, pr, status]
   status_enum: [draft, pass, waived, blocked, needs-human]   # waived = merged with a recorded waiver (who · rows · why · expiry)

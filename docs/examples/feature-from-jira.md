@@ -266,6 +266,8 @@ manual claim — so it stands Unverified. One finding candidate: concurrent
 | AC-001 | Pass       | `auth-refresh-401.spec.ts` — 2 tests passed, output pasted in PR #412 | no              |
 | AC-002 | Unverified | no test output — "verified manually" is a claim, not evidence         | yes             |
 
+Spot-checked: AC-001 — re-ran `npx vitest run web/tests/auth-refresh-401.spec.ts` myself → 2 passed.
+
 ## Human attention
 
 1. AC-002 is Unverified — the spec names `auth-refresh-expired.spec.ts`,

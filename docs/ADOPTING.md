@@ -12,8 +12,9 @@ Copy the kit whole from its template repo —
 workspace repo or a folder inside your project ([where files live](03-where-files-live.md)):
 
 ```sh
-# dedicated workspace repo
-gh repo create my-workspace --template jcosta33/swarm-starter-kit   # or clone and re-init:
+# dedicated workspace repo (gh needs a visibility flag in non-interactive mode)
+gh repo create my-workspace --private --template jcosta33/swarm-starter-kit --clone
+# or clone and re-init without a remote:
 git clone https://github.com/jcosta33/swarm-starter-kit my-workspace \
   && rm -rf my-workspace/.git && git -C my-workspace init
 
@@ -25,7 +26,9 @@ git clone https://github.com/jcosta33/swarm-starter-kit /tmp/kit \
 
 Windows: a default clone or copy materializes the kit's three symlinks as small text files
 (git `core.symlinks=false`). Either enable Developer Mode and clone with
-`-c core.symlinks=true`, or replace `.claude/skills` with a real copy of `.agents/skills/`.
+`-c core.symlinks=true`, or replace each of the three — `.claude/skills` with a real copy of
+`.agents/skills/`, and `CLAUDE.md` / `GEMINI.md` with real copies of `AGENTS.md` (otherwise the
+bootloader never loads).
 
 Then:
 
@@ -52,7 +55,8 @@ inventory is in the kit's `advanced/README.md`; the advanced audit template is t
 recommended first taste for brownfield teams), and conditioning stances plus
 per-change-shape implementation guides install from
 [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills) into `.agents/skills/`
-(`npx skills add jcosta33/swarm-skills --list`, or copy the folders).
+with `npx skills add jcosta33/swarm-skills` (add `--list` to preview the catalog without
+installing, or copy the folders).
 
 ## 2. Agent-assisted adoption
 

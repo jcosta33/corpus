@@ -334,6 +334,7 @@ template.) `reviews/checkout-sessions-w1.md`:
 type: review
 id: REVIEW-checkout-sessions-w1
 task: TASK-checkout-sessions-w1
+reviewer: mara@acme (human; a fresh session — the implementing agent never reviews)
 pr: https://github.com/acme/shop-api/pull/482
 status: blocked
 ---
@@ -361,6 +362,8 @@ is outside the task's scope.
 | SPEC-checkout#AC-002 | Pass   | `npx jest payments/idempotency` → `Tests: 6 passed, 6 total` (pasted in PR)                                                                                   | no              |
 | SPEC-checkout#AC-003 | Pass   | `npx jest checkout/session-expiry` → `Tests: 5 passed, 5 total` (pasted in PR)                                                                                | no              |
 | SPEC-checkout#AC-004 | Fail   | `npm run test:integration -- expired-session` → `expected 409, received 500`; `src/sessions/store.ts:74` throws `Error("expired")`, not `SessionExpiredError` | yes             |
+
+Spot-checked: AC-001 — re-ran `npx jest checkout/session-create` myself → `Tests: 4 passed, 4 total`.
 
 ## Change-plan coverage
 
@@ -441,6 +444,7 @@ results don't carry over, evidence does. `reviews/checkout-sessions-w1-fix.md`:
 type: review
 id: REVIEW-checkout-sessions-w1-fix
 task: TASK-checkout-sessions-w1-fix
+reviewer: mara@acme (human; a fresh session — the implementing agent never reviews)
 pr: https://github.com/acme/shop-api/pull/482
 status: pass
 ---
@@ -465,6 +469,8 @@ Reviewer spot-checked AC-002 locally.
 | SPEC-checkout#AC-002 | Pass   | CI #5547 — and re-run locally by the reviewer: `Tests: 6 passed, 6 total`  | no              |
 | SPEC-checkout#AC-003 | Pass   | CI #5547 (link)                                                            | no              |
 | SPEC-checkout#AC-004 | Pass   | `npm run test:integration -- expired-session` → `Tests: 3 passed` (pasted) | no              |
+
+Spot-checked: AC-002 — re-ran `npx jest payments/idempotency` locally → `Tests: 6 passed, 6 total`.
 
 ## Change-plan coverage
 

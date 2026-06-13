@@ -19,7 +19,7 @@ humans can just read it. Where to copy them:
 | Claude Code                        | nothing to do — the kit ships `.claude/skills` as a symlink to `.agents/skills/`         |
 | Codex                              | `.codex/`, or reference the guides from `AGENTS.md` (Codex reads it natively)            |
 | Cursor                             | `.cursor/rules/` — one guide → one `.mdc` rule file (manual conversion; scope with globs rather than always-on; current frontmatter schema: Cursor's rules docs) |
-| GitHub Copilot                     | reference the guides from `.github/copilot-instructions.md` (Copilot reads it natively); link or inline the three core guides |
+| GitHub Copilot                     | reference the guides from `.github/copilot-instructions.md` (Copilot reads it natively); inline the core loop and point to `.agents/skills/` for the rest |
 | Anything else (or no skill system) | they already sit in `.agents/skills/` as plain docs — point to them from `AGENTS.md`     |
 
 One caution: this fails silently. If your CLI scans a fixed directory and the guides sit somewhere
