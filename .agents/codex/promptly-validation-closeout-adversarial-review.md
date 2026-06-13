@@ -219,6 +219,93 @@ Recommended next test target: Swarm task packets should explicitly call out
 whether a task is allowed to run repo-wide auto-fixers. If yes, the task should
 expect a mechanical-only commit before behavior changes.
 
+### P2 - Task packets were useful, but not consistently first-class execution drivers
+
+The Promptly UX task files were real artifacts with source links, scope,
+affected files, verification, and agent instructions. They were useful for
+constraining scope. They were not consistently tested as cold-start worker
+boot packets.
+
+Evidence that the task files existed and carried implementation instructions:
+
+```text
+$ rg -n "^## Source|^## Scope|^## Delegation packet|^## Agent instructions|Read the source spec|Worker ownership|status:" /Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md /Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md /Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md
+exit 0
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:8:status: implemented-needs-human
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:13:## Source
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:18:## Scope
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:40:## Delegation packet
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:42:Worker ownership is limited to response recovery behavior in the two affected
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:57:## Agent instructions
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md:59:1. Read the source spec and change plan first.
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md:8:status: implemented-needs-human
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md:13:## Source
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md:18:## Scope
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md:51:## Agent instructions
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md:53:1. Read the source spec and change plan first.
+/Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md:10:status: implemented-needs-human
+/Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md:15:## Source
+/Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md:22:## Scope
+/Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md:54:## Agent instructions
+```
+
+Evidence that Jobs 020 and 021 used task packets but did not test worker boot:
+
+```text
+$ rg -n "The task packet was enough|No scout or worker" .agents/audits/codex/promptly-field-test-job-020-model-lifecycle.md .agents/audits/codex/promptly-field-test-job-021-overlay-polish.md
+exit 0
+.agents/audits/codex/promptly-field-test-job-020-model-lifecycle.md:38:the popup work from becoming a broader model-provider redesign. The task packet
+.agents/audits/codex/promptly-field-test-job-020-model-lifecycle.md:53:No scout or worker participated in this job.
+.agents/audits/codex/promptly-field-test-job-021-overlay-polish.md:34:full feature spec. The task packet was enough for implementation because it
+.agents/audits/codex/promptly-field-test-job-021-overlay-polish.md:47:No scout or worker participated in this job.
+```
+
+Evidence that Job 022 was the strongest delegated-task datapoint:
+
+```text
+$ rg -n "Worker .*launched from the task packet|reported using|Delegation improved|read the task/spec|late delegation|task packet" .agents/audits/codex/promptly-field-test-job-022-response-recovery.md .agents/audits/codex/promptly-field-test-rollup.md
+exit 0
+.agents/audits/codex/promptly-field-test-job-022-response-recovery.md:34:and excluded persistence/history browsing. The task packet was enough for the
+.agents/audits/codex/promptly-field-test-job-022-response-recovery.md:44:Worker `019ebdf4-5684-7771-9f6c-5aee56693a43` was launched from the task packet
+.agents/audits/codex/promptly-field-test-job-022-response-recovery.md:50:The worker changed only `ResponseDisplay.tsx`. It reported using
+.agents/audits/codex/promptly-field-test-job-022-response-recovery.md:104:model lifecycle or overlay positioning files. The task packet's non-goals kept
+.agents/audits/codex/promptly-field-test-rollup.md:65:### Delegation improved with a task packet
+.agents/audits/codex/promptly-field-test-rollup.md:68:subagent datapoints: it read the task/spec, used a narrow write scope, reported
+```
+
+Evidence that the later validation closeout did not have its own task packet:
+
+```text
+$ find /Users/josecosta/dev/promptly-docs/tasks -maxdepth 1 -type f -print | sort
+exit 0
+/Users/josecosta/dev/promptly-docs/tasks/011-enabled-state.md
+/Users/josecosta/dev/promptly-docs/tasks/012-theme-selector.md
+/Users/josecosta/dev/promptly-docs/tasks/013-copy-response.md
+/Users/josecosta/dev/promptly-docs/tasks/014-overlay-close-cancel.md
+/Users/josecosta/dev/promptly-docs/tasks/020-model-lifecycle.md
+/Users/josecosta/dev/promptly-docs/tasks/021-overlay-polish.md
+/Users/josecosta/dev/promptly-docs/tasks/022-response-recovery.md
+/Users/josecosta/dev/promptly-docs/tasks/README.md
+```
+
+Skeptic objection: the field test showed that task files help scope work, but
+it only weakly proved the Swarm promise that a fresh worker can boot from a task
+packet and its linked artifacts. The validation closeout then bypassed task
+packets entirely by following the user's explicit plan directly. That was
+reasonable for the closeout, but it means the closeout did not exercise the
+task-driven part of Swarm.
+
+Secondary status concern: the task packet frontmatter still says
+`implemented-needs-human`, while the board and reviews now use the sharper
+state `automated pass; runtime blocked`. The linked review/finding explains the
+truth, but task packet status is stale enough to mislead a worker that starts
+only from the task file.
+
+Recommended next test target: require delegated-worker run records to include a
+boot manifest: AGENTS file read, task packet read, linked spec/bug/change-plan
+read, skills loaded, and write ownership acknowledged before edits. Also update
+task packet status whenever closeout changes review state.
+
 ### P2 - Warning-level lint debt includes runtime-adjacent files
 
 Lint exits 0, so the closeout did not overstate command status. The residual
@@ -304,6 +391,9 @@ state if this remains unresolved.
 - Promptly is clean again after restoring the WXT generated files with Prettier.
 - The next reliability plan already targets the core failure mode: extension
   registration before popup or overlay assertions.
+- The Promptly UX task files had enough structure to constrain implementation
+  scope; Job 022 showed a task packet can materially improve delegated-worker
+  behavior.
 - Swarm framework files were not modified by the Promptly closeout.
 
 ## Consolidated next moves
@@ -314,9 +404,13 @@ state if this remains unresolved.
    overlay, streaming, retry, or clear assertion.
 3. Split future baseline-cleanup work into mechanical and behavior-bearing
    commits when practical.
-4. Investigate hook dependency warnings before relying on overlay drag/close
+4. Add a delegated-worker boot manifest to the next Swarm run: record task,
+   linked artifacts, skills, and write scope before edits.
+5. Update task packet statuses when closeout changes review state, so workers
+   starting from the task file do not inherit stale state.
+6. Investigate hook dependency warnings before relying on overlay drag/close
    runtime behavior as stable.
-5. Reduce Storybook warning noise so future browser test output is easier to
+7. Reduce Storybook warning noise so future browser test output is easier to
    review.
 
 ## Cleanup evidence
@@ -347,4 +441,3 @@ exit 0
 Checking formatting...
 All matched files use Prettier code style!
 ```
-
