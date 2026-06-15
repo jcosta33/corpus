@@ -69,6 +69,10 @@ them, and they are on the review checks in [`reference/checks.md`](reference/che
    passes only on a **labeled alternate/diagnostic runtime** (e.g. a bundled browser when the
    target environment is Blocked) is recorded as *diagnostic evidence* — the
    target-environment requirement stays Blocked until it runs there.
+6. **API, DOM, or platform behavior wants proof from the real runtime.** A green unit test against
+   a mock is a claim about the mock; the requirement is met only when the actual call, render, or
+   permission is observed. Name the runtime the evidence came from — the live endpoint, a real
+   browser, the target OS — so a Pass on integration-shaped work can't rest on a stubbed one.
 
 Solo? The independence rule holds by actor: whoever produced the diff — your hands or an
 agent session — does not fill the packet. Agent implements → you review; you implement → a
@@ -92,6 +96,10 @@ listing an exception or having nothing to list:
 
 - unverified or failed requirements
 - out-of-scope changes (edits not traceable to the task's scope)
+- integration seams — callers, schemas, events, or contracts this change touches that the task's
+  own tests don't exercise (it passes in isolation, but the system it plugs into may not)
+- work delegated in a **shared worktree** — if an agent sub-delegated and edits were not isolated
+  to one branch/checkout, treat provenance and scope as unverified until shown otherwise
 - risky files (auth, payments, IAM policies, security groups, state moves, destroys —
   anything with a blast radius)
 - missing test output
@@ -164,6 +172,19 @@ runtime validation is still pending" is **not** a new status: it is this packet 
 with the task at `review-ready` on the board. At closeout, confirm the board row **and** the task
 packet's own `status:` move together (a worker that boots from a stale packet inherits stale
 state).
+
+## When review sends work back
+
+A `Fail`, an unresolved `Blocked`, or a `needs-human` call does not reopen the spec or grow the
+current packet — it starts another turn of the loop. Cut a **bounded follow-up task** scoped to
+exactly the rows that didn't pass (plus any out-of-scope edits to revert), point it at the same
+spec, and run it like any other task. Because the requirement IDs are stable, the next review
+packet reconciles against the same IDs — you can see at a glance which previously-failing rows now
+pass. The board row moves back to `ready` (or stays `blocked` while a human question is open) and
+forward again through `running` → `review-ready`; the spec stays the fixed contract the whole way.
+
+Keep rework as bounded as the first attempt. A follow-up that keeps growing is a sign the spec was
+underspecified — amend the spec, don't let the task sprawl to cover what the contract should have said.
 
 ## What a review is not
 
