@@ -96,6 +96,18 @@ them, and they are on the review checks in [`reference/checks.md`](reference/che
    permission is observed. Name the runtime the evidence came from — the live endpoint, a real
    browser, the target OS — so a Pass on integration-shaped work can't rest on a stubbed one.
 
+A coverage row may also carry its evidence in a structured form: an optional fenced `verify` block, placed beside the row and keyed to the requirement id, that names the command and a pass signal — a machine-checkable form of the same evidence the free-form cell points at.
+
+````
+| AC-001 | Pass | see verify block | no |
+
+```verify id=AC-001 cmd="npm test -- auth-refresh.spec.ts" result=pass
+replays-after-refresh ✓  (1 passed, 0 failed)
+```
+````
+
+The info-string is the machine-readable part — the requirement id, the named command, and a `pass`/`fail` signal; the fenced body below it is the verbatim paste, for you and the spot-check. The block is opt-in: a row may still use only the free-form cell. The form is what earns a mechanical match — a `verify` block whose `cmd` matches the requirement's named `Verify with:` command, keyed to a Pass row, carrying `result=pass`, lets a tool confirm *the row records a matching named command with a pass signal* rather than only *the cell is non-empty*. A row with only the free-form cell stays a human-attention item — matching a named command to free-form prose is imprecise [[SMELLS]](research/sources.md#SMELLS), so it is read, never machine-rejected. Either way this moves where the machine can help, not what is true: the fenced body is self-reported and unparsed, so the block does not prove the command actually ran, and a passing command does not by itself mean the requirement is met — the spot-check rule below still carries that weight. This is a convention today — a future `swarm review` / `swarm check` should confirm the block records a matching named command with `result=pass`; until then it is a review checklist item.
+
 Solo? The independence rule holds by actor: whoever produced the diff — your hands or an
 agent session — does not fill the packet. Agent implements → you review; you implement → a
 fresh agent session reviews. Self-review stays mandatory and yields fixes, never a result.
