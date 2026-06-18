@@ -23,7 +23,7 @@ enforcing."
 | `swarm` (no command) | shipped | toolable | open an interactive dashboard that reaches every flow; every flow also has a scriptable direct form |
 | `swarm pull <ticket>` | planned | toolable | snapshot an external ticket into `intake/` |
 | `swarm review` — Verify→evidence match | planned | toolable | tie each scoped requirement to its named `Verify with:` command and surface whether it ran and passed |
-| `swarm review` — draft review packet | planned | toolable | write the review packet from the diff and task (empty Evidence reads Unverified, never Pass); still no verdict |
+| `swarm review <task> --write` — draft review packet | shipped | toolable | write the draft review packet from the diff and task (every row Unverified, `status: draft`, never a Pass or a verdict; no-clobber); the read-only reconcile stays the default |
 | finding scaffold | planned | toolable | scaffold a durable finding from a closing task, without touching the board |
 | Swarm MCP server | planned | toolable | serve a task's scope, requirements, and checks over MCP to any MCP-capable agent |
 | per-adapter hook generation | planned | toolable | emit the agent CLI's own hook config wiring the task's write-set and `checks.yaml` into its hooks — enforcement is the agent CLI's, not Swarm's |
