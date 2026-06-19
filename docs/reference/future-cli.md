@@ -409,8 +409,10 @@ integrations — both strictly *prepare*, never *perform*:
 One machine record is reserved: the **run record** — the machine form of an agent run summary the
 review packet's evidence cells are filled from:
 `{ task_id, changed_files[], commands[]: {cmd, exit, output_ref}, out_of_scope[], findings[],
-provenance? }`. It is the reconciliation substrate `swarm run` writes and `swarm review` reads
-(ADR-0072, ADR-0076). `swarm run` writes the launch **envelope** of it today (task id, adapter,
+provenance? }`. The `provenance?` block follows the **delegation-provenance contract** (ADR-0088) —
+the worker, why it was delegated to, its inputs, the context filtered, its tools, whether it could
+edit, and the evidence it returned — a record, never a verdict. It is the reconciliation substrate
+`swarm run` writes and `swarm review` reads (ADR-0072, ADR-0076, ADR-0088). `swarm run` writes the launch **envelope** of it today (task id, adapter,
 worktree/branch, source, exit); the full agent-summary form above (changed-files / commands) and
 `swarm review` reading it are deferred. The fixtures ship none.
 
