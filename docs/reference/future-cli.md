@@ -412,9 +412,9 @@ review packet's evidence cells are filled from:
 provenance? }`. The `provenance?` block follows the **delegation-provenance contract** (ADR-0088) —
 the worker, why it was delegated to, its inputs, the context filtered, its tools, whether it could
 edit, and the evidence it returned — a record, never a verdict. It is the reconciliation substrate
-`swarm run` writes and `swarm review` reads (ADR-0072, ADR-0076, ADR-0088). `swarm run` writes the launch **envelope** of it today (task id, adapter,
-worktree/branch, source, exit); the full agent-summary form above (changed-files / commands) and
-`swarm review` reading it are deferred. The fixtures ship none.
+`swarm run` writes and `swarm review` reads (ADR-0072, ADR-0076, ADR-0088). `swarm run` writes, today, that envelope (task id, adapter, worktree/branch, source, exit)
+**plus** the delegation-provenance block and the `changed_files` snapshot (ADR-0088 producer 1); only
+`commands[]` and `swarm review` reading the record stay deferred. The fixtures ship none.
 
 There is **no Swarm `ir.json` / `plan.json` artifact** (ADR-0077). To check a spec, swarm-cli
 parses its markdown into an internal structure; it may project that structure as optional `--json`
