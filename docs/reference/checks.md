@@ -32,6 +32,10 @@ Approved phrasings, used throughout Swarm's docs:
 
 A team may adopt any check as blocking _by policy_ — that is the team's gate, not Swarm's.
 
+Teams write their own checks beyond this generic core. Where those belong, and how to name them so
+they don't claim more than they prove, is in
+[local checks and the extension boundary](local-checks.md).
+
 ## Core checks (any spec, either form)
 
 These apply to every spec, whether it uses plain `### AC-NNN` requirements or SOL blocks. Both

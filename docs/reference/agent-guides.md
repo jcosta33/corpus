@@ -65,6 +65,30 @@ own:
   step that says "paste the output of X" produces evidence. End with a self-review gate the
   agent answers in writing.
 
+## Load budget
+
+Context is finite, and material buried in a long always-loaded context is reliably missed
+[[LOSTMID]](../research/sources.md#LOSTMID) — so what loads, and when, is a design decision, not
+an afterthought. Run a new or edited guide against this checklist (convention level):
+
+- [ ] **The body is short.** It reads whole when loaded; depth lives one hop away in `references/`
+      [[SKILLBP]](../research/sources.md#SKILLBP).
+- [ ] **References are one hop away, not chained.** A guide points straight at the file it needs;
+      it does not make the reader follow a chain of pointers to reach the procedure.
+- [ ] **No hidden sibling-guide dependency.** A guide stands on its own — it never assumes another
+      guide happens to be loaded. If it needs a concept a sibling owns, it names the concept, not
+      "see the other guide" as a runtime requirement (the description's Skip clause names task
+      types, never sibling names — see above).
+- [ ] **The load trigger is exact.** The `description` says precisely when this guide fires, so the
+      agent loads it when it applies and leaves it out when it does not.
+- [ ] **The always-loaded bootloader stays small.** `AGENTS.md` is read on every turn; keep it a
+      short index that points at guides and load-when state, not a manual.
+- [ ] **No run logs in chat or always-loaded docs.** Store command output as an artifact and
+      reference it; paste only the relevant lines into the review row that needs them. Externalizing
+      state to files — rather than carrying it in context — is what makes multi-session agent work
+      tractable [[CTXENG]](../research/sources.md#CTXENG). The load-when index in
+      [memory.md](memory.md) is the mechanism for keeping that state findable.
+
 Guides are conventions: they steer an agent, nothing enforces them. Review stances —
 the cognitive postures the guides embed — are described in
 [review-stances.md](review-stances.md).

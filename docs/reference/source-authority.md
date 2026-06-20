@@ -11,6 +11,21 @@ This whole page is **convention level** — a procedure people follow, not somet
 resolves. swarm-cli's `swarm check` can *flag* a contradiction it finds (toolable); no tool
 ever picks the winner.
 
+## The minimum viable model
+
+Most teams never need the full precedence ladder below. Five rules carry the weight; adopt these
+first and reach for the rest only when two reviewed artifacts genuinely conflict:
+
+- **Specs state intent.** A requirement is the contract; nothing else outranks it on its own subject.
+- **Code can falsify intent, never silently amend it.** A failing test or a divergent behavior
+  produces a Fail or a Stale result that routes to a human — it never quietly becomes the new requirement.
+- **Review rows judge implementation against the *current* spec text and its evidence** — not
+  against what the spec used to say, and not on the implementer's say-so.
+- **A changed requirement or changed exercised code makes old evidence stale until it is re-run.**
+- **Findings inform future work but are not requirements** until promoted into a spec.
+
+The rest of this page is the tie-breaker for the rarer case where two durable artifacts disagree.
+
 ## Two axes
 
 A conflict is judged on two independent axes:
