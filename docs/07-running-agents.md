@@ -101,7 +101,17 @@ the worktree still exists and re-running a command costs seconds. Later, it's
 archaeology. Keep the worktree until the **review packet is finalized**, too:
 `swarm review` reconciles the live worktree diff, so removing the worktree (the
 Close step) before the review is done means you can no longer re-run the
-reconcile against that branch — review first, tear down after. When the agent cannot write the workspace — a dedicated workspace
+reconcile against that branch — review first, tear down after.
+
+Two sequencing notes that follow from the worktree being a checkout of a commit.
+**Fill the task packet's `## Run summary` (and any `## Affected areas` edits)
+inside the worktree, not on the base branch** — `swarm review` reads the packet
+from the branch under review, so edits made on `main` after `swarm worktree
+create` are invisible to the reconcile. And **review the branch before you
+merge**: reconciling the merged branch against `main` shows zero changed files
+(the work is already in the base), so the self-report check has nothing to diff —
+the useful reconcile is on the open branch while the filled packet and the diff
+both live there. When the agent cannot write the workspace — a dedicated workspace
 repo, a sandboxed runner — it emits the summary at the end of its run and the
 runner or human relays it into the task packet at handoff. For per-kind depth
 (a fix, a refactor, a migration, performance work), install the matching guide
