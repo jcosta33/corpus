@@ -119,6 +119,11 @@ what changed in its [CHANGELOG](https://github.com/jcosta33/swarm-starter-kit/bl
 under [semantic versioning](https://semver.org), so you can see whether a bump is a safe addition
 (minor/patch) or a layout change you'd reconcile (major) before pulling anything.
 
+If you use the optional CLI, `swarm update --check` reads the `.agents/.swarm-version` stamp
+written at `swarm init` and tells you whether your copy is behind the kit, with the changelog
+delta — a read-only staleness signal that decides nothing and pulls nothing. Re-copy on your own
+terms.
+
 Re-copy `templates/`, `.agents/skills/`, and `hooks/` from a newer kit checkout. Your specs,
 tasks, reviews, findings, decisions, board, and `AGENTS.md` are yours — the kit never touches
 them, so re-copying the kit-owned files is safe unless you have customized one (the CHANGELOG
