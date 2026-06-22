@@ -48,11 +48,11 @@ say why — the fix is a spec amendment, not mid-task improvisation.
 ## Keep the task small, single-concern, and untangled
 
 The best-replicated result in code review is that **small changes get reviewed well and large ones
-do not**: defect-detection effectiveness is best on a ~200–400 LOC change and falls off sharply past
-it [[SMARTBEAR]](research/sources.md#SMARTBEAR), the proportion of useful review comments drops as a
-change touches more files [[BOSU15]](research/sources.md#BOSU15), and modern review has converged on
-changes of a few tens of lines [[RIGBY13]](research/sources.md#RIGBY13). So shape each task to one
-concern:
+do not**: the proportion of useful review comments drops as a change touches more files
+[[BOSU15]](research/sources.md#BOSU15), and modern review has converged on changes of a few tens of
+lines [[RIGBY13]](research/sources.md#RIGBY13). A single large vendor case study puts the practical
+ceiling around 200–400 LOC under review [[SMARTBEAR]](research/sources.md#SMARTBEAR) — a heuristic
+with provenance, not a measured optimum. So shape each task to one concern:
 
 - **One concern per task.** A task carries a single requirement-cluster, not a grab-bag — if you
   can't name its scope in one line, split it into more than one task.
