@@ -56,7 +56,13 @@ Two cases need a word before you write the Verify line:
 
 - **A rare runtime state** (a stall, a race, an error path that's hard to trigger) needs a
   **simulation or fixture strategy** named in the task — how the agent will induce the state.
-  Without one, the agent can only inspect code, and the row is honestly Blocked, not Pass.
+  Without one, the agent can only inspect code, and the row is honestly Blocked, not Pass. The
+  states that bite hardest and most often ship uninduced: **browser-extension lifecycle** (install,
+  update, a permission prompt), **local model loading** (a slow or failed WebLLM/WebGPU init), a
+  **streaming** response mid-flight, a **stall or timeout**, a **denied permission**, and a
+  **failure-then-recovery** path. When the behavior lives in the real runtime, say so in the Verify
+  line and induce it — code inspection is not proof the state was reached
+  ([Reviewing output](08-reviewing-output.md) holds the row Unverified until the runtime evidence is attached).
 - **A check with a foundational precondition** (the extension must register before any popup
   assertion; the service must boot before any endpoint test) makes that precondition **its own
   first requirement**, so a dependent check reads Blocked — truth unknown — rather than a
@@ -117,6 +123,15 @@ measurably hurts [[HUMANEVALCOMM]](research/sources.md#HUMANEVALCOMM)
 [[ASKORASSUME]](research/sources.md#ASKORASSUME). A small cleanup is still a
 task — but a one-line Scope, one Verify command, and an empty "Do not change"
 is a complete packet, not a lazy one.
+
+**The thin path — scale the artifact set to the risk.** The smallest work earns the smallest
+record. A reproduced defect rides the [bug-fix shape](examples/bug-fix.md) — a spec *check* (amend
+the existing spec, don't author a new one) plus a regression test that runs red first — and a
+one-line mechanical cleanup is the one-Scope task above. A separate spec, an
+[inventory, or a change plan](05-brownfield-and-change-plans.md) is **earned by risk or spread**,
+not written by default. The test is always the same: write exactly enough that a reviewer can map
+evidence to intent — no more. Over-papering a two-line fix is the same failure as under-specifying
+a migration, pointed the other way.
 
 ## Next
 
