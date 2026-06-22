@@ -120,6 +120,16 @@ are checklist rules: the reviewer inspects who rendered each judgment; nothing e
 The shape of all three: when the oracle is a model, name it, isolate it, and double it where the
 risk is highest.
 
+## Distinct lenses, not a repeated read
+
+When more than one reviewer runs, give each a **different aim** rather than the same pass twice:
+correctness · maintainability/design · security+reproduction. Most of what review catches is the
+maintainability/design layer tests cannot see, so that lens earns a dedicated reviewer
+([reviewing output](../08-reviewing-output.md), ADR-0095). The default is two independent,
+distinct-lens reviewers; add a third for a high-risk or high-diffusion change. The stances above are
+the lenses — assign the Skeptic to correctness, an Auditor-eyed reviewer to maintainability, and so
+on; this is the convention, nothing enforces the count or the assignment.
+
 ## Related
 
 - [Advanced lifecycle](advanced-lifecycle.md) — the steps these stances sharpen, the full

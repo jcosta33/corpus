@@ -61,7 +61,7 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
 
 ## Pointers
 
-- Decisions: `docs/adrs/README.md` (0001–0075; 0057–0075 are the current architecture)
+- Decisions: `docs/adrs/README.md` (0001–0096; 0057+ are the current architecture, 0094–0096 the latest)
 - Workspace (specs, audits, plans, board): `../swarm-hq`
 - The starter kit: `../swarm-starter-kit` (github.com/jcosta33/swarm-starter-kit)
 - Optional guide catalog: `../swarm-skills` (github.com/jcosta33/swarm-skills)
