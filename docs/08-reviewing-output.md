@@ -227,6 +227,35 @@ patch, a bug in code no spec covers. The loop still works, run post-hoc:
 The packet then reads identically to any other review — without a task packet, the spec's
 requirement ids key the coverage table directly.
 
+## Scoring a delegated run — the self-report is a claim
+
+When the work was delegated to a worker agent, the only thing it hands back about *how* it ran
+is its `## Run summary` (what it says it changed, the results it cites) and the **shape of the
+diff** (what actually changed). That self-report is evidence to inspect, never a trust token: a
+worker can claim a green result it never produced, or boot from a stale packet and report against
+the wrong scope. Score it the same way you score any claim — re-run, don't relay. A worked pass:
+
+- **AC-001, the worker wrote `Pass` and cited `npm test -- auth.spec.ts`.** Re-run that command
+  yourself in the worktree. It passes → the row is **Pass**, and *your* pasted output fills the
+  Evidence cell. It fails or errors → **Fail** (or **Unverified** if you cannot run it) — the
+  worker's paste proved the command ran at some past moment, not that it passes now.
+- **AC-002, the worker wrote `Pass` with an empty Evidence cell.** That reads **Unverified** —
+  a Pass needs evidence, and an empty cell is the absence of it (the gate blocks this: core check
+  **C016**). Re-run to settle it; do not inherit the green.
+- **The diff shape vs the claimed scope.** The Run summary names `src/auth/refresh.ts`; the diff
+  also touched `src/billing/invoice.ts`, which the summary never mentions and the task's Affected
+  areas do not cover. That mismatch is an exception trigger (a changed-not-claimed / out-of-scope
+  fact) routed to Human attention — surface it even if every requirement row is green.
+- **Provenance is evidence, not a pass.** If the run records *how* it was isolated (its own
+  worktree vs a shared checkout) and what it loaded, read it to judge attribution — a shared
+  worktree where edits were not isolated to one branch means treat scope and provenance as
+  unverified until shown otherwise. A worker's "I followed the discipline" is a claim like any
+  other; the diff and your re-run are the evidence.
+
+The rule underneath: a delegated run gives you a richer *claim* to check, never a result you can
+copy. You produce the verdict from your own re-run and your read of the diff — the worker's
+summary points your attention, it does not score the work.
+
 ## Results and packet status
 
 Each coverage row carries one result:

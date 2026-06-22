@@ -50,6 +50,14 @@ Then:
 6. **Write one spec** for your next non-trivial change: `specs/<feature>/spec.md`. Run the
    loop once.
 
+The first-run discipline (a **convention**, nothing enforces it): before the first code edit
+of a non-trivial change, confirm a spec **and** a task packet exist for it. The spec states the
+intended behavior, the task bounds the scope an agent may touch — start coding before either
+exists and the review later has no acceptance bar to reconcile against, which is the failure the
+loop prevents. For genuinely trivial work the framework's own value is lowest; spend the ceremony
+where a review will need a bar to read. (A team that wants this as a hard gate, rather than a
+habit, wires it into its own pre-commit hook — the canon ships no enforcer.)
+
 Team defaults, stated once: whoever owns the change writes the spec; who reviews is whoever
 did not write the diff — the implementing agent's session never fills its own review packet.
 
