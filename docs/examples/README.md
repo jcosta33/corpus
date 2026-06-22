@@ -7,7 +7,7 @@ reviewing a big agent change *by exception* instead of reading the whole diff.
 | Example | The shape | Read it for |
 |---|---|---|
 | **[large-pr-review.md](large-pr-review.md)** — *the flagship* | a 41-file agent PR | review by exception — the coverage table, evidence rules, and human-attention routing that keep a huge diff reviewable |
-| [feature-from-jira.md](feature-from-jira.md) | a ticket → a shipped feature | the full happy path: Pull → Spec → Task → Run → Review → Close on net-new behavior |
+| [feature-from-ticket.md](feature-from-ticket.md) | a ticket → a shipped feature | the full happy path: Pull → Spec → Task → Run → Review → Close on net-new behavior |
 | [bug-fix.md](bug-fix.md) | a reproduced defect | the thin path — a small, well-scoped change that still earns a spec and an evidence-backed review |
 
 Each is a complete artifact chain you can read top to bottom. They are illustrative, not a tutorial

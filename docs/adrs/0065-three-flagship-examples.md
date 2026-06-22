@@ -47,3 +47,8 @@ docs/examples, README link, kit example (derived from feature-from-jira), confor
 
 > **Ledger note (2026-06-12):** refined by ADR-0071 — the step bars are the scoring reference
 > applied to the examples.
+>
+> **Ledger note (2026-06-22):** the happy-path example was genericized to a tracker-neutral name
+> — `feature-from-jira.md` → `feature-from-ticket.md` — and its Jira-specific framing dropped
+> (swarm-hq #58: work originates in any source, not a single tool). The three-example structure
+> and ordering are unchanged; only the one example's filename and surface vocabulary moved.

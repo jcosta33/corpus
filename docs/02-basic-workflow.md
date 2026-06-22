@@ -18,9 +18,11 @@ each of these artifacts on one small change.
 
 ## 1 · Pull — capture what was asked
 
-Work usually originates in a tracker. Copy the ticket, issue, or page **verbatim** into an
-intake file — unedited, uninterpreted. The spec will interpret; the intake preserves what was
-actually asked, so when the upstream item changes or disappears, the spec keeps its anchor.
+Work originates in an external tool **or with you** — a tracker, an issue, a doc, a
+conversation, or your own idea. When it starts outside, copy the ticket, issue, or page
+**verbatim** into an intake file — unedited, uninterpreted. The spec will interpret; the intake
+preserves what was actually asked, so when the upstream item changes or disappears, the spec
+keeps its anchor.
 Recommended whenever work originates in an external tool; never required. (The optional
 `swarm pull` captures this snapshot for you; by hand you copy-paste into the template.)
 

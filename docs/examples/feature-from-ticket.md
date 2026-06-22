@@ -1,4 +1,4 @@
-# Example: a feature from a Jira ticket
+# Example: a feature from a ticket
 
 *Works today — plain markdown plus your agent; no Swarm tooling required.*
 
@@ -9,24 +9,24 @@ This page is [the basic workflow](../02-basic-workflow.md) with real content in 
 
 ## Step 1 — Pull: capture the ticket
 
-Work starts in Jira, so the first move is a snapshot: paste the ticket verbatim into
+Work starts in a tracker, so the first move is a snapshot: paste the ticket verbatim into
 `intake/` — the spec interprets; the intake preserves what was actually asked, so anyone
 can later check the interpretation against the original. (The optional `swarm pull` captures
 this snapshot for you; by hand you copy-paste.)
 
-**`intake/JIRA-123.md`**
+**`intake/WEB-123.md`**
 
 ```markdown
 ---
 type: intake
-source: JIRA-123
-url: https://acme.atlassian.net/browse/JIRA-123
+source: WEB-123
+url: https://tracker.example.com/WEB-123
 captured: 2026-06-08
 ---
 
 # Intake: Users get logged out mid-session
 
-JIRA-123 — Users get logged out mid-session
+WEB-123 — Users get logged out mid-session
 Reporter: Dana M. (Support) · Priority: High · Labels: auth, web
 
 Support has 14 tickets this month from users who lose long forms when their
@@ -64,7 +64,7 @@ title: Silent token refresh on 401
 status: ready
 owner: web-platform
 sources:
-  - intake/JIRA-123.md
+  - intake/WEB-123.md
 ---
 
 # Silent token refresh on 401
@@ -73,7 +73,7 @@ sources:
 
 When an access token expires mid-session, the web client refreshes it
 silently and replays the original request — a user with a live refresh token
-never lands on the login screen. Raised by support volume in JIRA-123.
+never lands on the login screen. Raised by support volume in WEB-123.
 
 ## Non-goals
 
@@ -111,8 +111,8 @@ Verify with: `npx vitest run web/tests/auth-refresh-expired.spec.ts`
 
 ## Dropped from sources
 
-- "Remember me for 30 days" checkbox (JIRA-123) — a session-lifetime
-  feature, not part of silent refresh; split out as JIRA-131.
+- "Remember me for 30 days" checkbox (WEB-123) — a session-lifetime
+  feature, not part of silent refresh; split out as WEB-131.
 ```
 
 **Dropped from sources** is where the honesty lives: the ticket asked, the spec declined,

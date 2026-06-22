@@ -26,19 +26,19 @@ changing any behavior.
 
 The behavior itself is already specified in `specs/checkout/spec.md` (`SPEC-checkout` — for
 how a spec like this gets written from a ticket, see
-[feature-from-jira](feature-from-jira.md)). The requirements this refactor must preserve,
+[feature-from-ticket](feature-from-ticket.md)). The requirements this refactor must preserve,
 each with its "Verify with" command:
 
 - **AC-001 — session on cart submit.** Submitting a cart creates a session bound to it and
-  returns its id. `npx jest checkout/session-create`
+  returns its id. `npx vitest run checkout/session-create`
 - **AC-002 — at-most-once charge.** The same session submitted for payment twice charges the
-  card at most once. `npx jest payments/idempotency`
+  card at most once. `npx vitest run payments/idempotency`
 - **AC-003 — session TTL.** A session older than 30 minutes is expired.
-  `npx jest checkout/session-expiry`
+  `npx vitest run checkout/session-expiry`
 - **AC-004 — expired-session response.** Acting on an expired session returns
   409 SESSION_EXPIRED, never a 5xx. `npm run test:integration -- expired-session`
 - **AC-006 — webhook session lookup.** A provider webhook resolves to its session and applies
-  the payment status. `npx jest webhooks/session-lookup`
+  the payment status. `npx vitest run webhooks/session-lookup`
 
 ## Step 1 — Inventory: map what exists
 
@@ -164,11 +164,11 @@ different units), and SQL against one table — agreeing today by coincidence.
 
 | ID                   | Behavior                                                                                              | Verify with                                                     |
 | -------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| SPEC-checkout#AC-002 | the same session is never charged twice                                                               | `npx jest payments/idempotency`                                 |
-| SPEC-checkout#AC-003 | sessions expire at 30 minutes                                                                         | `npx jest checkout/session-expiry`                              |
+| SPEC-checkout#AC-002 | the same session is never charged twice                                                               | `npx vitest run payments/idempotency`                                 |
+| SPEC-checkout#AC-003 | sessions expire at 30 minutes                                                                         | `npx vitest run checkout/session-expiry`                              |
 | SPEC-checkout#AC-004 | expired session → 409, never 5xx                                                                      | `npm run test:integration -- expired-session`                   |
-| SPEC-checkout#AC-006 | webhooks resolve provider refs, incl. uppercase                                                       | `npx jest webhooks/session-lookup`                              |
-| PG-001               | session ids keep the 32-char lowercase-hex shape (suspected log-parser dependents — see INV Unknowns) | `npx jest sessions/id-shape` (contract test, written in wave 1) |
+| SPEC-checkout#AC-006 | webhooks resolve provider refs, incl. uppercase                                                       | `npx vitest run webhooks/session-lookup`                              |
+| PG-001               | session ids keep the 32-char lowercase-hex shape (suspected log-parser dependents — see INV Unknowns) | `npx vitest run sessions/id-shape` (contract test, written in wave 1) |
 
 <!-- PG-001 has no spec id: if the dependency is confirmed, a spec amendment
      is owed. -->
@@ -214,8 +214,8 @@ different units), and SQL against one table — agreeing today by coincidence.
 
 ## Verification strategy
 
-- [ ] `npx jest` and `npm run test:integration` per wave
-- [ ] `npx jest sessions/id-shape` from wave 1 on; staging replay before cutover
+- [ ] `npx vitest run` and `npm run test:integration` per wave
+- [ ] `npx vitest run sessions/id-shape` from wave 1 on; staging replay before cutover
 
 ## Review focus
 
@@ -283,12 +283,12 @@ Implement or preserve:
 
 ## Verify
 
-- [ ] `npx jest checkout/session-create` (AC-001)
-- [ ] `npx jest payments/idempotency` (AC-002)
-- [ ] `npx jest checkout/session-expiry` (AC-003)
+- [ ] `npx vitest run checkout/session-create` (AC-001)
+- [ ] `npx vitest run payments/idempotency` (AC-002)
+- [ ] `npx vitest run checkout/session-expiry` (AC-003)
 - [ ] `npm run test:integration -- expired-session` (AC-004)
-- [ ] `npx jest sessions/id-shape` (PG-001)
-- [ ] `npx jest` (full unit suite)
+- [ ] `npx vitest run sessions/id-shape` (PG-001)
+- [ ] `npx vitest run` (full unit suite)
 
 ## Agent instructions
 
@@ -359,12 +359,12 @@ is outside the task's scope.
 
 | ID                   | Result | Evidence                                                                                                                                                      | Human attention |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| SPEC-checkout#AC-001 | Pass   | `npx jest checkout/session-create` → `Tests: 4 passed, 4 total` (pasted in PR)                                                                                | no              |
-| SPEC-checkout#AC-002 | Pass   | `npx jest payments/idempotency` → `Tests: 6 passed, 6 total` (pasted in PR)                                                                                   | no              |
-| SPEC-checkout#AC-003 | Pass   | `npx jest checkout/session-expiry` → `Tests: 5 passed, 5 total` (pasted in PR)                                                                                | no              |
+| SPEC-checkout#AC-001 | Pass   | `npx vitest run checkout/session-create` → `Tests  4 passed (4)` (pasted in PR)                                                                                | no              |
+| SPEC-checkout#AC-002 | Pass   | `npx vitest run payments/idempotency` → `Tests  6 passed (6)` (pasted in PR)                                                                                   | no              |
+| SPEC-checkout#AC-003 | Pass   | `npx vitest run checkout/session-expiry` → `Tests  5 passed (5)` (pasted in PR)                                                                                | no              |
 | SPEC-checkout#AC-004 | Fail   | `npm run test:integration -- expired-session` → `expected 409, received 500`; `src/sessions/store.ts:74` throws `Error("expired")`, not `SessionExpiredError` | yes             |
 
-Spot-checked: AC-001 — re-ran `npx jest checkout/session-create` myself → `Tests: 4 passed, 4 total`.
+Spot-checked: AC-001 — re-ran `npx vitest run checkout/session-create` myself → `Tests  4 passed (4)`.
 
 ## Change-plan coverage
 
@@ -430,8 +430,8 @@ Implement or preserve:
 ## Verify
 
 - [ ] `npm run test:integration -- expired-session` (AC-004)
-- [ ] `npx jest sessions/id-shape` (PG-001)
-- [ ] `npx jest webhooks/session-lookup` (AC-006)
+- [ ] `npx vitest run sessions/id-shape` (PG-001)
+- [ ] `npx vitest run webhooks/session-lookup` (AC-006)
 - [ ] `git diff main -- src/payments/retry.ts` → empty
 ```
 
@@ -467,11 +467,11 @@ Reviewer spot-checked AC-002 locally.
 | ID                   | Result | Evidence                                                                   | Human attention |
 | -------------------- | ------ | -------------------------------------------------------------------------- | --------------- |
 | SPEC-checkout#AC-001 | Pass   | re-run in CI #5547 (link)                                                  | no              |
-| SPEC-checkout#AC-002 | Pass   | CI #5547 — and re-run locally by the reviewer: `Tests: 6 passed, 6 total`  | no              |
+| SPEC-checkout#AC-002 | Pass   | CI #5547 — and re-run locally by the reviewer: `Tests  6 passed (6)`  | no              |
 | SPEC-checkout#AC-003 | Pass   | CI #5547 (link)                                                            | no              |
-| SPEC-checkout#AC-004 | Pass   | `npm run test:integration -- expired-session` → `Tests: 3 passed` (pasted) | no              |
+| SPEC-checkout#AC-004 | Pass   | `npm run test:integration -- expired-session` → `Tests  3 passed (3)` (pasted) | no              |
 
-Spot-checked: AC-002 — re-ran `npx jest payments/idempotency` locally → `Tests: 6 passed, 6 total`.
+Spot-checked: AC-002 — re-ran `npx vitest run payments/idempotency` locally → `Tests  6 passed (6)`.
 
 ## Change-plan coverage
 
@@ -479,8 +479,8 @@ Spot-checked: AC-002 — re-ran `npx jest payments/idempotency` locally → `Tes
 | --------------------------------------------- | ------ | --------------------------------------------------------------- | --------------- |
 | Wave 1 — single import path, old copy deleted | Pass   | grep re-run, no matches (pasted)                                | no              |
 | Wave 1 — suites green                         | Pass   | CI #5547, unit + integration jobs (link)                        | no              |
-| SPEC-checkout#AC-006 (preserved)              | Pass   | `npx jest webhooks/session-lookup` → `Tests: 7 passed` (pasted) | no              |
-| PG-001 — id shape                             | Pass   | `npx jest sessions/id-shape` → `Tests: 2 passed` (pasted)       | no              |
+| SPEC-checkout#AC-006 (preserved)              | Pass   | `npx vitest run webhooks/session-lookup` → `Tests  7 passed (7)` (pasted) | no              |
+| PG-001 — id shape                             | Pass   | `npx vitest run sessions/id-shape` → `Tests  2 passed (2)` (pasted)       | no              |
 | Out-of-scope edit reverted                    | Pass   | `git diff main -- src/payments/retry.ts` → empty (pasted)       | no              |
 
 ## Human attention
@@ -583,7 +583,7 @@ and a drive-by edit two waves early.
   triggers this packet applies
 - [Brownfield and change plans](../05-brownfield-and-change-plans.md) — when an inventory and
   a change plan are worth writing, and when they are not
-- [feature-from-jira](feature-from-jira.md) — the six-step happy path, including authoring a
+- [feature-from-ticket](feature-from-ticket.md) — the six-step happy path, including authoring a
   spec like SPEC-checkout · [bug-fix](bug-fix.md) — the shortest loop, same review discipline
 - Templates used here: [inventory](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) ·
   [change-plan](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) ·

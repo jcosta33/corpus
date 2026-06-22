@@ -83,6 +83,11 @@ Verify with` — of everything that must still behave exactly as before, each ro
 - **Task split.** One row per task: which wave, which guarantee and requirement IDs. Each task
   then runs isolated like any other — see [Running agents](07-running-agents.md).
 
+For a signature- or interface-level change, the **affected surfaces are the edit site plus every
+caller of that signature** — pull that fan-out from the inventory's `Current interfaces → Callers`
+column rather than listing only the files you touch. The template's Affected surfaces section
+prompts for it; it stays a convention — nothing counts the callers for you.
+
 ## Enumerate what you preserve
 
 The trap in "no behavior change" is Hyrum's Law: with enough users, **every observable behavior

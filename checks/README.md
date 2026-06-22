@@ -60,7 +60,7 @@ artifacts:
 
 | Fixture domain | Worked example |
 |---|---|
-| `fixtures/auth-refresh/` | [feature-from-jira](../docs/examples/feature-from-jira.md) |
+| `fixtures/auth-refresh/` | [feature-from-ticket](../docs/examples/feature-from-ticket.md) |
 | `fixtures/payment-5xx/` | [bug-fix](../docs/examples/bug-fix.md) |
 | `fixtures/checkout/` | [large-pr-review](../docs/examples/large-pr-review.md) |
 

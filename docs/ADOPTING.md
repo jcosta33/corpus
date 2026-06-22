@@ -104,6 +104,13 @@ The agent works from the task packet; the PR links the workspace review packet.
 Specs, reviews, and findings never live in the code repo (convention — nothing
 enforces it; that's the point of keeping the workspace authoritative).
 
+**Brownfield precondition — sync the base before opening PRs.** Before cutting per-task branches
+against a code repo, confirm its local default branch is in sync with `origin/<default>`. If the
+local base is *ahead*, every task branch carries those unpushed commits into its PR — decide
+whether to publish them (a fast-forward push) or branch from a different base first. This is a
+checklist step (nothing enforces it); `swarm worktree create` also surfaces an ahead-of-remote
+base as a non-fatal advisory, but the reconcile decision is yours.
+
 ## Upgrading
 
 You adopted the kit by copying it whole, so there is no automatic upgrade — and that is the

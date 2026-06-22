@@ -56,6 +56,11 @@ tasks split one spec:
 git worktree add -b swarm/auth-refresh ../myrepo--auth-refresh main
 ```
 
+Branch off a base you have reconciled with its remote: if local `main` is ahead of `origin/main`,
+each task branch carries those unpushed commits into its PR. `swarm worktree create` flags this as
+a non-fatal advisory; the [brownfield precondition](ADOPTING.md#code-repos) routes the decision to
+a human.
+
 Why this hygiene pays for itself:
 
 - **Parallel tasks can't trample each other.** Each agent works in its own

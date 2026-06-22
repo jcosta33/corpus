@@ -12,7 +12,10 @@ The starter kit ships its agent guides at `.agents/skills/` — the core loop (`
 `implement-task`, `review-output`) plus the workspace authoring guides
 ([the index](reference/agent-guides.md)) — each a folder with a `SKILL.md` inside. A `SKILL.md`
 is ordinary markdown with a short description header, so agent CLIs can auto-discover it and
-humans can just read it. Where to copy them:
+humans can just read it. The guides are **filesystem-based** — no install step, package registry,
+or build: an agent discovers one by reading the directory, so adding or editing a guide is just a
+file change (whether a running session picks the change up mid-stream depends on the CLI). Where to
+copy them:
 
 | Agent CLI                          | Where the guides go                                                                      |
 | ---------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -31,8 +34,9 @@ same folders into whichever tool your team uses next.
 
 ## Pulling work from your tracker
 
-Work usually starts in Jira, Linear, GitHub Issues, or Notion. **Pull** — the first step of the
-[loop](02-basic-workflow.md) — captures that item into your workspace before anyone interprets it:
+Work can start anywhere — a tracker (Jira, Linear, GitHub Issues, Notion), a doc, a
+conversation, or your own idea. When it starts in an external tool, **Pull** — the first step of
+the [loop](02-basic-workflow.md) — captures that item into your workspace before anyone interprets it:
 
 1. Open the ticket. Copy its content — title, description, acceptance notes, the lot.
 2. Paste it **verbatim** into a new file in `intake/`, using the
