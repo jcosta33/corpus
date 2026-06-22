@@ -3,10 +3,16 @@ type: adr
 id: adr-0092
 status: accepted
 created: 2026-06-21
-updated: 2026-06-21
+updated: 2026-06-23
 ---
 
 # ADR-0092 — `swarm-agents`: a Claude-Code-first member of self-contained, useful worker definitions (records, never an executor; toolable-not-enforced)
+
+> **Ledger note (2026-06-23):** the portable-layer hold here is **narrowed** by
+> [ADR-0098](./0098-codex-emitter-and-universal-layer.md) — the Codex emitter + the universal
+> `AGENTS.md` discipline ship now (the second runner, Codex, is real). The part this gate actually
+> protected — **value measured across ≥2 real external runner teams** — is preserved unchanged as the
+> honest exception. The founding Claude-Code-first stance stands; the emitter is an addition.
 
 ## Context
 
