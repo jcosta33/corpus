@@ -1,8 +1,8 @@
 # Local checks and the extension boundary
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-Swarm ships only **generic** checks — the ones every spec, task, and review packet should pass
+Corpus ships only **generic** checks — the ones every spec, task, and review packet should pass
 regardless of what the code does ([checks.md](checks.md)). Teams add their own local checks
 almost immediately: a script that asserts the migration ran, that the snapshot matches, that the
 declared scope was touched. This page says **where those local checks belong** and **how to name
@@ -10,19 +10,19 @@ them so they don't claim more than they prove**.
 
 ## The extension boundary
 
-Four layers own different checks. Keeping them separate is what lets Swarm core stay portable
+Four layers own different checks. Keeping them separate is what lets Corpus core stay portable
 while a team's checks grow as specific as they like.
 
 | Layer | Owns | Examples |
 |---|---|---|
-| **Swarm core CLI** (`swarm check`) | Generic artifact checks — independent of any project's domain | spec shape, task scope, review coverage, empty evidence, workspace validity, stale declared evidence (the `C` catalogue in [checks.md](checks.md)) |
+| **Corpus core CLI** (`swarm check`) | Generic artifact checks — independent of any project's domain | spec shape, task scope, review coverage, empty evidence, workspace validity, stale declared evidence (the `C` catalogue in [checks.md](checks.md)) |
 | **Workspace / starter kit** | Project command slots and local policy | the `Commands` table a task's `Verify with:` resolves against; which checks a team treats as blocking; the high-oversight band |
 | **Code repo** | Its real build/test/lint/typecheck commands | the gate a task's evidence is produced by — `pnpm test:run`, `cargo build`, whatever the repo actually runs |
-| **Optional local scripts** | Project-specific predicates | a script that emits Swarm-shaped evidence (a review row, a Pass/Fail/Unverified result) for something only this project cares about |
+| **Optional local scripts** | Project-specific predicates | a script that emits Corpus-shaped evidence (a review row, a Pass/Fail/Unverified result) for something only this project cares about |
 
-The rule in one line: **Swarm core stays generic; product-specific predicates live in the layers
-a team owns.** A local script that emits Swarm-shaped evidence is welcome and idiomatic — what is
-forbidden is implying its predicate is part of Swarm core, or that Swarm enforces it. Swarm
+The rule in one line: **Corpus core stays generic; product-specific predicates live in the layers
+a team owns.** A local script that emits Corpus-shaped evidence is welcome and idiomatic — what is
+forbidden is implying its predicate is part of Corpus core, or that Corpus enforces it. Corpus
 deliberately ships no domain-specific check; a team binds its own tool through a `Verify with:`
 command or a `CONSTRAINT` with the `static` verify method (see *Not in the set* in the
 [CLI reference](future-cli.md)).
@@ -55,7 +55,7 @@ intent).
 **And label its honesty level** ([the honesty legend](checks.md#the-honesty-legend),
 [ADR-0063](../adrs/0063-honesty-framework-and-tooling-boundary.md)). A local script is **toolable** at best; it
 becomes **enforced** only when your gate actually rejects a merge on its failure — that is your
-team's gate, not Swarm's. Until something blocks, it is a checklist or toolable aid, and it says
+team's gate, not Corpus's. Until something blocks, it is a checklist or toolable aid, and it says
 so. A script that cannot run its check returns **Unverified** or **Blocked**, never a guessed
 Pass.
 

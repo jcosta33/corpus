@@ -8,7 +8,7 @@ Superseded by [0036](./0036-heuristic-profile-model.md) — the iron law is reca
 
 Soft guidance bullet lists degrade under LLM optimisation — models reinterpret "should avoid" as "unless inconvenient".
 
-Borrowing clarity from hostile-review pattern libraries, Swarm personas pair **Hard constraints / Forbidden actions** (**iron-law style absolutes**) with explicit **Red flags** tables mapping rationalisations to refusals.
+Borrowing clarity from hostile-review pattern libraries, Corpus personas pair **Hard constraints / Forbidden actions** (**iron-law style absolutes**) with explicit **Red flags** tables mapping rationalisations to refusals.
 
 ## Decision
 

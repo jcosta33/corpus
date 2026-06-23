@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Pre-kernel Swarm faced a portability problem: an obligation that wants to be proven must name a command to run, but the command line is project-specific (`npm test` vs `cargo test` vs `mvn verify`). [0018](./0018-agents-md-command-contract.md) answered this for *skills* — skill bodies referenced commands by contract name, resolving through an `AGENTS.md > Commands` table — but it framed the indirection around skill prose and `{{cmd*}}` template placeholders, not around a verification binding. The kernel removes skills as semantic owners (§26) and makes the proof binding (`VERIFY BY`) the thing that names a command. That leaves [0018](./0018-agents-md-command-contract.md)'s good idea — one Commands table as the single source of truth — bound to a surface the kernel no longer uses. §15 and §31.3 re-anchor the same indirection on the kernel's actual proof model.
+Pre-kernel Corpus faced a portability problem: an obligation that wants to be proven must name a command to run, but the command line is project-specific (`npm test` vs `cargo test` vs `mvn verify`). [0018](./0018-agents-md-command-contract.md) answered this for *skills* — skill bodies referenced commands by contract name, resolving through an `AGENTS.md > Commands` table — but it framed the indirection around skill prose and `{{cmd*}}` template placeholders, not around a verification binding. The kernel removes skills as semantic owners (§26) and makes the proof binding (`VERIFY BY`) the thing that names a command. That leaves [0018](./0018-agents-md-command-contract.md)'s good idea — one Commands table as the single source of truth — bound to a surface the kernel no longer uses. §15 and §31.3 re-anchor the same indirection on the kernel's actual proof model.
 
 ## Decision
 
@@ -30,7 +30,7 @@ A binding whose `<adapter>` has no matching Commands row is `SOL-V002` (proof-no
 | Hardcode concrete commands in the `VERIFY BY` clause | Forks the obligation per stack and leaks tooling into a portable spec; the same `spec.md` would no longer port across repos (§15.3 rationale). |
 | Keep [0018](./0018-agents-md-command-contract.md)'s skill-prose indirection (commands named in skill bodies) | The kernel removes skills as the carrier of command references; skills are pass guides that MUST NOT own semantics (§26.1). Binding the indirection to a skill body leaves it on a surface the kernel no longer uses. |
 | Put the concrete command in the proof `<type>` | `<type>` is the closed, IR-typed, analyzable dimension (§15.1); putting a project command there would make the closed set un-closeable and break cross-repo portability. |
-| Resolve `<adapter>` against a per-repo runtime config the kernel ships | Swarm ships no runtime (§2); there is nothing to resolve against. The resolution target must be a markdown fact a human or future launcher reads — the `AGENTS.md` table. |
+| Resolve `<adapter>` against a per-repo runtime config the kernel ships | Corpus ships no runtime (§2); there is nothing to resolve against. The resolution target must be a markdown fact a human or future launcher reads — the `AGENTS.md` table. |
 | Treat a missing adapter binding as `PASS` (assume the proof exists) | Shape is not truth (§2); an unresolved adapter proves nothing. It must read as `BLOCKED`/`SOL-V002`, the honest "could not run" (§14.1.1, §31.3). |
 
 ## Consequences

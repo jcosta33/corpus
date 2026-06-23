@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-The conformance contract (§32, ADR 0026) is inert versioned data: the precise definition a future checker would honour. But a contract alone cannot demonstrate conformance — it states the rules, not the verdicts those rules produce on real specs. Without worked, verdict-pinned examples there is nothing to validate a checker (or a human reviewer) against, and nothing that proves the obligation language and its passes behave as the contract claims. Worse, a suite of only *valid* specimens cannot catch the failure mode Swarm exists to prevent: a structurally well-formed artifact that is nonetheless wrong (Invariant 4 — schema-valid ≠ verified). Established compiler-conformance practice resolves this by shipping a suite of both allowed and disallowed productions whose conformity is known *without* the tool under test (§33.1). The pressure: Swarm needs that oracle, but Invariant 1 (NO RUNTIME) forecloses shipping a checker to produce it.
+The conformance contract (§32, ADR 0026) is inert versioned data: the precise definition a future checker would honour. But a contract alone cannot demonstrate conformance — it states the rules, not the verdicts those rules produce on real specs. Without worked, verdict-pinned examples there is nothing to validate a checker (or a human reviewer) against, and nothing that proves the obligation language and its passes behave as the contract claims. Worse, a suite of only *valid* specimens cannot catch the failure mode Corpus exists to prevent: a structurally well-formed artifact that is nonetheless wrong (Invariant 4 — schema-valid ≠ verified). Established compiler-conformance practice resolves this by shipping a suite of both allowed and disallowed productions whose conformity is known *without* the tool under test (§33.1). The pressure: Corpus needs that oracle, but Invariant 1 (NO RUNTIME) forecloses shipping a checker to produce it.
 
 ## Decision
 
@@ -24,7 +24,7 @@ Conformance is evidenced by a **golden corpus** of positive (must-compile) and n
 | --- | --- |
 | Ship the conformance contract (§32) alone, no fixtures | A contract states rules but pins no verdicts; nothing validates a checker or a reviewer, and the contract's own claims go undemonstrated (§33.1). |
 | Positive (must-compile) fixtures only | Cannot catch the core failure mode — a schema-valid artifact that is wrong (Invariant 4). Compiler-conformance practice requires disallowed productions whose rejection is known (§33.1). |
-| Ship a checker to generate verdicts | Violates Invariant 1 (NO RUNTIME). Swarm ships the contract and its oracle, never the checker (§32.7); the corpus pins verdicts as data instead. |
+| Ship a checker to generate verdicts | Violates Invariant 1 (NO RUNTIME). Corpus ships the contract and its oracle, never the checker (§32.7); the corpus pins verdicts as data instead. |
 | Canonical fixtures only, no held-out/mutated variants | Public fixtures invite contamination: an agent-as-compiler reproduces the *labels* without performing the *passes*. The corpus MUST ship a semantically-equivalent mutated twin as the conformance gate (§33.7.1). |
 | Grade passes with a Likert/quality score | Quality scores are not decidable against the artifact alone. The pass-output rubrics are checkable boolean predicates — a single failing predicate fails the pass (§33.6). |
 
@@ -32,7 +32,7 @@ Conformance is evidenced by a **golden corpus** of positive (must-compile) and n
 
 ### Positive
 
-- Gives Swarm a tool-independent oracle: expected verdicts are pinned as data, so a future checker has a regression suite and a human has something concrete to validate against.
+- Gives Corpus a tool-independent oracle: expected verdicts are pinned as data, so a future checker has a regression suite and a human has something concrete to validate against.
 - The negative fixtures defend Invariant 4 directly — every error-code family gets a guarding fixture, and the canonical "tests passed" hole is a first-class FAIL fixture (§33.4).
 - The held-out mutated variants make label-memorization detectable, so a passing verdict evidences a correctly executed pass rather than a recognized string (§33.7.1).
 

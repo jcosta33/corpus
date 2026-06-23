@@ -1,6 +1,6 @@
 # Agent guides
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 The guides are short procedural documents an agent CLI loads on demand (each ships as a
 `SKILL.md`, auto-discoverable by agent tools and plainly readable by humans). They carry

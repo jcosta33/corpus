@@ -33,7 +33,7 @@ required `type:` frontmatter envelope** with obligation-blocks already spec-only
 The fix is grounded in the field's convergent convention (web-verified, June 2026): the two leading
 spec-driven tools both organize **per-feature folders** — GitHub Spec Kit scaffolds `specs/<NNN-feature>/`
 (spec + plan + tasks + research co-located) [[SPECKIT]](../research/sources.md#SPECKIT); Amazon Kiro uses
-`.kiro/specs/<feature>/` and writes requirements in **EARS**, Swarm's SOL clause shape
+`.kiro/specs/<feature>/` and writes requirements in **EARS**, Corpus's SOL clause shape
 [[KIRO]](../research/sources.md#KIRO). ADRs have a settled home: a sequentially-numbered in-repo
 `decisions/` directory [[ADR-CONV]](../research/sources.md#ADR-CONV). Co-locating a feature's supporting
 artifacts with its contract is exactly what closes the requirements↔output traceability gap that 2025 SE
@@ -83,7 +83,7 @@ It changes **no** closed set, the SOL grammar, the nine steps, the verdicts, or 
 | Keep flat `specs/*.md` + give each other type its own top-level folder (`audits/`, `research/`, …) | This is the status quo's cloud with names. It cannot **co-locate** a feature's audit/research with its spec, so traceability stays a cross-folder lookup; and it grows an unbounded top-level surface — the exact incoherence being removed. |
 | Keep everything top-level, "type:-tagged, kept how you like" (ADR-0051 as written) | Self-contradicted by `promote.md` and `memory.md`; homes nothing concretely; an adopter can't tell where an audit goes. |
 | Route supporting artifacts + ADRs "under `.agents/`" (promote.md as written) | `.agents/` is **tooling**, not content. ADRs/audits/research are product intent humans read; burying them in the agent-tooling dir conflates the two and contradicts the spec-repo discipline. |
-| Split the spec into per-feature `spec.md`+`plan.md`+`tasks.md` like Spec Kit / Kiro | Swarm's distinctive choice is the **single self-contained SOL contract** (obligations + `VERIFY BY` in one file); the plan is *derived* by `decompose`, not hand-authored. Adopt their per-feature *folder*, not their multi-file split. |
+| Split the spec into per-feature `spec.md`+`plan.md`+`tasks.md` like Spec Kit / Kiro | Corpus's distinctive choice is the **single self-contained SOL contract** (obligations + `VERIFY BY` in one file); the plan is *derived* by `decompose`, not hand-authored. Adopt their per-feature *folder*, not their multi-file split. |
 
 ## Consequences
 

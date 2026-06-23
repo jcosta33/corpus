@@ -23,7 +23,7 @@ checks data over MCP. The catalogue and the README carry the authoritative flags
 per-command detail — this page does not restate them.
 
 Every check is **toolable**: it becomes **enforced** only in an adopting repo that wires the kit's
-commit/CI hooks, where the team's gate (or the agent CLI's hook runtime) enforces — never "Swarm
+commit/CI hooks, where the team's gate (or the agent CLI's hook runtime) enforces — never "Corpus
 enforcing." The checks themselves (C001–C017, the review-packet evidence rules) are defined in
 [checks.md](checks.md).
 
@@ -41,7 +41,7 @@ Three dispositions, each a decision rather than a backlog position:
 - **Non-goals — never built, by design.** A board-mutating close (a `status.md`-mutating `swarm
   close`) — the board stays hand-edited; a CLI that writes it would adjudicate the human-owned verdict
   ([ADR-0077](../adrs/0077-swarm-cli-reconcile-only-harness.md) / ADR-0084). `compile`,
-  `lower`/`decompose`, `graph` — Swarm generates no code from a spec and splits no spec into tasks
+  `lower`/`decompose`, `graph` — Corpus generates no code from a spec and splits no spec into tasks
   (judgment work). Architecture enforcement — a team binds its own linter via a `CONSTRAINT` + the
   `static` verify method. The finding scaffold ships instead as the boundary-safe `swarm promote`.
 - **Deferred — specified, built on demonstrated demand, not to fill a roadmap.** `swarm inventory new`
@@ -56,11 +56,11 @@ Three dispositions, each a decision rather than a backlog position:
   task diffs, so the band is specified-not-shipped and the diff size surfaces as neutral info in
   `swarm review` instead ([ADR-0097](../adrs/0097-mint-c016-c017-defer-oversized.md)).
 
-## Composable parts: standalone and Swarm-composed
+## Composable parts: standalone and Corpus-composed
 
 swarm-cli is a **reconcile-only harness**: it *prepares*, *launches*, and *reconciles* agent runs;
 it never *performs* the coding loop (ADR-0077). Three design rules make it both a standalone tool
-for any agentic work and the thing that supercharges the Swarm loop — *parts individually usable,
+for any agentic work and the thing that supercharges the Corpus loop — *parts individually usable,
 maximally valuable together*:
 
 - **Every command is a well-behaved Unix part** (toolable): `--json` output, meaningful exit codes
@@ -69,7 +69,7 @@ maximally valuable together*:
   executables discovered on `PATH` (the `git`/`kubectl` convention), so `pull` connectors and
   agent adapters drop in without a rebuild. A reconcile-only **core library** holds the logic so
   editors, CI, and the MCP server reuse it without shelling out.
-- **Standalone primitives** are useful without adopting Swarm at all: `swarm worktree` (a
+- **Standalone primitives** are useful without adopting Corpus at all: `swarm worktree` (a
   one-worktree-per-task manager with per-worktree runtime-isolation config — port range, scratch
   DB, copied fixtures — that interops with `claude --worktree`), `swarm run --agent` (M1 launches a
   prepared task in its worktree and records the launch; the headless wrapper that normalizes each
@@ -80,7 +80,7 @@ maximally valuable together*:
   (`swarm check`'s diagnostics → `swarm new`'s scope → `run`'s launch envelope → `review`'s coverage
   rows → the human's by-hand close). Each still runs alone.
 
-The two capabilities Swarm owns that the field leaves open — both depending on the task packet's
+The two capabilities Corpus owns that the field leaves open — both depending on the task packet's
 **declared scope** — are **deterministic coverage / executable-criteria checking** (`swarm check`)
 and **reconciling the agent's self-report against the actual diff** (`review`).
 
@@ -228,7 +228,7 @@ swarm review TASK-checkout-discounts
 
 ## Local state in a code repo: the gitignored `.swarm/` directory
 
-Today a code repo needs nothing from Swarm — at most a one-line `AGENTS.md` pointer to the
+Today a code repo needs nothing from Corpus — at most a one-line `AGENTS.md` pointer to the
 workspace, with task packets handed to the agent by paste or path. That stays true. When the CLI
 exists, it may own one **fully gitignored** local-state directory in a code repo:
 
@@ -245,7 +245,7 @@ Three rules bound it:
 
 - It is **never committed** and never required by the markdown workflow. Deleting `.swarm/`
   loses nothing durable.
-- Committed Swarm content in code repos stays out of bounds — specs, reviews, and findings
+- Committed Corpus content in code repos stays out of bounds — specs, reviews, and findings
   belong to the workspace. This is a convention; nothing in this repository enforces it.
 - It appears on this page only. No other page in these docs asks a code repo to carry anything.
 
@@ -305,7 +305,7 @@ CLIs have converged on the same headless-event vocabulary — `init` · `assista
 `result`, plus a final message, cost, and exit code — emitted as JSON / stream-JSON. swarm-cli
 adopts that vocabulary as its **canonical adapter event contract** (carrying a contract version
 against vendor churn) and maps each tool's native schema onto it, normalizing the result into the
-run record. Swarm invents no new event vocabulary; an adapter is thin because the contract already
+run record. Corpus invents no new event vocabulary; an adapter is thin because the contract already
 exists in the wild.
 
 ## Beyond the loop: the MCP server and hook generation
@@ -313,17 +313,17 @@ exists in the wild.
 Two **toolable** capabilities generalize the adapter model across vendors without N bespoke
 integrations — both strictly *prepare*, never *perform*:
 
-- **A Swarm MCP server.** Instead of one adapter per agent, expose the task packet's scope, the
+- **A Corpus MCP server.** Instead of one adapter per agent, expose the task packet's scope, the
   parsed requirements, and the checks contract over MCP — so any MCP-capable agent (Claude, Codex,
   Gemini, Goose) natively queries "what are this task's requirements, scope, and checks." It is a
   peer to the shell-out adapters (which cover agents without MCP); it **shipped** as `swarm-mcp` (v0.1.0, ADR-0085), shelling out to the CLI `--json` contract. This
-  *serves Swarm data over MCP* (prepare); it is **not** the agent's tool-calling MCP runtime, which
+  *serves Corpus data over MCP* (prepare); it is **not** the agent's tool-calling MCP runtime, which
   stays the agent's per the boundary below.
 - **Per-adapter hook generation.** Emit the agent CLI's own hook config (e.g. `hooks.json` /
   `settings.json`) wiring a task's declared write-set and `checks.yaml` into its PostToolUse/Stop
   hooks. This is the bridge from a `toolable`/`checklist` rule to **enforcement performed by the
   agent CLI's hook runtime** — swarm-cli *generates* the config; it does not run the loop, and the
-  enforcement is the agent's, recorded as such (never claimed as Swarm enforcing). Opt-in per
+  enforcement is the agent's, recorded as such (never claimed as Corpus enforcing). Opt-in per
   adapter capability; agents without hooks simply don't get it.
 
 ## The run record
@@ -338,10 +338,10 @@ edit, and the evidence it returned — a record, never a verdict. It is the reco
 **plus** the delegation-provenance block and the `changed_files` snapshot (ADR-0088 producer 1); only
 `commands[]` and `swarm review` reading the record stay deferred. The fixtures ship none.
 
-There is **no Swarm `ir.json` / `plan.json` artifact** (ADR-0077). To check a spec, swarm-cli
+There is **no Corpus `ir.json` / `plan.json` artifact** (ADR-0077). To check a spec, swarm-cli
 parses its markdown into an internal structure; it may project that structure as optional `--json`
 for interop (a CI step or another tool consuming the analysis). That projection is a tool output,
-not a Swarm file — adopters never create or see one, and **markdown stays the only Swarm
+not a Corpus file — adopters never create or see one, and **markdown stays the only Corpus
 artifact**. The deterministic coverage/drift checks (below) run on the parsed markdown, not on a
 required file.
 
@@ -349,7 +349,7 @@ required file.
 
 The boundary: the CLI **prepares and reconciles**; the agent **performs the coding loop**.
 
-| The CLI owns | The agent CLI owns — never Swarm |
+| The CLI owns | The agent CLI owns — never Corpus |
 |---|---|
 | scaffolding, intake snapshots | the LLM chat / conversation UI |
 | spec drafting and checking | the model reasoning loop |
@@ -359,7 +359,7 @@ The boundary: the CLI **prepares and reconciles**; the agent **performs the codi
 | findings prompt, ledger entries | prompt-streaming UX |
 
 A `swarm` CLI that absorbed anything from the right column would have become a coding agent —
-and Swarm coordinates agents; it does not compete with them. The same restraint repeats in
+and Corpus coordinates agents; it does not compete with them. The same restraint repeats in
 `run`'s contract: launching is the whole job.
 
 ## Source-surface policies

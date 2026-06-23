@@ -164,7 +164,7 @@ Positive: the evidence wedge gains its first mechanically defensible tightening;
 opt-in (zero forced ceremony, a row may still use only the free-form cell and stay a warning) and
 tool-draftable to near-zero added human cost in W4. Negative: a second evidence form to teach and a
 new parse path to build. Neutral: a team may treat the structured-form warning as blocking by its own
-CI policy — that is the team's gate, not Swarm's.
+CI policy — that is the team's gate, not Corpus's.
 
 **Single-sourcing: the format and the rule land in canon — [docs/08-reviewing-output.md](../08-reviewing-output.md),
 [reference/structured-requirements.md](../reference/structured-requirements.md),

@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Pre-kernel Swarm answered "did this actually get done?" in two incompatible places. The validation contract spoke in ad-hoc pass/fail prose, where a binding that *could not run* read identically to one that *ran and failed* and to one that was *never attempted* — three different debts collapsed into one word. Separately, [0024](./0024-confidence-tiers.md) named two confidence tiers (self-reviewed vs independently-reviewed) as a labelling discipline bolted onto the same flat pass/fail, because the model had no typed home for *how much* an outcome was trusted. The result was that confidence lived in adjectives, not in the verdict itself, and a reviewer could not route an unmet obligation without re-deriving which kind of "not done" it was. §14 fixes this by giving the verdict a closed, typed vocabulary.
+Pre-kernel Corpus answered "did this actually get done?" in two incompatible places. The validation contract spoke in ad-hoc pass/fail prose, where a binding that *could not run* read identically to one that *ran and failed* and to one that was *never attempted* — three different debts collapsed into one word. Separately, [0024](./0024-confidence-tiers.md) named two confidence tiers (self-reviewed vs independently-reviewed) as a labelling discipline bolted onto the same flat pass/fail, because the model had no typed home for *how much* an outcome was trusted. The result was that confidence lived in adjectives, not in the verdict itself, and a reviewer could not route an unmet obligation without re-deriving which kind of "not done" it was. §14 fixes this by giving the verdict a closed, typed vocabulary.
 
 ## Decision
 

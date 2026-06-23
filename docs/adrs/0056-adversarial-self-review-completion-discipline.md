@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Swarm has two relevant mechanisms, and a gap between them:
+Corpus has two relevant mechanisms, and a gap between them:
 
 - The **`## Self-review`** block on a task (`docs/passes/implement.md`, the task template) — but it is a
   *checklist*: "did I do only this step; preserve semantics; map every claim to evidence." A checklist catches

@@ -10,7 +10,7 @@ updated: 2026-06-11
 
 ## Context
 
-Requirement clarity is the best-evidenced lever Swarm has: ambiguous or incomplete task input measurably
+Requirement clarity is the best-evidenced lever Corpus has: ambiguous or incomplete task input measurably
 degrades agent code correctness [[ORCHID]](../research/sources.md#ORCHID)
 [[HUMANEVALCOMM]](../research/sources.md#HUMANEVALCOMM), models usually generate anyway rather than ask
 [[HUMANEVALCOMM]](../research/sources.md#HUMANEVALCOMM) [[HILBENCH]](../research/sources.md#HILBENCH), and

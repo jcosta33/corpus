@@ -1,12 +1,12 @@
 # Writing-rules corpus
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 The labeled fixture set for the writing-rules watchlist in
 [the checks reference](../../../docs/reference/checks.md): short requirement-prose spans,
 each paired with its ground-truth label — `clean`, or the specific `SOL-P` code from the
 checks catalogue that should fire, with the reason. **Inert fixture data — nothing here
-runs.** Swarm ships no detector; this corpus is what a detector — swarm-cli's
+runs.** Corpus ships no detector; this corpus is what a detector — swarm-cli's
 `swarm check`, or a human reviewer — is scored *against*.
 
 ## Why this corpus exists

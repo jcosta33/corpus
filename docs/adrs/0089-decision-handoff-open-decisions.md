@@ -10,7 +10,7 @@ updated: 2026-06-20
 
 ## Context
 
-A developer adopting Swarm rarely runs one agent — they orchestrate several, each deep in its own
+A developer adopting Corpus rarely runs one agent — they orchestrate several, each deep in its own
 domain (a parser change here, a docs sweep there, a benchmark in a third worktree). At the moment a
 unit of work closes and a decision is owed, that developer is **context-poor**: pulled across domains,
 holding none of any single agent's depth. The agent that just did the work is the only party still

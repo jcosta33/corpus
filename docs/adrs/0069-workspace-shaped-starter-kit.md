@@ -21,7 +21,7 @@ core path where it defeats the kit's reason to exist.
 
 ## Decision
 
-1. **`starter-kit/` is a complete Swarm workspace.** Its root carries `AGENTS.md` (+
+1. **`starter-kit/` is a complete Corpus workspace.** Its root carries `AGENTS.md` (+
    `CLAUDE.md`/`GEMINI.md` symlinks), `templates/`, the prescribed flow folders (`specs/`,
    `intake/`, `tasks/`, `reviews/`, `findings/`, `inventory/`, `change-plans/`, `decisions/`)
    each seeded with a one-line README, the live `status.md` board, and the worked example as a
@@ -70,5 +70,5 @@ starter-kit tree, ADOPTING, root README (get-started), docs/03, docs/10, kit AGE
 > stale copies; all live surfaces document `-R`. (2) `decisions/` ships a short governance
 > README plus the `0001-adopt-swarm` seed entry, not a one-line README like the seven flow
 > folders. Known consequence, recorded in `.agents/SKILLS-MANIFEST.md`: the kit's nested
-> `.claude/skills` symlink surfaces the three kit guides in Claude sessions on the Swarm repo
+> `.claude/skills` symlink surfaces the three kit guides in Claude sessions on the Corpus repo
 > itself.

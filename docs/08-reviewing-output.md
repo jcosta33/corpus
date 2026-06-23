@@ -1,8 +1,8 @@
 # Reviewing agent output
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-Review is the step Swarm exists for. Coding agents produce more code than anyone can read
+Review is the step Corpus exists for. Coding agents produce more code than anyone can read
 line by line; the review packet turns that volume into a short list of things a human must
 actually look at. This page covers the Review step of the loop: what the packet contains,
 the evidence rules, and where your eyes go.

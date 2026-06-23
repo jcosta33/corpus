@@ -10,7 +10,7 @@ updated: 2026-06-22
 
 ## Context
 
-Agent-written changes are cheap to produce and easy to make large. Swarm's leverage is the
+Agent-written changes are cheap to produce and easy to make large. Corpus's leverage is the
 *handoff* — what the agent is told to emit and what the human (or an independent reviewer) must
 actually look at. Two recurring questions had no grounded answer in the canon:
 

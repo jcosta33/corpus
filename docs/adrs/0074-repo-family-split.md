@@ -10,7 +10,7 @@ updated: 2026-06-13
 
 ## Context
 
-ADR-0073 named the multi-repo workspace and noted that the Swarm family's own was "a separate
+ADR-0073 named the multi-repo workspace and noted that the Corpus family's own was "a separate
 owner action." The owner acted: a `swarm-hq` repo now exists for the family (swarm · swarm-cli ·
 swarm-skills · planned: swarm-starter-kit, swarm-ci, swarm-website). Until now this repo carried
 its own producer workspace (`.agents/specs|audits|change-plans`) and two skill surfaces beyond
@@ -23,7 +23,7 @@ the adopters and the CLI that consume it.
 ## Decision
 
 1. **The producer workspace is `swarm-hq`** — the family's multi-repo workspace (the ADR-0073
-   shape applied to Swarm itself). Specs, audits, research, change plans, findings, tasks,
+   shape applied to Corpus itself). Specs, audits, research, change plans, findings, tasks,
    reviews, and the board for changes to this repo and to swarm-cli live there. This repo and
    swarm-cli carry the code-repo footprint (the workspace pointer, the gitignore lines, the
    `implement-task` guide) — nothing else. Accepted framework decisions still land here, in

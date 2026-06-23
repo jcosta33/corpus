@@ -13,7 +13,7 @@ updated: 2026-06-12
 `evals/` was an island. No tool contract names it (`docs/reference/future-cli.md` promises no
 `swarm eval`); nothing in README, docs/, starter-kit/, or the checks data links to it; even
 the spec-first pilot defines its metrics operationally on review packets. Each page carried
-the label "internal rationale; not needed to use Swarm" — yet what the pages actually define
+the label "internal rationale; not needed to use Corpus" — yet what the pages actually define
 is not internal at all: the predicates that say whether a spec faithfully distilled its
 sources (*stance preserved*, *nothing invented as sourced*), whether a task faithfully bounded
 its spec, whether a review's results are consistent with its evidence. That is **the

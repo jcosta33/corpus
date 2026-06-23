@@ -8,7 +8,7 @@ supersedes:
 superseded_by:
 ---
 
-# ADR-0050: Swarm is a spec-repo discipline; the code repo stays pristine
+# ADR-0050: Corpus is a spec-repo discipline; the code repo stays pristine
 
 > **Refined by [ADR-0051](./0051-complete-the-spec-repo-pivot.md).** Specs and intent artifacts now live
 > **top-level** (`specs/`, `adrs/`, …), not under `.agents/specs/` as written below — `.agents/` holds only
@@ -36,12 +36,12 @@ execution scratch together. Pushing on real adoption surfaced that this is the w
 - **Humans are the glue.** With no runtime, a human/agent carries structured intent from the spec into a
   code repo and opens a PR. Adoption should be designed around that, not around an automated compiler.
 
-This maps cleanly onto Swarm's own model: **spec repo = desired truth; code repo = reality; a coverage
+This maps cleanly onto Corpus's own model: **spec repo = desired truth; code repo = reality; a coverage
 record = observed satisfaction.** The intent/reality split *is* the repo boundary.
 
 ## Decision
 
-1. **Two topologies, spec-repo-led.** A **spec/documentation repo** is where Swarm lives (specs + PRDs /
+1. **Two topologies, spec-repo-led.** A **spec/documentation repo** is where Corpus lives (specs + PRDs /
    RFCs / ADRs / audits / findings + the authoring kit + memory + a lightweight coverage record). **Code
    repos** consume specs and stay pristine. **Co-located** (specs and code in one repo) is the degenerate
    case — the same model with the two repos collapsed; it needs no separate machinery and remains the right
@@ -50,7 +50,7 @@ record = observed satisfaction.** The intent/reality split *is* the repo boundar
    `review`/`promote` guides, the `reference/` cards, the `persona-*` stances, the templates) installs into
    the **spec repo**. The **implementing kit** is one optional skill — `implement-and-verify` (+ a persona
    if wanted) — for a **code repo**.
-3. **The code repo stays pristine.** **No required Swarm footprint.** No specs (they live in / are
+3. **The code repo stays pristine.** **No required Corpus footprint.** No specs (they live in / are
    referenced from the spec repo), no SOL-reading skill, no `reference/` cards. Anything an agent generates
    while implementing (task frames, scratch, transient traces) is **gitignored**. Anything durable (a
    learning, a decision, discovered drift) flows **back to the spec repo as a linked PR**, never as litter
@@ -76,7 +76,7 @@ folders are now the **spec repo's** authoring workspace; a code repo gets near-z
 
 | Alternative | Why rejected |
 | --- | --- |
-| Keep the single adopted-repo model (0049 as-is) | Doesn't serve multi-repo / cross-cutting specs or the enterprise author-vs-consume split, and still puts Swarm files in the developer's code repo. |
+| Keep the single adopted-repo model (0049 as-is) | Doesn't serve multi-repo / cross-cutting specs or the enterprise author-vs-consume split, and still puts Corpus files in the developer's code repo. |
 | Require an implementing kit / SOL-reading skill in every code repo | Contradicts "SOL is self-legible to a reader" and "the code repo is the developer's." The spec is the interface; mandating skills is pollution. |
 | Keep structured `trace.md`/`review.md` in the code repo by default | Re-invents the PR + CI + review, which already are the trace/verdict. Reserve structured traces for audit-heavy cases. |
 | Pin specs into code repos via git submodule/URL | Heavier machinery than the "humans are the glue" reality needs; reference-by-ID in the PR is lighter and matches how teams already cite RFCs/ADRs. (Left open as an opt-in.) |
@@ -84,7 +84,7 @@ folders are now the **spec repo's** authoring workspace; a code repo gets near-z
 ## Consequences
 
 - **Positive:** code repos stay clean; one spec can govern many repos; the author→review→consume flow fits
-  how organizations already work; Swarm is honestly positioned as a spec/documentation discipline, not
+  how organizations already work; Corpus is honestly positioned as a spec/documentation discipline, not
   something that lives in your code.
 - **Negative:** teams stand up two repos, and the spec↔code reconciliation crosses a repo boundary. But
   there is **no automated loop to break** — reconciliation is human/agent-mediated today, so the spec is

@@ -1,6 +1,6 @@
 # The advanced lifecycle
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 The six-step loop — **Pull → Spec → Task → Run → Review → Close** — is the default way to work
 ([basic workflow](../02-basic-workflow.md)). Underneath it sits a finer-grained **nine-step

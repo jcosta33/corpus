@@ -10,7 +10,7 @@ updated: 2026-06-22
 
 ## Context
 
-Swarm exists for the review step, but the canon under-stated *what review is for* and *how to
+Corpus exists for the review step, but the canon under-stated *what review is for* and *how to
 weight it*. A web-verified evidence pass (swarm-hq #52; sources below, each verified June 2026 with
 honest tiers) settles five framing questions — and corrects two of the issue's own framings.
 

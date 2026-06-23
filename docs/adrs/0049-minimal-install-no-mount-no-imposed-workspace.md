@@ -12,7 +12,7 @@ superseded_by:
 
 > **Refined by [ADR-0050](./0050-swarm-is-a-spec-repo-discipline.md).** The goldilocks six-folder `.agents/`
 > set below is the **spec repo's** authoring workspace. A **code repo** that only *consumes* specs gets
-> near-zero — no specs, no SOL cards, at most one opt-in `implement-and-verify` skill, with all Swarm
+> near-zero — no specs, no SOL cards, at most one opt-in `implement-and-verify` skill, with all Corpus
 > scratch gitignored. The per-repo version marker named here is **dropped** (see 0050 §6).
 
 ## Context
@@ -24,7 +24,7 @@ reference) found most of the structure was ceremony a **no-runtime** framework c
   `generated/{5}`, `memory/{2}`, `ledger/{3}`, `overlays/`, `archive/`, `tmp/`). Four of the eight
   top-level dirs (`status/`, `overlays/`, `archive/`, `tmp/`) are referenced by **zero** shipped skills or
   templates; the rest only by passing prose mentions. They are a filesystem for a runtime that does not
-  exist — and Swarm's first invariant is that it ships **no runtime**.
+  exist — and Corpus's first invariant is that it ships **no runtime**.
 - **The "kernel" mount + symlink bridge.** Skills were copied into a framework-owned `.swarm/kernel/skills/`
   and then surfaced into the agent's scan dir (`.claude/skills/`) by symlink. This was the source of **two**
   adoption bugs in a single session (a dir-symlink collision that hid the project's own skills, then a
@@ -38,15 +38,15 @@ that, nothing requires a separate mount, a bridge, or a pre-built workspace tree
 
 ## Decision
 
-1. **Install is "copy files next to your skills."** Swarm ships three folders — `skills/`, `templates/`,
+1. **Install is "copy files next to your skills."** Corpus ships three folders — `skills/`, `templates/`,
    `reference/`. An adopter copies them under `.agents/` (or, for a CLI that scans a fixed skills dir like
    Claude Code's `.claude/skills/`, puts the skills there directly). **No `.swarm/kernel/` mount, no symlink
-   bridge.** Swarm's skills are ordinary skills, installed where skills live, beside the project's own.
-2. **Upgrade is "re-copy the named files."** Swarm's skills carry recognizable names (`pass-*`, `persona-*`,
+   bridge.** Corpus's skills are ordinary skills, installed where skills live, beside the project's own.
+2. **Upgrade is "re-copy the named files."** Corpus's skills carry recognizable names (`pass-*`, `persona-*`,
    `write-*`) that cannot collide with a project's own; an upgrade re-copies those, leaving the project's
    skills untouched. Replacement safety is a **naming** property, not a separate-mount property.
 3. **A small, flow-based folder set under `.agents/` — the goldilocks middle** (see the Update below; this
-   corrects the original "no folders at all"). Swarm prescribes **six** folders, every one of which the
+   corrects the original "no folders at all"). Corpus prescribes **six** folders, every one of which the
    proven flow reads or durably writes — no more:
 
    | `.agents/` folder | Earned by |
@@ -59,7 +59,7 @@ that, nothing requires a separate mount, a bridge, or a pre-built workspace tree
    | `memory/` | `promote` writes durable findings/patterns; `INDEX.md` is a required artifact |
 
    Other source artifacts (audits, findings, ADRs, PRDs…) are normal `type:`-tagged documents that live
-   under `.agents/` however the project likes — **suggested, not mandated** (Swarm reads the frontmatter,
+   under `.agents/` however the project likes — **suggested, not mandated** (Corpus reads the frontmatter,
    not a fixed path). The adopted-kernel **version marker** lives in `.agents/` (e.g. `.agents/swarm.version`),
    not a `.swarm/` file. Anything that serves only a **future toolchain** — `status/` drift, `generated/`
    packets, an append-only `ledger/`, `archive/`, `tmp/`, the on-disk `.json` IR/plan files — is created
@@ -70,7 +70,7 @@ that, nothing requires a separate mount, a bridge, or a pre-built workspace tree
    directory (this is what supersedes [0045](./0045-overlays-are-project-owned.md)).
 5. **"kernel" is retired everywhere** — adopter-facing *and* in the producer repo. It is OS-runtime jargon
    for a folder of markdown in a NO-RUNTIME framework. The concept is "the install" / "the installed files"
-   / "Swarm ships X"; the producer directory `starter-kit/` is renamed `starter-kit/`. (The repo-wide text sweep is a
+   / "Corpus ships X"; the producer directory `starter-kit/` is renamed `starter-kit/`. (The repo-wide text sweep is a
    tracked follow-up wave; this ADR fixes the decision.)
 
 This **supersedes [0048](./0048-installed-payload-is-the-runtime-surface.md)** (the payload no longer mounts
@@ -87,7 +87,7 @@ rather than into a mount).
 | Keep the `.swarm/kernel/` mount + bridge | It exists only for wholesale replacement on upgrade, which unique skill names already give for free — and it caused two adoption bugs. Pure cost. |
 | Prescribe **zero** folders (create everything on first write) | The original form of this ADR. Over-corrected: the proven flow genuinely needs homes for specs, tasks, and memory, and leaving them unprescribed makes adoption *less* intuitive and `promote`'s routing point nowhere. See the goldilocks Update below. |
 | Keep the full pre-built workspace tree (~32 dirs) | The opposite extreme: 4 of 8 top-level dirs referenced by zero shipped skills; a filing cabinet for a runtime that isn't there. |
-| Delete the reconciliation model entirely (status/generated/ledger as concepts) | That is design, not noise — the intent/reality/observed split and the surface policies are Swarm's value. The fix is to stop *materialising* them at install, not to remove them. They remain documented contracts a tool fulfils, created lazily. |
+| Delete the reconciliation model entirely (status/generated/ledger as concepts) | That is design, not noise — the intent/reality/observed split and the surface policies are Corpus's value. The fix is to stop *materialising* them at install, not to remove them. They remain documented contracts a tool fulfils, created lazily. |
 
 ## Consequences
 

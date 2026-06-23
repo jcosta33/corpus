@@ -6,9 +6,9 @@ Accepted
 
 ## Context
 
-The agents-as-compiler readiness audit found that Swarm conditions the *input* an agent reads but verifies the *output* only by self-attestation, and that the empirical validations a task should run were specified unevenly — each `write-*` skill's task template carried a different, ad-hoc set of paste slots, and several "usual suspect" checks (lint, dependency-flow, typecheck) were not consistently required where they matter. A framework that aims at high per-task confidence cannot leave the validation suite to each skill's discretion.
+The agents-as-compiler readiness audit found that Corpus conditions the *input* an agent reads but verifies the *output* only by self-attestation, and that the empirical validations a task should run were specified unevenly — each `write-*` skill's task template carried a different, ad-hoc set of paste slots, and several "usual suspect" checks (lint, dependency-flow, typecheck) were not consistently required where they matter. A framework that aims at high per-task confidence cannot leave the validation suite to each skill's discretion.
 
-Swarm has no runtime ([0001](./0001-four-doc-types.md) line of reasoning; [PRINCIPLES.md](../reference/principles.md) #1) — it cannot *execute* a check. But the skills and templates *can specify which validations a task type must run*, and [0018](./0018-agents-md-command-contract.md) already gives the binding mechanism: the `AGENTS.md > Commands` table maps abstract command names to a project's concrete commands. The lever is to make the required validation suite **explicit, uniform, and bound through that one contract**.
+Corpus has no runtime ([0001](./0001-four-doc-types.md) line of reasoning; [PRINCIPLES.md](../reference/principles.md) #1) — it cannot *execute* a check. But the skills and templates *can specify which validations a task type must run*, and [0018](./0018-agents-md-command-contract.md) already gives the binding mechanism: the `AGENTS.md > Commands` table maps abstract command names to a project's concrete commands. The lever is to make the required validation suite **explicit, uniform, and bound through that one contract**.
 
 ## Decision
 
@@ -26,11 +26,11 @@ This is **orthogonal to [0020](./0020-activation-by-self-assessment.md)**: 0020 
 
 - Positive: the validation suite per task type is no longer ad-hoc — it is one matrix, bound through one contract, with a paste slot for each required check. A reviewer (or a future conformance checker, [0026](./0026-conformance-contract.md)) can tell at a glance whether a task ran its required suite.
 - Positive: the "usual suspects" (typecheck, lint, dependency-flow, format, test, build, benchmark) all become first-class, bound, and required where they matter — closing the audit's verification-thinness findings.
-- Negative: still self-attested — Swarm specifies *that* the suite must run and be pasted; it cannot *enforce* the run. Enforcement is a launcher/CLI concern ([0023](./0023-harness-enforcement-contract.md)). This ADR raises the floor (uniform, conspicuous, complete) without reaching enforcement.
+- Negative: still self-attested — Corpus specifies *that* the suite must run and be pasted; it cannot *enforce* the run. Enforcement is a launcher/CLI concern ([0023](./0023-harness-enforcement-contract.md)). This ADR raises the floor (uniform, conspicuous, complete) without reaching enforcement.
 - Negative: a consuming repo must bind more of the `AGENTS.md > Commands` table for a task to run its full suite unattended; unbound extended slots become run-time prompts until filled.
 
 ## Alternatives rejected
 
 - **Leave per-skill validation ad-hoc.** The status quo the audit faulted: uneven coverage, no single place to see what a task type must verify.
 - **A universal validation timetable applied to every task type.** Over-constrains — an `audit-writing` task should not run a build; the suite is per-task-type by design (the matrix), not one-size-fits-all.
-- **Wait for the Swarm CLI to enforce.** Enforcement is downstream; the *contract* (which validations, bound how) is the framework's job and must exist first for any runtime to honour it.
+- **Wait for the Corpus CLI to enforce.** Enforcement is downstream; the *contract* (which validations, bound how) is the framework's job and must exist first for any runtime to honour it.

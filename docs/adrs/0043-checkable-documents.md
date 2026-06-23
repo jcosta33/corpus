@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Swarm has a controlled obligation language (SOL, [0027](./0027-sol-is-the-obligation-language.md)) and a blocking `lint` pass ([0029](./0029-nine-pass-compiler-model.md), [0034](./0034-unified-lint-namespace.md)), both scoped to `spec.md`. A recurring design question — swept with live web verification and recorded in [`.agents/lintable-docs-improvement-plan.md`](././.agents/lintable-docs-improvement-plan.md) — is whether the lintable / structured-checkability discipline should extend to the **other agent-interpreted artifacts**: the source documents (`audit.md`, `research.md`, `bug-report.md`), the working artifacts (`finding.md`, the prose of `review.md`, `memory/`), and the repo-context files (`AGENTS.md`, the `SKILL.md` set).
+Corpus has a controlled obligation language (SOL, [0027](./0027-sol-is-the-obligation-language.md)) and a blocking `lint` pass ([0029](./0029-nine-pass-compiler-model.md), [0034](./0034-unified-lint-namespace.md)), both scoped to `spec.md`. A recurring design question — swept with live web verification and recorded in [`.agents/lintable-docs-improvement-plan.md`](././.agents/lintable-docs-improvement-plan.md) — is whether the lintable / structured-checkability discipline should extend to the **other agent-interpreted artifacts**: the source documents (`audit.md`, `research.md`, `bug-report.md`), the working artifacts (`finding.md`, the prose of `review.md`, `memory/`), and the repo-context files (`AGENTS.md`, the `SKILL.md` set).
 
 The naïve reading — "extend lintable structure to those docs ⇒ more structure ⇒ more reliable" — is **contradicted by the strongest, most recent measured evidence**, which converges on a sharper partition: structure helps when it is *typed answer-slots and checkable evidence binding on the frame*; it hurts when it is *more prose or rigid schema wrapped around free reasoning*; and the reliability lever is a *deterministic external check*, never the model judging or voting on itself. This ADR records that partition so future passes know what to add — and, more load-bearingly, what **not** to add.
 
@@ -61,7 +61,7 @@ This record **refines, and does not supersede,** ADRs [0027](./0027-sol-is-the-o
 
 ## Evidence and its limits (§0.7)
 
-- **Stance separation is threat-motivated design, not a measured reliability gain.** [[MINJA]](../research/sources.md#MINJA) measures the *attack* (memory injection); Swarm's provenance/stance defense is sound, field-aligned design — its reliability delta is not separately measured. Claimed as design, not result.
+- **Stance separation is threat-motivated design, not a measured reliability gain.** [[MINJA]](../research/sources.md#MINJA) measures the *attack* (memory injection); Corpus's provenance/stance defense is sound, field-aligned design — its reliability delta is not separately measured. Claimed as design, not result.
 - **No controlled "spec-first measurably wins" study exists** in the confirmed sources; the only hands-on numbers show heavyweight spec-driven development is *slower*. The discipline this ADR gates must stay **cheap and load-bearing, never ceremonial.**
 - **Smell-style prose checks are advisory only** (~40%+ false-positive floor, [[SMELLS]](../research/sources.md#SMELLS)); blocking precision is reachable only against the defined SOL grammar (point 1), which is exactly why obligation-lint stays spec-only.
 - Every **preprint**-grounded point above is corroboration of a direction, not the grounding of a `MUST` (the load-bearing claims rest on the peer-reviewed entries).

@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Pre-kernel Swarm recorded safe parallelism as a standalone *coordination object*. ADR [0025](./0025-orchestration-coordination-artifact.md) gave `task-orchestration.md`'s worker tracker hand-maintained **owned / forbidden paths**, a hand-off contract, a liveness marker, and an intent-preserved merge column — fields a lead authored and kept correct by hand. That made the disjoint-scope invariant *recorded*, but it left owned/forbidden paths as a second source of truth with no mechanical tie back to what the spec actually declares each obligation may write. The lead could own a path no obligation declared, two workers' owned sets could silently overlap, and nothing connected the coordination object to the obligation graph. The orchestration model needed the owned/forbidden boundary to be *derived from the spec*, not asserted alongside it (§18.1, §19).
+Pre-kernel Corpus recorded safe parallelism as a standalone *coordination object*. ADR [0025](./0025-orchestration-coordination-artifact.md) gave `task-orchestration.md`'s worker tracker hand-maintained **owned / forbidden paths**, a hand-off contract, a liveness marker, and an intent-preserved merge column — fields a lead authored and kept correct by hand. That made the disjoint-scope invariant *recorded*, but it left owned/forbidden paths as a second source of truth with no mechanical tie back to what the spec actually declares each obligation may write. The lead could own a path no obligation declared, two workers' owned sets could silently overlap, and nothing connected the coordination object to the obligation graph. The orchestration model needed the owned/forbidden boundary to be *derived from the spec*, not asserted alongside it (§18.1, §19).
 
 ## Decision
 

@@ -21,7 +21,7 @@ LLM agent:
 - The official Agent Skills design makes following a reference **the model's discretion** — bundled
   references load "as needed," and "files never referenced in a session never load at all." A skill that
   is only *correct* when the agent follows a pointer is betting on an optional step.
-- Swarm already carried the evidence against deep references: chained references "get partial-read and
+- Corpus already carried the evidence against deep references: chained references "get partial-read and
   silently dropped" [[SKILLBP]](../research/sources.md#SKILLBP), which is why the body-shape rule was
   "one hop." The logical conclusion is **zero required hops**.
 - Non-salient / out-of-context material is underused (lost-in-the-middle, multi-turn decay

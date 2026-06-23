@@ -1,6 +1,6 @@
 # Saving findings
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 Close is the last step of the loop. The merge happened; the review packet records what was
 verified. What's left is the part most teams skip: keeping what the work taught you. An

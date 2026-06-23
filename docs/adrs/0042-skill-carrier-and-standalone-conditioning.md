@@ -26,7 +26,7 @@ The kernel's procedural conditioning layer shipped as eight files named `GUIDE.m
 
 3. **Only one of the thirteen heuristic profiles shipped as a loadable file** (the Skeptic, inlined in the review guide). The other twelve stances existed in the model but no agent could load them.
 
-4. **The `author` pass shipped no guide at all** — nothing taught an agent how to author a `*.md` spec, an audit, a research doc, or a bug-report *the Swarm way* (SOL blocks, the artifact contracts, the epistemic stances).
+4. **The `author` pass shipped no guide at all** — nothing taught an agent how to author a `*.md` spec, an audit, a research doc, or a bug-report *the Corpus way* (SOL blocks, the artifact contracts, the epistemic stances).
 
 The authoring research is explicit that each unit of conditioning should be a **self-contained, surgically-described `SKILL.md`** so only the one the task needs loads — bundling forces an agent to read all of them to find the relevant one ([[SKILLSPEC]](../research/sources.md#SKILLSPEC): one self-contained skill per folder, only the one the task names loads).
 
@@ -49,7 +49,7 @@ This record **refines, and does not supersede,** ADRs 0016, 0017, 0019, 0029, 00
 | Keep `GUIDE.md` | Not the filename agent tools discover/activate; opts the kernel's own guides out of the activation mechanism its research calls load-bearing. |
 | Keep one implement guide with nine branches | The "Everything Skill" anti-pattern: one broad description can't activate surgically, and the agent carries all nine kinds at once. |
 | Keep profiles inlined in pass guides / ship only a few | An agent can't load a stance that has no file; bundling forces reading all stances to find one. Standalone + surgical descriptions cost less context, not more. |
-| Leave the `author` pass guide-less | Leaves agents with no conditioning for authoring the Swarm way — the highest-leverage gap. |
+| Leave the `author` pass guide-less | Leaves agents with no conditioning for authoring the Corpus way — the highest-leverage gap. |
 
 ## Consequences
 

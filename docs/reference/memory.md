@@ -1,6 +1,6 @@
 # Memory: the advanced model
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 The core memory story is one folder and one rule: keep findings in `findings/`, and before
 closing a task, record anything durable as a finding

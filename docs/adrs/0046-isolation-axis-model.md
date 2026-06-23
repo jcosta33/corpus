@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-Swarm specified worktree/branch/merge only inside the parallel-decomposition coordination record. The
+Corpus specified worktree/branch/merge only inside the parallel-decomposition coordination record. The
 single-task load path (`AGENTS.md` → `task.md` → `implement.md`) carried **no isolation signal**, so
 "implement this spec" gave an agent no reason to leave the base branch — and the per-kind templates gave
 the inverse cue (the spec-bearing kinds had no Branch field while a few others did). The fix is one small
@@ -52,7 +52,7 @@ operationalizes the single-fork clause of [0010](./0010-write-side-single-thread
 - An agent can decide worktree-or-not deterministically with **no runtime**, and name the branch for the
   spec it implements; a quick ad-hoc edit stays zero-ceremony.
 - **NO RUNTIME means nothing enforces it** — an agent *can* ignore the rule and land a spec on the base.
-  This is specification completeness, the same soft-control limit as every Swarm gate; a future launcher
+  This is specification completeness, the same soft-control limit as every Corpus gate; a future launcher
   reads the rule.
 - No canonical closed set changes; the merge gate and write-surface model are untouched.
 

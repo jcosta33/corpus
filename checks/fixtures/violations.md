@@ -1,6 +1,6 @@
 # Checks fixtures — violations
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 One minimal negative fixture per violation class. Each snippet must be flagged by a
 checker applying [`../checks.yaml`](../checks.yaml) — or by a reviewer applying

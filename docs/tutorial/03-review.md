@@ -1,11 +1,11 @@
 # Walk the loop · Review
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 You have a finished change: the agent implemented `AC-001`, ran the integration test, and
 left you a task packet with the output. Now you decide whether it's done — not by reading the
 diff line by line, but by reading **one row and one exception**. That is the Review step, and it
-is the step Swarm exists for.
+is the step Corpus exists for.
 
 By the end of this page you'll have written `reviews/checkout-expiry.md`: a one-row coverage
 table that records what passed and with what evidence, plus a single Human-attention row that
@@ -21,7 +21,7 @@ packet — every section, every invariant — lives in
 ## The one idea: review by exception
 
 A coding agent can hand you a 3000-line diff. Reading it top to bottom isn't review — it's
-skimming with extra guilt. Swarm inverts it: you read **which requirements passed and with what
+skimming with extra guilt. Corpus inverts it: you read **which requirements passed and with what
 evidence**, then **the short list of places the packet says your eyes are needed**. You still
 open the diff — but where the packet points, not at line 1.
 
@@ -41,7 +41,7 @@ work higher than it merits. So:
   practice, but it yields fixes, never a result.
 
 This is the Skeptic stance — refute by default, treat confident prose as a claim to check. It's
-one of Swarm's [review stances](../reference/review-stances.md), and the independence rules behind
+one of Corpus's [review stances](../reference/review-stances.md), and the independence rules behind
 it are in [review-stances → Judge independence](../reference/review-stances.md#judge-independence).
 
 **Stop-point check:** you are not the session that wrote the diff. If you are, hand the review to
@@ -165,7 +165,7 @@ now the durable record of what was verified against the spec. (The full status s
 > **The optional CLI, as an aside.** `swarm review` can *draft* this packet — reconciling the
 > finished run against the diff and the spec and surfacing the facts (the coverage check `C012`,
 > the evidence-binding check `C013`). It surfaces facts; **you still decide the result.** The
-> by-hand path above is the primary one — the CLI is a convenience, and nothing in Swarm enforces
+> by-hand path above is the primary one — the CLI is a convenience, and nothing in Corpus enforces
 > any of these rules.
 
 ## What you produced

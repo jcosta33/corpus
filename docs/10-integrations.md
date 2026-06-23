@@ -1,8 +1,8 @@
 # Integrations
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-Swarm is plain markdown that any agent can read and write. Integrating it means two small things:
+Corpus is plain markdown that any agent can read and write. Integrating it means two small things:
 putting the agent guides where your CLI actually looks, and getting tracker items into your
 workspace. Neither requires tooling.
 
@@ -53,9 +53,9 @@ copy-pastes it.)
 
 ## The boundary
 
-**Swarm organizes the work; your agent does the coding.** Swarm never calls a model, edits a file,
+**Corpus organizes the work; your agent does the coding.** Corpus never calls a model, edits a file,
 or runs a command — and it does not replace your tracker, your PRs, or your CI. The tracker stays
-where work is requested; the PR stays how code merges; CI stays how tests run. Swarm is the
+where work is requested; the PR stays how code merges; CI stays how tests run. Corpus is the
 markdown layer between them: the spec the agent works from, the
 [task packet](06-creating-tasks.md) that bounds the run, and the
 [review packet](08-reviewing-output.md) that shows a human where to look.
@@ -70,4 +70,4 @@ mixing agents and humans on the same board need no separate process.
 ## Next
 
 - [Where files live](03-where-files-live.md) — the workspace these integrations feed.
-- [Adopting Swarm](ADOPTING.md) — one copy of the kit, including the guide wiring.
+- [Adopting Corpus](ADOPTING.md) — one copy of the kit, including the guide wiring.

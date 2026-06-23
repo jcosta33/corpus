@@ -33,7 +33,7 @@ not a claim that the gate cleared.
 ## Decision
 
 1. **Found `swarm-agents`** — a derived-content, markdown-only family member (sibling to swarm-skills;
-   no runtime, no checks). It ships **Claude-Code-first** worker definitions for Swarm roles, the
+   no runtime, no checks). It ships **Claude-Code-first** worker definitions for Corpus roles, the
    producer-2 delegation hook, a read-only-guard hook, and the evidence docs behind them.
 
 2. **The model: self-contained, *useful* worker definitions — persona-optional.** Each `swarm-*` agent

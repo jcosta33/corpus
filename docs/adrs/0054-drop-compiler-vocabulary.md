@@ -15,11 +15,11 @@ superseded_by:
 An earlier de-cosplay sweep dropped the *product-noun* "compiler" framing ("specification compiler",
 "agents-as-compiler") but **kept precise-seeming internal terms**: the artifact class label
 **"compiler-visible"**, the structured-form provenance fields **`compiler_version`** / **`compiled_at`**, the
-conformance tier **"Swarm-compilable"**, and assorted "compile" metaphors. An adversarial skeptic review of
+conformance tier **"Corpus-compilable"**, and assorted "compile" metaphors. An adversarial skeptic review of
 the whole repo found these residuals sitting on the most-read contract pages (≈42 "compiler-visible" + ~60
 "compiler" occurrences) — in direct tension with the understated positioning ([ADR-0053](./0053-structured-spec-and-review-system.md)
 §4 bans "compiler" as a public term) and with **Invariant 1 (NO RUNTIME): there is no compiler.** Telling
-adopters "Swarm is not a compiler" while the artifact catalogue they copy verbatim still classifies files as
+adopters "Corpus is not a compiler" while the artifact catalogue they copy verbatim still classifies files as
 "compiler-visible" and stamps a `compiler_version` field is dishonest framing.
 
 ## Decision
@@ -27,18 +27,18 @@ adopters "Swarm is not a compiler" while the artifact catalogue they copy verbat
 Remove the residual compiler vocabulary **completely** from reader-facing content (the immutable ADR bodies
 keep theirs as history):
 
-- **Artifact class label: "compiler-visible" → "Swarm-format".** The `spec.md` naming marks Swarm's parse/emit
-  format; a *conformant tool* (never Swarm itself) parses or emits it. ("Swarm-parsed" phrasing → "parsed",
+- **Artifact class label: "compiler-visible" → "Corpus-format".** The `spec.md` naming marks Corpus's parse/emit
+  format; a *conformant tool* (never Corpus itself) parses or emits it. ("Corpus-parsed" phrasing → "parsed",
   for the same NO-RUNTIME reason.)
 - **Structured-form provenance fields: `compiler_version` → `tool_version`, `compiled_at` → `emitted_at`.**
   This is a **schema contract change**. It is safe because the structured form ships **no emitter or
   consumer** (Invariant 1): the schema, the three golden-corpus fixtures, and the worked examples are renamed
   together in this change, and no deployed tool reads the old names.
-- **Conformance tier: "Swarm-compilable" → "lowerable".** The `lower` step name is kept; the tier means an
+- **Conformance tier: "Corpus-compilable" → "lowerable".** The `lower` step name is kept; the tier means an
   approved spec can be lowered into tasks deterministically.
 - **Incidental "compile" metaphors:** "must compile" → "must lower cleanly"; "lint/compile findings" → "lint
   findings"; "compiled into tasks/the graph" → "lowered into …".
-- **KEPT (not Swarm-as-compiler roleplay):** the `lower` step name, the `*.ir.json` / `*.plan.json`
+- **KEPT (not Corpus-as-compiler roleplay):** the `lower` step name, the `*.ir.json` / `*.plan.json`
   reserved filenames, and genuine references to *other* ecosystems' compilers (the C# `LangVersion` analogy in
   `versioning.md`; the adopter's own code compiler in the code-migration skills).
 
@@ -51,7 +51,7 @@ field names.
 
 | Alternative | Why rejected |
 | --- | --- |
-| Keep "compiler-visible" / `compiler_version` as precise *internal* terms (the earlier de-cosplay's choice) | The skeptic audit showed they read as "Swarm is a compiler" on the most-copied contract pages, undercutting ADR-0053 §4 and contradicting NO RUNTIME. "Internal" terms that ship in the artifact catalogue an adopter copies are not internal. |
+| Keep "compiler-visible" / `compiler_version` as precise *internal* terms (the earlier de-cosplay's choice) | The skeptic audit showed they read as "Corpus is a compiler" on the most-copied contract pages, undercutting ADR-0053 §4 and contradicting NO RUNTIME. "Internal" terms that ship in the artifact catalogue an adopter copies are not internal. |
 | Rename the reader-facing label but keep the schema field | `compiler_version` is the *same* roleplay, in the contract instance an adopter copies verbatim. Half-honest is the dishonesty the audit flagged. |
 | Rename the `*.ir.json` filename too | Out of scope: the filename is a stable reserved contract name (kept by the prior de-cosplay) and contains no "compiler" token. |
 

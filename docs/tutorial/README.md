@@ -1,13 +1,13 @@
 # Your first loop: a hands-on walkthrough
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-You learn Swarm by walking the loop once, by hand. This track is a guided build: four short
+You learn Corpus by walking the loop once, by hand. This track is a guided build: four short
 pages, one small change, every step ending in a file you can see. By the end you will have
-produced a real set of Swarm artifacts and watched a change travel from a vague ask to a
+produced a real set of Corpus artifacts and watched a change travel from a vague ask to a
 reviewed, recorded result.
 
-The other docs explain Swarm and tell you how to do each step well. This track is the
+The other docs explain Corpus and tell you how to do each step well. This track is the
 do-it-yourself path between them: you follow along and produce the artifacts as you read.
 
 ## What you'll build
@@ -41,7 +41,7 @@ the close of the track points you to them when you're ready to go deeper.
 
 ## The six-step shape
 
-Every Swarm change follows the same loop:
+Every Corpus change follows the same loop:
 
 **Pull → Spec → Task → Run → Review → Close.**
 
@@ -61,23 +61,23 @@ You need two things, and a little framing.
 1. **A workspace** — the folder where your intakes, specs, tasks, reviews, and findings live.
    You get one by copying the starter kit whole; that copy gives you the `intake/`, `specs/`,
    `tasks/`, `reviews/`, `findings/`, and `status.md` you'll write into, plus the templates
-   you'll fill. Set it up with [Adopting Swarm](../ADOPTING.md) — about fifteen minutes — and
+   you'll fill. Set it up with [Adopting Corpus](../ADOPTING.md) — about fifteen minutes — and
    come back. (Already have a workspace? You're ready.)
 
-2. **An agent, or yourself.** Swarm ships no agent; it shapes the inputs any agent works from
+2. **An agent, or yourself.** Corpus ships no agent; it shapes the inputs any agent works from
    and the output you review. The Run step hands the task packet to your coding agent — but a
    human can play that role just as well for this walkthrough. Either way, see
    [running agents](../07-running-agents.md) for how the handoff works.
 
 ### One honest note about the scenario
 
-Swarm ships no runtime and no sample repo, so there is
+Corpus ships no runtime and no sample repo, so there is
 no `shop-api` checkout to run a test against here — the `npm run test:integration` command in
 the spec is the *kind* of check a real spec carries, not a command that executes against this
-fiction. So treat `shop-api` as the **worked reference**: you'll write every Swarm artifact for
+fiction. So treat `shop-api` as the **worked reference**: you'll write every Corpus artifact for
 real, against this scenario, to learn the shapes — and then run the loop for real on your
 **own next change**, where the verify commands point at code that exists. The artifacts you
-produce here are genuine Swarm files; only the code they describe is borrowed. (The step pages
+produce here are genuine Corpus files; only the code they describe is borrowed. (The step pages
 echo this in one line and link back here — this is the full version.)
 
 ## What's next

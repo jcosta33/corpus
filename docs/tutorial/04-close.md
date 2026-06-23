@@ -1,6 +1,6 @@
 # Walk the loop · Close
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 You finished Review with a Pass. The change is real, the coverage row records what was
 verified, and the loop is almost done. One step is left — **Close** — and it is the one most
@@ -81,7 +81,7 @@ from your files; you don't need it — by hand is the primary path.)
 ## You walked the loop
 
 That's it — **Pull → Spec → Task → Run → Review → Close**, once, end to end. Look at what you
-produced, in order. This chain *is* the deliverable Swarm asks for:
+produced, in order. This chain *is* the deliverable Corpus asks for:
 
 | Step | Artifact you now own |
 | --- | --- |
@@ -107,7 +107,7 @@ is [Brownfield work and change plans](../05-brownfield-and-change-plans.md).
 ### Now run it for real
 
 The next move is the real one: **run this exact loop on your own next small change.** You've
-produced every Swarm artifact by hand once; do it again against something that actually ships.
+produced every Corpus artifact by hand once; do it again against something that actually ships.
 
 ### Where to go deeper
 

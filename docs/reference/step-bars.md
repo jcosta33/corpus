@@ -1,6 +1,6 @@
 # Step bars — what good output looks like
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 Every step of the loop has a bar: a small set of **checkable boolean predicates** over the
 step's **input artifact** and **output artifact**. A predicate either holds or it does not, and

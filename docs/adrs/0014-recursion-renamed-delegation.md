@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-"Swarm recursion" invited marketing caricature (**Swarm-inside-Swarm**) and distracted from mechanics: deterministic sub-task spawning with merge ordering.
+"Corpus recursion" invited marketing caricature (**Corpus-inside-Corpus**) and distracted from mechanics: deterministic sub-task spawning with merge ordering.
 
 Stakeholders resonate with engineering language (**delegating** scoped units of work) without losing the DAG mental model.
 

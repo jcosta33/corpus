@@ -6,7 +6,7 @@ created: 2026-06-11
 updated: 2026-06-11
 ---
 
-# ADR-0060 — The Swarm Workspace: hybrid layout, committed flow artifacts, the review packet
+# ADR-0060 — The Corpus Workspace: hybrid layout, committed flow artifacts, the review packet
 
 ## Context
 

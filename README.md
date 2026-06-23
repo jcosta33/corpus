@@ -1,4 +1,4 @@
-# Swarm
+# Corpus
 
 **A lightweight spec and review workflow for teams using coding agents.**
 
@@ -12,8 +12,8 @@ check it. The mess collects in five places: vague tickets pasted into chat, cont
 re-explained every session, agents drifting off-scope, giant PRs nobody can honestly
 review, and lessons lost the moment the session ends.
 
-Swarm is not an agent. Claude Code, Codex, Cursor, Aider — or a human — does the
-coding. Swarm organizes the work around them, and invests where the bottleneck
+Corpus is not an agent. Claude Code, Codex, Cursor, Aider — or a human — does the
+coding. Corpus organizes the work around them, and invests where the bottleneck
 actually is: **generation outpaces validation**, so the review side gets the structure.
 
 ## The loop
@@ -36,7 +36,7 @@ Structural or brownfield work adds two optional steps — an **inventory** (map 
 exists) and a **change plan** (how the codebase changes safely). Small cleanups skip
 straight to Task. The full guide: [docs/02-basic-workflow.md](docs/02-basic-workflow.md).
 
-## Sixty seconds of Swarm
+## Sixty seconds of Corpus
 
 A requirement in a spec:
 
@@ -75,11 +75,11 @@ agent PR reviewed by exception — is
 
 ## Which repo do I want?
 
-Swarm is a small family of repos. Where you go depends on what you're doing:
+Corpus is a small family of repos. Where you go depends on what you're doing:
 
 | You want to… | Go to |
 |---|---|
-| **start using Swarm** — get a working workspace | [swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit) — copy it whole, fill `AGENTS.md`, run the loop |
+| **start using Corpus** — get a working workspace | [swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit) — copy it whole, fill `AGENTS.md`, run the loop |
 | **understand the method** — formats, the checks contract, the decision ledger | **this repo** — `docs/` (the numbered happy path), `docs/reference/`, `docs/adrs/` |
 | **run the checks / wire the gate** — `swarm check` as a command | [swarm-cli](https://github.com/jcosta33/swarm-cli) — the reference CLI (optional) |
 | **add optional skills** — review personas, code-depth guides | [swarm-skills](https://github.com/jcosta33/swarm-skills) — `npx skills add jcosta33/swarm-skills` |
@@ -89,13 +89,13 @@ Most people start at the kit and never need to read this repo cover to cover.
 ## What works today, what comes later
 
 **Today** (markdown + your agent, nothing to install): the templates, specs, task
-packets, review packets, findings, the worked examples. Swarm itself needs no runtime.
+packets, review packets, findings, the worked examples. Corpus itself needs no runtime.
 
 **Toolable today** (optional — the reference CLI, [swarm-cli](https://github.com/jcosta33/swarm-cli)):
 `swarm check` runs the [checks contract](docs/reference/checks.md) over your specs and reviews, and
 the kit's [hooks](https://github.com/jcosta33/swarm-starter-kit/tree/main/hooks) wire it into your
 commit and pull-request gates — so the review side gets *teeth* without anyone installing a runtime to
-use Swarm. `swarm init`, `swarm new`, `swarm worktree`, `swarm pull`, `swarm promote`, and `swarm status`
+use Corpus. `swarm init`, `swarm new`, `swarm worktree`, `swarm pull`, `swarm promote`, and `swarm status`
 scaffold and prepare the loop's mechanics, `swarm run` launches a prepared task on your agent in its
 worktree (recording the launch), and `swarm review` reconciles a finished run against its spec and
 diff — surfacing facts (omitted edits, out-of-scope changes, unbacked claims), never a review result.
@@ -103,11 +103,11 @@ diff — surfacing facts (omitted edits, out-of-scope changes, unbacked claims),
 **Planned** (the rest of `swarm-cli`): `swarm close`.
 What ships today vs. later — the capability matrix: [docs/reference/future-cli.md](docs/reference/future-cli.md).
 
-Swarm does **not** promise deterministic generation, automatic correctness, formal
+Corpus does **not** promise deterministic generation, automatic correctness, formal
 verification, compiling software from specs, or the end of PR review — it promises
 better inputs, bounded tasks, reviewable evidence, and kept context.
 
-## What Swarm is / is not
+## What Corpus is / is not
 
 **Is:** a spec format agents can work from · a task-packet format that bounds agent
 work · a review-packet format that shows where human attention goes · a findings
@@ -126,7 +126,7 @@ compound; apart, each still earns its place.
 How it differs from its neighbors: spec-first scaffolds generate plans; trackers
 hold tickets; AI reviewers hunt bugs and check a diff against a linked ticket's
 acceptance criteria; an `AGENTS.md` alone carries standing facts, not per-change
-contracts. Swarm's distinct piece is the **persisted, independent, exception-routing
+contracts. Corpus's distinct piece is the **persisted, independent, exception-routing
 review packet** tied to requirement IDs — deterministic (no model in the loop), keyed to
 a spec/task packet that lives in your git history, and verdict-free (it routes facts; a
 human owns Pass/Fail) — plus a workspace and one honesty rule: anything not enforced by a
@@ -143,6 +143,6 @@ Or hand your agent [docs/ADOPTING.md](docs/ADOPTING.md) and let it do the copyin
 
 ## Going deeper
 
-[What is Swarm](docs/01-what-is-swarm.md) · [Basic workflow](docs/02-basic-workflow.md) · [Writing specs](docs/04-writing-specs.md) ·
+[What is Corpus](docs/01-what-is-swarm.md) · [Basic workflow](docs/02-basic-workflow.md) · [Writing specs](docs/04-writing-specs.md) ·
 [Reviewing output](docs/08-reviewing-output.md) · [Examples](docs/examples/) · [Reference](docs/reference/) ·
 [Design decisions](docs/adrs/) · [Evidence](docs/research/sources.md)

@@ -1,6 +1,6 @@
-# Swarm Reference
+# Corpus Reference
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 One page of lookup tables: labels, results, verification methods, artifact homes, the loop, and
 the check ids. Definitions live in the linked pages; the exact file formats live in the kit
@@ -140,7 +140,7 @@ or a CI link; `no-open-critical` — nothing closes with an open blocking questi
 
 ## Appendix — reference values (producer note)
 
-This appendix exists for producers of Swarm tooling and documentation, not for adopters.
+This appendix exists for producers of Corpus tooling and documentation, not for adopters.
 The closed sets have exact sizes that tooling and fixtures reconcile against — the same
 eight rows, with their member lists, live in
 [`checks/README.md`](../../checks/README.md): block types (SOL form) 5 ·

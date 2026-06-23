@@ -8,7 +8,7 @@ supersedes:
 superseded_by:
 ---
 
-# ADR-0053: Swarm is a structured specification & review system (review-as-exceptions)
+# ADR-0053: Corpus is a structured specification & review system (review-as-exceptions)
 
 ## Context
 
@@ -25,7 +25,7 @@ measured experienced developers **~19% slower** with AI while they *believed* th
 [[METR]](../research/sources.md#METR), and industry data finds adoption raises **both throughput and
 instability** absent a control layer [[DORA2025]](../research/sources.md#DORA2025).
 
-Read together, these say what Swarm should *be*, plainly: not "the smartest agent," but the layer that makes
+Read together, these say what Corpus should *be*, plainly: not "the smartest agent," but the layer that makes
 agent work **legible, safe, and reproducible** — clear specs in, reviewable evidence out, with a verification
 gate as the control the evidence says adoption lacks. The framing the framework had drifted toward
 (spec-repo discipline, obligations, verdicts) is correct but under-stated; this ADR names the position.
@@ -38,7 +38,7 @@ reframe over existing parts**, not a new layer.
 
 ## Decision
 
-1. **Position Swarm as a structured specification & review system for agentic software work**: it turns messy
+1. **Position Corpus as a structured specification & review system for agentic software work**: it turns messy
    inputs into verifiable specs, specs into bounded agent work, and large agent output into reviewable
    evidence.
 2. **Foreground "review-as-exceptions" as the merge-gate payoff** — the productivity unlock and the control

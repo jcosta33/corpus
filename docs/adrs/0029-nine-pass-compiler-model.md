@@ -24,7 +24,7 @@ passes (schedulable transformations).
 
 ## Decision
 
-The Swarm pipeline is a fixed, ordered sequence of nine **passes**, each a schedulable
+The Corpus pipeline is a fixed, ordered sequence of nine **passes**, each a schedulable
 transformation with a typed input artifact and a typed output artifact:
 
 ```text

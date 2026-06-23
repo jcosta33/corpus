@@ -10,7 +10,7 @@ updated: 2026-06-20
 
 ## Context
 
-Swarm's provenance and reviewability spine — ADR-0076 (worker provenance) and ADR-0077 (reconcile-only)
+Corpus's provenance and reviewability spine — ADR-0076 (worker provenance) and ADR-0077 (reconcile-only)
 — covers human/lead → worker handoffs recorded in markdown, but **not agent → subagent delegation**: a
 main agent spawning a Claude Code subagent, or handing off through the OpenAI Agents SDK. That
 delegation leaves no reviewable trace today — who was delegated to, why, with what inputs, what context

@@ -1,6 +1,6 @@
 # Distillation — the loss budget
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 Every step of the loop compresses: a ticket becomes a spec, a spec becomes task packets, an
 agent run becomes a review packet, a task becomes a finding. Compression is the point — but

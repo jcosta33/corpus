@@ -20,7 +20,7 @@ Each spec **acceptance criterion carries a check binding** — it is written so 
 
 `write-spec` produces criteria in this form; `write-feature` maps each criterion → its check → pasted result in the self-review; `write-testing` turns `test`-bound criteria into oracles. The behaviour-preservation lanes (`refactor`, `migration`, `rewrite`) generalise `write-fix`'s fail-then-pass oracle: equivalence is shown by a check that would fail if behaviour changed, not only by "the existing suite still passes."
 
-This scopes the "executable contract" language honestly: a Swarm spec is **prose whose acceptance criteria are meant to compile to checks**, with explicit `manual` exceptions — not a spec that directly generates an implementation.
+This scopes the "executable contract" language honestly: a Corpus spec is **prose whose acceptance criteria are meant to compile to checks**, with explicit `manual` exceptions — not a spec that directly generates an implementation.
 
 ## Consequences
 
@@ -33,4 +33,4 @@ This scopes the "executable contract" language honestly: a Swarm spec is **prose
 
 - **Keep acceptance criteria as free prose.** The BLOCKER: intent is never checkable, and the reviewer grades against the same prose.
 - **Require every criterion be a passing test, no exceptions.** Over-constrains — some criteria (UX feel, documentation tone) are genuinely manual; forcing a test invites tautological tests. The `manual`-with-reason tier keeps the requirement honest.
-- **Make Swarm generate the tests/implementation (true compiler).** Out of scope — Swarm is a documentation framework with no runtime; it specifies that criteria *be* checkable, it does not execute them.
+- **Make Corpus generate the tests/implementation (true compiler).** Out of scope — Corpus is a documentation framework with no runtime; it specifies that criteria *be* checkable, it does not execute them.

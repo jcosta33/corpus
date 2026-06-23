@@ -1,8 +1,8 @@
-# Adopting Swarm
+# Adopting Corpus
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-Swarm is files, not software. The starter kit **is** a complete workspace — adoption is one
+Corpus is files, not software. The starter kit **is** a complete workspace — adoption is one
 copy plus one bootloader to fill in. Three paths, in order of preference.
 
 ## 1. Manual adoption (one copy, ~15 minutes)
@@ -73,7 +73,7 @@ installing, or copy the folders).
 
 Hand your coding agent this prompt:
 
-> Adopt the Swarm framework into this repository. Read
+> Adopt the Corpus framework into this repository. Read
 > `https://github.com/jcosta33/swarm/blob/main/docs/ADOPTING.md` and
 > `https://github.com/jcosta33/swarm-starter-kit` — then perform the manual-adoption
 > steps for me: copy the starter-kit repo whole as my workspace, fill its `AGENTS.md` Commands
@@ -102,7 +102,7 @@ the pointer `AGENTS.md` to the full one (backing the stub up).
 
 A code repo that implements against your specs needs **nothing**. At most:
 
-- a one-line pointer in its `AGENTS.md`: _"Swarm workspace: `<path-or-url>` — read
+- a one-line pointer in its `AGENTS.md`: _"Corpus workspace: `<path-or-url>` — read
   the task packet you are given before coding"_;
 - the `implement-task` guide copied into its skills directory;
 - the workspace's `.gitignore.additions` lines appended to its `.gitignore` (they cover

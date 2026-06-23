@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The agents-as-compiler readiness audit found that Swarm conformance is **100% prose**: the rules for "is this repo Swarm-conformant?", "is this a well-formed task file?", and "are the `AGENTS.md > Commands` bindings present?" exist (in `reference/directory-layout.md`, `reference/agents-md.md`, `reference/template-placeholders.md`) but are mechanizable nowhere. A framework whose goal is spec-as-code should make *its own* rules machine-checkable first. The conformance checker is acknowledged as a future CLI concern ("when it ships") — but the **contract** it would check does not exist in a machine-readable form, so there is nothing precise to build against.
+The agents-as-compiler readiness audit found that Corpus conformance is **100% prose**: the rules for "is this repo Corpus-conformant?", "is this a well-formed task file?", and "are the `AGENTS.md > Commands` bindings present?" exist (in `reference/directory-layout.md`, `reference/agents-md.md`, `reference/template-placeholders.md`) but are mechanizable nowhere. A framework whose goal is spec-as-code should make *its own* rules machine-checkable first. The conformance checker is acknowledged as a future CLI concern ("when it ships") — but the **contract** it would check does not exist in a machine-readable form, so there is nothing precise to build against.
 
 ## Decision
 
@@ -14,7 +14,7 @@ The framework ships a **machine-readable conformance contract** under `scaffold/
 
 1. **A schema/manifest** enumerating: the required and optional sections of a well-formed task file (keyed to `task-base.md` — at minimum `## Linked docs`, the per-task `### Verification outputs` slots, and the `## Self-review` hard gate); the required `AGENTS.md > Commands` rows ([0018](./0018-agents-md-command-contract.md): `Validation`/`Test`/`Format`); and the legal placeholder namespaces ([0005](./0005-placeholder-syntax.md), template-placeholders).
 2. **A "well-formed task file" definition** a tool can validate — including the content rule that a required `[Paste output]` slot must contain non-empty, non-placeholder text (the mechanizable form of the empirical-proof gate).
-3. **Fixtures**: one conformant example, and one example per violation class (empty paste block, missing required slot, illegal placeholder, missing required `Commands` row) with expected pass/fail — so a checker (the Swarm CLI or any tool) has a precise target and a regression suite.
+3. **Fixtures**: one conformant example, and one example per violation class (empty paste block, missing required slot, illegal placeholder, missing required `Commands` row) with expected pass/fail — so a checker (the Corpus CLI or any tool) has a precise target and a regression suite.
 
 The checker itself remains a CLI concern; this ADR makes the *contract + fixtures* a framework artefact. Together with [0023](./0023-harness-enforcement-contract.md) (re-run + block) it gives a runtime both *what to enforce* (this) and *how* (0023).
 

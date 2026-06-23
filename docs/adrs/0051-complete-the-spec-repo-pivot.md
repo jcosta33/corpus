@@ -12,7 +12,7 @@ superseded_by:
 
 ## Context
 
-[ADR-0050](./0050-swarm-is-a-spec-repo-discipline.md) established that Swarm is a spec-repo discipline, but
+[ADR-0050](./0050-swarm-is-a-spec-repo-discipline.md) established that Corpus is a spec-repo discipline, but
 the `starter-kit/` still carried the old shape:
 
 - ~448 KB of **not-installed** content lived inside the kit — the `language/` (88 KB) and `passes/` (196 KB)
@@ -37,7 +37,7 @@ This completes the pivot to the owner's restated principles — **no bloat, stra
    cards + the source-doc/`review` templates + the bootloader. Nothing for code work.
 3. **The 17 code-implementation skills are framework reference, not kit content.** The 9 per-kind implement
    guides, the 7 code personas, and `implement-and-verify` move to **`docs/library/code-skills/`**. A code
-   repo's *only* optional Swarm skill is **`implement-and-verify`**, copied as a **single standalone** — never
+   repo's *only* optional Corpus skill is **`implement-and-verify`**, copied as a **single standalone** — never
    a bundled second kit. The code repo stays pristine; the self-legible spec is its interface. (The
    13-persona closed set is unchanged — 6 authoring + 7 code = 13, split across two homes.)
 4. **The kit ships no `language/`, `passes/`, or `conformance/`.** The `language/`+`passes/` **twins are

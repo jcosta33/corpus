@@ -1,15 +1,15 @@
 # Artifact formats
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-This is the catalogue of every file type a Swarm workspace may contain: what each artifact is
+This is the catalogue of every file type a Corpus workspace may contain: what each artifact is
 for, its frontmatter, its required sections, and the few rules that carry real weight. The full
 shapes live in the kit templates — this page links them and never restates them. Where each file
 sits in the workspace is [where files live](../03-where-files-live.md).
 
 ## How a file is identified
 
-Every Swarm artifact is a plain `.md` file. The frontmatter `type:` line identifies it — agents
+Every Corpus artifact is a plain `.md` file. The frontmatter `type:` line identifies it — agents
 and tools read `type:`, never the filename or the directory. Name your files whatever reads well;
 the type travels with the file.
 

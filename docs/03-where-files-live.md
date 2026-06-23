@@ -1,14 +1,14 @@
 # Where files live
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 Three pieces, three homes:
 
 | Piece                   | What it is                                                            | Where it lives                                                 |
 | ----------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **The Swarm framework** | The docs (this repository) and the [starter kit](https://github.com/jcosta33/swarm-starter-kit) you copy | Upstream. You read and copy from it; your work never goes here |
+| **The Corpus framework** | The docs (this repository) and the [starter kit](https://github.com/jcosta33/swarm-starter-kit) you copy | Upstream. You read and copy from it; your work never goes here |
 | **Your workspace**      | Where your specs, tasks, reviews, and findings live                   | Its own repo, or a folder inside your code repo (below)        |
-| **Your code repos**     | Where the code lives                                                  | Untouched — Swarm adds nothing to them                         |
+| **Your code repos**     | Where the code lives                                                  | Untouched — Corpus adds nothing to them                         |
 
 ## The workspace
 
@@ -77,9 +77,9 @@ where that surfaces; see the drift note below.
 
 ## Your code repos stay clean
 
-A code repo needs **nothing** to work with Swarm. At most:
+A code repo needs **nothing** to work with Corpus. At most:
 
-- a one-line pointer in its `AGENTS.md` — `Swarm workspace: <path or url>; read the task packet
+- a one-line pointer in its `AGENTS.md` — `Corpus workspace: <path or url>; read the task packet
 you are given`;
 - the kit's `.gitignore.additions`, so anything transient an agent writes locally stays out of
   commits;
@@ -89,7 +89,7 @@ you are given`;
 Task packets reach the agent by paste or by path. The PR remains the merge mechanism; it links the
 review packet in the workspace, and the packet is the record. In a multi-repo workspace the same
 flow repeats per repo: one spec cuts repo-scoped tasks (each naming its repo's Commands
-sub-table), and each code repo's PR links its own review packet back in the workspace. Committed Swarm content in code
+sub-table), and each code repo's PR links its own review packet back in the workspace. Committed Corpus content in code
 repos — specs, reviews, findings — stays out of bounds. That is a convention — nothing in this
 repo enforces it — but it is what keeps adoption from dirtying a single product repo.
 
@@ -136,4 +136,4 @@ pointers resolve and the index lists them is a named, not-yet-shipped follow-up
 
 - [Basic workflow](02-basic-workflow.md) — the loop these folders serve.
 - [Writing specs](04-writing-specs.md) — what goes in `specs/<feature>/spec.md`.
-- [Adopting Swarm](ADOPTING.md) — one copy of the kit sets this tree up.
+- [Adopting Corpus](ADOPTING.md) — one copy of the kit sets this tree up.

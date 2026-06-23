@@ -1,8 +1,8 @@
 # Example: a 41-file refactor, reviewed by exception
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-This is the full walkthrough of Swarm's main use case: an agent hands you a large PR, and you
+This is the full walkthrough of Corpus's main use case: an agent hands you a large PR, and you
 review it without reading 41 files. The work is a refactor — duplicated session handling
 consolidated into one module — so it uses the structural flow of the loop:
 

@@ -17,7 +17,7 @@ its working mechanics: per-context Commands sub-tables, the context carve-out, t
 custody relay, the session-maintained board. But the docs presented the shape under an orphan
 label ("External") in two paragraphs, three of its conventions were unstated, and the owner's
 direction is explicit: the scaffolding must work as well for a central orchestration repo
-(the Swarm family: canon / starter-kit / skills / cli / website; the general case: features
+(the Corpus family: canon / starter-kit / skills / cli / website; the general case: features
 spanning frontend + backend repos) as for the co-located default. A two-lens challenge round
 (architect · canon-coherence) shaped the result; SPEC-multi-repo-workspace carries the
 requirements.
@@ -74,7 +74,7 @@ Accepted. Refines ADR-0050, ADR-0060 (Decision 3's placement framing — the "ex
 retires in favor of the product's standing "dedicated workspace repo" + the new shape name),
 ADR-0062 (term stays reference-tier, now glossary-mapped), ADR-0072 (Decision 4's sub-table
 resolution gains its Affected-areas binding; the platform carve-out generalizes with an entry
-condition). The Swarm family's own multi-repo workspace is a separate owner action.
+condition). The Corpus family's own multi-repo workspace is a separate owner action.
 
 ## Propagation
 

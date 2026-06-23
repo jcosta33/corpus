@@ -1,8 +1,8 @@
 # Checks — common mistakes to check for
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-This page is Swarm's check catalogue, in four parts: the **core checks** every spec should pass
+This page is Corpus's check catalogue, in four parts: the **core checks** every spec should pass
 (either form), the **evidence checks** for task and review packets, the **writing-rules
 watchlist**, and the **SOL check catalogue** for specs that opt into structured requirements
 (`format: sol`). Reviewers use it as a checklist; tools build against it.
@@ -24,13 +24,13 @@ of four levels — read them literally:
 | **toolable**   | A tool can check it mechanically — here, `swarm check` in swarm-cli. |
 | **enforced**   | A shipped tool actually rejects violations. **Today, nothing qualifies.** |
 
-Approved phrasings, used throughout Swarm's docs:
+Approved phrasings, used throughout Corpus's docs:
 
 > "This is a convention — nothing in this repository enforces it."
 >
 > "A future check should flag this; until then, treat it as a review checklist item."
 
-A team may adopt any check as blocking _by policy_ — that is the team's gate, not Swarm's.
+A team may adopt any check as blocking _by policy_ — that is the team's gate, not Corpus's.
 
 Teams write their own checks beyond this generic core. Where those belong, and how to name them so
 they don't claim more than they prove, is in
@@ -90,7 +90,7 @@ excluded) as **neutral information**, and the reviewer judges decomposition. No 
 ### When is a workspace valid?
 
 The whole bar, nothing more: a workspace is valid when **(a)** it has a populated `AGENTS.md`
-(aim for ~100 lines — Swarm's own convention, not a cap), **(b)** the core templates are present,
+(aim for ~100 lines — Corpus's own convention, not a cap), **(b)** the core templates are present,
 and **(c)** at least one spec satisfies the core checks above. "Populated" means filled: an
 unfilled `{{placeholder}}` left in a *live* `AGENTS.md` or board is a clause-(a) finding,
 not a valid workspace (the templates keep their placeholders; the live files must not).
@@ -246,7 +246,7 @@ covers that step in full.
 
 One requirement record underlies both spec forms, so a core check and its SOL codes are the same
 question asked of two surfaces — never two different rules. The fixtures under `checks/` in
-the Swarm repo include simple/SOL equivalence pairs that pin this.
+the Corpus repo include simple/SOL equivalence pairs that pin this.
 
 | Core check                    | SOL form                                       |
 | ----------------------------- | ---------------------------------------------- |
@@ -293,4 +293,4 @@ Teams may promote any warning to blocking by policy. Going the other way — acc
 - [Writing specs](../04-writing-specs.md) — the happy-path guide the core checks back.
 - [Reviewing output](../08-reviewing-output.md) — where the packet checks and the trigger checklist live.
 - [Artifact formats](artifact-formats.md) — every template this page's checks apply to.
-- `checks/` (Swarm repo) — the checks fixtures: expected results per check, the test data swarm-cli runs against.
+- `checks/` (Corpus repo) — the checks fixtures: expected results per check, the test data swarm-cli runs against.

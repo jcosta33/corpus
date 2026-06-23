@@ -1,6 +1,6 @@
 # Checks fixtures
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 Test data for [the checks reference](../docs/reference/checks.md), consumed by swarm-cli.
 Every check in that reference is a claim about what a correct checker reports on a given
@@ -9,7 +9,7 @@ file; this directory pins those reports as fixtures, per the two-way severity sp
 test suite runs against these files — and a reviewer working by hand can use them the
 same way: apply the checks, compare against the pinned expectation.
 
-**Nothing in this directory runs.** It is data, not a runner: Swarm ships the contract
+**Nothing in this directory runs.** It is data, not a runner: Corpus ships the contract
 ([`checks.yaml`](./checks.yaml)) and the fixtures that test it, never the checker.
 
 ## When is a workspace valid?
@@ -77,7 +77,7 @@ different check behavior, these pairs are the fixtures that catch it.
 
 ## Reference values (reconciliation) — producer note
 
-This section is for maintainers of Swarm and of tools that consume it. The closed sets
+This section is for maintainers of Corpus and of tools that consume it. The closed sets
 below have exact sizes, and those sizes are registered in exactly two places: **here** and
 the appendix of [the cheatsheet](../docs/reference/cheatsheet.md). Adopter-facing pages list
 values rather than counting them (a numeral-bearing model name — the six-step loop, the

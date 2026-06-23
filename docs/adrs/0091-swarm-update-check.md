@@ -48,7 +48,7 @@ to edit the generated files (AGENTS.md, the guides).
 4. **Scope of the reversal.** This reopens ADR-0081's deferral **for the explicit-update case only**;
    the hermetic `swarm check` staleness warning stays deferred.
 5. **Honesty level: toolable** — the named checker is swarm-cli's `swarm update --check`. Nothing is
-   *enforced*; a team may wire its exit code into their own CI gate (their gate, not Swarm's).
+   *enforced*; a team may wire its exit code into their own CI gate (their gate, not Corpus's).
 
 ## Alternatives considered
 
@@ -56,7 +56,7 @@ to edit the generated files (AGENTS.md, the guides).
 |---|---|
 | Put the staleness warning in `swarm check` | Breaks `swarm check`'s hermeticity — the exact ADR-0081 blocker. Keep the network in the explicit `update` verb. |
 | Build the 3-way-merge now | The precedent's merge half is the part the field abandons on first conflict (Dumont 2025), and the kit's edit-the-files onboarding makes conflict the common case — real effort on the least-used half. |
-| A network registry / version service | Infrastructure Swarm doesn't have, plus lock-in. copier/cruft prove local pin + a refs fetch suffice. |
+| A network registry / version service | Infrastructure Corpus doesn't have, plus lock-in. copier/cruft prove local pin + a refs fetch suffice. |
 | Auto-apply update (no preview) | Breaks reconcile-only — the human must own any mutation. |
 
 ## Consequences
@@ -79,6 +79,6 @@ lands — never a line-level merge, so the "no common ancestor" failure mode nev
 own artifacts (board, specs, decisions, README, `AGENTS.md`) are out of scope by construction, which is
 why this honors — rather than reverses — ADOPTING.md's "the kit never touches them" promise. `skip`
 leaves the pin behind (a partial apply is honestly still "behind"); `overwrite` is the no-backup
-escape hatch. The ADR's core rationale stands: Swarm still does not build the merge teams abandon. The
+escape hatch. The ADR's core rationale stands: Corpus still does not build the merge teams abandon. The
 deferral gate (demand + drift) was met by the goal-run backlog clearance; honesty level stays
 **toolable** (the checker/applier is `swarm update`; nothing is enforced).

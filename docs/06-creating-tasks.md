@@ -1,6 +1,6 @@
 # Creating tasks
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 A task is a packet of bounded work for one agent or one developer: which
 requirements to implement, which files the work touches, what must not change,

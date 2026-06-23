@@ -1,6 +1,6 @@
 # Writing specs
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 A spec is one markdown file that answers, before any code is written: **what should the system
 do, for whom, how will we know it works, and what is deliberately out of scope?** It is the

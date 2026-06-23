@@ -11,7 +11,7 @@ superseded_by: 0049-minimal-install-no-mount-no-imposed-workspace
 > **Superseded by [ADR-0049](./0049-minimal-install-no-mount-no-imposed-workspace.md).** There is no
 > overlays directory: project conventions now live in `AGENTS.md`. The reasoning below (project rules must
 > survive a framework upgrade) still holds — under 0049 it holds because the bootloader an agent reads is
-> project-owned and an upgrade only re-copies Swarm's named skill files.
+> project-owned and an upgrade only re-copies Corpus's named skill files.
 
 # ADR-0045: Overlays are project-owned and live outside the replaceable kernel payload
 

@@ -21,4 +21,4 @@ This is a **specification-and-conspicuousness primitive, not an enforcement one.
 - Positive: makes a whole class of false completions *conspicuous* — the empty paste block is visible.
 - Negative: self-attested — absent a re-running harness ([0023](./0023-harness-enforcement-contract.md)), the gate is the agent grading itself; conspicuousness reduces but does not eliminate fabricated or stale paste.
 - Negative: slower closes; brittle in broken dev envs → must surface explicit `## Blockers`.
-- Open: the discipline's *effectiveness* at reducing hallucinated completion is not yet measured against a Swarm-specific benchmark; it rests on the activation/Reflexion evidence.
+- Open: the discipline's *effectiveness* at reducing hallucinated completion is not yet measured against a Corpus-specific benchmark; it rests on the activation/Reflexion evidence.

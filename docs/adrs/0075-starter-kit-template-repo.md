@@ -18,7 +18,7 @@ cutting and reviewing every change, a format edit is already a reviewed cross-re
 and the family's repos exist. Second, ADR-0074's tier line was drawn in the wrong place: the
 workspace authoring guides (`write-audit`, `write-research`, `write-rfc`, `write-prd`,
 `write-bug-report`, `write-change-plan`, `write-inventory`, `spec-check`, `split-work`,
-`save-findings`, `adversarial-review`) author and gate Swarm's own artifacts — every Swarm
+`save-findings`, `adversarial-review`) author and gate Corpus's own artifacts — every Corpus
 workspace needs them, which is the definition of essential, not optional.
 
 ## Decision

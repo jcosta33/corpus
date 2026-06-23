@@ -1,8 +1,8 @@
 # The basic workflow
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-Swarm's workflow is six steps. Two more — Inventory and Change Plan — switch on only when the
+Corpus's workflow is six steps. Two more — Inventory and Change Plan — switch on only when the
 work is structural or brownfield, and stay off otherwise:
 
 ```

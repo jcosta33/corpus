@@ -1,8 +1,8 @@
 # Principles
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
-Swarm centers on clear requirements, bounded tasks, review evidence, and durable findings.
+Corpus centers on clear requirements, bounded tasks, review evidence, and durable findings.
 The wager behind all four: generation outpaces validation, so the validation side gets the structure. The
 spec holds intended behavior; code holds implementation reality; the review packet and the
 status board connect the two. Everything else in the framework exists to serve that loop —
@@ -10,15 +10,15 @@ and when two design choices collide, the principles below are the tiebreakers.
 
 ## No runtime in this repo
 
-Swarm is markdown plus your agent. Nothing here parses, lints, schedules, or verifies anything.
+Corpus is markdown plus your agent. Nothing here parses, lints, schedules, or verifies anything.
 Every description of tool behavior — a checker, a packet drafter, a drift recomputation — is a
 **contract for tooling**, collected in [future CLI](future-cli.md), with swarm-cli as the
 reference implementation in progress.
 
 - **Consequence.** No page may claim a CLI is required or that automation already exists.
-  "Swarm checks X" is always wrong; for a capability that has not shipped, "a future
+  "Corpus checks X" is always wrong; for a capability that has not shipped, "a future
   `swarm review` evidence-match can flag X" is the honest form.
-- **Tiebreaker.** Tempted to say Swarm *does* something? Ask whether this repository ships code
+- **Tiebreaker.** Tempted to say Corpus *does* something? Ask whether this repository ships code
   that does it. It does not. Restate it as a contract a tool can build against.
 
 ## Conventions are self-policed, not machine-enforced
@@ -34,7 +34,7 @@ lose an engineer's trust. So every rule in these docs carries one of four honest
 
 - **Consequence.** Enforcement-sounding wording — that something is rejected, gated, or failed
   automatically — never appears without a shipped tool behind it. Teams may adopt stricter
-  policy ("we treat C003 as blocking") — that is the team enforcing, not Swarm. The legend and
+  policy ("we treat C003 as blocking") — that is the team enforcing, not Corpus. The legend and
   approved phrasings live in [checks](checks.md).
 - **Tiebreaker.** When a property *must* hold regardless of any model's cooperation, name the
   deterministic check outside the model — a CI step, a hook, a schema — and mark it toolable
@@ -69,7 +69,7 @@ illustrated (small-N, preliminary) by [[EVIBOUND]](../research/sources.md#EVIBOU
 
 ## Provider neutrality
 
-Swarm assumes nothing about which agent does the coding — Claude Code, Codex, Cursor, Aider, a
+Corpus assumes nothing about which agent does the coding — Claude Code, Codex, Cursor, Aider, a
 human. The artifacts are plain markdown any of them can read; the workflow survives a vendor
 change without a rewrite.
 
@@ -79,7 +79,7 @@ change without a rewrite.
 
 ## Citations are contextual, and facts have sources
 
-Swarm holds its own docs to the standard it asks of agents. Every fact-shaped, load-bearing
+Corpus holds its own docs to the standard it asks of agents. Every fact-shaped, load-bearing
 claim cites a verified source inline — `[[KEY]]` resolving to
 [the bibliography](../research/sources.md) — and the citation travels with the claim wherever
 the text moves. A claim without a verified source is stated as **design rationale**, not fact.

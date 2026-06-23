@@ -12,7 +12,7 @@ updated: 2026-06-19
 
 Two strategy reports proposed making "deterministic review scanning" — a git-diff/risk reconciler that
 reads the task/spec/change-plan, reads the diff, and enriches the review with evidence gaps and
-human-attention items — a major new direction for the Swarm CLI. Examined against the code, the proposed
+human-attention items — a major new direction for the Corpus CLI. Examined against the code, the proposed
 heart of that capability **already ships**: `swarm review` reconciles, on a verdict-free report (ADR-0077
 Decision 8), coverage (C012), verify-evidence binding (C013), scope divergence, the run-summary↔diff
 self-report mismatch (both directions), empty-evidence Pass rows, and the packet-structural facts. So the
@@ -27,7 +27,7 @@ Linear issue and writes the assessment back to the ticket [[CODERABBIT-PRVAL]](.
 Qodo Merge's Ticket Compliance Agent fetches ticket context, reports "missing acceptance criteria" and a
 Fully/Partially/Not-compliant level, and markets scope-creep prevention and audit-ready evidence
 [[QODO]](../research/sources.md#QODO). "No tool binds evidence to requirements" is therefore false. What
-stays distinct — the *form* Swarm's differentiation leads with — is: Swarm's reconciliation is
+stays distinct — the *form* Corpus's differentiation leads with — is: Corpus's reconciliation is
 **deterministic** (no model, reproducible, exit-coded 0/1/2), keyed to a **local structured spec/task
 packet** (not a remote tracker ticket), **verdict-free** (the human owns Pass/Fail/Unverified/Blocked,
 ADR-0077 D8), and **durable in git** (a persisted, independent review packet, not an ephemeral PR comment).
@@ -94,8 +94,8 @@ Six points. Each carries its honesty level (ADR-0063).
      promises *is* the shipped `swarm review`. A second verb splits one reconcile surface into two; net-new
      diff facts land inside `swarm review`.
    - **An "Agent Work Protocol" category coinage.** The term is unused in the market (the buyer-facing term
-     is "spec-driven development"), "Protocol" already names interop wire-formats (MCP, ACP) Swarm does not
-     ship, and no user-facing doc carries it today. Swarm keeps its shipped identity — "a lightweight spec
+     is "spec-driven development"), "Protocol" already names interop wire-formats (MCP, ACP) Corpus does not
+     ship, and no user-facing doc carries it today. Corpus keeps its shipped identity — "a lightweight spec
      and review workflow for teams using coding agents" — sharpened on the *reviewable-evidence* angle, not a
      new noun.
 
@@ -125,13 +125,13 @@ deferral, or a recorded non-goal. The reconcile-only boundary (ADR-0077 D8) and 
 dependency.
 
 Honesty level: C014 is **toolable** — a future `swarm review`/`swarm check` surfaces it; until a team wires
-its CI to that output, nothing is **enforced** (the gate is the team's, never Swarm's, ADR-0063). The
+its CI to that output, nothing is **enforced** (the gate is the team's, never Corpus's, ADR-0063). The
 positioning narrowing (Decision 1) is a convention; the differentiation prose is corrected, not enforced.
 
 Positive: the review wedge gains one clean, deterministic, in-boundary fact; the strategy is re-grounded
 honestly against incumbents that now ship requirement-binding; the precision bar is set to the evidence, not
 a guess. Negative: a second scope-related fact to teach beside `outsideScope`; a contract-version bump.
-Neutral: a team may treat the C014 warning as blocking by its own CI policy — the team's gate, not Swarm's.
+Neutral: a team may treat the C014 warning as blocking by its own CI policy — the team's gate, not Corpus's.
 
 This refines ADR-0077 (D7 names deterministic review scanning as one of the two wedges; this names it as the
 *shipped* one and holds D8's verdict-free boundary for C014). It builds on ADR-0079 (C012) and ADR-0083

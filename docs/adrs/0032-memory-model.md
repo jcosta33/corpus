@@ -27,7 +27,7 @@ Memory is **two-tier and provenance-anchored** (§23, the authoritative specific
 | Promote a discovery directly to a reusable pattern | A pattern is a distillation of *multiple* findings; a lone finding promoted as a pattern has no corroboration (§23.2). |
 | Inline a universal workflow rule into `AGENTS.md` | Procedures belong in pass guides; the bootloader holds facts. G9 routes them to a guide edit plus a one-line pointer (§23.4.1). |
 | Promote every task-local detail "just in case" | Execution detail carries no durable claim; promoting it re-creates the unindexed accumulation memory exists to prevent (§23.4.2). |
-| Ship embedding retrieval / auto-eviction now | Each needs a runtime Swarm does not have; explicitly deferred post-v0.1 (§23.6). |
+| Ship embedding retrieval / auto-eviction now | Each needs a runtime Corpus does not have; explicitly deferred post-v0.1 (§23.6). |
 
 ## Consequences
 

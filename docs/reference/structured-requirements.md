@@ -1,10 +1,10 @@
 # Structured requirements (SOL)
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-SOL is Swarm's stricter spec surface — a structured requirements notation, selected per file
+SOL is Corpus's stricter spec surface — a structured requirements notation, selected per file
 with `format: sol` in the spec's frontmatter — the frontmatter field is the entire selector. (Some external
-material suffixes SOL files `.swarm.md`; Swarm treats that as a harmless private filename
+material suffixes SOL files `.swarm.md`; Corpus treats that as a harmless private filename
 convention carrying no meaning of its own.) The default spec form is plain markdown:
 `### AC-NNN` headings with one behavior sentence and a `Verify with:` line (see
 [Writing specs](../04-writing-specs.md)). SOL trades a little writing freedom for shapes a
@@ -65,13 +65,13 @@ invented; a plain spec that needs those distinctions switches the file to `forma
 verification note per requirement, one binding strength word, no `TBD` in `status: ready`)
 apply to the record and therefore to both forms; the SOL-only checks add shape rules this
 page defines. The catalogue lives in [Checks](checks.md) — reference implementation:
-`swarm check` in swarm-cli. The checks fixtures (`checks/` in the Swarm repo) ship surface-equivalence pairs (one
+`swarm check` in swarm-cli. The checks fixtures (`checks/` in the Corpus repo) ship surface-equivalence pairs (one
 plain, one SOL, identical record sets) to keep the two surfaces from forking.
 
 ## Selecting SOL
 
 The selector is the frontmatter field alone. (Some external material marks SOL files with a
-`.swarm.md` filename suffix; Swarm treats that as a harmless private convention — the filename
+`.swarm.md` filename suffix; Corpus treats that as a harmless private convention — the filename
 carries no meaning, only `format: sol` does.)
 
 `format: sol` in the frontmatter is the entire selector — per file, opt-in, reversible:

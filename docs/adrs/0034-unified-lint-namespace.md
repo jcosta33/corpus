@@ -16,7 +16,7 @@ An earlier design iteration scattered diagnostics across several disjoint vocabu
 
 ## Decision
 
-Every Swarm diagnostic uses one namespace: `SOL-<LAYER><NNN>` — the literal prefix `SOL`, one uppercase **layer letter**, and a three-digit number. There are exactly five layers, each mirroring a compiler pass 1:1: `S` (SYNTAX), `P` (PROSE — prose diagnostics surface as `SOL-P` codes), `M` (SEMANTIC), `V` (VERIFICATION), `O` (ORCHESTRATION). The letter alone tells a reader the phase a code belongs to and which repair guides it. "APS" is the *name* of the prose standard (ADR-0028, §7) and MUST NOT appear in any diagnostic code; prose diagnostics live in the `SOL-P` layer. The full specification — per-layer 100-blocks, append-only-with-tombstoning, and the diagnostic-record shape — is §8 (catalogue in Appendix B).
+Every Corpus diagnostic uses one namespace: `SOL-<LAYER><NNN>` — the literal prefix `SOL`, one uppercase **layer letter**, and a three-digit number. There are exactly five layers, each mirroring a compiler pass 1:1: `S` (SYNTAX), `P` (PROSE — prose diagnostics surface as `SOL-P` codes), `M` (SEMANTIC), `V` (VERIFICATION), `O` (ORCHESTRATION). The letter alone tells a reader the phase a code belongs to and which repair guides it. "APS" is the *name* of the prose standard (ADR-0028, §7) and MUST NOT appear in any diagnostic code; prose diagnostics live in the `SOL-P` layer. The full specification — per-layer 100-blocks, append-only-with-tombstoning, and the diagnostic-record shape — is §8 (catalogue in Appendix B).
 
 ## Alternatives considered
 

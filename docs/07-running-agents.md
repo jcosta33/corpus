@@ -1,10 +1,10 @@
 # Running agents
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 Run is the step where the task packet leaves your hands. Hand it to whatever
 does the work — Claude Code, Codex, Cursor, Aider, or a human colleague.
-Swarm does not run agents and does not care which one you use: the packet is
+Corpus does not run agents and does not care which one you use: the packet is
 plain markdown, and anything that can read a file can work from it.
 
 ## Handing off

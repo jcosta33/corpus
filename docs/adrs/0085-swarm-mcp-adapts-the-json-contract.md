@@ -10,7 +10,7 @@ updated: 2026-06-18
 
 ## Context
 
-ADR-0077 (the reconcile-only harness) and `future-cli.md` § "Beyond the loop" sketch a **Swarm MCP
+ADR-0077 (the reconcile-only harness) and `future-cli.md` § "Beyond the loop" sketch a **Corpus MCP
 server** that exposes the task packet's scope, parsed requirements, and the checks contract to any
 MCP-capable agent — described there as *reusing the reconcile-only core library without shelling out*.
 When the MCP server (`swarm-mcp`, a sibling package — the family's "many libraries, not a framework"
@@ -33,7 +33,7 @@ Why this over ADR-0077's "reuse the core library" sketch:
 2. **"Many libraries, nothing entirely depends on anything else."** A tool coupled through another's
    public JSON interface does not *entirely depend on* it; importing the core library would tie
    swarm-mcp to internal module shapes that are not a stable library API.
-3. **Parse in one place (no drift).** All Swarm semantics stay in swarm-cli Core, surfaced as `--json`;
+3. **Parse in one place (no drift).** All Corpus semantics stay in swarm-cli Core, surfaced as `--json`;
    swarm-mcp re-parses nothing. A zod **drift tripwire** in swarm-mcp guards the consumed shapes, so a
    CLI change fails a test rather than silently producing wrong output.
 4. The read surface swarm-cli grows to feed this (a `swarm show <task|spec|review|checks> --json`

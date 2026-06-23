@@ -17,10 +17,10 @@ identified artifacts by frontmatter in practice.
 
 ## Decision
 
-1. Every Swarm artifact is a plain `.md` file whose **frontmatter `type:`** identifies it
+1. Every Corpus artifact is a plain `.md` file whose **frontmatter `type:`** identifies it
    (`spec | task | review | finding | status | intake | inventory | change-plan | audit | bug-report |
    adr | research | prd | rfc | threat-model`). Tools and agents discriminate on `type:`, never on filename.
-2. No Swarm file, template, example, or fixture uses a `.swarm.` filename infix. The optional stricter
+2. No Corpus file, template, example, or fixture uses a `.swarm.` filename infix. The optional stricter
    spec surface is selected by `format: sol` (ADR-0058) — frontmatter, not filename.
 3. The names `*.swarm.ir.json` and `*.swarm.plan.json` survive **only** as reserved contract names on the
    future-CLI page for machine-emitted artifacts no shipped tool produces today.

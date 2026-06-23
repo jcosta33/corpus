@@ -1,6 +1,6 @@
 # Review stances
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 A **review stance** is an optional reading posture an agent or person adopts while performing a
 step. It tilts attention — what the reader looks for, what evidence they demand, what they refuse

@@ -19,11 +19,11 @@ load-bearing and externally corroborated; the rest are small internal-coherence 
 field evidence justified directly.
 
 - **Delegated-worker boot/provenance is invisible.** A subagent can produce scoped edits while
-  leaving no artifact proving it booted as a Swarm worker — and in one job a worker that
+  leaving no artifact proving it booted as a Corpus worker — and in one job a worker that
   self-reported full boot left no task artifact at all. Anthropic's multi-agent research system
   states (verbatim) that each subagent needs an objective, output format, tool/source guidance,
   and clear boundaries, and that vague briefs cause duplicated work and coverage gaps
-  [[ANTHROPIC-MULTIAGENT]](../research/sources.md#ANTHROPIC-MULTIAGENT). Swarm already names the
+  [[ANTHROPIC-MULTIAGENT]](../research/sources.md#ANTHROPIC-MULTIAGENT). Corpus already names the
   task packet as the handoff and the advanced lifecycle carries a per-worker hand-off record, but
   the *core* task/review artifacts capture no boot proof.
 - **Validation evidence and status hygiene drifted.** The runs surfaced: an environment that
@@ -122,7 +122,7 @@ plan.
 - **A multi-worker coordination record as the default** — rejected as too heavy for single-worker
   or trivial tasks; it stays the advanced-tier form and Decision 1 is its lightweight core.
 - **Shipping the orchestration as a runtime** — rejected; the orchestration research itself
-  cautions against "more agents," and Swarm stays markdown-first, recording the handoff, not
+  cautions against "more agents," and Corpus stays markdown-first, recording the handoff, not
   running it.
 
 ## Consequences

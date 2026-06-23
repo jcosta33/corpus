@@ -1,8 +1,8 @@
-# AGENTS.md — working on the Swarm framework
+# AGENTS.md — working on the Corpus framework
 
 ## What this repo is
 
-This repo **is** the Swarm framework — *a lightweight spec and review workflow for teams using
+This repo **is** the Corpus framework — *a lightweight spec and review workflow for teams using
 coding agents*, shipped as markdown: the docs and the checks contract (the copy-whole starter
 kit ships as the sibling `swarm-starter-kit` template repo). It ships **no runtime**:
 anything described as checkable names its checker (the reference implementation in progress is
@@ -20,9 +20,9 @@ anything described as checkable names its checker (the reference implementation 
   authoring guides at `.agents/skills/`, `templates/`, `advanced/` (optional templates +
   reference cards). Conditioning stances and code-depth guides live in `../swarm-skills`.
 
-## Swarm workspace
+## Corpus workspace
 
-Swarm workspace: `../swarm-hq` (the family's multi-repo workspace). Specs, tasks, reviews,
+Corpus workspace: `../swarm-hq` (the family's multi-repo workspace). Specs, tasks, reviews,
 findings, audits, and the board for changes to this repo live there — read the task packet you
 are given. Accepted framework decisions still land here, in `docs/adrs/`.
 
@@ -88,7 +88,7 @@ Commit messages end: `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
 `CLAUDE.md` and `GEMINI.md` are symlinks to this file — one bootloader, many agent tools.
 
 <!-- swarm:start -->
-This repository is adopted into a Swarm workflow. The spec / task / review
-workspace and templates come from the Swarm starter kit
+This repository is adopted into a Corpus workflow. The spec / task / review
+workspace and templates come from the Corpus starter kit
 (github.com/jcosta33/swarm-starter-kit). Run `swarm --help` for the commands.
 <!-- swarm:end -->

@@ -12,7 +12,7 @@ Superseded by [0037](./0037-load-what-the-task-names.md) — the activation doct
 
 Skills and personas **self-activate by self-assessment**. Each carries a **directive `description`** — "ALWAYS apply this skill when … Do not … Skip this skill for …" — and loads when its triggers match the work in front of the agent. The agent reads the task, matches descriptions, and loads what fits.
 
-The **flow graph is recommended routing, not enforcement**. A launcher (the Swarm CLI or any compatible tool) *may* apply it deterministically when it scaffolds a task file, and the directive descriptions reproduce the same routing in-session. But it is guidance: when the suggested default doesn't match reality, the agent loads the skill whose `description` fits and records the divergence in its task file's `## Decisions`.
+The **flow graph is recommended routing, not enforcement**. A launcher (the Corpus CLI or any compatible tool) *may* apply it deterministically when it scaffolds a task file, and the directive descriptions reproduce the same routing in-session. But it is guidance: when the suggested default doesn't match reality, the agent loads the skill whose `description` fits and records the divergence in its task file's `## Decisions`.
 
 This **supersedes the enforcement stance of [0002](./0002-personas-1-to-1-with-task-types.md)**: the 1:1 task-type → persona pairing remains the *suggested* default, but it is no longer a deterministic, agent-can't-override assignment.
 

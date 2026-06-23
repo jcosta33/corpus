@@ -26,9 +26,9 @@ leaves standing — and the internal pilot (`.agents/plans/spec-first-pilot-prot
 
 ## Decision
 
-1. **Identity.** Swarm is presented as *a lightweight spec and review workflow for teams using coding
+1. **Identity.** Corpus is presented as *a lightweight spec and review workflow for teams using coding
    agents*: turn tickets into clear specs, specs into agent-ready tasks, and agent output into
-   reviewable evidence. Thesis: coding agents increase code volume; Swarm reduces the coordination and
+   reviewable evidence. Thesis: coding agents increase code volume; Corpus reduces the coordination and
    review cost of that volume ("generation outpaces validation"). The spec is the source of **intended
    behavior**; code is **implementation reality**; review and status connect them. The phrase "source of
    truth" is retired from all surfaces.

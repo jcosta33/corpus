@@ -34,7 +34,7 @@ ship working validators, so "rules without a checker" has a short credibility wi
    implements.
 3. **swarm-cli is the reference implementation** of the checks contract, named in `checks.md`. The
    validator ships early — it is the credibility anchor for every "toolable" label.
-4. **Length guidance is honest:** the agent-context file guidance is *"aim for ~100 lines"* — Swarm's own
+4. **Length guidance is honest:** the agent-context file guidance is *"aim for ~100 lines"* — Corpus's own
    convention, motivated directionally by instruction-density findings and vendor file-size bounds, not an
    ecosystem-derived number. No cap language, no fictional regression checks, anywhere.
 

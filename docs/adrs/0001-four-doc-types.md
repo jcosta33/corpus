@@ -12,7 +12,7 @@ Industry practice (Diátaxis, GitHub Spec Kit separation) converges on multiple 
 
 ## Decision
 
-Define **four core** durable document kinds in Swarm:
+Define **four core** durable document kinds in Corpus:
 
 - **research** — understanding-oriented exploration
 - **spec** — prescriptive requirements the Builder executes against

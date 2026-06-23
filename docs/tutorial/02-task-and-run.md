@@ -1,6 +1,6 @@
 # Walk the loop · Task and Run
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 You have a spec. `specs/checkout/spec.md` (`SPEC-checkout`, status `ready`) carries one
 requirement — `AC-001 — Expired session returns 409` — with a runnable check on it. Holding a
@@ -14,10 +14,10 @@ spec is not the same as handing work to someone. This page is the two steps that
 By the end you will have produced `tasks/checkout-expiry.md` and you will know exactly what a
 finished run looks like — including the one thing that separates a Pass from an Unverified.
 
-> **About the test command.** Swarm ships no sample repo, so the `npm run test:integration`
+> **About the test command.** Corpus ships no sample repo, so the `npm run test:integration`
 > command on this page never literally runs against any code here — `shop-api` is the
 > [worked reference](../examples/large-pr-review.md), not a downloadable project. You produce the
-> Swarm artifacts for real; you run the actual loop on your own next real change. Everything below
+> Corpus artifacts for real; you run the actual loop on your own next real change. Everything below
 > is a real artifact you can copy.
 
 ---
@@ -104,7 +104,7 @@ verbatim; do not retype or edit them here. (See
 ## Step 4 · Run: hand it off in isolation
 
 Run is the step where the packet leaves your hands. You can hand it to whatever does the work —
-Claude Code, Codex, Cursor, Aider, or a human colleague. Swarm does not run agents and does not
+Claude Code, Codex, Cursor, Aider, or a human colleague. Corpus does not run agents and does not
 care which one you use; the packet is plain markdown, and anything that can read a file can work
 from it ([Running agents](../07-running-agents.md)).
 
@@ -139,7 +139,7 @@ Read tasks/checkout-expiry.md and do what it says.
 A human colleague reads the same file and works from the same Scope, "Do not change", and Verify
 line. *(The optional [`swarm run`](../reference/future-cli.md) launches a configured agent in the
 task's worktree and records the launch; it never becomes the agent — the coding loop is still the
-agent's, never Swarm's.)*
+agent's, never Corpus's.)*
 
 ### What comes back
 

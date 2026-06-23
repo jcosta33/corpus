@@ -1,13 +1,13 @@
-# What is Swarm?
+# What is Corpus?
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
-> **Swarm is a lightweight spec and review workflow for teams using coding agents.**
+> **Corpus is a lightweight spec and review workflow for teams using coding agents.**
 > Turn tickets into clear specs, specs into agent-ready tasks, and agent output into
 > evidence you can review — plain markdown, any agent, no runtime.
 
-The thesis behind it: coding agents increase code volume; Swarm reduces the coordination and
-review cost of that volume. Generation outpaces validation — Swarm invests in the validation side.
+The thesis behind it: coding agents increase code volume; Corpus reduces the coordination and
+review cost of that volume. Generation outpaces validation — Corpus invests in the validation side.
 
 ## The problem
 
@@ -24,11 +24,11 @@ Teams using coding agents hit the same five walls, in roughly this order:
 - **Lost findings.** Hard-won lessons ("the staging DB truncates that column") evaporate with the
   session, and the next session re-learns them the expensive way.
 
-Swarm answers each wall with a small markdown artifact and the habit of working from it.
+Corpus answers each wall with a small markdown artifact and the habit of working from it.
 
-## What Swarm is — and is not
+## What Corpus is — and is not
 
-Swarm **is**:
+Corpus **is**:
 
 - a spec format agents can work from
 - a task-packet format that bounds agent work
@@ -37,7 +37,7 @@ Swarm **is**:
 - a starter kit of markdown templates
 - a workspace convention
 
-Swarm **is not**:
+Corpus **is not**:
 
 - an agent or agent runtime
 - a compiler
@@ -52,14 +52,14 @@ Swarm **is not**:
 
 ## Where it sits among the tools you already use
 
-| Adjacent product                                    | What it does                               | Swarm's relationship to it                                                                                                                                                                                    |
+| Adjacent product                                    | What it does                               | Corpus's relationship to it                                                                                                                                                                                    |
 | --------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Coding agents** (Claude Code, Cursor, Copilot, …) | write the code                             | Swarm ships no agent. It shapes the inputs any agent works from and the output you review. Bring whichever agent you have.                                                                                    |
-| **Spec-driven workflows**                           | turn a written spec into an implementation | The same family. Swarm's bet is the review side — every requirement carries a verification method, and the review packet shows the evidence per requirement — and it stays small: templates, not a generator. |
-| **Issue trackers** (Jira, Linear, GitHub Issues)    | hold the backlog and the conversation      | The ticket stays where it is. Swarm snapshots it into an intake file and interprets it into a spec an agent can act on. Nothing replaces the tracker.                                                         |
-| **Docs portals** (wikis, Notion, docs sites)        | describe the system after the fact         | A Swarm spec is a working document — acceptance criteria, verification methods, open questions. It drives the change rather than documenting it later.                                                        |
-| **Review tooling** (PRs, CI, review bots)           | gate the merge                             | Swarm does not replace the PR. The review packet rides alongside it and tells the reviewer where to look; CI output is the evidence the packet cites.                                                         |
-| **Refactoring tooling** (codemods, OpenRewrite, …)  | execute mechanical change                  | Swarm's change plan states what must survive the change and how to check it; a codemod is one way a task executes a step of that plan.                                                                        |
+| **Coding agents** (Claude Code, Cursor, Copilot, …) | write the code                             | Corpus ships no agent. It shapes the inputs any agent works from and the output you review. Bring whichever agent you have.                                                                                    |
+| **Spec-driven workflows**                           | turn a written spec into an implementation | The same family. Corpus's bet is the review side — every requirement carries a verification method, and the review packet shows the evidence per requirement — and it stays small: templates, not a generator. |
+| **Issue trackers** (Jira, Linear, GitHub Issues)    | hold the backlog and the conversation      | The ticket stays where it is. Corpus snapshots it into an intake file and interprets it into a spec an agent can act on. Nothing replaces the tracker.                                                         |
+| **Docs portals** (wikis, Notion, docs sites)        | describe the system after the fact         | A Corpus spec is a working document — acceptance criteria, verification methods, open questions. It drives the change rather than documenting it later.                                                        |
+| **Review tooling** (PRs, CI, review bots)           | gate the merge                             | Corpus does not replace the PR. The review packet rides alongside it and tells the reviewer where to look; CI output is the evidence the packet cites.                                                         |
+| **Refactoring tooling** (codemods, OpenRewrite, …)  | execute mechanical change                  | Corpus's change plan states what must survive the change and how to check it; a codemod is one way a task executes a step of that plan.                                                                        |
 
 ## What's optional, what's advanced
 
@@ -71,7 +71,7 @@ memory model, the kit's optional templates (`advanced/`), the stance-and-depth c
 [swarm-skills](https://github.com/jcosta33/swarm-skills), and the entire CLI (future). The
 core you actually start with: spec, task, review, finding.
 
-## What Swarm does not promise
+## What Corpus does not promise
 
 - **No deterministic generation.** The same spec run twice yields two different diffs. A good
   spec narrows the space; it does not determine the output.
@@ -95,7 +95,7 @@ The list of checks, each carrying its level, lives in [reference/checks.md](refe
 
 ## The failure modes it positions against
 
-Coding agents fail in predictable patterns, and each pattern is the reason a piece of Swarm exists.
+Coding agents fail in predictable patterns, and each pattern is the reason a piece of Corpus exists.
 
 | Failure mode                | What it looks like                                                                                                                                                                                                                     | What answers it                                                                                                                                                                        |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -108,7 +108,7 @@ Coding agents fail in predictable patterns, and each pattern is the reason a pie
 
 ## Restraint
 
-Swarm stays useful by staying small:
+Corpus stays useful by staying small:
 
 - **Fewer files.** Write the artifacts the work needs and skip the rest — the workflow has named
   skip-paths, not guilt.

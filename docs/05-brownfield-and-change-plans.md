@@ -1,6 +1,6 @@
 # Brownfield work and change plans
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 Two artifacts join the loop only when the work is structural or brownfield — refactors,
 rewrites, migrations, dependency upgrades, performance and schema work, or any change to code

@@ -1,7 +1,7 @@
 # Worked examples
 
-Three end-to-end chains, each showing the loop on a different shape of work. New to Swarm? **Start
-with the large-PR review** — it is the flagship demo of the one idea that sets Swarm apart:
+Three end-to-end chains, each showing the loop on a different shape of work. New to Corpus? **Start
+with the large-PR review** — it is the flagship demo of the one idea that sets Corpus apart:
 reviewing a big agent change *by exception* instead of reading the whole diff.
 
 | Example | The shape | Read it for |

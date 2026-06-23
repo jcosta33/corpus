@@ -1,6 +1,6 @@
 # Example: a feature from a ticket
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 One small feature — silent token refresh on 401 — carried through the whole loop:
 **Pull → Spec → Task → Run → Review → Close**. Every artifact appears in full, in the exact

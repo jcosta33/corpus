@@ -1,6 +1,6 @@
 # Example: a bug fix
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 The bug shape of the loop: **Pull → Spec amend → Task → Run → Review → Close**. A bug is a
 disagreement between the code and the spec — or, as here, a place where the spec was

@@ -1,6 +1,6 @@
 # Glossary
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 One line per term, alphabetical. Where a precise internal term exists for advanced or tooling
 contexts, the definition names it; the reverse map is at the bottom.
@@ -10,7 +10,7 @@ contexts, the definition names it; the reverse map is at the bottom.
 | **acceptance criterion (AC)** | One verifiable requirement in a spec, labeled `AC-NNN`; the unit a review packet reports a result on.                                                                                           |
 | **ADR (decision record)**     | One recorded project decision with its rationale, numbered in `decisions/`.                                                                                                                     |
 | **agent run summary**         | The worker agent's closing report, filled in the task packet's `## Run summary` section — changed files, results citing the Verify pastes, candidate findings; the review packet reads it (internally, and in the future CLI: trace). |
-| **AGENTS.md**                 | The short, always-loaded context file an agent reads on every task; aim for ~100 lines — Swarm's own convention, nothing enforces it.                                                           |
+| **AGENTS.md**                 | The short, always-loaded context file an agent reads on every task; aim for ~100 lines — Corpus's own convention, nothing enforces it.                                                           |
 | **audit**                     | An observation-only report on present-state risk or debt, each observation evidence-grounded; it observes, never prescribes. Advanced artifact.                                                 |
 | **bug report**                | The diagnosis of one defect: reliable reproduction, expected vs actual, root-cause evidence. Advanced artifact.                                                                                 |
 | **change plan**               | The artifact (`CHANGE-*`) for structural work: what changes, what behavior provably survives, in what order, with rollback criteria.                                                            |
@@ -89,6 +89,6 @@ Advanced pages and tooling contracts sometimes use the precise internal vocabula
 
 ## Related
 
-- [Swarm Reference](cheatsheet.md) — the same vocabulary as lookup tables.
+- [Corpus Reference](cheatsheet.md) — the same vocabulary as lookup tables.
 - [Artifact formats](artifact-formats.md) — every file type, frontmatter, and required sections.
 - [Checks](checks.md) — the check IDs and the writing-rules watchlist.

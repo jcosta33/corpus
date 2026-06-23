@@ -1,16 +1,16 @@
 # Walk the loop · Pull and Spec
 
-*Works today — plain markdown plus your agent; no Swarm tooling required.*
+*Works today — plain markdown plus your agent; no Corpus tooling required.*
 
 This is the first leg of the tutorial. You will walk the six-step loop —
 **Pull → Spec → Task → Run → Review → Close** — once, end to end, by adding one small
-requirement to a service. By the end of this page you will have produced two real Swarm
+requirement to a service. By the end of this page you will have produced two real Corpus
 artifacts: an intake snapshot and a spec.
 
 The change lands on `shop-api`, the TypeScript storefront from
 [the large-PR-review example](../examples/large-pr-review.md) — your *worked reference*, the
 same artifacts filled in and reviewed. As the [track overview](README.md#one-honest-note-about-the-scenario)
-explains, you write the Swarm artifacts here for real and run the loop for real on your own next
+explains, you write the Corpus artifacts here for real and run the loop for real on your own next
 change; the `Verify with:` commands below name `shop-api`'s tests, but nothing here executes code.
 
 **The change you are speccing:**
@@ -158,7 +158,7 @@ file*, because a runnable check outperforms prose plans as task input. For `AC-0
 gives your reviewer something to read instead of the whole diff. It is fine that this command
 names a test in `shop-api` you aren't running here — in your own loop, this is the line you'd run.
 
-Which line is "good enough" is itself a checklist. Swarm's catalogue of common spec mistakes —
+Which line is "good enough" is itself a checklist. Corpus's catalogue of common spec mistakes —
 including the rule that *every* requirement carries a `Verify with:` line — lives in
 [the checks reference](../reference/checks.md). You don't need it for one requirement, but it is
 the page reviewers (and the optional `swarm check`) work from, so know it's there.

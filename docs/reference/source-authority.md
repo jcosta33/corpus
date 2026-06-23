@@ -1,6 +1,6 @@
 # Source authority
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 When two artifacts state conflicting intent — a spec says one thing, an audit note another —
 which one governs? Source authority is the answer: a fixed precedence over **intent**, and the
@@ -109,7 +109,7 @@ effect (checklist level — review inspects it):
 
 "Yes" means an authoring act by the **owner of the highest-ranked governing artifact in the
 relevant domain**: the spec's `owner:` for its requirements, the ADR's owner for decisions, the
-security owner for a security-domain change. Swarm fixes only that the act comes from the
+security owner for a security-domain change. Corpus fixes only that the act comes from the
 resolved owner; who that person is stays a local decision. An agent applying a "Yes" edit on its
 own is exactly the silent amendment this page forbids.
 

@@ -1,6 +1,6 @@
 # Drift and staleness
 
-*Advanced design note — internal rationale; not needed to use Swarm.*
+*Advanced design note — internal rationale; not needed to use Corpus.*
 
 A **Pass is a statement about a moment**: the requirement said X, the code did Y, and the
 evidence showed Y satisfies X — *then*. The moment the requirement text or the code changes,
