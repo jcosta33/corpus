@@ -1,6 +1,6 @@
 # Checks fixtures — violations
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 One minimal negative fixture per violation class. Each snippet must be flagged by a
 checker applying [`../checks.yaml`](../checks.yaml) — or by a reviewer applying
@@ -32,15 +32,15 @@ hallucinated-completion hole the rule exists to close.
 A review packet's coverage table:
 
 ```markdown
-| ID | Result | Evidence | Human attention |
-|---|---|---|---|
-| AC-001 | Pass |  | no |
+| ID     | Result | Evidence | Human attention |
+| ------ | ------ | -------- | --------------- |
+| AC-001 | Pass   |          | no              |
 ```
 
 **Expected:** flagged — an empty Evidence cell means **Unverified**, never **Pass**.
 The row's correct content is `Unverified` plus a Human attention entry. Implemented as **C016**
-(ADR-0097): the **gate** path (`swarm check <review>`) blocks on it (hard error); the advisory
-**reconcile** path (`swarm review`) surfaces the same row id without blocking (ADR-0077 D8).
+(ADR-0097): the **gate** path (`corpus check <review>`) blocks on it (hard error); the advisory
+**reconcile** path (`corpus review`) surfaces the same row id without blocking (ADR-0077 D8).
 
 ---
 
@@ -50,6 +50,7 @@ A spec with frontmatter `status: ready` whose Requirements section reads:
 
 ```markdown
 ### AC-001 — Cached repeat queries
+
 When the same query repeats within a session, the search service must return
 the cached result.
 
@@ -139,16 +140,18 @@ the packet must surface it even when every requirement row is green.
 Two spec files in the same workspace, both claiming the same frontmatter id:
 
 ```markdown
-<!-- specs/checkout/spec.md -->
----
+## <!-- specs/checkout/spec.md -->
+
 type: spec
 id: SPEC-checkout
+
 ---
 
-<!-- specs/checkout-v2/spec.md -->
----
+## <!-- specs/checkout-v2/spec.md -->
+
 type: spec
 id: SPEC-checkout
+
 ---
 ```
 
@@ -180,7 +183,7 @@ A spec whose sections are Intent · Requirements · Open questions · Affected a
 Non-goals heading anywhere in the file.
 
 **Expected:** flagged — the Non-goals section is absent. An empty section under a present
-heading fires the same check: it must exist *and* be non-empty.
+heading fires the same check: it must exist _and_ be non-empty.
 
 ---
 
@@ -294,14 +297,17 @@ includes that protected file:
 
 ```markdown
 ## Do not change
+
 - `src/auth/token-family.ts` — the refresh-token family table; rotation logic is frozen.
 
 ## Affected areas
+
 - `src/auth/`
 ```
 
 ```markdown
 ## Changed files
+
 - `src/auth/refresh.ts`
 - `src/auth/token-family.ts`
 ```
@@ -322,11 +328,12 @@ and adds a row for `AC-009` (an id the source spec does not define):
 
 ```markdown
 ## Requirement coverage
-| ID | Result | Evidence | Human attention |
-|---|---|---|---|
-| AC-001 | Pass | pasted | no |
-| AC-002 | Pass | pasted | no |
-| AC-009 | Pass | pasted | no |
+
+| ID     | Result | Evidence | Human attention |
+| ------ | ------ | -------- | --------------- |
+| AC-001 | Pass   | pasted   | no              |
+| AC-002 | Pass   | pasted   | no              |
+| AC-009 | Pass   | pasted   | no              |
 ```
 
 **Expected:** flagged — `AC-003` is in scope but has no coverage row (**uncovered**), and `AC-009`
@@ -343,7 +350,7 @@ by a packet whose `AC-001` Pass row carries a structured `verify` block (a fence
 
 **Expected:** flagged `cmd-mismatch` — the block's recorded `cmd` does not match the requirement's named
 Verify command. The comparison normalizes away surrounding backticks, a trailing `(parenthetical)` note,
-and whitespace, so the canon's own backtick-wrapped Verify-with form does **not** false-fire (swarm-hq
+and whitespace, so the canon's own backtick-wrapped Verify-with form does **not** false-fire (corpus-hq
 #16); only a genuine disagreement trips it. A block whose `cmd` matches and reads `result=pass` is
 consistent → no finding; a Pass row with only the free-form Evidence cell stays a warning, never
 machine-rejected. A consistency fact, never a verdict.
@@ -366,6 +373,7 @@ sources:
 ---
 
 ### AC-001 — survey-grounded recommendation
+
 The reviewer must apply the survey's recommended ordering, per [[FAROS2025]].
 
 Verify with: a test.
@@ -390,7 +398,9 @@ forgets the other:
 
 ```markdown
 <!-- .agents/skills/write-spec/SKILL.md -->
+
 # write-spec
+
 Load `references/checklist.md` before you start.
 ```
 
@@ -399,7 +409,7 @@ Load `references/checklist.md` before you start.
 **Expected:** flagged — `references/orphan.md` is bundled but pointed at by no `SKILL.md` line, so
 it is dead weight no reader is sent to (the reference-load field test measured that a bundled
 resource helps only when the guide loads it). **Orphan direction only**: the named `checklist.md` is
-*not* flagged, and the inverse case (a guide naming a reference that does not exist) is out of scope.
+_not_ flagged, and the inverse case (a guide naming a reference that does not exist) is out of scope.
 Matching is lenient — the bare filename anywhere in the body counts as named — so a guide that does
 point at its references never false-fires (measured 0-orphan across the real skills corpus). A
 workspace-scope warning; surfaces a fact, never a verdict.

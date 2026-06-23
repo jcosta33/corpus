@@ -36,7 +36,7 @@ requirements.
    unowned — or when the people shaping specs are not the people merging code (the recorded
    ADR-0050 trigger). The drift-cost candor of ADR-0060 Decision 3 stays adjacent.
 3. **The context carve-out covers repos, gated by independent verifiability.** The
-   one-requirement-N-tasks carve-out (ADR-0072's platform case) generalizes to *context* —
+   one-requirement-N-tasks carve-out (ADR-0072's platform case) generalizes to _context_ —
    platform or repo — with the entry condition stated wherever the carve-out is: the repo case
    applies only when the requirement is independently verifiable in each repo (the
    contract-test shape). A behavior that exists only when both repos meet decomposes into
@@ -49,7 +49,7 @@ requirements.
    compare the path part (a comment — the contract is untouched, the ADR-0072(e) precedent).
    The SOL adapter-resolution sentence gains the sub-table clause.
 5. **Future CLI: composition, not a mode.** Several code repos each pointing their
-   `.swarm/config.yaml` at the same workspace *is* the multi-repo workspace under the
+   `.corpus/config.yaml` at the same workspace _is_ the multi-repo workspace under the
    contracts as written; workspace-side orchestration across governed repos is outside the
    current command contracts and waits for its own ADR.
 6. **Install guidance for repo families.** The full workspace exists once (the multi-repo

@@ -1,6 +1,6 @@
 # Distillation — the loss budget
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 Every step of the loop compresses: a ticket becomes a spec, a spec becomes task packets, an
 agent run becomes a review packet, a task becomes a finding. Compression is the point — but
@@ -14,39 +14,39 @@ The bright line: a compression that drops a requirement, its strength word, or i
 
 None of this carries binding force; each piece survives somewhere, linked rather than copied.
 
-| Droppable | Where it survives instead |
-|---|---|
-| Commentary and narrative prose | The source artifact, linked. |
-| Redundant restatements | The single canonical statement. |
-| Rationale already recorded | The ADR, finding, or research it came from. |
-| Rejected options and digressions | The research file. |
-| Step-by-step execution logs | The task packet and the agent run summary. |
+| Droppable                        | Where it survives instead                   |
+| -------------------------------- | ------------------------------------------- |
+| Commentary and narrative prose   | The source artifact, linked.                |
+| Redundant restatements           | The single canonical statement.             |
+| Rationale already recorded       | The ADR, finding, or research it came from. |
+| Rejected options and digressions | The research file.                          |
+| Step-by-step execution logs      | The task packet and the agent run summary.  |
 
 ## What must survive
 
 Dropping or weakening any of these at any crossing is a distillation error — checklist level
-(review inspects it); toolable for the structural cases — swarm-cli's `swarm check` can
+(review inspects it); toolable for the structural cases — corpus-cli's `corpus check` can
 flag a task packet missing a requirement ID its source spec declares.
 
-| Must survive | Why |
-|---|---|
-| The requirement ID | The traceability key; lose it and nothing maps back. |
-| Its strength word (must / must not / should / should not / may) | The strength *is* the binding force. |
-| Its `Verify with:` line | A requirement with no verification path reviews as Unverified. |
-| Its scope — owner, affected areas, do-not-change bounds | Dropping a bound silently widens the work. |
-| Constraints, non-goals, unresolved open questions | These limit the build; a dropped non-goal is scope creep with no fingerprints. |
+| Must survive                                                    | Why                                                                            |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| The requirement ID                                              | The traceability key; lose it and nothing maps back.                           |
+| Its strength word (must / must not / should / should not / may) | The strength _is_ the binding force.                                           |
+| Its `Verify with:` line                                         | A requirement with no verification path reviews as Unverified.                 |
+| Its scope — owner, affected areas, do-not-change bounds         | Dropping a bound silently widens the work.                                     |
+| Constraints, non-goals, unresolved open questions               | These limit the build; a dropped non-goal is scope creep with no fingerprints. |
 
 ## The per-boundary budget
 
-| From | To | May drop | Must carry |
-|---|---|---|---|
-| intake / ticket | spec | Upstream phrasing, duplicates | Every asked-for behavior, or a line in **Dropped from sources** saying why not |
-| research | spec | Rejected options, low-confidence notes | Constraints found, unresolved ambiguity, decision-changing evidence |
-| audit | spec | Low-priority cleanup detail | Observed risks that affect the target behavior |
-| bug report | task packet | Failed reproduction attempts | The reliable reproduction, expected vs actual, root-cause evidence |
-| spec / change plan | task packet | Rationale not needed to execute | Requirement IDs, strength words, verify commands, non-goals, do-not-change list |
-| agent run | review packet | Implementation chatter | The claim, the pasted evidence, the result and its reason |
-| task | finding | The execution log | The one durable claim and the evidence that grounds it |
+| From               | To            | May drop                               | Must carry                                                                      |
+| ------------------ | ------------- | -------------------------------------- | ------------------------------------------------------------------------------- |
+| intake / ticket    | spec          | Upstream phrasing, duplicates          | Every asked-for behavior, or a line in **Dropped from sources** saying why not  |
+| research           | spec          | Rejected options, low-confidence notes | Constraints found, unresolved ambiguity, decision-changing evidence             |
+| audit              | spec          | Low-priority cleanup detail            | Observed risks that affect the target behavior                                  |
+| bug report         | task packet   | Failed reproduction attempts           | The reliable reproduction, expected vs actual, root-cause evidence              |
+| spec / change plan | task packet   | Rationale not needed to execute        | Requirement IDs, strength words, verify commands, non-goals, do-not-change list |
+| agent run          | review packet | Implementation chatter                 | The claim, the pasted evidence, the result and its reason                       |
+| task               | finding       | The execution log                      | The one durable claim and the evidence that grounds it                          |
 
 The spec template's **Dropped from sources** section is this budget made visible: the author
 records what the ticket asked for that the spec deliberately leaves out, so the loss is

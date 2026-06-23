@@ -1,6 +1,6 @@
 # What is Corpus?
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 > **A spec and review workflow for teams coding with agents.** Tickets become specs, specs
 > become agent-ready tasks, agent output becomes evidence you can review — plain markdown,
@@ -47,14 +47,14 @@ Corpus **is not**:
 
 ## Where it sits among the tools you already use
 
-| Adjacent product                                    | What it does                               | Corpus's relationship to it                                                                                                                            |
-| --------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Coding agents** (Claude Code, Cursor, Copilot, …) | write the code                             | Corpus ships no agent. It shapes the inputs any agent works from and the output you review. Bring your own.                                             |
+| Adjacent product                                    | What it does                               | Corpus's relationship to it                                                                                                                                                                    |
+| --------------------------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Coding agents** (Claude Code, Cursor, Copilot, …) | write the code                             | Corpus ships no agent. It shapes the inputs any agent works from and the output you review. Bring your own.                                                                                    |
 | **Spec-driven workflows**                           | turn a written spec into an implementation | Same family. Corpus's bet is the review side: every requirement carries a verification method, and the packet shows the evidence per requirement. It stays small — templates, not a generator. |
-| **Issue trackers** (Jira, Linear, GitHub Issues)    | hold the backlog and the conversation      | The ticket stays put. Corpus snapshots it into an intake file and interprets it into a spec an agent can act on. Nothing replaces the tracker.          |
-| **Docs portals** (wikis, Notion, docs sites)        | describe the system after the fact         | A Corpus spec is a working document — acceptance criteria, verification methods, open questions. It drives the change, not documents it later.          |
-| **Review tooling** (PRs, CI, review bots)           | gate the merge                             | Corpus keeps the PR. The review packet rides alongside it and points the reviewer where to look; CI output is the evidence the packet cites.           |
-| **Refactoring tooling** (codemods, OpenRewrite, …)  | execute mechanical change                  | The change plan states what must survive and how to check it; a codemod is one way a task executes a step of that plan.                                 |
+| **Issue trackers** (Jira, Linear, GitHub Issues)    | hold the backlog and the conversation      | The ticket stays put. Corpus snapshots it into an intake file and interprets it into a spec an agent can act on. Nothing replaces the tracker.                                                 |
+| **Docs portals** (wikis, Notion, docs sites)        | describe the system after the fact         | A Corpus spec is a working document — acceptance criteria, verification methods, open questions. It drives the change, not documents it later.                                                 |
+| **Review tooling** (PRs, CI, review bots)           | gate the merge                             | Corpus keeps the PR. The review packet rides alongside it and points the reviewer where to look; CI output is the evidence the packet cites.                                                   |
+| **Refactoring tooling** (codemods, OpenRewrite, …)  | execute mechanical change                  | The change plan states what must survive and how to check it; a codemod is one way a task executes a step of that plan.                                                                        |
 
 ## Optional and advanced
 
@@ -65,7 +65,7 @@ fix · a board row for trivial work. Each has a skip rule in
 Advanced exists but is not part of the first path: audit and research artifacts, the
 granular lifecycle, the richer result vocabulary, the memory model, the kit's optional
 `advanced/` templates, the stance-and-depth catalog in
-[swarm-skills](https://github.com/jcosta33/swarm-skills), and the entire CLI (future).
+[corpus-skills](https://github.com/jcosta33/corpus-skills), and the entire CLI (future).
 
 You start with four: spec, task, review, finding.
 
@@ -81,8 +81,8 @@ four-level honesty scale. A "MUST" never hides whether anything checks it.
 
 - **convention** — recommended; nothing checks it.
 - **checklist** — a human applies it at review time, by reading.
-- **toolable** — a tool *could* run it mechanically; the docs name the command (swarm-cli's `swarm check`).
-- **enforced** — a shipped tool runs it and blocks. Nothing in *this* repo enforces anything; it is markdown. The optional [swarm-cli](https://github.com/jcosta33/swarm-cli) makes the toolable checks runnable. The kit's gate enforces them in your CI.
+- **toolable** — a tool _could_ run it mechanically; the docs name the command (corpus-cli's `corpus check`).
+- **enforced** — a shipped tool runs it and blocks. Nothing in _this_ repo enforces anything; it is markdown. The optional [corpus-cli](https://github.com/jcosta33/corpus-cli) makes the toolable checks runnable. The kit's gate enforces them in your CI.
 
 Every check carries its level: [reference/checks.md](reference/checks.md).
 
@@ -90,14 +90,14 @@ Every check carries its level: [reference/checks.md](reference/checks.md).
 
 Agents fail in predictable patterns. Each pattern is why a piece of Corpus exists.
 
-| Failure mode                | What it looks like                                                                                                                                                                                                                     | What answers it                                                                                                                                                                        |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Drift**                   | the agent solves _a_ problem, not _the_ problem                                                                                                                                                                                        | the task packet: an explicit scope and a "Do not change" list                                                                                                                          |
-| **Ambiguous input**         | ambiguity measurably degrades generated code, and models do not reliably flag or resolve it on their own [[ORCHID]](research/sources.md#ORCHID) [[HUMANEVALCOMM]](research/sources.md#HUMANEVALCOMM)                                                                                        | requirements written one per ID, each with its own verification method                                                                                                                 |
-| **Lost handoff**            | the handoff from plan to implementation is — on preliminary evidence — the dominant failure surface in multi-agent code generation [[PLANCODER]](research/sources.md#PLANCODER)                                                                                          | the handoff is a written, bounded task packet — not a chat message                                                                                                                     |
-| **Hallucinated completion** | "done," but nothing was checked — in a randomized trial, developers _believed_ they were ~20% faster with AI while _measuring_ ~19% slower [[METR]](research/sources.md#METR) (preliminary: 16 experienced developers on mature repos) | a Pass needs pasted output, a CI link, or a named human's recorded observation (manual checks). An empty Evidence cell means Unverified, never Pass — a review checklist rule.                                                                 |
+| Failure mode                | What it looks like                                                                                                                                                                                                                     | What answers it                                                                                                                                                                  |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Drift**                   | the agent solves _a_ problem, not _the_ problem                                                                                                                                                                                        | the task packet: an explicit scope and a "Do not change" list                                                                                                                    |
+| **Ambiguous input**         | ambiguity measurably degrades generated code, and models do not reliably flag or resolve it on their own [[ORCHID]](research/sources.md#ORCHID) [[HUMANEVALCOMM]](research/sources.md#HUMANEVALCOMM)                                   | requirements written one per ID, each with its own verification method                                                                                                           |
+| **Lost handoff**            | the handoff from plan to implementation is — on preliminary evidence — the dominant failure surface in multi-agent code generation [[PLANCODER]](research/sources.md#PLANCODER)                                                        | the handoff is a written, bounded task packet — not a chat message                                                                                                               |
+| **Hallucinated completion** | "done," but nothing was checked — in a randomized trial, developers _believed_ they were ~20% faster with AI while _measuring_ ~19% slower [[METR]](research/sources.md#METR) (preliminary: 16 experienced developers on mature repos) | a Pass needs pasted output, a CI link, or a named human's recorded observation (manual checks). An empty Evidence cell means Unverified, never Pass — a review checklist rule.   |
 | **No resumable trail**      | the session ends mid-stride; the next one starts from zero                                                                                                                                                                             | work externalized to files: intake, spec, task, review. Writing intermediate work down measurably improves multi-step performance [[SCRATCHPAD]](research/sources.md#SCRATCHPAD) |
-| **Repeated mistakes**       | the same class of bug returns every few sessions                                                                                                                                                                                       | findings saved at Close, kept where the next task will look                                                                                                                            |
+| **Repeated mistakes**       | the same class of bug returns every few sessions                                                                                                                                                                                       | findings saved at Close, kept where the next task will look                                                                                                                      |
 
 ## Restraint
 

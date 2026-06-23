@@ -1,6 +1,6 @@
 # Running agents
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 Run is where the task packet leaves your hands. Hand it to whatever does the work: Claude Code,
 Codex, Cursor, Aider, or a human colleague. Corpus does not run agents and does not care which you
@@ -32,7 +32,7 @@ When you delegate, be clear which of two things you are spawning:
 For a delegated worker, the run summary's optional **Provenance** line records the boot facts worth
 inspecting: which sources it read (`AGENTS.md`, the task, the spec, any change plan), which guide(s)
 it loaded, its identity, and its **isolation mode** (its own worktree, the shared tree, or
-patch-only). These are *evidence to check at review*, not a trust token. A delegated task with none
+patch-only). These are _evidence to check at review_, not a trust token. A delegated task with none
 of them is itself the [review exception](08-reviewing-output.md) to investigate: a guide can
 silently fail to load, and a worker can edit with no packet at all. When the worker can't write the
 workspace, the lead fills the line on merge-back. Lead-run and trivial tasks skip it. It scales
@@ -41,15 +41,15 @@ worker in the heavier [coordination record](reference/advanced-lifecycle.md).
 
 ## One worktree and branch per task
 
-Run each task in its own git worktree, on its own branch off the base. Name it `swarm/<spec-slug>`,
-or `swarm/<spec-slug>/<task-slug>` when several tasks split one spec:
+Run each task in its own git worktree, on its own branch off the base. Name it `corpus/<spec-slug>`,
+or `corpus/<spec-slug>/<task-slug>` when several tasks split one spec:
 
 ```bash
-git worktree add -b swarm/auth-refresh ../myrepo--auth-refresh main
+git worktree add -b corpus/auth-refresh ../myrepo--auth-refresh main
 ```
 
 Branch off a base reconciled with its remote. If local `main` is ahead of `origin/main`, each task
-branch carries those unpushed commits into its PR. `swarm worktree create` flags this as a
+branch carries those unpushed commits into its PR. `corpus worktree create` flags this as a
 non-fatal advisory; the [brownfield precondition](ADOPTING.md#code-repos) routes the decision to a
 human.
 
@@ -63,8 +63,8 @@ Why this hygiene pays for itself:
   never knew.
 
 A convention — nothing enforces it, and an agent told to edit in place will. The optional reference
-CLI's `swarm worktree` sets up the isolated branch and checkout for you. You still launch your own
-agent CLI inside it: swarm-cli prepares the loop, it does not run your agent.
+CLI's `corpus worktree` sets up the isolated branch and checkout for you. You still launch your own
+agent CLI inside it: corpus-cli prepares the loop, it does not run your agent.
 
 ## The honest ceiling on parallelism
 
@@ -91,11 +91,11 @@ Pass.
 If the summary is missing or thin, ask for it before tearing anything down. The worktree still
 exists, and re-running a command costs seconds. Later, it's archaeology.
 
-Keep the worktree until the **review packet is finalized**. `swarm review` reconciles the live
+Keep the worktree until the **review packet is finalized**. `corpus review` reconciles the live
 worktree diff, so tearing it down at Close before review leaves you unable to re-run the reconcile.
 Two notes follow from the worktree being a checkout of a commit. First, **fill the `## Run summary`
-(and any `## Affected areas` edits) inside the worktree, not on the base.** `swarm review` reads the
-packet from the branch under review, so edits made on `main` after `swarm worktree create` are
+(and any `## Affected areas` edits) inside the worktree, not on the base.** `corpus review` reads the
+packet from the branch under review, so edits made on `main` after `corpus worktree create` are
 invisible. Second, **review before you merge.** A merged branch reconciled against `main` shows zero
 changed files — the work is already in the base — so the check has nothing to diff. Reconcile on the
 open branch, where the filled packet and the diff both live.
@@ -103,7 +103,7 @@ open branch, where the filled packet and the diff both live.
 When the agent cannot write the workspace — a dedicated workspace repo, a sandboxed runner — it
 emits the summary at the end of its run, and the runner or human relays it into the packet at
 handoff. For per-kind depth (a fix, a refactor, a migration, performance work), install the matching
-guide from [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills) on top of the kit's
+guide from [the corpus-skills catalog](https://github.com/jcosta33/corpus-skills) on top of the kit's
 implement-task.
 
 ## Self-review before handoff

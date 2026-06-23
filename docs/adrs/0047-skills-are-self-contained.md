@@ -12,33 +12,33 @@ superseded_by:
 
 ## Context
 
-ADR-0016 made skills **cite-don't-define**: a skill carries procedure and *cites* the authoritative
+ADR-0016 made skills **cite-don't-define**: a skill carries procedure and _cites_ the authoritative
 semantics (the `passes/` + `language/` references) rather than restating them. That kept skills thin and
 single-homed the semantics — but it assumed the agent **follows the citation** to load the authority when
-it matters. Building the first real adopter (`swarm-cli`) surfaced that this assumption is unsound for an
+it matters. Building the first real adopter (`corpus-cli`) surfaced that this assumption is unsound for an
 LLM agent:
 
 - The official Agent Skills design makes following a reference **the model's discretion** — bundled
   references load "as needed," and "files never referenced in a session never load at all." A skill that
-  is only *correct* when the agent follows a pointer is betting on an optional step.
+  is only _correct_ when the agent follows a pointer is betting on an optional step.
 - Corpus already carried the evidence against deep references: chained references "get partial-read and
   silently dropped" [[SKILLBP]](../research/sources.md#SKILLBP), which is why the body-shape rule was
   "one hop." The logical conclusion is **zero required hops**.
 - Non-salient / out-of-context material is underused (lost-in-the-middle, multi-turn decay
   [[LOSTMID]](../research/sources.md#LOSTMID)), and agents default to parametric priors over provided
-  context — so an agent handed a thin skill that *cites* "the verdict model" acts on its prior notion of
+  context — so an agent handed a thin skill that _cites_ "the verdict model" acts on its prior notion of
   it, often subtly wrong.
 
 Empirically, inspecting the kernel skills confirmed they were **already operationally self-contained**
 (the merge-gate predicate, verdict grammar, lint codes, etc. are stated inline); the `././passes/` /
 `././language/` links were already pure provenance. They were not load-bearing reads — they were the
-*only* reason the kernel had to ship `passes/` + `language/` at all (to keep those links from dangling).
+_only_ reason the kernel had to ship `passes/` + `language/` at all (to keep those links from dangling).
 
 ## Decision
 
 1. **A skill MUST be sufficient for the agent to perform its task correctly from the loaded skill body
-   plus the operative references the pass actually needs.** The pass *procedure* is inline (within the
-   skill + its one-hop bundled `references/`); the *shared closed-set facts* that several passes lean on
+   plus the operative references the pass actually needs.** The pass _procedure_ is inline (within the
+   skill + its one-hop bundled `references/`); the _shared closed-set facts_ that several passes lean on
    (the SOL grammar, the proof/verdict/adequacy rules, the IR/edge schema) live in the compact, shipped
    `reference/` cards a skill names. The agent's correctness MUST NOT depend on following a citation to an
    *un*shipped manual — but loading an operative card the running pass requires is reliable (it is needed
@@ -49,20 +49,20 @@ Empirically, inspecting the kernel skills confirmed they were **already operatio
    file the agent must open, and it does not link a file outside the shipped surface.
 3. **Single-sourced to prevent drift** (the ADR-0016 concern preserved): a skill's inlined rules are
    derived from the canonical spec (`docs/`) and eyeball-diffed on change — the same discipline ADR-0044
-   uses for the docs↔kernel twins. Self-contained *for the agent*; single-sourced *for integrity*; named
-   *for the human*.
+   uses for the docs↔kernel twins. Self-contained _for the agent_; single-sourced _for integrity_; named
+   _for the human_.
 
 This **refines ADR-0016**: "cite-don't-define" becomes "**inline-what's-needed, define-once-upstream,
-cite-by-name-for-provenance**." A skill still owns no semantics (it does not *redefine* them); it now
-*carries* the operational form rather than pointing at it.
+cite-by-name-for-provenance**." A skill still owns no semantics (it does not _redefine_ them); it now
+_carries_ the operational form rather than pointing at it.
 
 ## Alternatives considered
 
-| Alternative | Why rejected |
-| --- | --- |
-| Keep cite-don't-define (skills cite local `passes/`) | The cited hop is not reliably followed; the agent acts on a thin skill + its prior, not the cited authority. |
-| Ship a compact normative *card* the skills cite | Adopted for the **shared** facts (see [0048](./0048-installed-payload-is-the-runtime-surface.md)'s Update): an operative card the running pass needs is a *reliable* hop, unlike a skipped rationale citation. Per-pass *procedure* still inlines, not carded. |
-| Let each skill define semantics freely | Drift: copies diverge from the spec. Single-sourcing (decision 3) is what makes inlining safe. |
+| Alternative                                          | Why rejected                                                                                                                                                                                                                                                   |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Keep cite-don't-define (skills cite local `passes/`) | The cited hop is not reliably followed; the agent acts on a thin skill + its prior, not the cited authority.                                                                                                                                                   |
+| Ship a compact normative _card_ the skills cite      | Adopted for the **shared** facts (see [0048](./0048-installed-payload-is-the-runtime-surface.md)'s Update): an operative card the running pass needs is a _reliable_ hop, unlike a skipped rationale citation. Per-pass _procedure_ still inlines, not carded. |
+| Let each skill define semantics freely               | Drift: copies diverge from the spec. Single-sourcing (decision 3) is what makes inlining safe.                                                                                                                                                                 |
 
 ## Consequences
 
@@ -72,7 +72,7 @@ cite-by-name-for-provenance**." A skill still owns no semantics (it does not *re
   duplicated from the spec — managed by single-sourcing + eyeball-diff (decision 3), the same cost the
   docs↔kernel twins already pay.
 - **Neutral:** no closed-set or grammar change; the skill-as-SOFT-control rule (a skill owns no semantics)
-  is unchanged — it now *delivers* the rule inline instead of citing it.
+  is unchanged — it now _delivers_ the rule inline instead of citing it.
 
 ## Status
 

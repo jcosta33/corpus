@@ -4,10 +4,10 @@
 # This file is the machine-readable shadow of the core checks of
 # docs/reference/checks.md (the prose reference is canonical; this file
 # restates it as testable data) and of the packet templates at
-# the kit's templates/ (the swarm-starter-kit repo). It shadows only the core checks and packet schemas —
+# the kit's templates/ (the corpus-starter-kit repo). It shadows only the core checks and packet schemas —
 # the SOL catalogue is prose-only and lives in the reference.
 # Frontmatter lists are minimum-required: extra keys are legal and ignored.
-# The reference consumer is swarm-cli's `swarm check`; a reviewer can apply every rule by hand.
+# The reference consumer is corpus-cli's `corpus check`; a reviewer can apply every rule by hand.
 # The files under fixtures/ pin the expected results and guard this file and
 # the prose from drifting apart.
 #
@@ -16,7 +16,7 @@
 #   warning     a checker should flag it; teams may treat any warning as
 #               blocking by policy
 
-version: 0.9.0   # contract version of this file; bump on any rule change
+version: 0.9.0 # contract version of this file; bump on any rule change
 
 # --- Spec form selector -------------------------------------------------------
 # The default spec form is plain structured markdown. A spec opts into the
@@ -25,8 +25,8 @@ version: 0.9.0   # contract version of this file; bump on any rule change
 # never the surface (the per-domain equivalence pairs under fixtures/ prove it).
 spec_form:
   default: simple
-  selector: "format: sol"                                  # frontmatter key, per file; absent = simple form
-  frontmatter: [type, id, title, status, owner, sources]   # + the optional `format` key above
+  selector: "format: sol" # frontmatter key, per file; absent = simple form
+  frontmatter: [type, id, title, status, owner, sources] # + the optional `format` key above
 
 # --- Core checks ---------------------------------------------------------------
 # Mirrors the "Core checks" table in docs/reference/checks.md, row for row.
@@ -38,27 +38,27 @@ spec_form:
 # IDs are stable; the prose reference defines each rule in full — this list
 # pins id, name, and severity so a checker and the fixtures can cite them.
 core_checks:
-  - { id: C001, name: unique-ids,             severity: hard-error }
-  - { id: C002, name: duplicate-id,           severity: hard-error }   # frontmatter id: uniqueness across files; requirement ids are spec-scoped (ADR-0080)
-  - { id: C003, name: verify-with,            severity: hard-error }
-  - { id: C004, name: one-strength-word,      severity: warning    }   # must / must not / should / should not / may
-  - { id: C005, name: non-goals-present,      severity: warning    }
-  - { id: C006, name: open-questions-present, severity: warning    }
-  - { id: C007, name: no-tbd-at-ready,        severity: hard-error }   # open questions not marked non-blocking included
-  - { id: C008, name: sources-named,          severity: warning    }
-  - { id: C009, name: broken-source-link,     severity: hard-error }   # workspace refs only; bare tracker ids exempt
-  - { id: C010, name: preserves-refs-resolve, severity: hard-error }   # change plan: preserves: + guarantee-table ids resolve (PG-NNN = plan-local)
-  - { id: C011, name: waves-present,          severity: warning    }   # change plan: kind in {migration, rewrite, schema-change} => non-empty waves, each naming a verify step
-  - { id: C012, name: coverage,               severity: warning    }   # review packet: in-scope ids covered, no orphan rows; non-draft source spec only (ADR-0079)
-  - { id: C013, name: verify-evidence-binding, severity: warning    }   # review packet: a verify block's cmd matches the requirement's named Verify command + result=pass; non-draft source spec only; structured-form mismatch hard-capable, ships at warning (ADR-0083)
-  - { id: C014, name: do-not-change-touched,  severity: warning    }   # review packet: a Changed-files entry matches a task's Do-not-change entry (same matcher + {{placeholder}} skip as Affected areas); distinct from outsideScope; surfaced to Human attention (ADR-0086)
-  - { id: C015, name: citation-resolves,      severity: warning    }   # spec: an inline [[KEY]] citation resolves to a matching <a id="KEY"> anchor in the workspace's sources.md; skips when no sources.md is resolvable (no false-flag); v0 = dangling-anchor only (ADR-0087)
-  - { id: C016, name: pass-needs-evidence,    severity: hard-error }   # review packet (GATE path, swarm check <review>): a Pass coverage row with an empty Evidence cell is a structural contradiction — implements the pass-needs-evidence content_rule below. The reconcile path (swarm review) surfaces the same fact advisorily, never blocking (ADR-0077 D8); minted + measured 0-FP in ADR-0097
-  - { id: C017, name: orphaned-reference,     severity: warning    }   # workspace: a bundled .agents/skills/<name>/references/<file> not named anywhere in its sibling SKILL.md (orphan direction only — a load-bearing reference the guide forgot to point at); ADR-0097 (#45), measured 0-orphan on the real .agents/skills/ corpus (6 references)
-  # NOTE: oversized-packet (ADR-0094) is specified-not-shipped — a raw LOC/files band cannot be both useful and low-FP for code task diffs (measured ~15% FP at 600 LOC; ADR-0097). The diff size is surfaced as NEUTRAL INFO in `swarm review` instead, no band asserted.
+  - { id: C001, name: unique-ids, severity: hard-error }
+  - { id: C002, name: duplicate-id, severity: hard-error } # frontmatter id: uniqueness across files; requirement ids are spec-scoped (ADR-0080)
+  - { id: C003, name: verify-with, severity: hard-error }
+  - { id: C004, name: one-strength-word, severity: warning } # must / must not / should / should not / may
+  - { id: C005, name: non-goals-present, severity: warning }
+  - { id: C006, name: open-questions-present, severity: warning }
+  - { id: C007, name: no-tbd-at-ready, severity: hard-error } # open questions not marked non-blocking included
+  - { id: C008, name: sources-named, severity: warning }
+  - { id: C009, name: broken-source-link, severity: hard-error } # workspace refs only; bare tracker ids exempt
+  - { id: C010, name: preserves-refs-resolve, severity: hard-error } # change plan: preserves: + guarantee-table ids resolve (PG-NNN = plan-local)
+  - { id: C011, name: waves-present, severity: warning } # change plan: kind in {migration, rewrite, schema-change} => non-empty waves, each naming a verify step
+  - { id: C012, name: coverage, severity: warning } # review packet: in-scope ids covered, no orphan rows; non-draft source spec only (ADR-0079)
+  - { id: C013, name: verify-evidence-binding, severity: warning } # review packet: a verify block's cmd matches the requirement's named Verify command + result=pass; non-draft source spec only; structured-form mismatch hard-capable, ships at warning (ADR-0083)
+  - { id: C014, name: do-not-change-touched, severity: warning } # review packet: a Changed-files entry matches a task's Do-not-change entry (same matcher + {{placeholder}} skip as Affected areas); distinct from outsideScope; surfaced to Human attention (ADR-0086)
+  - { id: C015, name: citation-resolves, severity: warning } # spec: an inline [[KEY]] citation resolves to a matching <a id="KEY"> anchor in the workspace's sources.md; skips when no sources.md is resolvable (no false-flag); v0 = dangling-anchor only (ADR-0087)
+  - { id: C016, name: pass-needs-evidence, severity: hard-error } # review packet (GATE path, corpus check <review>): a Pass coverage row with an empty Evidence cell is a structural contradiction — implements the pass-needs-evidence content_rule below. The reconcile path (corpus review) surfaces the same fact advisorily, never blocking (ADR-0077 D8); minted + measured 0-FP in ADR-0097
+  - { id: C017, name: orphaned-reference, severity: warning } # workspace: a bundled .agents/skills/<name>/references/<file> not named anywhere in its sibling SKILL.md (orphan direction only — a load-bearing reference the guide forgot to point at); ADR-0097 (#45), measured 0-orphan on the real .agents/skills/ corpus (6 references)
+  # NOTE: oversized-packet (ADR-0094) is specified-not-shipped — a raw LOC/files band cannot be both useful and low-FP for code task diffs (measured ~15% FP at 600 LOC; ADR-0097). The diff size is surfaced as NEUTRAL INFO in `corpus review` instead, no band asserted.
 
 # --- The task packet -----------------------------------------------------------
-# Keyed to the kit's templates/task.md (swarm-starter-kit repo): a well-formed task presents every
+# Keyed to the kit's templates/task.md (corpus-starter-kit repo): a well-formed task presents every
 # required H2 section and satisfies every content rule.
 task_file:
   frontmatter: [type, id, source, scope, status]
@@ -71,7 +71,7 @@ task_file:
     - Verify
     - Agent instructions
     - Findings
-    - Run summary              # the handoff digest — cites the Verify pastes, never re-pastes them
+    - Run summary # the handoff digest — cites the Verify pastes, never re-pastes them
   content_rules:
     - id: non-empty-paste
       applies_to: Verify
@@ -90,10 +90,10 @@ task_file:
         when its frontmatter status is the terminal value `closed`.
 
 # --- The review packet ----------------------------------------------------------
-# Keyed to the kit's templates/review.md (swarm-starter-kit repo).
+# Keyed to the kit's templates/review.md (corpus-starter-kit repo).
 review_file:
   frontmatter: [type, id, task, pr, status]
-  status_enum: [draft, pass, waived, blocked, needs-human]   # waived = merged with a recorded waiver (who · rows · why · expiry)
+  status_enum: [draft, pass, waived, blocked, needs-human] # waived = merged with a recorded waiver (who · rows · why · expiry)
   required_sections:
     - Summary
     - Changed files
@@ -101,15 +101,15 @@ review_file:
     - Human attention
     - Suggested decision
   optional_sections:
-    - Change-plan coverage      # only when the task executes a change plan; same columns
-    - Task status               # v0.4.1: closeout confirmation — board row + the task packet's
-                                # own status: re-synced together; recommended, not required
-                                # (pre-0.4.1 packets without it stay valid)
+    - Change-plan coverage # only when the task executes a change plan; same columns
+    - Task status # v0.4.1: closeout confirmation — board row + the task packet's
+      # own status: re-synced together; recommended, not required
+      # (pre-0.4.1 packets without it stay valid)
   coverage_table:
     columns: [ID, Result, Evidence, Human attention]
     result_enum: [Pass, Fail, Unverified, Blocked]
   content_rules:
-    - id: pass-needs-evidence   # the packet-side face of non-empty-paste; implemented as core check C016 (the GATE path blocks an empty-Evidence Pass; the reconcile path surfaces it advisorily — ADR-0097)
+    - id: pass-needs-evidence # the packet-side face of non-empty-paste; implemented as core check C016 (the GATE path blocks an empty-Evidence Pass; the reconcile path surfaces it advisorily — ADR-0097)
       applies_to: Requirement coverage, Change-plan coverage
       severity: hard-error
       rule: >-
@@ -139,7 +139,7 @@ review_file:
         delegated task (v0.4.1). The mechanical part a checker can flag: a
         changed file outside the task's Affected areas that no Human attention
         entry mentions.
-    - id: coverage                # C012; ADR-0079
+    - id: coverage # C012; ADR-0079
       applies_to: Requirement coverage
       severity: warning
       rule: >-
@@ -178,8 +178,18 @@ review_file:
 # table. Advisory: no slot is required, and absence never fails a check.
 commands:
   level: advisory
-  slots: [cmdInstall, cmdBuild, cmdTest, cmdLint, cmdTypecheck, cmdFormat,
-          cmdValidate, cmdBenchmark, cmdSecurity]
+  slots:
+    [
+      cmdInstall,
+      cmdBuild,
+      cmdTest,
+      cmdLint,
+      cmdTypecheck,
+      cmdFormat,
+      cmdValidate,
+      cmdBenchmark,
+      cmdSecurity,
+    ]
   rule: >-
     A named slot with no Commands row resolves to nothing — the claim it backs
     reviews as Unverified until a real command and its pasted output exist.
@@ -206,6 +216,6 @@ fixtures:
   positive: fixtures/conformant-task.md
   negative: fixtures/violations.md
   domains: [fixtures/auth-refresh, fixtures/payment-5xx, fixtures/checkout]
-  intake: fixtures/intake/intake-jira-123.md          # valid intake; expectation pinned in its trailing note
-  transformation: fixtures/transformation             # inventory + change plan; EXPECTED.md pins C010/C011
+  intake: fixtures/intake/intake-jira-123.md # valid intake; expectation pinned in its trailing note
+  transformation: fixtures/transformation # inventory + change plan; EXPECTED.md pins C010/C011
   prose: fixtures/prose-corpus/labeled.yaml

@@ -1,6 +1,6 @@
 ---
 type: adr
-id: 0050-swarm-is-a-spec-repo-discipline
+id: 0050-corpus-is-a-spec-repo-discipline
 status: accepted
 created: 2026-06-07
 updated: 2026-06-07
@@ -27,7 +27,7 @@ execution scratch together. Pushing on real adoption surfaced that this is the w
   process; developers pick it up. That is a **spec/documentation repo**, separate from code.
 - **The code repo must stay pristine.** Developers reject tools that litter their codebase. A repo should
   hold its real sources of truth and its code — not a tool's working files.
-- **SOL is an authoring aid, not a reading burden.** SOL's English-shaped keywords force the *author* to be
+- **SOL is an authoring aid, not a reading burden.** SOL's English-shaped keywords force the _author_ to be
   unambiguous, testable, and bounded; a capable agent **reads** a good SOL spec with no grammar manual. So a
   code repo needs **no SOL-reading skill and no reference cards** — the spec itself is the interface.
 - **The PR is already the trace.** A trace ("obligation X is satisfied by this code, here's the evidence")
@@ -37,7 +37,7 @@ execution scratch together. Pushing on real adoption surfaced that this is the w
   code repo and opens a PR. Adoption should be designed around that, not around an automated compiler.
 
 This maps cleanly onto Corpus's own model: **spec repo = desired truth; code repo = reality; a coverage
-record = observed satisfaction.** The intent/reality split *is* the repo boundary.
+record = observed satisfaction.** The intent/reality split _is_ the repo boundary.
 
 ## Decision
 
@@ -62,9 +62,9 @@ record = observed satisfaction.** The intent/reality split *is* the repo boundar
    code-repo default.
 5. **Multi-repo specs ride existing SOL machinery.** Namespaced obligation IDs and cross-spec references
    (`spec-id#AC-001`) already let a code repo's PR name an obligation in the central spec. No new grammar.
-6. **Drop the per-repo version marker.** Remove the adopter-side version file (the `.swarm-version` mirror)
+6. **Drop the per-repo version marker.** Remove the adopter-side version file (the `.corpus-version` mirror)
    and conformance check (d). The only load-bearing version is the **language** version, which already
-   travels in each spec's frontmatter (`swarm_language: SOL/0.1`). This refines the package axis of
+   travels in each spec's frontmatter (`corpus_language: SOL/0.1`). This refines the package axis of
    [ADR-0041](./0041-two-axis-versioning.md); the language axis is unchanged.
 
 This **refines [ADR-0049](./0049-minimal-install-no-mount-no-imposed-workspace.md)** — its six `.agents/`
@@ -74,12 +74,12 @@ folders are now the **spec repo's** authoring workspace; a code repo gets near-z
 
 ## Alternatives considered
 
-| Alternative | Why rejected |
-| --- | --- |
-| Keep the single adopted-repo model (0049 as-is) | Doesn't serve multi-repo / cross-cutting specs or the enterprise author-vs-consume split, and still puts Corpus files in the developer's code repo. |
-| Require an implementing kit / SOL-reading skill in every code repo | Contradicts "SOL is self-legible to a reader" and "the code repo is the developer's." The spec is the interface; mandating skills is pollution. |
-| Keep structured `trace.md`/`review.md` in the code repo by default | Re-invents the PR + CI + review, which already are the trace/verdict. Reserve structured traces for audit-heavy cases. |
-| Pin specs into code repos via git submodule/URL | Heavier machinery than the "humans are the glue" reality needs; reference-by-ID in the PR is lighter and matches how teams already cite RFCs/ADRs. (Left open as an opt-in.) |
+| Alternative                                                        | Why rejected                                                                                                                                                                 |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Keep the single adopted-repo model (0049 as-is)                    | Doesn't serve multi-repo / cross-cutting specs or the enterprise author-vs-consume split, and still puts Corpus files in the developer's code repo.                          |
+| Require an implementing kit / SOL-reading skill in every code repo | Contradicts "SOL is self-legible to a reader" and "the code repo is the developer's." The spec is the interface; mandating skills is pollution.                              |
+| Keep structured `trace.md`/`review.md` in the code repo by default | Re-invents the PR + CI + review, which already are the trace/verdict. Reserve structured traces for audit-heavy cases.                                                       |
+| Pin specs into code repos via git submodule/URL                    | Heavier machinery than the "humans are the glue" reality needs; reference-by-ID in the PR is lighter and matches how teams already cite RFCs/ADRs. (Left open as an opt-in.) |
 
 ## Consequences
 
@@ -89,11 +89,11 @@ folders are now the **spec repo's** authoring workspace; a code repo gets near-z
 - **Negative:** teams stand up two repos, and the spec↔code reconciliation crosses a repo boundary. But
   there is **no automated loop to break** — reconciliation is human/agent-mediated today, so the spec is
   simply pulled from a central place. Trust is **earned, not enforced**: a great spec makes agent output
-  *likely and checkable*, not guaranteed; the guarantee comes from spec quality + the developer running the
+  _likely and checkable_, not guaranteed; the guarantee comes from spec quality + the developer running the
   verify discipline.
 - **Neutral:** the obligation model, every closed set, the SOL grammar, the nine passes, and the
-  intent/reality/observed reconciliation **design** are unchanged — only *where files live* and *what a code
-  repo carries* change.
+  intent/reality/observed reconciliation **design** are unchanged — only _where files live_ and _what a code
+  repo carries_ change.
 
 ## Status
 

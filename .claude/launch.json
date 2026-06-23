@@ -2,9 +2,9 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "swarm-website",
+      "name": "corpus-website",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "/Users/josecosta/dev/swarm-website", "run", "dev", "--", "-p", "4321"],
+      "runtimeArgs": ["--prefix", "/Users/josecosta/dev/corpus-website", "run", "dev", "--", "-p", "4321"],
       "port": 4321
     }
   ]

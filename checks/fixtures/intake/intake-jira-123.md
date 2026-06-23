@@ -31,7 +31,7 @@ EXPECTED — pinned results for this fixture:
 - The vague asks ("seem to", "probably related", the TBD) stay verbatim by design — the
   intake preserves what was actually asked; the spec that names this file in its `sources:`
   is where they get resolved or lifted into Open questions. No check fires on intake prose.
-- Spec checks (C001–C009, SOL codes) do not apply to an intake. A future `swarm check`
+- Spec checks (C001–C009, SOL codes) do not apply to an intake. A future `corpus check`
   would validate only the frontmatter shape; until then this is a convention — nothing in
   this repository enforces it.
 -->

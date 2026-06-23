@@ -10,12 +10,12 @@ updated: 2026-06-22
 
 ## Context
 
-Corpus exists for the review step, but the canon under-stated *what review is for* and *how to
-weight it*. A web-verified evidence pass (swarm-hq #52; sources below, each verified June 2026 with
+Corpus exists for the review step, but the canon under-stated _what review is for_ and _how to
+weight it_. A web-verified evidence pass (corpus-hq #52; sources below, each verified June 2026 with
 honest tiers) settles five framing questions — and corrects two of the issue's own framings.
 
 - **Review's primary payload is the maintainability/design layer tests cannot reach.** Roughly 75%
-  of defects found in review do not affect visible functionality — they are *evolvability* defects
+  of defects found in review do not affect visible functionality — they are _evolvability_ defects
   (documentation, structure, readability) execution-based QA cannot detect ([[MANTYLA09]]). In modern
   review, defect comments are a minority (~14%) while code-improvement comments dominate (~29%);
   review also delivers knowledge transfer and team awareness ([[BACCHELLI13]]). So review is
@@ -26,7 +26,7 @@ honest tiers) settles five framing questions — and corrects two of the issue's
   rationale). Reinforces ADR-0056.
 - **Two is the convergent reviewer optimum; participation, not coverage, is the quality signal.**
   Modern review converged on ~2 reviewers, with little marginal yield beyond ([[RIGBY13]]); low
-  reviewer *participation* (engagement) is estimated to add up to **five** post-release defects
+  reviewer _participation_ (engagement) is estimated to add up to **five** post-release defects
   (vs up to two for low coverage) — "coverage alone does not guarantee" quality ([[MCINTOSH14]]).
 - **Exercising the running app is a distinct, valuable, but unreliable verifier.** An LLM agent
   driving live apps found 53 real bugs (35 fixed) ([[GPTDROID]]); exploratory exercise matches
@@ -39,36 +39,36 @@ honest tiers) settles five framing questions — and corrects two of the issue's
 
 1. **Review value is framed maintainability/design-first and complementary to tests**
    (`docs/08-reviewing-output.md`). Evolvability findings are first-class in the packet, not an
-   afterthought; tests/CI own functional regressions, review owns the layer they cannot see. *Level:
-   convention.* ([[MANTYLA09]], [[BACCHELLI13]])
+   afterthought; tests/CI own functional regressions, review owns the layer they cannot see. _Level:
+   convention._ ([[MANTYLA09]], [[BACCHELLI13]])
 
 2. **Reviewer ≠ author, as a design-rationale rule** reinforcing ADR-0056's no-self-verdict — stated
    as the desk-checking principle, **not** an enforcement-sounding "evidence shows much more
-   effective." *Level: design rationale.* ([[WIEGERS95]])
+   effective." _Level: design rationale._ ([[WIEGERS95]])
 
 3. **Default to two independent, distinct-lens reviewers; escalate to a third for high-risk/
    high-diffusion changes.** The lenses are distinct aims, all skeptical — e.g. correctness /
    maintainability+design / security+repro. Agent reviewers are cheap, so a third is easier to
-   justify than the human-coordination literature implies. *Level: checklist.* ([[RIGBY13]], [[MCINTOSH14]],
+   justify than the human-coordination literature implies. _Level: checklist._ ([[RIGBY13]], [[MCINTOSH14]],
    high-diffusion per [ADR-0094](./0094-decomposition-and-risk-weighted-review.md))
 
 4. **Participation is the gate, not the checkbox.** A `Pass` requires evidence of substantive
    engagement (a finding raised, a re-run, a reasoned result). **An empty-evidence `Pass` reads
-   `Unverified`** — *not a new "Blocked" state.* (Refinement of #52's "Pass → Blocked": `Unverified`
+   `Unverified`** — _not a new "Blocked" state._ (Refinement of #52's "Pass → Blocked": `Unverified`
    is the precise existing review-result for "no evidence supports this result"; `Blocked` means a
    precondition prevents proceeding. The protective intent is identical and **already ships** — the
-   swarm-cli reconcile flags an empty-evidence Pass row as `Unverified`, AC-020 — so no new semantics
-   or swarm-cli change is needed.) *Level: convention, with the shipped reconcile as the toolable
-   realization.* ([[MCINTOSH14]] is the warrant)
+   corpus-cli reconcile flags an empty-evidence Pass row as `Unverified`, AC-020 — so no new semantics
+   or corpus-cli change is needed.) _Level: convention, with the shipped reconcile as the toolable
+   realization._ ([[MCINTOSH14]] is the warrant)
 
 5. **Agent-runs-the-app is evidence, not a verdict.** The author-agent **attaches its run**
    (accessibility snapshot, console, network) as proof; an **independent reviewer-agent re-runs the
    journey and judges**. Prefer deterministic accessibility-tree tooling ([[PLAYWRIGHTMCP]]) over
-   pixel/vision; an autonomous run never certifies a change. *Level: convention/toolable (the tooling
-   is BYO; nothing enforces it).* ([[GPTDROID]], [[ITKONEN14]], [[WEBAGENTILLUSION]])
+   pixel/vision; an autonomous run never certifies a change. _Level: convention/toolable (the tooling
+   is BYO; nothing enforces it)._ ([[GPTDROID]], [[ITKONEN14]], [[WEBAGENTILLUSION]])
 
-6. **`swarm-reviewer` / `swarm-challenger` carry the distinct-lens framing** and keep "issue no
-   verdict; the human owns the result" (swarm-agents). *Level: convention.*
+6. **`corpus-reviewer` / `corpus-challenger` carry the distinct-lens framing** and keep "issue no
+   verdict; the human owns the result" (corpus-agents). _Level: convention._
 
 ## Consequences
 
@@ -84,7 +84,7 @@ honest tiers) settles five framing questions — and corrects two of the issue's
 
 ## Propagation
 
-`docs/08-reviewing-output.md` (the five framing rules), the `swarm-reviewer`/`swarm-challenger`
-definitions in `swarm-agents`, `docs/research/sources.md` (the eight entries above). No review-packet
-*format* change (ADR-0058/0089 stand); the participation gate is the existing empty-evidence→Unverified
+`docs/08-reviewing-output.md` (the five framing rules), the `corpus-reviewer`/`corpus-challenger`
+definitions in `corpus-agents`, `docs/research/sources.md` (the eight entries above). No review-packet
+_format_ change (ADR-0058/0089 stand); the participation gate is the existing empty-evidence→Unverified
 reconcile, not a new field or check.

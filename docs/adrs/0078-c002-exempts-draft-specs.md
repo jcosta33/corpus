@@ -12,10 +12,10 @@ updated: 2026-06-14
 
 C002 (`duplicate-id`, hard error) has two clauses: no two files claim the same frontmatter `id:`,
 and **no requirement ID is reused across specs** — the second clause makes a bare `AC-001` an
-unambiguous workspace-wide reference. Dogfooding the reference CLI (swarm-cli) against the real
-starter kit surfaced a tension the contract did not resolve: `swarm new spec <slug>` scaffolds a
+unambiguous workspace-wide reference. Dogfooding the reference CLI (corpus-cli) against the real
+starter kit surfaced a tension the contract did not resolve: `corpus new spec <slug>` scaffolds a
 **draft** spec carrying the stub requirement `AC-001` (matching the kit's spec template). Scaffolding
-two specs and running `swarm check` before editing them therefore reds the whole workspace —
+two specs and running `corpus check` before editing them therefore reds the whole workspace —
 `requirement id AC-001 is reused across 2 specs` — through no fault of the author, who has not yet
 written any real requirements.
 
@@ -46,7 +46,7 @@ the prose semantics in `reference/checks.md` are clarified.
   flipping a spec out of `draft`, at which point C002 enforces uniqueness against all other non-draft
   specs.
 - The honesty bar holds: `reference/checks.md` now states the non-draft scope, and the reference
-  implementation (`swarm-cli` `Core/checkWorkspace`) collects requirement ids for the cross-spec
+  implementation (`corpus-cli` `Core/checkWorkspace`) collects requirement ids for the cross-spec
   check from every spec whose `status` is not `draft`.
 - This does not relax uniqueness for finalized work — two non-draft specs reusing `AC-001` still fail
   C002 — and it does not resolve the deeper, separate question of whether requirement ids should be

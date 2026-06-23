@@ -10,12 +10,12 @@ updated: 2026-06-16
 
 ## Context
 
-Field feedback (swarm-hq issue #5) asked for a "Platform Constraints & Hazards" forcing-function
+Field feedback (corpus-hq issue #5) asked for a "Platform Constraints & Hazards" forcing-function
 section so platform research — quota, permissions, rate limits, runtime/sandbox constraints — is
-done *before* the acceptance criteria, when it's cheap, rather than discovered mid-build. The
+done _before_ the acceptance criteria, when it's cheap, rather than discovered mid-build. The
 question was whether to add a section, and to which artifact at which tier.
 
-Two facts narrowed it. ADR-0076 already shipped the runtime-*hazard* half this cycle
+Two facts narrowed it. ADR-0076 already shipped the runtime-_hazard_ half this cycle
 (precondition-as-first-requirement, rare-runtime-state simulation, the runtime-proof review rule,
 the runtime-isolation caution). And both happy-path docs already warn that a section every author
 must consider on already-clear work is exactly the ceremony that measurably hurts outcomes — so a
@@ -38,14 +38,15 @@ The frozen core spec section list (ADR-0058) and the change-plan format (ADR-006
 no `checks.yaml` change; no new template heading for any check to reconcile against.
 
 **Rejected:**
-- *(a) a new section in the spec template* — largest blast radius for the option most redundant with
+
+- _(a) a new section in the spec template_ — largest blast radius for the option most redundant with
   Open questions, and it would amend ADR-0058's frozen section list.
-- *(b) a section in the change-plan template* — mostly duplicates the existing Risk-areas / Review-focus
+- _(b) a section in the change-plan template_ — mostly duplicates the existing Risk-areas / Review-focus
   fields.
 
 **Escalation path (deferred, demand-gated):** if field evidence later shows platform-bound adopters
 re-deriving structure, add a standalone `advanced/platform-constraints.md` modeled on
-`advanced/threat-model.md` — an observation-only *input* doc that feeds the spec via `sources[]`,
+`advanced/threat-model.md` — an observation-only _input_ doc that feeds the spec via `sources[]`,
 with binding constraints restated as spec requirements — never an amendment to the frozen core
 section list. This ledger row exists to record that (a)/(b) were considered and declined, so the
 choice is not silently re-litigated.
@@ -58,4 +59,4 @@ choice is not silently re-litigated.
 - The advisory rule carries no gate (consistent with the rest of the writing rules and the
   ceremony-on-clear-work caution); a team that wants teeth can treat it as a review checklist item.
 - If the escalation is ever taken, it reuses the established `threat-model` input-doc pattern, so the
-  swarm-cli reconcile and the kit advanced tier treat it like any other optional input doc.
+  corpus-cli reconcile and the kit advanced tier treat it like any other optional input doc.

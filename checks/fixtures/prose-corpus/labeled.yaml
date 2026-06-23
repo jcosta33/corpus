@@ -3,8 +3,8 @@
 # Each item is one short requirement-prose span paired with its ground-truth label. The
 # label is either `clean` (nothing should fire) or the single `SOL-Pxxx` code from the
 # checks catalogue (docs/reference/checks.md) that should fire, with the reason. Nothing
-# here runs: this is the gold set a writing-rules detector — swarm-cli's
-# `swarm check`, or a human reviewer — is scored against to compute the
+# here runs: this is the gold set a writing-rules detector — corpus-cli's
+# `corpus check`, or a human reviewer — is scored against to compute the
 # precision/recall baseline in ./README.md.
 #
 # Field meaning:
@@ -24,7 +24,6 @@
 # the same-line observable criterion, so a detector that confuses them is caught.
 
 items:
-
   # --- SOL-P005: vague-quality / high-risk word, no same-line observable criterion ---
 
   - id: P-001

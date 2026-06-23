@@ -28,17 +28,17 @@ checks specs.
 3. **Reference values are producer-internal.** The closed-set cardinalities and their reconciliation
    checks live only in `conformance/README.md` (producer note) and the cheatsheet appendix. Adopter-facing
    pages list values, never counts.
-4. **The corpus is "checks fixtures":** test data for `docs/reference/checks.md`, consumed by swarm-cli.
+4. **The corpus is "checks fixtures":** test data for `docs/reference/checks.md`, consumed by corpus-cli.
    Fixtures pin expected results per the two-way severity split (hard error / warning); each spec-format
    fixture domain ships a simple/SOL **equivalence pair** asserting both surfaces encode the identical
    requirement record (the anti-fork proof), plus intake, change-plan, and inventory fixtures.
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
+| Alternative                               | Why weaker                                                                   |
+| ----------------------------------------- | ---------------------------------------------------------------------------- |
 | Keep the three-clause definition + ladder | Measures adopters against producer concerns; the reports name it as friction |
-| Drop fixtures | swarm-cli loses its oracle; the checks contract becomes untestable |
+| Drop fixtures                             | corpus-cli loses its oracle; the checks contract becomes untestable          |
 
 ## Consequences
 
@@ -52,7 +52,7 @@ refines ADR-0063.
 
 ## Propagation
 
-conformance/ (README, yaml, fixtures), checks.md, cheatsheet appendix, evals, swarm-cli.
+conformance/ (README, yaml, fixtures), checks.md, cheatsheet appendix, evals, corpus-cli.
 
 > **Ledger note (2026-06-12):** the checks fixtures' home renamed to `checks/` by ADR-0070;
 > step-output scoring became the step-bars reference page per ADR-0071.

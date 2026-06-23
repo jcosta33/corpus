@@ -1,11 +1,11 @@
 # Checks fixtures
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
-Test data for [the checks reference](../docs/reference/checks.md), consumed by swarm-cli.
+Test data for [the checks reference](../docs/reference/checks.md), consumed by corpus-cli.
 Every check in that reference is a claim about what a correct checker reports on a given
 file; this directory pins those reports as fixtures, per the two-way severity split
-(hard error / warning). swarm-cli's `swarm check` is the reference consumer — its
+(hard error / warning). corpus-cli's `corpus check` is the reference consumer — its
 test suite runs against these files — and a reviewer working by hand can use them the
 same way: apply the checks, compare against the pinned expectation.
 
@@ -18,11 +18,11 @@ The whole bar, in one breath: a workspace is valid when **(a)** it has a populat
 `AGENTS.md` (aim for ~100 lines — guidance, not a cap), **(b)** the core templates are
 present, and **(c)** at least one spec satisfies the core checks of
 [the checks reference](../docs/reference/checks.md). Nothing else is required. This is a
-convention — nothing in this repository enforces it; `swarm check` can verify clause (c).
+convention — nothing in this repository enforces it; `corpus check` can verify clause (c).
 
 ## The two evidence rules
 
-Checklist level — review is expected to inspect both; `swarm check`'s packet mode can
+Checklist level — review is expected to inspect both; `corpus check`'s packet mode can
 flag the mechanical parts:
 
 - **`non-empty-paste`** — a completion claim binds to pasted output or a CI link, never a
@@ -33,20 +33,20 @@ flag the mechanical parts:
 
 ## What is in this directory
 
-| Path | Holds |
-|---|---|
-| [`checks.yaml`](./checks.yaml) | The checks contract as data: spec-form selector, core check list with severities, task and review packet schemas, the evidence rules, advisory command slots, placeholder namespaces. |
-| [`fixtures/conformant-task.md`](./fixtures/conformant-task.md) | A task packet that passes every task check — the positive oracle. |
-| [`fixtures/violations.md`](./fixtures/violations.md) | One minimal negative fixture per violation class, each with the check it trips and the expected report. |
+| Path                                                                      | Holds                                                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`checks.yaml`](./checks.yaml)                                            | The checks contract as data: spec-form selector, core check list with severities, task and review packet schemas, the evidence rules, advisory command slots, placeholder namespaces.                                                                                                |
+| [`fixtures/conformant-task.md`](./fixtures/conformant-task.md)            | A task packet that passes every task check — the positive oracle.                                                                                                                                                                                                                    |
+| [`fixtures/violations.md`](./fixtures/violations.md)                      | One minimal negative fixture per violation class, each with the check it trips and the expected report.                                                                                                                                                                              |
 | `fixtures/auth-refresh/` · `fixtures/payment-5xx/` · `fixtures/checkout/` | Three end-to-end domains: the spec in both forms (the equivalence pair), a task packet, a review packet, a finding, and an `EXPECTED.md` pinning what a checker must report for the spec, change-plan, and review-checklist checks (C001–C011 + the content rules) at each artifact. |
-| [`fixtures/prose-corpus/`](./fixtures/prose-corpus/README.md) | The labeled writing-rules corpus: prose spans with ground-truth labels for the advisory watchlist, plus the precision/recall baseline any detector is scored against. |
-| `fixtures/intake/` | One valid intake snapshot; the expectation is pinned in the file's trailing note. |
-| `fixtures/transformation/` | A valid inventory + change-plan pair; its `EXPECTED.md` pins `C010 preserves-refs-resolve` and `C011 waves-present`. |
+| [`fixtures/prose-corpus/`](./fixtures/prose-corpus/README.md)             | The labeled writing-rules corpus: prose spans with ground-truth labels for the advisory watchlist, plus the precision/recall baseline any detector is scored against.                                                                                                                |
+| `fixtures/intake/`                                                        | One valid intake snapshot; the expectation is pinned in the file's trailing note.                                                                                                                                                                                                    |
+| `fixtures/transformation/`                                                | A valid inventory + change-plan pair; its `EXPECTED.md` pins `C010 preserves-refs-resolve` and `C011 waves-present`.                                                                                                                                                                 |
 
 The review-packet **reconcile** checks — `C012 coverage`, `C013 verify-evidence-binding`,
 `C014 do-not-change-touched` — are pinned as negative fixtures in
 [`fixtures/violations.md`](./fixtures/violations.md) (V18 / V19 / V17). Their positive domain oracle
-(a clean coverage table, a consistent verify block, a clean diff) lands coordinated with the swarm-cli
+(a clean coverage table, a consistent verify block, a clean diff) lands coordinated with the corpus-cli
 implementation per [ADR-0079](../docs/adrs/0079-c012-coverage-check.md) /
 [ADR-0083](../docs/adrs/0083-verify-evidence-reconcile.md) /
 [ADR-0086](../docs/adrs/0086-deterministic-review-scanning-decision.md), not in the domain `EXPECTED.md`
@@ -58,11 +58,11 @@ Each fixture domain covers the same ground as one worked example in `docs/exampl
 the example teaches the workflow; the fixture pins the checker results over equivalent
 artifacts:
 
-| Fixture domain | Worked example |
-|---|---|
+| Fixture domain           | Worked example                                                 |
+| ------------------------ | -------------------------------------------------------------- |
 | `fixtures/auth-refresh/` | [feature-from-ticket](../docs/examples/feature-from-ticket.md) |
-| `fixtures/payment-5xx/` | [bug-fix](../docs/examples/bug-fix.md) |
-| `fixtures/checkout/` | [large-pr-review](../docs/examples/large-pr-review.md) |
+| `fixtures/payment-5xx/`  | [bug-fix](../docs/examples/bug-fix.md)                         |
+| `fixtures/checkout/`     | [large-pr-review](../docs/examples/large-pr-review.md)         |
 
 ## The equivalence pairs (the anti-fork proof)
 
@@ -84,23 +84,23 @@ values rather than counting them (a numeral-bearing model name — the six-step 
 nine-step lifecycle — is a name, not a registry copy). A change to any set updates both
 places — and the fixtures that exercise it — in the same commit.
 
-| Closed set | Count | Values |
-|---|---|---|
-| Block types (SOL form) | 5 | `REQ`, `CONSTRAINT`, `INVARIANT`, `INTERFACE`, `QUESTION` |
-| Strength words | 5 | must, must not, should, should not, may (SOL form: the same words uppercase) |
-| Review results | 7 (4 core + 3 lifecycle) | core: Pass, Fail, Unverified, Blocked · lifecycle: Waived, Stale, Contradicted |
-| Verification methods | 9 | `static`, `test`, `contract`, `property`, `model`, `perf`, `security`, `manual`, `monitor` |
-| Loop steps | 6 (+ 2 conditional) | Pull, Spec, Task, Run, Review, Close (+ Inventory, Change Plan for structural work) |
-| Lifecycle steps (advanced) | 9 | author, lint, improve, lower, decompose, implement, verify, review, promote |
-| Improve operations | 10 | NORMALIZE, ATOMIZE, CONCRETIZE, QUANTIFY, BIND, SCOPE, CLARIFY, DECONFLICT, COMPRESS, PROMOTE |
-| Check layers | 5 | S (structure), P (prose), M (cross-references), V (verification), O (splitting work) — code form `SOL-<LAYER>NNN` |
+| Closed set                 | Count                    | Values                                                                                                            |
+| -------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| Block types (SOL form)     | 5                        | `REQ`, `CONSTRAINT`, `INVARIANT`, `INTERFACE`, `QUESTION`                                                         |
+| Strength words             | 5                        | must, must not, should, should not, may (SOL form: the same words uppercase)                                      |
+| Review results             | 7 (4 core + 3 lifecycle) | core: Pass, Fail, Unverified, Blocked · lifecycle: Waived, Stale, Contradicted                                    |
+| Verification methods       | 9                        | `static`, `test`, `contract`, `property`, `model`, `perf`, `security`, `manual`, `monitor`                        |
+| Loop steps                 | 6 (+ 2 conditional)      | Pull, Spec, Task, Run, Review, Close (+ Inventory, Change Plan for structural work)                               |
+| Lifecycle steps (advanced) | 9                        | author, lint, improve, lower, decompose, implement, verify, review, promote                                       |
+| Improve operations         | 10                       | NORMALIZE, ATOMIZE, CONCRETIZE, QUANTIFY, BIND, SCOPE, CLARIFY, DECONFLICT, COMPRESS, PROMOTE                     |
+| Check layers               | 5                        | S (structure), P (prose), M (cross-references), V (verification), O (splitting work) — code form `SOL-<LAYER>NNN` |
 
 Reconciliation duties this note carries:
 
 - The core check IDs and severities in [`checks.yaml`](./checks.yaml) match
   [the checks reference](../docs/reference/checks.md) row for row.
 - The task and review section lists in [`checks.yaml`](./checks.yaml) match
-  the kit's `templates/` (the swarm-starter-kit repo) heading for heading.
+  the kit's `templates/` (the corpus-starter-kit repo) heading for heading.
 - Every fixture's pinned expectation agrees with both; a fixture that disagrees means
   the contract, the prose, or the fixture is wrong — find out which before shipping.
 

@@ -1,6 +1,6 @@
 # Artifact formats
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 This is the catalogue of every file type a Corpus workspace may contain: what each artifact is
 for, its frontmatter, its required sections, and the few rules that carry real weight. The full
@@ -18,7 +18,7 @@ The type values:
 > `intake` · `spec` · `task` · `review` · `finding` · `status` · `inventory` · `change-plan` ·
 > `audit` · `bug-report` · `adr` · `research` · `prd` · `rfc` · `threat-model` · `release-note`
 
-This is a convention — nothing in this repo enforces it. swarm-cli's `swarm check` reads
+This is a convention — nothing in this repo enforces it. corpus-cli's `corpus check` reads
 `type:` to decide what to check; until you run a tool like that, treat a missing or wrong `type:`
 as a review checklist item.
 
@@ -46,7 +46,7 @@ INV- CHANGE-`, requirement ids `AC-NNN` (`C-`/`I-` in SOL form); keep one casing
 
 ### intake — what was actually asked
 
-Template: [`templates/intake.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/intake.md) · lives in `intake/`
+Template: [`templates/intake.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/intake.md) · lives in `intake/`
 
 A verbatim snapshot of the upstream item — ticket, issue, page — captured before anyone
 interprets it. Recommended when work originates in an external tracker; never required.
@@ -58,7 +58,7 @@ interprets it. Recommended when work originates in an external tracker; never re
 
 ### spec — what should be true
 
-Template: [`templates/spec.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/spec.md) · lives in `specs/<feature>/spec.md`
+Template: [`templates/spec.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/spec.md) · lives in `specs/<feature>/spec.md`
 
 The durable statement of intended behavior: requirements an agent can build from and a review
 can check. Supporting docs (audit, research, prd, rfc) sit in the same feature folder, the
@@ -83,7 +83,7 @@ Full writing guidance: [writing specs](../04-writing-specs.md) and [checks](chec
 
 ### task — the packet that bounds one agent run
 
-Template: [`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) · lives in `tasks/`
+Template: [`templates/task.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md) · lives in `tasks/`
 
 One agent run gets one task packet: its sources, the requirement ids in scope, what not to
 touch, and how to verify.
@@ -105,7 +105,7 @@ touch, and how to verify.
 
 ### review — the record of work
 
-Template: [`templates/review.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) · lives in `reviews/`
+Template: [`templates/review.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/review.md) · lives in `reviews/`
 
 The review packet turns an agent run into requirement coverage, evidence, and a short
 human-attention list. It is the durable record of the work — the PR links it; reviewing the
@@ -153,7 +153,7 @@ The extended result lifecycle (Waived, Stale, Contradicted) belongs to the
 
 ### finding — what survives the session
 
-Template: [`templates/finding.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) · lives in `findings/`
+Template: [`templates/finding.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/finding.md) · lives in `findings/`
 
 One durable lesson, saved before the task closes. The Close-step rule: _before closing a task,
 record anything durable as a finding._
@@ -176,7 +176,7 @@ outgrow grep-and-board recall graduate to the [advanced memory model](memory.md)
 
 ### status — the workboard
 
-Template: [`templates/status.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) · lives at the workspace root
+Template: [`templates/status.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/status.md) · lives at the workspace root
 
 A hand-edited board: one row per spec, task, review, and finding with its state and link, plus a
 Human-attention list (blocking questions on draft specs · tasks with no review packet · findings
@@ -200,7 +200,7 @@ change plan for an obvious bug fix.
 
 ### inventory — the map of what exists
 
-Template: [`templates/inventory.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) · lives in `inventory/`
+Template: [`templates/inventory.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/inventory.md) · lives in `inventory/`
 
 The brownfield prerequisite: reconstruct what exists before anyone draws new boundaries.
 
@@ -216,7 +216,7 @@ The brownfield prerequisite: reconstruct what exists before anyone draws new bou
 
 ### change-plan — how the codebase changes safely
 
-Template: [`templates/change-plan.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) · lives in `change-plans/`
+Template: [`templates/change-plan.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/change-plan.md) · lives in `change-plans/`
 
 A spec answers "what behavior should exist"; a change plan answers "how does the codebase change
 safely" — for refactors, rewrites, migrations, dependency upgrades, performance, test-infra,
@@ -252,7 +252,7 @@ Each advanced artifact is allowed to assert exactly one kind of knowledge — it
 stances do not mix. The shared rule: **promotion into a spec is an authoring act.** Content from
 any of these gains requirement force only when someone writes it into a spec with its own
 `AC-NNN` and `Verify with:` line; nothing becomes binding by sitting in its source document
-(convention level). Templates ship in [`advanced/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/advanced/)
+(convention level). Templates ship in [`advanced/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/advanced/)
 except where noted.
 
 ### audit — observation only
@@ -324,7 +324,7 @@ it, the evidence link, and a staleness flag (the requirement text changed after 
 recorded). Everything in it derives from the spec and the review packets — it authors nothing
 and re-judges nothing, which is exactly why it should be machine-written.
 
-(`swarm status` ships today and prints the derived board; deriving *this* per-spec
+(`corpus status` ships today and prints the derived board; deriving _this_ per-spec
 requirement-coverage table from `specs/` and `reviews/` is the deferred coverage engine — today the
 hand-edited workboard plus the review packets are the record, and assembling the table by hand
 for one spec is occasionally worth it before a large merge.) The contract lives in
@@ -333,7 +333,7 @@ for one spec is occasionally worth it before a large merge.) The contract lives 
 ## Related
 
 - [Where files live](../03-where-files-live.md) — the workspace tree these artifacts sit in
-- [`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/) — the core template texts (the frozen shapes)
+- [`templates/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/) — the core template texts (the frozen shapes)
 - [Structured requirements](structured-requirements.md) — the optional `format: sol` surface
 - [Checks](checks.md) — common mistakes a review inspects, per artifact
 - [Memory](memory.md) — the advanced recall model findings graduate into

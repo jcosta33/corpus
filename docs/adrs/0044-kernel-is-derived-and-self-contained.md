@@ -19,7 +19,7 @@ superseded_by:
 
 `docs/language/` ↔ `starter-kit/.agents/language/` and `docs/passes/` ↔ `starter-kit/.agents/passes/` are
 maintained as **duplicate copies** (the rule recorded in this repo's `AGENTS.md`). In practice they
-are *divergent re-renderings*: a 13-file-pair analysis found that neither side is uniformly more
+are _divergent re-renderings_: a 13-file-pair analysis found that neither side is uniformly more
 current — the kernel is ahead on some pairs
 (`errors.md` carries a ~95-line legacy-code translation table absent from `docs/`; `lint.md` carries
 the `APS-`-prefix-retirement facts; `promote.md`/`improve.md` carry the self-standing clause and an
@@ -29,16 +29,16 @@ carries a `CONSTRAINT WHERE`-clause the kernel regressed). The hand-maintained t
 **"fix one copy, miss the twin"** defect.
 
 The same analysis surfaced a **larger, latent defect the twins were hiding: the shipped kernel is not
-actually self-contained.** An adopter installs `starter-kit/.agents/` into `.swarm/kernel/` and receives
+actually self-contained.** An adopter installs `starter-kit/.agents/` into `.corpus/kernel/` and receives
 **no `docs/`** and **no §-numbered monolith** — yet the kernel files carry **614 `§N` references and 9
 `Appendix-X` references** that resolve only against the frozen, never-shipped build source
-(`.agents/specs/swarm/`), including in the **always-loaded `starter-kit/AGENTS.md`** (`§14`/`§17`/`§20.5`/…)
+(`.agents/specs/corpus/`), including in the **always-loaded `starter-kit/AGENTS.md`** (`§14`/`§17`/`§20.5`/…)
 and in `conformance.yaml` (`§21`/`§25`/`§32`/`§33`, plus `catalogue_ref: docs/language/errors.md`
 pointing at a path the adopter never gets). Several kernel files also still carry **migration framing**
 the de-pivot forbids ("the earlier 4-value enum is upgraded", "merges legacy Bind+Trace", "two competing
 payloads are reconciled").
 
-This ADR decides the steady-state shape of that payload. (The *execution* — the one-time reconciling
+This ADR decides the steady-state shape of that payload. (The _execution_ — the one-time reconciling
 merge, the §-rewrite, and the bug fixes the analysis catalogued — is the K2 work item, run pair-by-pair
 under this decision.)
 
@@ -47,7 +47,7 @@ under this decision.)
 1. **`docs/` is the single canonical source** for the `docs/language/` ↔ `starter-kit/.agents/language/`
    and `docs/passes/` ↔ `starter-kit/.agents/passes/` twins. `starter-kit/.agents/language/` and
    `starter-kit/.agents/passes/` are **derived, checked copies** — established after a **one-time reconciling
-   merge** that pulls every kernel-only load-bearing fact *up* into `docs/` and fixes `docs/`'s own gaps,
+   merge** that pulls every kernel-only load-bearing fact _up_ into `docs/` and fixes `docs/`'s own gaps,
    so the canonical `docs/` corner is a true superset of load-bearing content. This **refines**
    [0040](./0040-kernel-payload-directory.md) and relates to [0042](./0042-skill-carrier-and-standalone-conditioning.md)/[0016](./0016-skills-are-self-contained.md) (thin skills cite-don't-define) and [0041](./0041-two-axis-versioning.md).
 
@@ -55,7 +55,7 @@ under this decision.)
    Therefore the kernel MUST NOT cite `§N`/`Appendix-X` anchors from any document it does not ship,
    MUST NOT link into the docs-only trees (`model/`, `reference/`, `artifacts/`, `research/`,
    `PRINCIPLES.md`, `library/`, `grammar.md`), and `conformance.yaml`/`AGENTS.md` MUST NOT reference
-   `docs/` paths. Deriving the kernel *from* `docs/` does **not** make `docs/` defer to the kernel — the
+   `docs/` paths. Deriving the kernel _from_ `docs/` does **not** make `docs/` defer to the kernel — the
    kernel is a payload, not a peer; `docs/` remains self-standing.
 
 3. **`grammar.md` stays docs-only** (not a fourth twin): no kernel file references it, and the kernel
@@ -76,20 +76,20 @@ under this decision.)
    that does not resolve to a numbered section heading in the **same file**, or a `docs/` path.
 
 6. **Execution discipline:** the merge runs **pair-by-pair** (the merge direction differs per pair —
-   `decompose.md` regenerates the kernel *from* docs; `errors.md`/`lint.md`/`promote.md` merge kernel→docs),
+   `decompose.md` regenerates the kernel _from_ docs; `errors.md`/`lint.md`/`promote.md` merge kernel→docs),
    running the eyeball-diff check **after each pair**. Never a single bulk copy — that would destroy the
    more-current side. `conformance.yaml` and `starter-kit/AGENTS.md` (always-loaded entry points) are fixed
    **first**.
 
 ## Alternatives considered
 
-| Alternative | Why rejected |
-| --- | --- |
-| **Kernel canonical, `docs/` rendered from it** | The reverse transform is lossy/ambiguous (you would have to *add* citations, §-context, and the docs-only-depth sections); and `docs/` is the rich human corner that carries the `[[KEY]]` research citations, which must stay there. |
-| **Hybrid steady-state (different canonical side per pair)** | Multiplies the rules a human/agent must remember and reintroduces the exact "which copy is truth" confusion the effort exists to kill. (The *one-time* K2 merge is per-pair by necessity, but the steady state is single-direction.) |
-| **Keep hand-maintained twins** | The status quo — the recurring "fix one, miss the twin" defect, plus it left the self-containment defect undetected. |
-| **Vendor `docs/` into the adopter so the kernel can link it** | Re-bloats the install with the human tutorial layer the minimality evidence (ADR-0043) warns against, and defeats the operational-payload-vs-upstream-reference split. |
-| **Add `grammar.md` as a fourth twin** | No kernel file needs it; the kernel `SOL.md` already carries its own EBNF — adding it would *create* a new twin defect. |
+| Alternative                                                   | Why rejected                                                                                                                                                                                                                          |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kernel canonical, `docs/` rendered from it**                | The reverse transform is lossy/ambiguous (you would have to _add_ citations, §-context, and the docs-only-depth sections); and `docs/` is the rich human corner that carries the `[[KEY]]` research citations, which must stay there. |
+| **Hybrid steady-state (different canonical side per pair)**   | Multiplies the rules a human/agent must remember and reintroduces the exact "which copy is truth" confusion the effort exists to kill. (The _one-time_ K2 merge is per-pair by necessity, but the steady state is single-direction.)  |
+| **Keep hand-maintained twins**                                | The status quo — the recurring "fix one, miss the twin" defect, plus it left the self-containment defect undetected.                                                                                                                  |
+| **Vendor `docs/` into the adopter so the kernel can link it** | Re-bloats the install with the human tutorial layer the minimality evidence (ADR-0043) warns against, and defeats the operational-payload-vs-upstream-reference split.                                                                |
+| **Add `grammar.md` as a fourth twin**                         | No kernel file needs it; the kernel `SOL.md` already carries its own EBNF — adding it would _create_ a new twin defect.                                                                                                               |
 
 ## Consequences
 

@@ -42,6 +42,7 @@ A requirement in a spec:
 
 ```markdown
 ### AC-001 — Expired refresh token redirects to login
+
 When the refresh token is expired, the client must clear the local
 session and redirect to `/login`.
 
@@ -51,35 +52,36 @@ Verify with: `auth-refresh-expired-token.test`
 The review packet that comes back after an agent run:
 
 ```markdown
-| ID     | Result     | Evidence                       | Human attention |
-|--------|------------|--------------------------------|-----------------|
-| AC-001 | Pass       | test output pasted             | no              |
-| AC-002 | Unverified | no test output found           | yes             |
+| ID     | Result     | Evidence             | Human attention |
+| ------ | ---------- | -------------------- | --------------- |
+| AC-001 | Pass       | test output pasted   | no              |
+| AC-002 | Unverified | no test output found | yes             |
 
 ## Human attention
+
 1. AC-002 has no pasted test output.
 2. Retry logic changed in `src/auth/client.ts` — outside task scope.
 ```
 
 The table is the point. You read which requirements passed **with evidence** and which
 didn't. You read where your eyes are needed. You skip the whole diff. An empty evidence cell
-means *Unverified*, never *Pass*. Full demo — a 41-file agent PR reviewed by exception:
+means _Unverified_, never _Pass_. Full demo — a 41-file agent PR reviewed by exception:
 [docs/examples/large-pr-review.md](docs/examples/large-pr-review.md).
 
 ## Where files live
 
-- **This repo** — the framework: the docs and the checks contract. The ready-to-copy workspace (templates + guides) is [jcosta33/swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit).
+- **This repo** — the framework: the docs and the checks contract. The ready-to-copy workspace (templates + guides) is [jcosta33/corpus-starter-kit](https://github.com/jcosta33/corpus-starter-kit).
 - **Your workspace** — specs, tasks, reviews, findings: a dedicated repo, or the same tree in your project ([where files live](docs/03-where-files-live.md)).
 - **Your code repos** — stay clean. The PR links its review packet. That's all.
 
 ## Which repo do I want?
 
-| You want to… | Go to |
-|---|---|
-| **start using Corpus** — get a working workspace | [swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit) — copy it whole, fill `AGENTS.md`, run the loop |
-| **understand the method** — formats, the checks contract, the decision ledger | **this repo** — `docs/` (the numbered happy path), `docs/reference/`, `docs/adrs/` |
-| **run the checks / wire the gate** — `swarm check` as a command | [swarm-cli](https://github.com/jcosta33/swarm-cli) — the reference CLI (optional) |
-| **add optional skills** — review personas, code-depth guides | [swarm-skills](https://github.com/jcosta33/swarm-skills) — `npx skills add jcosta33/swarm-skills` |
+| You want to…                                                                  | Go to                                                                                                                |
+| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **start using Corpus** — get a working workspace                              | [corpus-starter-kit](https://github.com/jcosta33/corpus-starter-kit) — copy it whole, fill `AGENTS.md`, run the loop |
+| **understand the method** — formats, the checks contract, the decision ledger | **this repo** — `docs/` (the numbered happy path), `docs/reference/`, `docs/adrs/`                                   |
+| **run the checks / wire the gate** — `corpus check` as a command              | [corpus-cli](https://github.com/jcosta33/corpus-cli) — the reference CLI (optional)                                  |
+| **add optional skills** — review personas, code-depth guides                  | [corpus-skills](https://github.com/jcosta33/corpus-skills) — `npx skills add jcosta33/corpus-skills`                 |
 
 Most people start at the kit and never read this repo cover to cover.
 
@@ -88,16 +90,16 @@ Most people start at the kit and never read this repo cover to cover.
 **Today** (markdown + your agent, nothing to install): the templates, specs, task packets,
 review packets, findings, the worked examples. Corpus itself needs no runtime.
 
-**Toolable** (optional — the reference CLI, [swarm-cli](https://github.com/jcosta33/swarm-cli)):
-`swarm check` runs the [checks contract](docs/reference/checks.md) over your specs and reviews. The
-kit's [hooks](https://github.com/jcosta33/swarm-starter-kit/tree/main/hooks) wire it into your commit
-and pull-request gates — teeth for the review side. Nothing here is a runtime you need to *use* Corpus.
-`swarm init`, `new`, `worktree`, `pull`, `promote`, and `status` scaffold the loop's mechanics.
-`swarm run` launches a prepared task on your agent in its worktree and records the launch. `swarm
+**Toolable** (optional — the reference CLI, [corpus-cli](https://github.com/jcosta33/corpus-cli)):
+`corpus check` runs the [checks contract](docs/reference/checks.md) over your specs and reviews. The
+kit's [hooks](https://github.com/jcosta33/corpus-starter-kit/tree/main/hooks) wire it into your commit
+and pull-request gates — teeth for the review side. Nothing here is a runtime you need to _use_ Corpus.
+`corpus init`, `new`, `worktree`, `pull`, `promote`, and `status` scaffold the loop's mechanics.
+`corpus run` launches a prepared task on your agent in its worktree and records the launch. `corpus
 review` reconciles a finished run against its spec and diff — surfacing facts (omitted edits,
 out-of-scope changes, unbacked claims), never a result.
 
-**Planned** (the rest of `swarm-cli`): `swarm close`. What ships when:
+**Planned** (the rest of `corpus-cli`): `corpus close`. What ships when:
 [docs/reference/future-cli.md](docs/reference/future-cli.md).
 
 Corpus does **not** promise deterministic generation, automatic correctness, formal
@@ -132,7 +134,7 @@ enforce says so.
 
 ## Initiation
 
-1. Copy the kit whole — it is a ready workspace: use [jcosta33/swarm-starter-kit](https://github.com/jcosta33/swarm-starter-kit) as a template (a new repo, or a folder in your project).
+1. Copy the kit whole — it is a ready workspace: use [jcosta33/corpus-starter-kit](https://github.com/jcosta33/corpus-starter-kit) as a template (a new repo, or a folder in your project).
 2. Fill its `AGENTS.md` with your commands and facts.
 3. Claude Code finds the guides via the shipped `.claude/skills` symlink; point any other tool at `.agents/skills/`.
 4. New to the loop? **[Walk it once, hands-on](docs/tutorial/README.md)** — a guided build on one small change. Then write a spec for your next real change and run it.
@@ -141,6 +143,6 @@ Or hand your agent [docs/ADOPTING.md](docs/ADOPTING.md) and let it do the copyin
 
 ## Going deeper
 
-[What is Corpus](docs/01-what-is-swarm.md) · [Basic workflow](docs/02-basic-workflow.md) · [Writing specs](docs/04-writing-specs.md) ·
+[What is Corpus](docs/01-what-is-corpus.md) · [Basic workflow](docs/02-basic-workflow.md) · [Writing specs](docs/04-writing-specs.md) ·
 [Reviewing output](docs/08-reviewing-output.md) · [Examples](docs/examples/) · [Reference](docs/reference/) ·
 [Design decisions](docs/adrs/) · [Evidence](docs/research/sources.md)

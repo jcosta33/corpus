@@ -11,9 +11,9 @@ updated: 2026-06-13
 ## Context
 
 ADR-0069 kept the kit inside this repo "until public launch" so format edits stayed one-repo
-commits; ADR-0074 split the producer workspace (swarm-hq) and the optional guides
-(swarm-skills) out, tiering all twelve advanced guides into the catalog. Two corrections from
-the owner followed. First, the kit split's precondition is gone: with the workspace in swarm-hq
+commits; ADR-0074 split the producer workspace (corpus-hq) and the optional guides
+(corpus-skills) out, tiering all twelve advanced guides into the catalog. Two corrections from
+the owner followed. First, the kit split's precondition is gone: with the workspace in corpus-hq
 cutting and reviewing every change, a format edit is already a reviewed cross-repo operation,
 and the family's repos exist. Second, ADR-0074's tier line was drawn in the wrong place: the
 workspace authoring guides (`write-audit`, `write-research`, `write-rfc`, `write-prd`,
@@ -23,14 +23,14 @@ workspace needs them, which is the definition of essential, not optional.
 
 ## Decision
 
-1. **The kit is its own template repo: `swarm-starter-kit`.** The repo root is the workspace
+1. **The kit is its own template repo: `corpus-starter-kit`.** The repo root is the workspace
    (copy whole / "Use this template"); kit content is edited there. This repo's docs and ADRs
    remain the rule canon; the kit ships what the ADRs freeze. `starter-kit/` leaves this repo;
    every doc reference points at the kit repo (URL form — the docs are read on GitHub).
 2. **Essential guides ship installed.** The kit's `.agents/skills/` carries the core loop
    (`write-spec`, `implement-task`, `review-output`) plus the eleven workspace authoring
    guides. `advanced/` keeps the optional templates and the two reference cards.
-3. **The catalog is the optional layer.** swarm-skills carries the six conditioning stances
+3. **The catalog is the optional layer.** corpus-skills carries the six conditioning stances
    (`persona-architect`, `-auditor`, `-documentarian`, `-researcher`, `-skeptic`,
    `-surveyor`), the standalone `empirical-proof`, and the ten per-change-shape
    implementation guides — plus, under its `docs/`, the skill-design research layer
@@ -56,11 +56,11 @@ stances + code depth in the catalog), ADR-0069 (the workspace shape stands; the
 defer-to-launch clause is executed; the kit-skill-surfacing note retires with the nested
 copy), ADR-0073 (the kit repo joins the governed family as derived content), and ADR-0074
 (Decision 2's tier line moves: workspace authoring guides are kit content, not catalog
-content). Cost accepted: a format change is a two-repo change, mitigated by swarm-hq review.
+content). Cost accepted: a format change is a two-repo change, mitigated by corpus-hq review.
 
 ## Propagation
 
 AGENTS.md, README, docs/01/02/03/04/05/06/08/09/10, ADOPTING, examples ×3,
 reference/{artifact-formats, cheatsheet, memory, step-bars, review-stances, agent-guides,
-advanced-lifecycle}, checks/README, SKILLS-MANIFEST, ledger row; swarm-cli's scaffold resync;
-swarm-hq pointer updates.
+advanced-lifecycle}, checks/README, SKILLS-MANIFEST, ledger row; corpus-cli's scaffold resync;
+corpus-hq pointer updates.

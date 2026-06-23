@@ -22,28 +22,28 @@ ship working validators, so "rules without a checker" has a short credibility wi
    - **checklist** — review is expected to inspect it;
    - **toolable** — a named (future or optional) tool can check it;
    - **enforced** — a shipped tool actually enforces it (today: nothing qualifies).
-   Approved wordings: *"This is a convention — nothing in this repository enforces it."* /
-   *"A future `swarm spec check` should flag this; until then, treat it as a review checklist item."*
-   Banned wordings: "this fails lint", "this blocks merge", "this is enforced" (without a shipped tool).
+     Approved wordings: _"This is a convention — nothing in this repository enforces it."_ /
+     _"A future `corpus spec check` should flag this; until then, treat it as a review checklist item."_
+     Banned wordings: "this fails lint", "this blocks merge", "this is enforced" (without a shipped tool).
 2. **Check codes are review checklists.** The `SOL-XNNN` catalogue survives in
    `docs/reference/checks.md` as "common mistakes to check for", each row carrying its level — never
    "floors", "defects", or "BLOCKING" as if automated. Core checks (both spec forms): unique IDs · a
    `Verify with:` per requirement · one strength word per requirement · Non-goals present · Open
    questions present · no `TBD` at `status: ready` · sources named. Severity is a two-way split: hard
-   errors (a checker must reject) vs warnings (a checker should flag) — the contract `swarm spec check`
+   errors (a checker must reject) vs warnings (a checker should flag) — the contract `corpus spec check`
    implements.
-3. **swarm-cli is the reference implementation** of the checks contract, named in `checks.md`. The
+3. **corpus-cli is the reference implementation** of the checks contract, named in `checks.md`. The
    validator ships early — it is the credibility anchor for every "toolable" label.
-4. **Length guidance is honest:** the agent-context file guidance is *"aim for ~100 lines"* — Corpus's own
+4. **Length guidance is honest:** the agent-context file guidance is _"aim for ~100 lines"_ — Corpus's own
    convention, motivated directionally by instruction-density findings and vendor file-size bounds, not an
    ecosystem-derived number. No cap language, no fictional regression checks, anywhere.
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
-| Keep normative MUST/BLOCKING language | Documented trust-killer with no enforcement behind it |
-| Drop the check codes entirely | swarm-cli already builds against them; checklists with stable IDs are genuinely useful in review |
+| Alternative                           | Why weaker                                                                                        |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Keep normative MUST/BLOCKING language | Documented trust-killer with no enforcement behind it                                             |
+| Drop the check codes entirely         | corpus-cli already builds against them; checklists with stable IDs are genuinely useful in review |
 
 ## Consequences
 
@@ -58,4 +58,4 @@ principle.
 
 ## Propagation
 
-Every prose surface; checks.md owns the legend; kit cards; conformance README; swarm-cli.
+Every prose surface; checks.md owns the legend; kit cards; conformance README; corpus-cli.

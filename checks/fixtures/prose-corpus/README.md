@@ -1,13 +1,13 @@
 # Writing-rules corpus
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 The labeled fixture set for the writing-rules watchlist in
 [the checks reference](../../../docs/reference/checks.md): short requirement-prose spans,
 each paired with its ground-truth label — `clean`, or the specific `SOL-P` code from the
 checks catalogue that should fire, with the reason. **Inert fixture data — nothing here
-runs.** Corpus ships no detector; this corpus is what a detector — swarm-cli's
-`swarm check`, or a human reviewer — is scored *against*.
+runs.** Corpus ships no detector; this corpus is what a detector — corpus-cli's
+`corpus check`, or a human reviewer — is scored _against_.
 
 ## Why this corpus exists
 
@@ -28,10 +28,10 @@ of any deployed detector. They sit deliberately above the field-measured ceiling
 [[SMELLS]](../../../docs/research/sources.md#SMELLS), because a curated gold corpus is a
 far more controlled setting than production prose.
 
-| Metric | Target | Meaning on this corpus |
-|---|---|---|
+| Metric    | Target | Meaning on this corpus                                                          |
+| --------- | ------ | ------------------------------------------------------------------------------- |
 | precision | ≥ 0.90 | of the spans a rule flags, at least 90% are true problems (few false positives) |
-| recall | ≥ 0.85 | of the true problems present here, at least 85% are flagged (few misses) |
+| recall    | ≥ 0.85 | of the true problems present here, at least 85% are flagged (few misses)        |
 
 Two definitions make the tally well-formed:
 
@@ -74,9 +74,9 @@ per-code bug.
 
 ## What is in this directory
 
-| File | Holds |
-|---|---|
-| `README.md` | this contract — what the corpus is, the baseline, how it is used |
+| File                             | Holds                                                                    |
+| -------------------------------- | ------------------------------------------------------------------------ |
+| `README.md`                      | this contract — what the corpus is, the baseline, how it is used         |
 | [`labeled.yaml`](./labeled.yaml) | the labeled items: span, context, label, expected code, severity, reason |
 
 The corpus is self-contained: every label is decidable from the item's own `text`,

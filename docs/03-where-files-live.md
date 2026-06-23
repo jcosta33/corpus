@@ -1,14 +1,14 @@
 # Where files live
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 Three pieces, three homes:
 
-| Piece                   | What it is                                                            | Where it lives                                                 |
-| ----------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **The Corpus framework** | The docs (this repository) and the [starter kit](https://github.com/jcosta33/swarm-starter-kit) you copy | Upstream. Read and copy from it; your work never goes here |
-| **Your workspace**      | Your specs, tasks, reviews, and findings                   | Its own repo, or a folder inside your code repo (below)        |
-| **Your code repos**     | Where the code lives                                                  | Untouched. Corpus adds nothing to them                         |
+| Piece                    | What it is                                                                                                | Where it lives                                             |
+| ------------------------ | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **The Corpus framework** | The docs (this repository) and the [starter kit](https://github.com/jcosta33/corpus-starter-kit) you copy | Upstream. Read and copy from it; your work never goes here |
+| **Your workspace**       | Your specs, tasks, reviews, and findings                                                                  | Its own repo, or a folder inside your code repo (below)    |
+| **Your code repos**      | Where the code lives                                                                                      | Untouched. Corpus adds nothing to them                     |
 
 ## The workspace
 
@@ -45,13 +45,13 @@ Two kinds of folder:
   structural work needs them (see [brownfield work](05-brownfield-and-change-plans.md)).
 
 The workspace must be **version-controlled** — its own git repo, or committed inside your code
-repo. It *is* the durable record. An uncommitted workspace drifts: the commit lands, but the spec,
+repo. It _is_ the durable record. An uncommitted workspace drifts: the commit lands, but the spec,
 review, and finding that explain it are lost. A convention; nothing enforces it.
 
 Both naming depths are valid. Flat files (`tasks/012-checkout-totals.md`) for small projects. A
 folder per item with an `NNN-` prefix when items grow attachments. A file declares what it is in
 its frontmatter (`type: spec`, `type: task`, …). The formats live in the
-[kit templates](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/) and [artifact formats](reference/artifact-formats.md),
+[kit templates](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/) and [artifact formats](reference/artifact-formats.md),
 never restated here. `.agents/` holds only the tooling your agent CLI loads
 (see [integrations](10-integrations.md)); your content never lives there.
 
@@ -60,7 +60,7 @@ never restated here. `.agents/` holds only the tooling your agent CLI loads
 Both are first-class:
 
 - **Co-located** — a single-repo team keeps the same tree inside its code repo, optionally under a
-  visible `swarm/` directory at the root. Same layout, one less repo.
+  visible `corpus/` directory at the root. Same layout, one less repo.
 - **Dedicated workspace repo** — the same kit in a repo of its own. Across several code repos, this
   is the **multi-repo workspace**: one spec store, one board, one set of decisions for the whole
   family. A Git-native, agent-readable form of the requirements store larger organizations already
@@ -97,7 +97,7 @@ A spec is amended in place after review feedback. Edit the requirement, keep its
 material cut under "Dropped from sources". No regeneration step. Drift surfaces at review time: a
 coverage row that no longer matches the code reads Fail or Unverified. A spec known to lag reality
 is marked `stale` on the
-[status board](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md) until someone amends it.
+[status board](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/status.md) until someone amends it.
 
 ## What lasts, and what ages out
 
@@ -107,26 +107,26 @@ short-term value and no decision rides on it (NARA's transitory bar is "generall
 days") [[NARAGRS52]](research/sources.md#NARAGRS52). Split the workspace that way:
 
 - **Durable records — keep for the repo's life, supersede, never delete.** Decisions (ADRs),
-  specs of record, saved findings. A reversed decision is *kept and marked superseded*, with a
+  specs of record, saved findings. A reversed decision is _kept and marked superseded_, with a
   pointer to its replacement, sequentially numbered and never reused
   [[NYGARDADR]](research/sources.md#NYGARDADR) [[MADR]](research/sources.md#MADR) — the
   status lifecycle (`proposed | accepted | deprecated | superseded-by-NNNN`) the ADR ledger already
   uses. Each carries a **named owner**. Documents without owners go stale
   [[SWEGBOOKDOCS]](research/sources.md#SWEGBOOKDOCS), and write-once rots: about 29% of popular
   repos already carry an outdated reference [[DOCROT]](research/sources.md#DOCROT).
-- **Transitory output — let it age out.** Review packets, `swarm check` output, and run logs are
-  evidence *of a moment*. Once the task closes and the durable record (the finding, the merged PR)
+- **Transitory output — let it age out.** Review packets, `corpus check` output, and run logs are
+  evidence _of a moment_. Once the task closes and the durable record (the finding, the merged PR)
   captures what mattered, the rest belongs in **git history (the default archive)** or an
   `archive/` directory. Keep a **30–90-day retention window** — the band CI tools already use
   (GitHub Actions 90 days [[GHRETENTION]](research/sources.md#GHRETENTION), GitLab 30 [[GLRETENTION]](research/sources.md#GLRETENTION)). Don't
   let them pile up in the live tree.
 
 Two conventions keep a large workspace navigable. **One canonical home per rule or decision.** At
-scale the failure is *duplication*, not absence (Google's Borg had 7–10 overlapping setup docs, no
+scale the failure is _duplication_, not absence (Google's Borg had 7–10 overlapping setup docs, no
 owner) [[SWEGBOOKDOCS]](research/sources.md#SWEGBOOKDOCS), so "no canonical owner" is a reviewable
 defect. And the **board is the index.** A flat per-type folder plus `status.md` carrying
 `ID · title · status · superseded-by` keeps hundreds of artifacts findable by search. All
-convention; nothing enforces it. A `swarm check` that the `superseded_by` pointers resolve and the
+convention; nothing enforces it. A `corpus check` that the `superseded_by` pointers resolve and the
 index lists them is a named, not-yet-shipped follow-up
 ([ADR-0096](adrs/0096-artifact-lifecycle.md)).
 

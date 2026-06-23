@@ -1,6 +1,6 @@
 # Brownfield work and change plans
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 Two artifacts join the loop only when the work is structural or brownfield: refactors, rewrites,
 migrations, dependency upgrades, performance and schema work, or any change to code nobody fully
@@ -32,7 +32,7 @@ cover the area; and — most valuable — what you _cannot_ see from here. It ob
 never judges (that's an audit) and never prescribes (that's the change plan it feeds).
 
 The format is frozen in the kit —
-[`templates/inventory.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md).
+[`templates/inventory.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/inventory.md).
 
 **Write one before:** a major refactor or rewrite, a migration, a module split or subsystem
 replacement, a wide dependency upgrade, or sending an agent into unfamiliar brownfield code.
@@ -65,14 +65,14 @@ will land as a diff too large to interpret without a map.
 ## Walking the template
 
 The format is frozen in the kit —
-[`templates/change-plan.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md). The
+[`templates/change-plan.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/change-plan.md). The
 load-bearing sections:
 
 - **Baseline → Target state.** What the code does today (cite the inventory, don't re-derive it)
   and what it looks like after, including what explicitly stays unchanged. A reviewer who can't
   diff these two in their head can't judge the waves.
 - **Behavioral preservation guarantees.** The heart of the plan. A table — `ID | Behavior |
-  Verify with` — of everything that must still behave exactly as before. Each row carries the
+Verify with` — of everything that must still behave exactly as before. Each row carries the
   verification line a requirement gets.
 - **Transformation waves.** The sequence. Each wave leaves the codebase green and names its verify
   step. Where external consumers exist, it ships a bridge release, not a flag day. A wave that can't
@@ -142,6 +142,6 @@ on a large or high-diffusion change.** A checklist convention; nothing enforces 
   or both; its scope reads "implement or preserve".
 - [Writing specs](04-writing-specs.md) — the behavior side of the division table.
 - Deeper planning technique lives in the kit's
-  [`write-change-plan`](https://github.com/jcosta33/swarm-starter-kit/blob/main/.agents/skills/write-change-plan/SKILL.md)
+  [`write-change-plan`](https://github.com/jcosta33/corpus-starter-kit/blob/main/.agents/skills/write-change-plan/SKILL.md)
   agent guide: equivalence checks beyond a green suite, behavior-delta tables for rewrites,
   baseline/target measurement for performance work.

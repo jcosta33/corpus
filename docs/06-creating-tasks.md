@@ -1,6 +1,6 @@
 # Creating tasks
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 A task is a packet of bounded work for one agent or developer: which requirements to implement,
 which files it touches, what must not change, how each requirement gets verified. The spec says
@@ -15,19 +15,19 @@ can inspect it.
 
 ## The template
 
-Copy [`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) into
+Copy [`templates/task.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md) into
 `tasks/` in your workspace (see [Where files live](03-where-files-live.md)). The template is the
 format. Here is what each part carries:
 
-| Section            | What it carries                                                                                 |
-| ------------------ | ----------------------------------------------------------------------------------------------- |
-| Source             | The spec the task implements — and the change plan, when it executes one of its waves           |
-| Scope              | "Implement or preserve": the requirement and guarantee ids this task owns                       |
-| Do not change      | The scope wall (below)                                                                          |
-| Affected areas     | The files you expect to change — what keeps parallel tasks apart                                |
-| Verify             | One runnable command per requirement                                                            |
-| Agent instructions | The standing rules every agent follows; they ship in the template — don't rewrite them per task |
-| Findings           | Anything durable discovered along the way, saved to `findings/` at Close                        |
+| Section            | What it carries                                                                                                                                                                        |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Source             | The spec the task implements — and the change plan, when it executes one of its waves                                                                                                  |
+| Scope              | "Implement or preserve": the requirement and guarantee ids this task owns                                                                                                              |
+| Do not change      | The scope wall (below)                                                                                                                                                                 |
+| Affected areas     | The files you expect to change — what keeps parallel tasks apart                                                                                                                       |
+| Verify             | One runnable command per requirement                                                                                                                                                   |
+| Agent instructions | The standing rules every agent follows; they ship in the template — don't rewrite them per task                                                                                        |
+| Findings           | Anything durable discovered along the way, saved to `findings/` at Close                                                                                                               |
 | Run summary        | The handoff digest filled at run's end — changed files, per-command results citing the Verify pastes, out-of-scope edits, blocked questions; it cites the evidence, never re-pastes it |
 
 ## Sources and scope
@@ -59,9 +59,9 @@ measured optimum. Shape each task to one concern:
   wiring — the high-diffusion edits touching many existing files — its own task. Logic and
   integration then review separately, not as one tangled blob.
 
-Splitting buys *cleaner* reviews — fewer false positives at the same defect yield
+Splitting buys _cleaner_ reviews — fewer false positives at the same defect yield
 [[DIBIASE19]](research/sources.md#DIBIASE19) — **not** more bugs caught. That is reason enough. A
-task running well past the band above is a candidate to split. `swarm check` is the natural home for
+task running well past the band above is a candidate to split. `corpus check` is the natural home for
 an **advisory** oversized-packet flag (a heuristic with provenance, never an enforced limit). These
 are conventions the review packet inspects; nothing enforces them at edit time
 ([ADR-0094](adrs/0094-decomposition-and-risk-weighted-review.md)).
@@ -138,7 +138,7 @@ Too much packet is also a cost: forcing clarification onto already-clear work me
 Scope, one Verify command, and an empty "Do not change" is a complete packet, not a lazy one.
 
 **The thin path — scale the artifact set to the risk.** The smallest work earns the smallest
-record. A reproduced defect rides the [bug-fix shape](examples/bug-fix.md): a spec *check* yielding
+record. A reproduced defect rides the [bug-fix shape](examples/bug-fix.md): a spec _check_ yielding
 a one-line amendment to the existing spec (not a new one), plus a regression test that runs red
 first. A one-line mechanical cleanup is the one-Scope task above. A separate spec, an
 [inventory, or a change plan](05-brownfield-and-change-plans.md) is **earned by risk or spread**,

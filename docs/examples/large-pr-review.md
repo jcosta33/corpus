@@ -1,6 +1,6 @@
 # Example: a 41-file refactor, reviewed by exception
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 This is the full walkthrough of Corpus's main use case: an agent hands you a large PR, and you
 review it without reading 41 files. The work is a refactor — duplicated session handling
@@ -11,7 +11,7 @@ Inventory → Change Plan → Task → Run → Review → Close
 ```
 
 Every artifact below sits in the workspace in the shipped template shapes
-([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)). The punchline up front: the
+([`templates/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/)). The punchline up front: the
 reviewer read eighteen table rows and four exception items across two packets, spot-checked
 one green row by hand, and opened three files out of 41 — the three the packet pointed at.
 
@@ -162,11 +162,11 @@ different units), and SQL against one table — agreeing today by coincidence.
 
 ## Behavioral preservation guarantees
 
-| ID                   | Behavior                                                                                              | Verify with                                                     |
-| -------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| ID                   | Behavior                                                                                              | Verify with                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | SPEC-checkout#AC-002 | the same session is never charged twice                                                               | `npx vitest run payments/idempotency`                                 |
 | SPEC-checkout#AC-003 | sessions expire at 30 minutes                                                                         | `npx vitest run checkout/session-expiry`                              |
-| SPEC-checkout#AC-004 | expired session → 409, never 5xx                                                                      | `npm run test:integration -- expired-session`                   |
+| SPEC-checkout#AC-004 | expired session → 409, never 5xx                                                                      | `npm run test:integration -- expired-session`                         |
 | SPEC-checkout#AC-006 | webhooks resolve provider refs, incl. uppercase                                                       | `npx vitest run webhooks/session-lookup`                              |
 | PG-001               | session ids keep the 32-char lowercase-hex shape (suspected log-parser dependents — see INV Unknowns) | `npx vitest run sessions/id-shape` (contract test, written in wave 1) |
 
@@ -301,7 +301,7 @@ Implement or preserve:
 
 ## Findings
 
-- The three TTL copies disagreed in *units* (ms vs seconds) — they agreed by
+- The three TTL copies disagreed in _units_ (ms vs seconds) — they agreed by
   luck; durable gotcha, candidate for Close.
 ```
 
@@ -326,7 +326,7 @@ pattern illustrated (small-N, preliminary) by [[EVIBOUND]](../research/sources.m
 The packet turns the PR into requirement coverage plus a short exception list. Because this
 task executes a change plan, it carries **both** tables: requirement coverage for the spec ids
 in scope, change-plan coverage for the plan's remaining guarantees and wave conditions.
-(The optional `swarm review --write` drafts the requirement-coverage table for you — every
+(The optional `corpus review --write` drafts the requirement-coverage table for you — every
 row Unverified; the change-plan coverage table you or your agent still fills.)
 `reviews/checkout-sessions-w1.md`:
 
@@ -359,9 +359,9 @@ is outside the task's scope.
 
 | ID                   | Result | Evidence                                                                                                                                                      | Human attention |
 | -------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| SPEC-checkout#AC-001 | Pass   | `npx vitest run checkout/session-create` → `Tests  4 passed (4)` (pasted in PR)                                                                                | no              |
-| SPEC-checkout#AC-002 | Pass   | `npx vitest run payments/idempotency` → `Tests  6 passed (6)` (pasted in PR)                                                                                   | no              |
-| SPEC-checkout#AC-003 | Pass   | `npx vitest run checkout/session-expiry` → `Tests  5 passed (5)` (pasted in PR)                                                                                | no              |
+| SPEC-checkout#AC-001 | Pass   | `npx vitest run checkout/session-create` → `Tests  4 passed (4)` (pasted in PR)                                                                               | no              |
+| SPEC-checkout#AC-002 | Pass   | `npx vitest run payments/idempotency` → `Tests  6 passed (6)` (pasted in PR)                                                                                  | no              |
+| SPEC-checkout#AC-003 | Pass   | `npx vitest run checkout/session-expiry` → `Tests  5 passed (5)` (pasted in PR)                                                                               | no              |
 | SPEC-checkout#AC-004 | Fail   | `npm run test:integration -- expired-session` → `expected 409, received 500`; `src/sessions/store.ts:74` throws `Error("expired")`, not `SessionExpiredError` | yes             |
 
 Spot-checked: AC-001 — re-ran `npx vitest run checkout/session-create` myself → `Tests  4 passed (4)`.
@@ -464,24 +464,24 @@ Reviewer spot-checked AC-002 locally.
 
 ## Requirement coverage
 
-| ID                   | Result | Evidence                                                                   | Human attention |
-| -------------------- | ------ | -------------------------------------------------------------------------- | --------------- |
-| SPEC-checkout#AC-001 | Pass   | re-run in CI #5547 (link)                                                  | no              |
-| SPEC-checkout#AC-002 | Pass   | CI #5547 — and re-run locally by the reviewer: `Tests  6 passed (6)`  | no              |
-| SPEC-checkout#AC-003 | Pass   | CI #5547 (link)                                                            | no              |
+| ID                   | Result | Evidence                                                                       | Human attention |
+| -------------------- | ------ | ------------------------------------------------------------------------------ | --------------- |
+| SPEC-checkout#AC-001 | Pass   | re-run in CI #5547 (link)                                                      | no              |
+| SPEC-checkout#AC-002 | Pass   | CI #5547 — and re-run locally by the reviewer: `Tests  6 passed (6)`           | no              |
+| SPEC-checkout#AC-003 | Pass   | CI #5547 (link)                                                                | no              |
 | SPEC-checkout#AC-004 | Pass   | `npm run test:integration -- expired-session` → `Tests  3 passed (3)` (pasted) | no              |
 
 Spot-checked: AC-002 — re-ran `npx vitest run payments/idempotency` locally → `Tests  6 passed (6)`.
 
 ## Change-plan coverage
 
-| ID                                            | Result | Evidence                                                        | Human attention |
-| --------------------------------------------- | ------ | --------------------------------------------------------------- | --------------- |
-| Wave 1 — single import path, old copy deleted | Pass   | grep re-run, no matches (pasted)                                | no              |
-| Wave 1 — suites green                         | Pass   | CI #5547, unit + integration jobs (link)                        | no              |
+| ID                                            | Result | Evidence                                                                  | Human attention |
+| --------------------------------------------- | ------ | ------------------------------------------------------------------------- | --------------- |
+| Wave 1 — single import path, old copy deleted | Pass   | grep re-run, no matches (pasted)                                          | no              |
+| Wave 1 — suites green                         | Pass   | CI #5547, unit + integration jobs (link)                                  | no              |
 | SPEC-checkout#AC-006 (preserved)              | Pass   | `npx vitest run webhooks/session-lookup` → `Tests  7 passed (7)` (pasted) | no              |
 | PG-001 — id shape                             | Pass   | `npx vitest run sessions/id-shape` → `Tests  2 passed (2)` (pasted)       | no              |
-| Out-of-scope edit reverted                    | Pass   | `git diff main -- src/payments/retry.ts` → empty (pasted)       | no              |
+| Out-of-scope edit reverted                    | Pass   | `git diff main -- src/payments/retry.ts` → empty (pasted)                 | no              |
 
 ## Human attention
 
@@ -547,12 +547,12 @@ and here it was: the spec gains `AC-009`, and future tasks scope it directly. Fi
 `status.md`:
 
 ```markdown
-| Item                      | Type        | State                                          | Link                                |
-| ------------------------- | ----------- | ---------------------------------------------- | ----------------------------------- |
-| SPEC-checkout             | spec        | ready (amended: +AC-009)                       | `specs/checkout/spec.md`            |
-| CHANGE-checkout-sessions  | change-plan | in-progress — wave 1 merged                    | `change-plans/checkout-sessions.md` |
-| TASK-checkout-sessions-w1 | task        | closed | `reviews/checkout-sessions-w1-fix.md` |
-| TASK-checkout-sessions-w2 | task        | ready                                          | `tasks/checkout-sessions-w2.md`     |
+| Item                      | Type        | State                       | Link                                  |
+| ------------------------- | ----------- | --------------------------- | ------------------------------------- |
+| SPEC-checkout             | spec        | ready (amended: +AC-009)    | `specs/checkout/spec.md`              |
+| CHANGE-checkout-sessions  | change-plan | in-progress — wave 1 merged | `change-plans/checkout-sessions.md`   |
+| TASK-checkout-sessions-w1 | task        | closed                      | `reviews/checkout-sessions-w1-fix.md` |
+| TASK-checkout-sessions-w2 | task        | ready                       | `tasks/checkout-sessions-w2.md`       |
 ```
 
 Waves 2 and 3 repeat steps 3–8 against the same change plan — each one PR, each leaving the
@@ -585,7 +585,7 @@ and a drive-by edit two waves early.
   a change plan are worth writing, and when they are not
 - [feature-from-ticket](feature-from-ticket.md) — the six-step happy path, including authoring a
   spec like SPEC-checkout · [bug-fix](bug-fix.md) — the shortest loop, same review discipline
-- Templates used here: [inventory](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/inventory.md) ·
-  [change-plan](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/change-plan.md) ·
-  [task](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) · [review](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) ·
-  [finding](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/finding.md) · [status](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/status.md)
+- Templates used here: [inventory](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/inventory.md) ·
+  [change-plan](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/change-plan.md) ·
+  [task](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md) · [review](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/review.md) ·
+  [finding](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/finding.md) · [status](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/status.md)

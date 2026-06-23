@@ -33,7 +33,7 @@ spec-kit issue threads #1191/#876/#1059 and the Fiberplane "Drift" post — surv
    review packet that links its PR is the default record of work. (A PR-only record remains the floor for
    teams with no workspace.)
 3. **Co-located and external are co-equal defaults.** A single-repo team keeps the same tree inside its
-   repo (optionally under a visible `swarm/` directory). The external workspace is framed as a Git-native,
+   repo (optionally under a visible `corpus/` directory). The external workspace is framed as a Git-native,
    agent-readable form of the external requirements store larger organizations already run — never as the
    common practice of comparable tools (it is not; the in-repo norm and the drift failure mode are the
    recorded counter-evidence, survey V-021/V-024). One spec store can govern many code repos.
@@ -59,11 +59,11 @@ spec-kit issue threads #1191/#876/#1059 and the Fiberplane "Drift" post — surv
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
-| Gitignored task/review scratch | Discards the wedge's record; the packet is the product's durable evidence |
+| Alternative                             | Why weaker                                                                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Gitignored task/review scratch          | Discards the wedge's record; the packet is the product's durable evidence                                          |
 | Pure per-feature folders for everything | Flow artifacts cross features (one review covers one task, not one feature); type folders keep the board scannable |
-| External-store as the sole default | Contradicts the documented in-repo norm and adds drift risk for small teams |
+| External-store as the sole default      | Contradicts the documented in-repo norm and adds drift risk for small teams                                        |
 
 ## Consequences
 
@@ -81,9 +81,10 @@ Templates (task, review, status), docs/03/05/06/08, ADOPTING, kit shell, conform
 examples, evals.
 
 > **Addendum (2026-06-11):** the worker's run record folds into the review packet (the run summary
-> + evidence cells); a standalone trace artifact exists only as a reserved machine-record sketch on
-> the future-CLI page. Inventories live in the type folder `inventory/`; the feature folder co-locates
-> only spec-supporting documents (audit, research, prd, rfc).
+>
+> - evidence cells); a standalone trace artifact exists only as a reserved machine-record sketch on
+>   the future-CLI page. Inventories live in the type folder `inventory/`; the feature folder co-locates
+>   only spec-supporting documents (audit, research, prd, rfc).
 
 > **Ledger note (2026-06-12):** the workspace layout this ADR prescribes is shipped pre-built
 > by the starter kit per ADR-0069.

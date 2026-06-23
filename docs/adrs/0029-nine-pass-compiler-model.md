@@ -41,17 +41,17 @@ durable discoveries into provenance-anchored artifacts. There is NO runtime — 
 pass guide. For a single obligation the partial order MUST be respected (no `verify` before
 `implement`, no `implement` before `lower`). The full per-pass input/output contract, the
 pass-to-phase mapping, and the contract notes are detailed in the compiler-pipeline
-reference ([`docs/model/how-swarm-works.md`](./model/how-swarm-works.md)) and the per-pass pages under [`docs/passes/`](./passes/).
+reference ([`docs/model/how-corpus-works.md`](./model/how-corpus-works.md)) and the per-pass pages under [`docs/passes/`](./passes/).
 
 ## Alternatives considered
 
-| Alternative | Why rejected |
-| --- | --- |
-| One undifferentiated "compile" step | No typed boundary to attach a per-step contract, a gate, or a profile to; the failure modes of lowering, implementing, and verifying differ and MUST be separable (§9). |
+| Alternative                                       | Why rejected                                                                                                                                                                                                     |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| One undifferentiated "compile" step               | No typed boundary to attach a per-step contract, a gate, or a profile to; the failure modes of lowering, implementing, and verifying differ and MUST be separable (§9).                                          |
 | Use only the seven phases as the schedulable unit | Phases are conceptual stages, not schedulable work; an author/agent/tool runs passes, not phases. The small fixed phase taxonomy is the stable spine; the larger pass set is the schedulable surface (§9, §9.1). |
-| Let `lint` also rewrite the spec | `lint` is non-mutating by contract; only `improve` may rewrite a spec, and only semantics-preservingly. Fusing them would let a "diagnosis" silently change intent (§9.3.1). |
-| Fold `decompose` into `lower` (one LOWER pass) | They have different inputs, outputs, and failure modes — graph construction vs work partitioning; conflating them mixes the two (§9.3.1, §11). |
-| Treat `review[profile: skeptic]` as a tenth pass | Adversarial review is a profile parameter on the existing `review` pass, not a separate pass; the earlier `adversarial-review` skill becomes `review[profile: skeptic]` (§9.4). |
+| Let `lint` also rewrite the spec                  | `lint` is non-mutating by contract; only `improve` may rewrite a spec, and only semantics-preservingly. Fusing them would let a "diagnosis" silently change intent (§9.3.1).                                     |
+| Fold `decompose` into `lower` (one LOWER pass)    | They have different inputs, outputs, and failure modes — graph construction vs work partitioning; conflating them mixes the two (§9.3.1, §11).                                                                   |
+| Treat `review[profile: skeptic]` as a tenth pass  | Adversarial review is a profile parameter on the existing `review` pass, not a separate pass; the earlier `adversarial-review` skill becomes `review[profile: skeptic]` (§9.4).                                  |
 
 ## Consequences
 

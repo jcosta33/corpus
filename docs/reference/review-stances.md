@@ -1,27 +1,27 @@
 # Review stances
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 A **review stance** is an optional reading posture an agent or person adopts while performing a
 step. It tilts attention — what the reader looks for, what evidence they demand, what they refuse
 to accept — without changing what the step means or what its artifact looks like. Every step is
 fully defined with no stance loaded; a stance sharpens it. A stance is a frame of mind, never a
 character: it is named for what it refuses (`skeptic`, `auditor`), not for a persona to inhabit.
-(The glossary's internal name for a stance is a *profile*.)
+(The glossary's internal name for a stance is a _profile_.)
 
 ## The contract shape
 
 A stance is written as seven sections, in this order:
 
-| Section | Carries |
-|---|---|
-| Prevents | the one failure class this stance exists to catch — a single clause. |
-| Default questions | the questions the stance forces while the step runs. |
-| Required evidence | what the stance demands before it accepts a claim. |
-| Refuses | the red-flag table: each row a pattern rejected on sight, paired with the action taken. |
-| Self-review delta | what the agent additionally checks in its own work when the stance is active. |
-| Applies | the work this stance fits. |
-| Does-not-apply | the work it must not be loaded for — the guard against misapplication. |
+| Section           | Carries                                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------- |
+| Prevents          | the one failure class this stance exists to catch — a single clause.                    |
+| Default questions | the questions the stance forces while the step runs.                                    |
+| Required evidence | what the stance demands before it accepts a claim.                                      |
+| Refuses           | the red-flag table: each row a pattern rejected on sight, paired with the action taken. |
+| Self-review delta | what the agent additionally checks in its own work when the stance is active.           |
+| Applies           | the work this stance fits.                                                              |
+| Does-not-apply    | the work it must not be loaded for — the guard against misapplication.                  |
 
 The **Refuses** table is the heart: an enumerated refusal set, auditable row by row, rather than
 one sweeping rule. The Skeptic's table, for instance, refuses "tests passed" with no command, exit
@@ -34,7 +34,7 @@ guides carry the folded forms, and that fold is the **single source** for the st
 kind of work — architect, auditor, researcher, documentarian no longer ship a standalone copy
 ([ADR-0093](../adrs/0093-collapse-1to1-personas.md)). Only the **cross-cutting** stances — skeptic,
 challenger, surveyor — also ship standalone as a `persona-*` skill in
-[the swarm-skills catalog](https://github.com/jcosta33/swarm-skills), for loading a posture without
+[the corpus-skills catalog](https://github.com/jcosta33/corpus-skills), for loading a posture without
 its host guide. This is a convention; nothing in this repo enforces it.
 
 ## The stances
@@ -52,7 +52,7 @@ Refute by default: a completion claim is unproven until evidence forces the oppo
 Prevents rubber-stamped reviews. Demands re-run checks and pasted output; refuses a worker's
 summary as proof, a green row with an empty evidence cell, and any softening of a finding to avoid
 blocking. Ships inside the kit's `.agents/skills/review-output/`, and also standalone as
-`persona-skeptic` in the swarm-skills catalog — and, turned on one's own diff before handoff, it is
+`persona-skeptic` in the corpus-skills catalog — and, turned on one's own diff before handoff, it is
 the self-review posture the `implement-task` guide ends on (that yields fixes and a recorded critique,
 never a self-issued result).
 
@@ -63,17 +63,17 @@ surveys. Prevents pattern claims built on one example. Demands at least three na
 asserted pattern and a hard line between observation and claim; refuses inferring behavior from
 marketing copy and closing on a recommendation no spec could transcribe. Its breadth discipline does
 not fold cleanly into any single write-guide; ships standalone as `persona-surveyor` in
-[the swarm-skills catalog](https://github.com/jcosta33/swarm-skills).
+[the corpus-skills catalog](https://github.com/jcosta33/corpus-skills).
 
 ### Challenger — standalone
 
-Pressure-test a live proposal *before* it is committed. Prevents building on an unexamined assumption,
+Pressure-test a live proposal _before_ it is committed. Prevents building on an unexamined assumption,
 or dismissing the rejected option as a strawman. Demands that every challenge ground in an external
 referent — a counterexample, a runnable check, a cited source, an observable consequence — never
 unaided second-guessing, and that the discarded alternative be steelmanned before the chosen one is
 attacked; refuses re-deciding the proposal here (pressure the idea; the call is a separate step). It
 precedes any single artifact, so it folds into no one guide; ships standalone as `persona-challenger`
-in [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills).
+in [the corpus-skills catalog](https://github.com/jcosta33/corpus-skills).
 
 ### Auditor — folded into the `write-audit` guide
 
@@ -98,7 +98,7 @@ where the system has one actual behavior. Ships with the catalog's `write-docume
 
 ## Judge independence
 
-When a review result is rendered by a model's *judgment* — rather than read off a deterministic
+When a review result is rendered by a model's _judgment_ — rather than read off a deterministic
 check — three rules apply. They exist because the failure modes are measured, not assumed. These
 are checklist rules: the reviewer inspects who rendered each judgment; nothing enforces them.
 
@@ -137,6 +137,6 @@ on; this is checklist-level — nothing enforces the count or the assignment.
 - [Reviewing output](../08-reviewing-output.md) — the review packet the Skeptic stance fills.
 - [Agent guides](agent-guides.md) — the guide model the folded stances live inside.
 - The kit guides themselves:
-  [`.agents/skills/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/.agents/skills)
-  in the swarm-starter-kit repo; the standalone stances:
-  [the swarm-skills catalog](https://github.com/jcosta33/swarm-skills).
+  [`.agents/skills/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/.agents/skills)
+  in the corpus-starter-kit repo; the standalone stances:
+  [the corpus-skills catalog](https://github.com/jcosta33/corpus-skills).

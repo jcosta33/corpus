@@ -1,6 +1,6 @@
 # Walk the loop · Review
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 You have a finished change: the agent implemented `AC-001`, ran the integration test, and
 left you a task packet with the output. Now you decide whether it's done — not by reading the
@@ -15,7 +15,7 @@ packet — every section, every invariant — lives in
 
 > **Reminder — this is a worked artifact, not a live run.** You're producing a real review
 > packet for the `shop-api` reference change. The `npm run test:integration` line never executes
-> against anything here; the pasted output below is what *your* agent's run would produce. When
+> against anything here; the pasted output below is what _your_ agent's run would produce. When
 > you run the loop on your own next real change, you'll paste your own.
 
 ## The one idea: review by exception
@@ -35,7 +35,7 @@ One rule decides who is even allowed to fill this file: **whoever wrote the diff
 result.** The agent that made the change does not judge the change — an evaluator scores its own
 work higher than it merits. So:
 
-- The agent implemented `AC-001`. **You** (or a fresh agent session that did *not* write the
+- The agent implemented `AC-001`. **You** (or a fresh agent session that did _not_ write the
   diff) fill the review packet.
 - If you had written the code by hand, an agent would review it. Self-review is still good
   practice, but it yields fixes, never a result.
@@ -50,7 +50,7 @@ a fresh session before continuing.
 ## Step 3a — Create the file and its frontmatter
 
 Make a new file at `reviews/checkout-expiry.md`. Start from the kit's review template —
-[`templates/review.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/review.md) —
+[`templates/review.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/review.md) —
 which owns the format; you're filling it, not redesigning it. Fill the frontmatter for our task:
 
 ```markdown
@@ -82,12 +82,12 @@ output your agent run produced for the `Verify with:` command — the same
 ```markdown
 ## Requirement coverage
 
-| ID     | Result | Evidence                                                                          | Human attention |
-| ------ | ------ | --------------------------------------------------------------------------------- | --------------- |
-| AC-001 | Pass   | `npm run test:integration -- expired-session` → `Tests: 3 passed, 3 total`        | yes             |
+| ID     | Result | Evidence                                                                   | Human attention |
+| ------ | ------ | -------------------------------------------------------------------------- | --------------- |
+| AC-001 | Pass   | `npm run test:integration -- expired-session` → `Tests: 3 passed, 3 total` | yes             |
 ```
 
-This row reads **Pass** because the Evidence cell holds *pasted output* — a real command result,
+This row reads **Pass** because the Evidence cell holds _pasted output_ — a real command result,
 not a sentence about one. That's the evidence rule at work; an empty cell would make the row
 **Unverified**, never Pass, whatever the prose claims. You don't restate that rule in the packet —
 it's the contract, owned by
@@ -97,12 +97,12 @@ coverage check `C012`). Notice the `Human attention` cell reads `yes` even thoug
 Pass — a green row can still route a person. We'll see why in step 3d.
 
 **Stop-point check:** your one row reads `AC-001 | Pass | <pasted output> | …`, and the Evidence
-cell holds actual output, not a sentence *about* output. You've produced the verified-coverage
+cell holds actual output, not a sentence _about_ output. You've produced the verified-coverage
 record.
 
 ## Step 3c — Spot-check the green row
 
-A tidy table *feels* verified — and that feeling is exactly why
+A tidy table _feels_ verified — and that feeling is exactly why
 [Reviewing agent output → Spot-check one green row](../08-reviewing-output.md#spot-check-one-green-row)
 asks you to confirm a Pass yourself before you accept it. With one row, the choice is easy:
 re-run `AC-001`'s command and record what you saw, right under the table:
@@ -112,7 +112,7 @@ Spot-checked: AC-001 — re-ran `npm run test:integration -- expired-session` my
 ```
 
 This is a convention, not a tool gate. One honest spot-check per packet keeps the green column
-meaning something. (In *this* worked artifact the command doesn't really run, so the line records
+meaning something. (In _this_ worked artifact the command doesn't really run, so the line records
 what a real re-run would show; on your own change, you actually re-run it.)
 
 **Stop-point check:** the packet carries a `Spot-checked:` line naming the row you re-ran. You've
@@ -121,7 +121,7 @@ produced your own independent confirmation of the green cell.
 ## Step 3d — Route the one exception
 
 A green table is not the end. Review-by-exception means the packet must consider every class of
-thing that needs a human — and *list* it, even when the row passed. Our change touches checkout,
+thing that needs a human — and _list_ it, even when the row passed. Our change touches checkout,
 which is the money path: `risky files` (payments) is one of the exception triggers. So even with
 `AC-001` green, one row routes to a person. Add the Human-attention section:
 
@@ -129,7 +129,7 @@ which is the money path: `risky files` (payments) is one of the exception trigge
 ## Human attention
 
 1. **Risky file — money path.** This change lands on checkout, which validates a session before
-   charging. `AC-001` passes, but the failure mode here is a session that *should* expire still
+   charging. `AC-001` passes, but the failure mode here is a session that _should_ expire still
    being charged against. Confirm the 409 path runs before any charge call, not after.
 ```
 
@@ -140,8 +140,8 @@ what needs your eyes lives in
 and a good packet has considered every one (listing it or marking it n/a). Here, one trigger
 fires, so one exception is listed.
 
-**Stop-point check:** your packet has exactly one Human-attention item, and it names *why* the
-file is risky and *what* a human should look at. You've produced the routed-exception record —
+**Stop-point check:** your packet has exactly one Human-attention item, and it names _why_ the
+file is risky and _what_ a human should look at. You've produced the routed-exception record —
 the thing that makes a green review still worth a second pair of eyes.
 
 ## Step 3e — The decision, and flip the status
@@ -162,7 +162,7 @@ now the durable record of what was verified against the spec. (The full status s
 `draft · pass · waived · blocked · needs-human` — and what each means is owned by
 [Reviewing agent output → Results and packet status](../08-reviewing-output.md#results-and-packet-status).)
 
-> **The optional CLI, as an aside.** `swarm review` can *draft* this packet — reconciling the
+> **The optional CLI, as an aside.** `corpus review` can _draft_ this packet — reconciling the
 > finished run against the diff and the spec and surfacing the facts (the coverage check `C012`,
 > the evidence-binding check `C013`). It surfaces facts; **you still decide the result.** The
 > by-hand path above is the primary one — the CLI is a convenience, and nothing in Corpus enforces

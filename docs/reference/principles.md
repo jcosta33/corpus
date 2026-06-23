@@ -1,6 +1,6 @@
 # Principles
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 Corpus centers on clear requirements, bounded tasks, review evidence, and durable findings.
 The wager behind all four: generation outpaces validation, so the validation side gets the structure. The
@@ -12,13 +12,13 @@ and when two design choices collide, the principles below are the tiebreakers.
 
 Corpus is markdown plus your agent. Nothing here parses, lints, schedules, or verifies anything.
 Every description of tool behavior — a checker, a packet drafter, a drift recomputation — is a
-**contract for tooling**, collected in [future CLI](future-cli.md), with swarm-cli as the
+**contract for tooling**, collected in [future CLI](future-cli.md), with corpus-cli as the
 reference implementation in progress.
 
 - **Consequence.** No page may claim a CLI is required or that automation already exists.
   "Corpus checks X" is always wrong; for a capability that has not shipped, "a future
-  `swarm review` evidence-match can flag X" is the honest form.
-- **Tiebreaker.** Tempted to say Corpus *does* something? Ask whether this repository ships code
+  `corpus review` evidence-match can flag X" is the honest form.
+- **Tiebreaker.** Tempted to say Corpus _does_ something? Ask whether this repository ships code
   that does it. It does not. Restate it as a contract a tool can build against.
 
 ## Conventions are self-policed, not machine-enforced
@@ -28,15 +28,15 @@ lose an engineer's trust. So every rule in these docs carries one of four honest
 
 - **convention** — expected practice; nothing enforces it;
 - **checklist** — review is expected to inspect it;
-- **toolable** — a named optional tool can check it (e.g. swarm-cli's
-  `swarm check`);
+- **toolable** — a named optional tool can check it (e.g. corpus-cli's
+  `corpus check`);
 - **enforced** — a shipped tool actually enforces it. Today, nothing qualifies.
 
 - **Consequence.** Enforcement-sounding wording — that something is rejected, gated, or failed
   automatically — never appears without a shipped tool behind it. Teams may adopt stricter
   policy ("we treat C003 as blocking") — that is the team enforcing, not Corpus. The legend and
   approved phrasings live in [checks](checks.md).
-- **Tiebreaker.** When a property *must* hold regardless of any model's cooperation, name the
+- **Tiebreaker.** When a property _must_ hold regardless of any model's cooperation, name the
   deterministic check outside the model — a CI step, a hook, a schema — and mark it toolable
   until that check exists.
 
@@ -56,7 +56,7 @@ in code; neither overwrites the other without a recorded act.
 ## Pasted evidence beats schema-valid output
 
 A well-formed artifact is not a verified one. A tidy coverage table, a green exit code, a
-confident "tests passed" — these are *shape*. Evidence is the pasted output or the CI link a
+confident "tests passed" — these are _shape_. Evidence is the pasted output or the CI link a
 reader can inspect; unsupported done-claims are the failure this principle exists to catch,
 illustrated (small-N, preliminary) by [[EVIBOUND]](../research/sources.md#EVIBOUND).
 

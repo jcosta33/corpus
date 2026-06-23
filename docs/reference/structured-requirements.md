@@ -1,16 +1,16 @@
 # Structured requirements (SOL)
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 SOL is Corpus's stricter spec surface — a structured requirements notation, selected per file
 with `format: sol` in the spec's frontmatter — the frontmatter field is the entire selector. (Some external
-material suffixes SOL files `.swarm.md`; Corpus treats that as a harmless private filename
+material suffixes SOL files `.corpus.md`; Corpus treats that as a harmless private filename
 convention carrying no meaning of its own.) The default spec form is plain markdown:
 `### AC-NNN` headings with one behavior sentence and a `Verify with:` line (see
 [Writing specs](../04-writing-specs.md)). SOL trades a little writing freedom for shapes a
 reviewer can scan and a parser can read: fixed clause order, explicit strength words, and a
 resolved verification binding on every requirement. Reach for it on high-risk work, or when
-you want a spec that swarm-cli can check mechanically. The requirement shape follows the
+you want a spec that corpus-cli can check mechanically. The requirement shape follows the
 EARS controlled-requirements pattern, which has industry precedent in agent-facing spec
 tooling [[KIRO]](../research/sources.md#KIRO).
 
@@ -65,13 +65,13 @@ invented; a plain spec that needs those distinctions switches the file to `forma
 verification note per requirement, one binding strength word, no `TBD` in `status: ready`)
 apply to the record and therefore to both forms; the SOL-only checks add shape rules this
 page defines. The catalogue lives in [Checks](checks.md) — reference implementation:
-`swarm check` in swarm-cli. The checks fixtures (`checks/` in the Corpus repo) ship surface-equivalence pairs (one
+`corpus check` in corpus-cli. The checks fixtures (`checks/` in the Corpus repo) ship surface-equivalence pairs (one
 plain, one SOL, identical record sets) to keep the two surfaces from forking.
 
 ## Selecting SOL
 
 The selector is the frontmatter field alone. (Some external material marks SOL files with a
-`.swarm.md` filename suffix; Corpus treats that as a harmless private convention — the filename
+`.corpus.md` filename suffix; Corpus treats that as a harmless private convention — the filename
 carries no meaning, only `format: sol` does.)
 
 `format: sol` in the frontmatter is the entire selector — per file, opt-in, reversible:
@@ -118,12 +118,12 @@ Each block type has a fixed id prefix:
 | `INTERFACE`  | `IF-`     | `IF-001` |
 | `QUESTION`   | `Q-`      | `Q-001`  |
 
-Ids are unique within a file. A duplicate id is flagged today — `swarm check` runs the **core**
+Ids are unique within a file. A duplicate id is flagged today — `corpus check` runs the **core**
 checks (C001 unique-ids, C003 verify-present, C004 one-strength-word, C007 no-TBD) on a `format: sol`
 spec, the same as on a plain spec. A **wrong prefix** is a SOL-specific structural check
-(`SOL-S005` in [Checks](checks.md)) that is **planned, not yet shipped** in swarm-cli 1.0.0.
+(`SOL-S005` in [Checks](checks.md)) that is **planned, not yet shipped** in corpus-cli 1.0.0.
 
-> **What `swarm check` validates on a SOL spec today (1.0.0):** the core checks above — so a duplicate
+> **What `corpus check` validates on a SOL spec today (1.0.0):** the core checks above — so a duplicate
 > id or a missing `VERIFY BY` is caught. The SOL-_specific_ structural codes (the `SOL-S` / `SOL-P` /
 > `SOL-M` / `SOL-V` families: wrong prefix, strength-without-rationale, mention resolution, binding
 > shape) are the documented contract but are **not yet implemented** — treat them as the writing
@@ -163,7 +163,7 @@ RISK medium
   `SHOULD NOT` consequence needs one of them in the same block (checklist item; the mechanical
   `SOL-P` check for this is _planned, not yet shipped_ — see the caveat under Ids above).
 - `VERIFY BY` is expected on every `REQ` — the highest-value line in the block
-  [[ORACLESWE]](../research/sources.md#ORACLESWE). A missing one IS flagged today: `swarm check`
+  [[ORACLESWE]](../research/sources.md#ORACLESWE). A missing one IS flagged today: `corpus check`
   runs the core C003 verify-present check on a `format: sol` spec (toolable, shipped).
 
 ### CONSTRAINT — restriction on the solution space
@@ -216,7 +216,7 @@ VERIFY BY contract:cmdContract:refresh-session-contract
 
 `ACCEPTS:` and `ERRORS:` introduce contiguous bullet lines (a blank line would close the
 block). An interface verifies with a `contract:` method — a check that the declared shape
-matches reality (checklist item; toolable via swarm-cli's `swarm check`).
+matches reality (checklist item; toolable via corpus-cli's `corpus check`).
 
 ### QUESTION — marked ambiguity
 
@@ -291,7 +291,7 @@ colon) keeps references unambiguous — the colon already ends block headers and
 
 ## Grammar (EBNF appendix)
 
-Nothing in this repo parses SOL. This grammar is the contract swarm-cli's parser builds
+Nothing in this repo parses SOL. This grammar is the contract corpus-cli's parser builds
 against (toolable); when you write SOL without tooling, treat it as the writing convention
 plus the review checklist above. Trimmed to the productions that matter:
 
@@ -370,7 +370,7 @@ digits       = digit, { digit };
 
 The notation is unversioned: there is no version field in a spec's frontmatter and no
 versioned grammar name. Framework releases are git tags on this repository; `format: sol`
-is the parser hook for swarm-cli — the only thing a tool needs to decide how to read the
+is the parser hook for corpus-cli — the only thing a tool needs to decide how to read the
 file.
 
 ## Related
@@ -379,5 +379,5 @@ file.
 - [Checks](checks.md) — the common mistakes to check for, over both surfaces.
 - [Artifact formats](artifact-formats.md) — spec frontmatter and the other file types.
 - [Reviewing output](../08-reviewing-output.md) — how verification results become review results.
-- [Future CLI](future-cli.md) — how swarm-cli parses this notation internally (no `ir.json`
+- [Future CLI](future-cli.md) — how corpus-cli parses this notation internally (no `ir.json`
   artifact; optional `--json` for interop, per ADR-0077).

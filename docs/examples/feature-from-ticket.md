@@ -1,17 +1,17 @@
 # Example: a feature from a ticket
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 One small feature — silent token refresh on 401 — carried through the whole loop:
 **Pull → Spec → Task → Run → Review → Close**. Every artifact appears in full, in the exact
-shape its kit template freezes ([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)).
+shape its kit template freezes ([`templates/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/)).
 This page is [the basic workflow](../02-basic-workflow.md) with real content in every slot.
 
 ## Step 1 — Pull: capture the ticket
 
 Work starts in a tracker, so the first move is a snapshot: paste the ticket verbatim into
 `intake/` — the spec interprets; the intake preserves what was actually asked, so anyone
-can later check the interpretation against the original. (The optional `swarm pull` captures
+can later check the interpretation against the original. (The optional `corpus pull` captures
 this snapshot for you; by hand you copy-paste.)
 
 **`intake/WEB-123.md`**

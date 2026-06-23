@@ -1,6 +1,6 @@
 # Walk the loop · Task and Run
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 You have a spec. `specs/checkout/spec.md` (`SPEC-checkout`, status `ready`) carries one
 requirement — `AC-001 — Expired session returns 409` — with a runnable check on it. Holding a
@@ -30,7 +30,7 @@ it. The full reasoning lives in [Creating tasks](../06-creating-tasks.md); here 
 template.
 
 **Now create the file.** Copy
-[`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md)
+[`templates/task.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md)
 to `tasks/checkout-expiry.md` and fill it in. Here is the whole packet for our one requirement:
 
 ```markdown
@@ -90,7 +90,7 @@ Three lines are doing the real work, and each maps to a part of the template exp
 stay in scope or stop and say why, run every Verify item and paste real output, self-review the
 diff, leave a run summary — ship in the template and travel with every task, so every agent gets
 the same brief. Copy the `## Agent instructions` block from
-[`templates/task.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md)
+[`templates/task.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md)
 verbatim; do not retype or edit them here. (See
 [the section on the standing rules](../06-creating-tasks.md#the-template).)
 
@@ -117,14 +117,14 @@ cheap as deleting a directory ([why this hygiene pays off](../07-running-agents.
 **Now run this** (against your own repo, on your own next change):
 
 ```bash
-git worktree add -b swarm/checkout-expiry ../shop-api--checkout-expiry main
+git worktree add -b corpus/checkout-expiry ../shop-api--checkout-expiry main
 ```
 
 That gives you a fresh checkout in `../shop-api--checkout-expiry` on a new branch
-`swarm/checkout-expiry`. This is a convention — nothing here enforces it; an agent told to edit in
-place will edit in place. *(The optional `swarm worktree` sets up the isolated branch and checkout
+`corpus/checkout-expiry`. This is a convention — nothing here enforces it; an agent told to edit in
+place will edit in place. _(The optional `corpus worktree` sets up the isolated branch and checkout
 for you; you still launch your own agent inside it —
-[the reference CLI](../reference/future-cli.md) prepares the loop, it does not run your agent.)*
+[the reference CLI](../reference/future-cli.md) prepares the loop, it does not run your agent.)_
 
 ### Hand off the packet
 
@@ -137,9 +137,9 @@ Read tasks/checkout-expiry.md and do what it says.
 ```
 
 A human colleague reads the same file and works from the same Scope, "Do not change", and Verify
-line. *(The optional [`swarm run`](../reference/future-cli.md) launches a configured agent in the
+line. _(The optional [`corpus run`](../reference/future-cli.md) launches a configured agent in the
 task's worktree and records the launch; it never becomes the agent — the coding loop is still the
-agent's, never Corpus's.)*
+agent's, never Corpus's.)_
 
 ### What comes back
 
@@ -147,8 +147,8 @@ The worker does two things with the packet on the way out. First, it runs each V
 **pastes that command's real output directly under the item** — that is where the evidence lives.
 Then the last standing instruction has it fill the packet's **`## Run summary`** section —
 changed files, out-of-scope edits, blocked questions, and one line per Verify command that
-*points back* at the paste rather than repeating it. Both shapes are owned by the
-[task template](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/task.md) and
+_points back_ at the paste rather than repeating it. Both shapes are owned by the
+[task template](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/task.md) and
 explained in [What you get back](../07-running-agents.md#what-you-get-back) — don't redraw them.
 A finished, green packet for our task looks like this, Verify section first:
 
@@ -182,12 +182,12 @@ page worth memorizing, and it decides the review result a step later:
 > worktree still exists and a re-run costs seconds; later it is archaeology.
 
 The worker also self-reviews its diff as a skeptic before leaving the summary — that yields
-*fixes*, never a result; the Pass/Fail call belongs to the next step, made by someone who didn't
+_fixes_, never a result; the Pass/Fail call belongs to the next step, made by someone who didn't
 write the code. See
 [self-review before handoff](../07-running-agents.md#self-review-before-handoff) for why an agent
 grading its own work can't issue the verdict.
 
-> **Stop-point check.** You should have: a worktree on branch `swarm/checkout-expiry`, the packet
+> **Stop-point check.** You should have: a worktree on branch `corpus/checkout-expiry`, the packet
 > handed off with the one-line prompt, and a returned packet where the integration-test output is
 > **pasted under its Verify item** (green) and the `## Run summary` line cites it. If the summary
 > says "passed" but no output sits under the Verify item, it is not done — ask for the paste
@@ -199,7 +199,7 @@ grading its own work can't issue the verdict.
 
 - `tasks/checkout-expiry.md` — a complete task packet: one requirement in scope, one "Do not
   change" wall, one Verify command, the standing agent instructions from the template.
-- An isolated branch (`swarm/checkout-expiry`) and a returned packet with real test output
+- An isolated branch (`corpus/checkout-expiry`) and a returned packet with real test output
   **pasted under the Verify item** and a **Run summary** that indexes it — the raw material the
   review step reads.
 

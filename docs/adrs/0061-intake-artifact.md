@@ -23,13 +23,13 @@ spec. Structured intake is mainstream practice in the trackers themselves (issue
    parent with its own pipeline: it is preserved input. PRDs, research, and bug reports remain their own
    (advanced) artifacts.
 3. **Pull** is the loop's first step: capture the upstream item into `intake/`, by copy-paste today.
-   Tracker connectors are a future-CLI concern (`swarm pull`); this repo ships none.
+   Tracker connectors are a future-CLI concern (`corpus pull`); this repo ships none.
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
-| Spec links the tracker URL only | Upstream items get edited/deleted; the interpretation loses its anchor |
+| Alternative                                   | Why weaker                                                                |
+| --------------------------------------------- | ------------------------------------------------------------------------- |
+| Spec links the tracker URL only               | Upstream items get edited/deleted; the interpretation loses its anchor    |
 | Rich intake schema (fields, labels, comments) | Re-invents the tracker; verbatim paste is the honest, zero-ceremony floor |
 
 ## Consequences

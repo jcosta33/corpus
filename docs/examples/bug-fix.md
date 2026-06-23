@@ -1,11 +1,11 @@
 # Example: a bug fix
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 The bug shape of the loop: **Pull → Spec amend → Task → Run → Review → Close**. A bug is a
 disagreement between the code and the spec — or, as here, a place where the spec was
 silent. Every artifact appears in its frozen template shape
-([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)).
+([`templates/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/)).
 
 ## Step 1 — Pull the bug ticket
 
@@ -188,7 +188,7 @@ the fix makes it pass.
 ```markdown
 ## Findings
 
-- Idempotency keys were minted per capture *attempt*, not per charge — the
+- Idempotency keys were minted per capture _attempt_, not per charge — the
   durable lesson behind PAY-88; candidate for Close
   (FINDING-5XX-RETRY-IDEMPOTENCY).
 

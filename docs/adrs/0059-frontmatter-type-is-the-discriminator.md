@@ -19,18 +19,18 @@ identified artifacts by frontmatter in practice.
 
 1. Every Corpus artifact is a plain `.md` file whose **frontmatter `type:`** identifies it
    (`spec | task | review | finding | status | intake | inventory | change-plan | audit | bug-report |
-   adr | research | prd | rfc | threat-model`). Tools and agents discriminate on `type:`, never on filename.
-2. No Corpus file, template, example, or fixture uses a `.swarm.` filename infix. The optional stricter
+adr | research | prd | rfc | threat-model`). Tools and agents discriminate on `type:`, never on filename.
+2. No Corpus file, template, example, or fixture uses a `.corpus.` filename infix. The optional stricter
    spec surface is selected by `format: sol` (ADR-0058) — frontmatter, not filename.
-3. The names `*.swarm.ir.json` and `*.swarm.plan.json` survive **only** as reserved contract names on the
+3. The names `*.corpus.ir.json` and `*.corpus.plan.json` survive **only** as reserved contract names on the
    future-CLI page for machine-emitted artifacts no shipped tool produces today.
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
+| Alternative                              | Why weaker                                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
 | Keep the infix as an optional convention | A residue with no remaining function once `format: sol` exists; two selectors invite drift |
-| Discriminate by directory | Breaks on co-located and small-team layouts; `type:` travels with the file |
+| Discriminate by directory                | Breaks on co-located and small-team layouts; `type:` travels with the file                 |
 
 ## Consequences
 
@@ -44,7 +44,7 @@ ADR-0030 and ADR-0054.
 
 ## Propagation
 
-All file-producing surfaces; conformance manifest (`format: sol` selector); swarm-cli parser targets.
+All file-producing surfaces; conformance manifest (`format: sol` selector); corpus-cli parser targets.
 
 > **Addendum (2026-06-11):** the reserved machine-artifact contract names are spelled without the
 > infix — `<spec>.ir.json` / `<spec>.plan.json` — consistent with §2; the future-CLI page is their

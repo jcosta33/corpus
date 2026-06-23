@@ -1,6 +1,6 @@
 # Source authority
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 When two artifacts state conflicting intent — a spec says one thing, an audit note another —
 which one governs? Source authority is the answer: a fixed precedence over **intent**, and the
@@ -8,7 +8,7 @@ only sanctioned alternative to letting whichever file was written last quietly w
 settles the adjacent question of who may approve a change to a requirement.
 
 This whole page is **convention level** — a procedure people follow, not something any tool
-resolves. swarm-cli's `swarm check` can *flag* a contradiction it finds (toolable); no tool
+resolves. corpus-cli's `corpus check` can _flag_ a contradiction it finds (toolable); no tool
 ever picks the winner.
 
 ## The minimum viable model
@@ -19,7 +19,7 @@ first and reach for the rest only when two reviewed artifacts genuinely conflict
 - **Specs state intent.** A requirement is the contract; nothing else outranks it on its own subject.
 - **Code can falsify intent, never silently amend it.** A failing test or a divergent behavior
   produces a Fail or a Stale result that routes to a human — it never quietly becomes the new requirement.
-- **Review rows judge implementation against the *current* spec text and its evidence** — not
+- **Review rows judge implementation against the _current_ spec text and its evidence** — not
   against what the spec used to say, and not on the implementer's say-so.
 - **A changed requirement or changed exercised code makes old evidence stale until it is re-run.**
 - **Findings inform future work but are not requirements** until promoted into a spec.
@@ -33,36 +33,36 @@ above are all you need; skip the ladder entirely until a second person (or a sec
 
 A conflict is judged on two independent axes:
 
-- **Artifact rank** — how settled is the *container* the statement lives in?
-- **Domain rank** — how much force does the statement's *subject* project?
+- **Artifact rank** — how settled is the _container_ the statement lives in?
+- **Domain rank** — how much force does the statement's _subject_ project?
 
 ### Artifact rank
 
-| Rank | Artifact | Note |
-|---|---|---|
-| 1 (highest) | accepted ADR | A recorded decision; the strongest written intent. |
-| 2 | approved spec | The behavioral contract. |
-| 3 | accepted finding | A durable, evidenced project fact. |
-| 4 | reviewed audit | Present-state observation that passed review. |
-| 5 | reviewed research | External or exploratory evidence that passed review. |
-| 6 | task notes | Execution-local; durable only once saved as a finding. |
-| 7 (lowest) | chat | Conversational context; never authoritative on its own. |
+| Rank        | Artifact          | Note                                                    |
+| ----------- | ----------------- | ------------------------------------------------------- |
+| 1 (highest) | accepted ADR      | A recorded decision; the strongest written intent.      |
+| 2           | approved spec     | The behavioral contract.                                |
+| 3           | accepted finding  | A durable, evidenced project fact.                      |
+| 4           | reviewed audit    | Present-state observation that passed review.           |
+| 5           | reviewed research | External or exploratory evidence that passed review.    |
+| 6           | task notes        | Execution-local; durable only once saved as a finding.  |
+| 7 (lowest)  | chat              | Conversational context; never authoritative on its own. |
 
 A draft occupies the rank one step below its accepted tier — a proposed ADR does not outrank an
 approved spec.
 
 ### Domain rank
 
-| Rank | Domain | Examples |
-|---|---|---|
+| Rank        | Domain          | Examples                                                        |
+| ----------- | --------------- | --------------------------------------------------------------- |
 | 1 (highest) | enforced-policy | Externally enforced rules: permission denies, secret redaction. |
-| 2 | compliance | Regulatory and legal obligations. |
-| 3 | security | Authn/authz, secret handling, attack surface. |
-| 4 | architecture | Module boundaries, layering, public interfaces. |
-| 5 | product | User-visible behavior, acceptance criteria. |
-| 6 | team | Conventions, style, process agreements. |
-| 7 | task scoping | Per-task instructions. |
-| 8 (lowest) | memory | Saved findings and patterns — they inform, never weaken. |
+| 2           | compliance      | Regulatory and legal obligations.                               |
+| 3           | security        | Authn/authz, secret handling, attack surface.                   |
+| 4           | architecture    | Module boundaries, layering, public interfaces.                 |
+| 5           | product         | User-visible behavior, acceptance criteria.                     |
+| 6           | team            | Conventions, style, process agreements.                         |
+| 7           | task scoping    | Per-task instructions.                                          |
+| 8 (lowest)  | memory          | Saved findings and patterns — they inform, never weaken.        |
 
 ## The conflict rule
 
@@ -85,8 +85,8 @@ The losing statement is not deleted; it routes to amendment so the two can be ma
 
 ## Code has no authority over intent
 
-Code and tests are **implementation reality**. They can *falsify* a requirement — producing a
-Fail, a Contradicted, or a Stale result — but they never *silently amend* it. When code and a
+Code and tests are **implementation reality**. They can _falsify_ a requirement — producing a
+Fail, a Contradicted, or a Stale result — but they never _silently amend_ it. When code and a
 requirement disagree, the disagreement is surfaced and resolved by the three-way reconcile in
 [drift](drift.md): re-run the verification, amend the requirement, or fix the code. There is no
 quiet fourth option where the code's behavior becomes the new requirement because nobody looked.
@@ -96,16 +96,16 @@ quiet fourth option where the code's behavior becomes the new requirement becaus
 The same ladder answers who may change the requirement set. The dividing line is semantic
 effect (checklist level — review inspects it):
 
-| Edit | Approval |
-|---|---|
-| Add, remove, or renumber a requirement ID | Yes |
-| Change a requirement's actor, trigger, strength word, outcome, or a non-goal | Yes |
-| Make a breaking change to a declared interface | Yes |
-| Resolve a `[blocking]` open question | Yes |
-| Add, remove, or repoint a `Verify with:` / `VERIFY BY` binding | Yes — what counts as evidence changed |
-| Accept manual evidence where none or an automated method stood before | Yes |
-| Approve or supersede an ADR; turn a finding into a spec requirement | Yes |
-| Fix formatting, casing, or a typo; complete a link; compress redundant prose | No — meaning-preserving |
+| Edit                                                                         | Approval                              |
+| ---------------------------------------------------------------------------- | ------------------------------------- |
+| Add, remove, or renumber a requirement ID                                    | Yes                                   |
+| Change a requirement's actor, trigger, strength word, outcome, or a non-goal | Yes                                   |
+| Make a breaking change to a declared interface                               | Yes                                   |
+| Resolve a `[blocking]` open question                                         | Yes                                   |
+| Add, remove, or repoint a `Verify with:` / `VERIFY BY` binding               | Yes — what counts as evidence changed |
+| Accept manual evidence where none or an automated method stood before        | Yes                                   |
+| Approve or supersede an ADR; turn a finding into a spec requirement          | Yes                                   |
+| Fix formatting, casing, or a typo; complete a link; compress redundant prose | No — meaning-preserving               |
 
 "Yes" means an authoring act by the **owner of the highest-ranked governing artifact in the
 relevant domain**: the spec's `owner:` for its requirements, the ADR's owner for decisions, the
@@ -128,5 +128,5 @@ Some work must not reach a merge decision on agent self-assessment alone (conven
 
 - [Drift](drift.md) — the three-way reconcile a code/intent divergence routes to.
 - [Distillation](distillation.md) — why an observation never silently becomes intent.
-- [Checks](checks.md) — the contradiction and authority checks a reviewer (or `swarm check`) can flag.
+- [Checks](checks.md) — the contradiction and authority checks a reviewer (or `corpus check`) can flag.
 - [Reviewing output](../08-reviewing-output.md) — where results and waivers are recorded.

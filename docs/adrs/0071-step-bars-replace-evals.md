@@ -11,14 +11,14 @@ updated: 2026-06-12
 ## Context
 
 `evals/` was an island. No tool contract names it (`docs/reference/future-cli.md` promises no
-`swarm eval`); nothing in README, docs/, starter-kit/, or the checks data links to it; even
+`corpus eval`); nothing in README, docs/, starter-kit/, or the checks data links to it; even
 the spec-first pilot defines its metrics operationally on review packets. Each page carried
 the label "internal rationale; not needed to use Corpus" — yet what the pages actually define
 is not internal at all: the predicates that say whether a spec faithfully distilled its
-sources (*stance preserved*, *nothing invented as sourced*), whether a task faithfully bounded
+sources (_stance preserved_, _nothing invented as sourced_), whether a task faithfully bounded
 its spec, whether a review's results are consistent with its evidence. That is **the
 definition of done for each step of the loop** — the fourth thing the product teaches, next to
-*how* (docs 01–10), *what shape* (templates), and *what a tool can flag* (checks). The
+_how_ (docs 01–10), _what shape_ (templates), and _what a tool can flag_ (checks). The
 directory name compounded the mislabel: "evals" is ML-benchmark jargon, the same register
 problem ADR-0070 fixes for "conformance".
 

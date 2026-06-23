@@ -14,7 +14,7 @@ The kit promised copy-and-go and delivered a parts box. Owner review (2026-06-12
 adoption path piecemeal: `starter-kit/agent/` is a staging directory whose name matches no
 convention any tool recognizes, and whose contents scatter on adoption (`AGENTS.md` to the
 workspace root, guides to `.claude/skills/`); the six flow folders ADR-0060 prescribes are
-*documented* in docs/03 but never *shipped*, so every adopter rebuilds the tree by hand from a
+_documented_ in docs/03 but never _shipped_, so every adopter rebuilds the tree by hand from a
 diagram; ADOPTING.md needs several copy steps with different destinations to assemble what the
 kit could simply be. The piecemeal experience is acceptable for the optional tier — it is the
 core path where it defeats the kit's reason to exist.
@@ -37,9 +37,9 @@ core path where it defeats the kit's reason to exist.
    place; optional guides are copied into `.agents/skills/` when wanted. The staging directory
    `agent/` is retired.
 4. **Distribution: in-repo now, template repo at public launch.** The kit stays in this repo
-   while formats settle — the swarm-cli kit copy's lag is live evidence of what a second
+   while formats settle — the corpus-cli kit copy's lag is live evidence of what a second
    derived repo costs pre-stability. At public launch the kit is published as a separate
-   GitHub *template repository* (one-click "Use this template"), produced either by a split or
+   GitHub _template repository_ (one-click "Use this template"), produced either by a split or
    by a producer-side mirror job; that step is deliberate, recorded here, and not started now.
 
 ## Alternatives considered
@@ -48,7 +48,7 @@ core path where it defeats the kit's reason to exist.
   becomes a two-repo commit while the formats are demonstrably still moving; rejected for now,
   adopted as the launch plan (point 4).
 - **Keep the parts-box kit and improve ADOPTING's checklist** — documentation cannot fix a
-  shape problem; the checklist *was* the symptom.
+  shape problem; the checklist _was_ the symptom.
 - **Ship `.claude/skills/` as the real directory** — privileges one tool and inverts the house
   pattern; rejected for the agnostic-home-plus-symlink form.
 
@@ -68,7 +68,7 @@ starter-kit tree, ADOPTING, root README (get-started), docs/03, docs/10, kit AGE
 > **Addendum (2026-06-12):** two corrections from the same-day verification passes. (1) The
 > copy command is `cp -R` — on macOS BSD cp, `-r` dereferences the kit's three symlinks into
 > stale copies; all live surfaces document `-R`. (2) `decisions/` ships a short governance
-> README plus the `0001-adopt-swarm` seed entry, not a one-line README like the seven flow
+> README plus the `0001-adopt-corpus` seed entry, not a one-line README like the seven flow
 > folders. Known consequence, recorded in `.agents/SKILLS-MANIFEST.md`: the kit's nested
 > `.claude/skills` symlink surfaces the three kit guides in Claude sessions on the Corpus repo
 > itself.

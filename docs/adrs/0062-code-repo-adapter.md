@@ -22,7 +22,7 @@ workspace's conventions. ADR-0050 already allows gitignored scratch in code repo
    `.gitignore.additions`, and optionally the `implement-task` agent guide copied into the repo's skills
    directory. Task packets are handed to the agent by paste or path; transient files stay gitignored.
    The PR links the workspace review packet — the PR is the merge mechanism, the packet is the record.
-2. **When a CLI exists,** it may own a fully **gitignored** `.swarm/` local-state directory in code repos
+2. **When a CLI exists,** it may own a fully **gitignored** `.corpus/` local-state directory in code repos
    (`config.yaml`, `work/`, `cache/`, `tmp/`) — machine state in the `.git/`/`node_modules/` sense, never
    committed, never required by the markdown workflow, specified only on the future-CLI page.
 3. Committed Corpus content in code repos remains out of bounds (convention level): specs, reviews, and
@@ -30,10 +30,10 @@ workspace's conventions. ADR-0050 already allows gitignored scratch in code repo
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
-| Committed `.swarm/` in code repos (the dotdir norm) | Multiplies footprint across repos; couples every repo to workspace conventions; the workspace already is the committed home |
-| Forbid `.swarm/` even for the future CLI | A CLI needs local state; pretending otherwise re-creates dishonest docs |
+| Alternative                                          | Why weaker                                                                                                                  |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Committed `.corpus/` in code repos (the dotdir norm) | Multiplies footprint across repos; couples every repo to workspace conventions; the workspace already is the committed home |
+| Forbid `.corpus/` even for the future CLI            | A CLI needs local state; pretending otherwise re-creates dishonest docs                                                     |
 
 ## Consequences
 

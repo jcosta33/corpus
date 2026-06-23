@@ -1,6 +1,6 @@
 # Writing specs
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 A spec is one markdown file. Before any code is written, it answers: **what should the system
 do, for whom, how will we know it works, and what is deliberately out of scope?** It is the
@@ -37,18 +37,18 @@ covers is a **bug report** (the kit's `advanced/bug.md`: reproduction + root cau
 task — not a new feature spec. Reach for a fresh spec only when the behavior is new or changing.
 
 **The one-line test: does anyone have to _agree_ on the acceptance criteria before the work
-starts?** If a reviewer or second party must sign off on *what counts as done*, write the spec.
+starts?** If a reviewer or second party must sign off on _what counts as done_, write the spec.
 That agreement is what a spec is for. If the ACs are self-evident and only the implementer needs
 them — a small, well-understood net-new change — write a **thin task** instead that inlines its two
 or three ACs with their `Verify with:` lines. The work is still reviewed, against the task's own
-ACs. The trade is deliberate: a thin task has no separate spec for `swarm check` to reconcile
+ACs. The trade is deliberate: a thin task has no separate spec for `corpus check` to reconcile
 coverage against. So keep the spec the moment that coverage check earns its keep — a wider change,
 an unfamiliar area, or a reviewer who wants the row-by-row table.
 
 ## The template
 
 The format is frozen in the kit. Copy
-[`templates/spec.md`](https://github.com/jcosta33/swarm-starter-kit/blob/main/templates/spec.md) rather than reinventing it.
+[`templates/spec.md`](https://github.com/jcosta33/corpus-starter-kit/blob/main/templates/spec.md) rather than reinventing it.
 What each part is for:
 
 - **Frontmatter** — `type: spec`, an `id` (`SPEC-<slug>`), `title`, `status` (`draft` until the
@@ -69,7 +69,7 @@ What each part is for:
 
 All advisory. They make requirements checkable and let a reviewer inspect each one, but nothing
 blocks you. The full list of common mistakes lives in
-[`reference/checks.md`](reference/checks.md). The optional reference CLI's `swarm check` flags the
+[`reference/checks.md`](reference/checks.md). The optional reference CLI's `corpus check` flags the
 toolable ones; the rest stay review checklist items.
 
 1. **Give every requirement a `Verify with:` line.** It is the highest-value line in the file: a
@@ -101,9 +101,9 @@ toolable ones; the rest stay review checklist items.
     the next person sees the decision instead of re-litigating it.
 11. **Research the platform's limits before the ACs.** For work against an external platform —
     quota, permissions, rate limits, runtime or sandbox constraints — find the binding limits
-    *first*. Lift an unknown one into **Open questions** (it keeps the spec out of `ready`). Bind a
+    _first_. Lift an unknown one into **Open questions** (it keeps the spec out of `ready`). Bind a
     known one as a requirement with a `Verify with:` line. Record a deliberately-unhandled one as a
-    **Non-goal**. Hitting a quota wall *after* the ACs are written is the expensive path. (Proving
+    **Non-goal**. Hitting a quota wall _after_ the ACs are written is the expensive path. (Proving
     it works against the real platform at review is the runtime-proof rule in
     [Reviewing output](08-reviewing-output.md), per [ADR-0076](adrs/0076-worker-provenance-and-adoption-conventions.md).)
 

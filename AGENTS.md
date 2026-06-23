@@ -2,27 +2,27 @@
 
 ## What this repo is
 
-This repo **is** the Corpus framework — *a lightweight spec and review workflow for teams using
-coding agents*, shipped as markdown: the docs and the checks contract (the copy-whole starter
-kit ships as the sibling `swarm-starter-kit` template repo). It ships **no runtime**:
+This repo **is** the Corpus framework — _a lightweight spec and review workflow for teams using
+coding agents_, shipped as markdown: the docs and the checks contract (the copy-whole starter
+kit ships as the sibling `corpus-starter-kit` template repo). It ships **no runtime**:
 anything described as checkable names its checker (the reference implementation in progress is
-`swarm-cli`, a sibling repo); everything else is convention or review checklist, and says so.
+`corpus-cli`, a sibling repo); everything else is convention or review checklist, and says so.
 
 - `docs/` — the product: a numbered happy path (`01`–`10`), `reference/` (the deep layer:
   structured requirements, checks, step bars, artifact formats, advanced lifecycle, future CLI,
   memory), `examples/` (three flagship walkthroughs; `large-pr-review.md` is the demo),
   `ADOPTING.md`, `adrs/` (the decision ledger), `research/sources.md` (the evidence bibliography).
 - `checks/` — the checks contract as data (`checks.yaml`) + fixtures (test data for
-  `docs/reference/checks.md`; swarm-cli's oracle). `.agents/` — a small dev-skills subset
+  `docs/reference/checks.md`; corpus-cli's oracle). `.agents/` — a small dev-skills subset
   (see `.agents/SKILLS-MANIFEST.md`).
-- The starter kit ships as its own template repo, `../swarm-starter-kit` (ADR-0075): a
+- The starter kit ships as its own template repo, `../corpus-starter-kit` (ADR-0075): a
   complete workspace adopters copy whole — the core loop guides plus the workspace
   authoring guides at `.agents/skills/`, `templates/`, `advanced/` (optional templates +
-  reference cards). Conditioning stances and code-depth guides live in `../swarm-skills`.
+  reference cards). Conditioning stances and code-depth guides live in `../corpus-skills`.
 
 ## Corpus workspace
 
-Corpus workspace: `../swarm-hq` (the family's multi-repo workspace). Specs, tasks, reviews,
+Corpus workspace: `../corpus-hq` (the family's multi-repo workspace). Specs, tasks, reviews,
 findings, audits, and the board for changes to this repo live there — read the task packet you
 are given. Accepted framework decisions still land here, in `docs/adrs/`.
 
@@ -39,7 +39,7 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
 - **Fresh-product voice.** No migration framing ("previously/renamed/now") anywhere except
   `docs/adrs/`. The framework is presented as originally designed.
 - **Honesty framework (ADR-0063).** Rules carry a level: convention · checklist · toolable
-  (names swarm-cli's command) · enforced (only with a shipped tool — today, nothing). Never
+  (names corpus-cli's command) · enforced (only with a shipped tool — today, nothing). Never
   write enforcement-sounding claims without a level.
 - **Vocabulary tiers (ADR-0057).** User tier (README, `docs/01–10`, `docs/examples/`,
   kit core): step · requirement/AC · evidence · review result (Pass/Fail/Unverified/Blocked) ·
@@ -54,18 +54,18 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
   Non-verified sources never carry a MUST-level claim; fact-shaped statements without a
   source are labeled design rationale. Web-verify before adding to `sources.md`.
 - **Single-sourcing.** Formats are frozen in ADRs 0058/0060/0061/0067/0068 and shipped at
-  the kit repo's `templates/` (`../swarm-starter-kit`) — everything else links, never
-  restates. A rule lands in `docs/` first; the kit repo, the swarm-skills catalog, and the
+  the kit repo's `templates/` (`../corpus-starter-kit`) — everything else links, never
+  restates. A rule lands in `docs/` first; the kit repo, the corpus-skills catalog, and the
   dev skills derive from it (a format change is a two-repo change, cut and reviewed from
-  swarm-hq).
+  corpus-hq).
 
 ## Pointers
 
 - Decisions: `docs/adrs/README.md` (0001–0098; 0057+ are the current architecture, 0094–0098 the latest)
-- Workspace (specs, audits, plans, board): `../swarm-hq`
-- The starter kit: `../swarm-starter-kit` (github.com/jcosta33/swarm-starter-kit)
-- Optional guide catalog: `../swarm-skills` (github.com/jcosta33/swarm-skills)
-- Claude Code agent catalog: `../swarm-agents` (github.com/jcosta33/swarm-agents — ADR-0092;
+- Workspace (specs, audits, plans, board): `../corpus-hq`
+- The starter kit: `../corpus-starter-kit` (github.com/jcosta33/corpus-starter-kit)
+- Optional guide catalog: `../corpus-skills` (github.com/jcosta33/corpus-skills)
+- Claude Code agent catalog: `../corpus-agents` (github.com/jcosta33/corpus-agents — ADR-0092;
   Claude-Code-first worker definitions + the delegation hook; honest scope: toolable/partial)
 - Dev skills (the small subset for working on this repo): `.agents/skills/` — see
   `.agents/SKILLS-MANIFEST.md`
@@ -73,9 +73,9 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
 
 ## Commands
 
-| Slot | Command | Resolves |
-|---|---|---|
-| — | (none) | markdown-only repo; coherence is checked by review (the swarm-hq workspace cuts and reviews the tasks) |
+| Slot | Command | Resolves                                                                                                |
+| ---- | ------- | ------------------------------------------------------------------------------------------------------- |
+| —    | (none)  | markdown-only repo; coherence is checked by review (the corpus-hq workspace cuts and reviews the tasks) |
 
 ## Workflow
 
@@ -87,8 +87,10 @@ Commit messages end: `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
 
 `CLAUDE.md` and `GEMINI.md` are symlinks to this file — one bootloader, many agent tools.
 
-<!-- swarm:start -->
+<!-- corpus:start -->
+
 This repository is adopted into a Corpus workflow. The spec / task / review
 workspace and templates come from the Corpus starter kit
-(github.com/jcosta33/swarm-starter-kit). Run `swarm --help` for the commands.
-<!-- swarm:end -->
+(github.com/jcosta33/corpus-starter-kit). Run `corpus --help` for the commands.
+
+<!-- corpus:end -->

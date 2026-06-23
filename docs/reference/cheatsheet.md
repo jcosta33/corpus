@@ -1,10 +1,10 @@
 # Corpus Reference
 
-*Works today — plain markdown plus your agent; no Corpus tooling required.*
+_Works today — plain markdown plus your agent; no Corpus tooling required._
 
 One page of lookup tables: labels, results, verification methods, artifact homes, the loop, and
 the check ids. Definitions live in the linked pages; the exact file formats live in the kit
-templates ([`templates/`](https://github.com/jcosta33/swarm-starter-kit/tree/main/templates/)) and are never restated here.
+templates ([`templates/`](https://github.com/jcosta33/corpus-starter-kit/tree/main/templates/)) and are never restated here.
 
 ## The loop
 
@@ -56,12 +56,12 @@ A file's identity is its frontmatter `type:`, never its filename — see
 
 One result per requirement row in the review packet (internally: verdicts).
 
-| Result         | Meaning                                                                 |
-| -------------- | ----------------------------------------------------------------------- |
+| Result         | Meaning                                                                                                                 |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | **Pass**       | Verified — pasted output, a CI link, or a named human's recorded observation (manual method) sits in the Evidence cell. |
-| **Fail**       | Verified, and the requirement is not met.                               |
-| **Unverified** | No evidence. Every empty Evidence cell reads as Unverified, never Pass. |
-| **Blocked**    | Cannot be verified until something else is resolved.                    |
+| **Fail**       | Verified, and the requirement is not met.                                                                               |
+| **Unverified** | No evidence. Every empty Evidence cell reads as Unverified, never Pass.                                                 |
+| **Blocked**    | Cannot be verified until something else is resolved.                                                                    |
 
 Lifecycle results, used in advanced workflows to qualify an earlier result:
 
@@ -91,17 +91,17 @@ What kind of evidence backs a requirement's `Verify with:` line (internally: pro
 
 ## Artifacts and where they live
 
-| Artifact                                                         | Tier                                           | Home in the workspace                                    |
-| ---------------------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------------- |
-| intake                                                           | core (recommended for tracker-originated work) | `intake/`                                                |
-| spec                                                             | core                                           | `specs/<feature>/spec.md`                                |
-| task packet                                                      | core                                           | `tasks/`                                                 |
-| review packet                                                    | core                                           | `reviews/`                                               |
-| finding                                                          | core                                           | `findings/`                                              |
-| status board                                                     | core                                           | `status.md`                                              |
-| inventory                                                        | core when the work is brownfield               | `inventory/`                                             |
-| change plan                                                      | core when the work is structural               | `change-plans/`                                          |
-| adr                                                              | advanced                                       | `decisions/`, numbered                                   |
+| Artifact                                                         | Tier                                           | Home in the workspace            |
+| ---------------------------------------------------------------- | ---------------------------------------------- | -------------------------------- |
+| intake                                                           | core (recommended for tracker-originated work) | `intake/`                        |
+| spec                                                             | core                                           | `specs/<feature>/spec.md`        |
+| task packet                                                      | core                                           | `tasks/`                         |
+| review packet                                                    | core                                           | `reviews/`                       |
+| finding                                                          | core                                           | `findings/`                      |
+| status board                                                     | core                                           | `status.md`                      |
+| inventory                                                        | core when the work is brownfield               | `inventory/`                     |
+| change plan                                                      | core when the work is structural               | `change-plans/`                  |
+| adr                                                              | advanced                                       | `decisions/`, numbered           |
 | audit · bug · research · rfc · prd · threat-model · release-note | advanced                                       | co-located in `specs/<feature>/` |
 
 The full layout, both naming depths, and the code-repo boundary are in
@@ -110,29 +110,29 @@ The full layout, both naming depths, and the code-repo boundary are in
 
 ## Checks — the quick list
 
-Common mistakes to check for in a spec — plus the two change-plan checks. **Level: checklist today; toolable — swarm-cli's
-`swarm check` implements this list.** Full descriptions, the honesty legend, and the SOL
+Common mistakes to check for in a spec — plus the two change-plan checks. **Level: checklist today; toolable — corpus-cli's
+`corpus check` implements this list.** Full descriptions, the honesty legend, and the SOL
 catalogue are in [checks](checks.md).
 
-| ID   | Name                                                                       | Severity   |
-| ---- | -------------------------------------------------------------------------- | ---------- |
-| C001 | `unique-ids` — every requirement ID appears exactly once                   | hard error |
-| C002 | `duplicate-id` — no other file claims the same `id:`                       | hard error |
-| C003 | `verify-with` — every requirement carries a `Verify with:` line            | hard error |
-| C004 | `one-strength-word` — exactly one of must / must not / should / should not / may | warning |
-| C005 | `non-goals-present` — a non-empty Non-goals section exists                 | warning    |
-| C006 | `open-questions-present` — an Open questions section exists                | warning    |
-| C007 | `no-tbd-at-ready` — no `TBD`/`TODO`/unresolved question at `status: ready` | hard error |
-| C008 | `sources-named` — frontmatter `sources:` names at least one origin         | warning    |
-| C009 | `broken-source-link` — every named source resolves                         | hard error |
-| C010 | `preserves-refs-resolve` — change plan only: every preserved id resolves   | hard error |
-| C011 | `waves-present` — change plan only: migration/rewrite/schema-change has waves | warning |
-| C012 | `coverage` — review packet only: in-scope ids covered, no orphan rows (non-draft spec) | warning |
-| C013 | `verify-evidence-binding` — review packet only: a structured `verify` block's cmd matches the requirement's named command + `result=pass` (non-draft spec) | warning |
-| C014 | `do-not-change-touched` — review packet only: a changed file matches a task's `## Do not change` entry (distinct from out-of-scope drift) | warning |
-| C015 | `citation-resolves` — spec only: an inline `[[KEY]]` citation resolves to a matching `<a id="KEY">` anchor in the named `sources.md` (skips when no `sources.md` is resolvable) | warning |
-| C016 | `pass-needs-evidence` — review packet (gate path): a Pass coverage row with an empty Evidence cell blocks (the reconcile path surfaces it advisorily) | hard error |
-| C017 | `orphaned-reference` — workspace: a bundled `.agents/skills/<name>/references/<file>` named nowhere in its `SKILL.md` (orphan direction only) | warning |
+| ID   | Name                                                                                                                                                                            | Severity   |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| C001 | `unique-ids` — every requirement ID appears exactly once                                                                                                                        | hard error |
+| C002 | `duplicate-id` — no other file claims the same `id:`                                                                                                                            | hard error |
+| C003 | `verify-with` — every requirement carries a `Verify with:` line                                                                                                                 | hard error |
+| C004 | `one-strength-word` — exactly one of must / must not / should / should not / may                                                                                                | warning    |
+| C005 | `non-goals-present` — a non-empty Non-goals section exists                                                                                                                      | warning    |
+| C006 | `open-questions-present` — an Open questions section exists                                                                                                                     | warning    |
+| C007 | `no-tbd-at-ready` — no `TBD`/`TODO`/unresolved question at `status: ready`                                                                                                      | hard error |
+| C008 | `sources-named` — frontmatter `sources:` names at least one origin                                                                                                              | warning    |
+| C009 | `broken-source-link` — every named source resolves                                                                                                                              | hard error |
+| C010 | `preserves-refs-resolve` — change plan only: every preserved id resolves                                                                                                        | hard error |
+| C011 | `waves-present` — change plan only: migration/rewrite/schema-change has waves                                                                                                   | warning    |
+| C012 | `coverage` — review packet only: in-scope ids covered, no orphan rows (non-draft spec)                                                                                          | warning    |
+| C013 | `verify-evidence-binding` — review packet only: a structured `verify` block's cmd matches the requirement's named command + `result=pass` (non-draft spec)                      | warning    |
+| C014 | `do-not-change-touched` — review packet only: a changed file matches a task's `## Do not change` entry (distinct from out-of-scope drift)                                       | warning    |
+| C015 | `citation-resolves` — spec only: an inline `[[KEY]]` citation resolves to a matching `<a id="KEY">` anchor in the named `sources.md` (skips when no `sources.md` is resolvable) | warning    |
+| C016 | `pass-needs-evidence` — review packet (gate path): a Pass coverage row with an empty Evidence cell blocks (the reconcile path surfaces it advisorily)                           | hard error |
+| C017 | `orphaned-reference` — workspace: a bundled `.agents/skills/<name>/references/<file>` named nowhere in its `SKILL.md` (orphan direction only)                                   | warning    |
 
 Packet checks (checklist level): `non-empty-paste` — a completion claim binds to pasted output
 or a CI link; `no-open-critical` — nothing closes with an open blocking question;

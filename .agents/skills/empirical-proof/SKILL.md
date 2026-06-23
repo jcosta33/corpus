@@ -48,7 +48,7 @@ Good — verbatim, fenced, with the resolved command, exit, and summary:
 AC-001: Pass
 
 ```
-$ grep -rn "swarm_language" docs/
+$ grep -rn "corpus_language" docs/
 (no matches) — exit 1
 ```
 ````

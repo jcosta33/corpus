@@ -1,6 +1,6 @@
 # The advanced lifecycle
 
-*Advanced design note — internal rationale; not needed to use Corpus.*
+_Advanced design note — internal rationale; not needed to use Corpus._
 
 The six-step loop — **Pull → Spec → Task → Run → Review → Close** — is the default way to work
 ([basic workflow](../02-basic-workflow.md)). Underneath it sits a finer-grained **nine-step
@@ -28,17 +28,17 @@ concession. This is a convention — nothing in this repo enforces it.
 
 ## The nine steps
 
-| Step | What it does | Covered by |
-|---|---|---|
-| `author` | Write the source document — usually a spec; for brownfield or structural work, an inventory, change plan, or audit. | the `write-spec` guide (kit core); `write-inventory`, `write-change-plan`, `write-audit` (kit) |
-| `lint` | Read the spec against the [common mistakes to check for](checks.md) without changing a word. Diagnose only. | the `spec-check` guide (kit) |
-| `improve` | Repair what `lint` found — the operations below — without changing what the spec means. | the `spec-check` guide (kit) |
-| `lower` | Restate each requirement as a structured item with a stable ID, its verification method, its dependencies, and the files it may touch. | the `split-work` guide (kit) |
-| `decompose` | Split the structured requirements into bounded tasks whose written files do not overlap, and order them by dependency. | the `split-work` guide (kit) |
-| `implement` | Do the work inside one task's scope; record what changed, the commands run, and their real output. | the `implement-task` guide (kit core) |
-| `verify` | Run every verification method named by the task and record a result per requirement. Evidence-gathering only — no judgment. | the `implement-task` guide; the reviewer re-runs |
-| `review` | Judge the agent's claims against the requirements and the evidence; fill the review packet; decide the merge gate. | the `review-output` guide (kit core) |
-| `promote` | Save anything durable as a finding, update the workboard, close. | the `save-findings` guide (kit) |
+| Step        | What it does                                                                                                                           | Covered by                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `author`    | Write the source document — usually a spec; for brownfield or structural work, an inventory, change plan, or audit.                    | the `write-spec` guide (kit core); `write-inventory`, `write-change-plan`, `write-audit` (kit) |
+| `lint`      | Read the spec against the [common mistakes to check for](checks.md) without changing a word. Diagnose only.                            | the `spec-check` guide (kit)                                                                   |
+| `improve`   | Repair what `lint` found — the operations below — without changing what the spec means.                                                | the `spec-check` guide (kit)                                                                   |
+| `lower`     | Restate each requirement as a structured item with a stable ID, its verification method, its dependencies, and the files it may touch. | the `split-work` guide (kit)                                                                   |
+| `decompose` | Split the structured requirements into bounded tasks whose written files do not overlap, and order them by dependency.                 | the `split-work` guide (kit)                                                                   |
+| `implement` | Do the work inside one task's scope; record what changed, the commands run, and their real output.                                     | the `implement-task` guide (kit core)                                                          |
+| `verify`    | Run every verification method named by the task and record a result per requirement. Evidence-gathering only — no judgment.            | the `implement-task` guide; the reviewer re-runs                                               |
+| `review`    | Judge the agent's claims against the requirements and the evidence; fill the review packet; decide the merge gate.                     | the `review-output` guide (kit core)                                                           |
+| `promote`   | Save anything durable as a finding, update the workboard, close.                                                                       | the `save-findings` guide (kit)                                                                |
 
 Three boundaries keep the steps honest:
 
@@ -52,24 +52,24 @@ Three boundaries keep the steps honest:
 - **`verify` gathers; `review` judges.** A pasted test run is evidence; calling it a Pass is a
   judgment that belongs to review.
 
-Checking a spec is toolable — swarm-cli's `swarm check` is the reference implementation of the
+Checking a spec is toolable — corpus-cli's `corpus check` is the reference implementation of the
 checks `lint` reads; until you run it, treat `lint` as a review checklist. The output of `lower`
-and `decompose` is the **task files themselves** — there is no separate machine artifact; swarm-cli
+and `decompose` is the **task files themselves** — there is no separate machine artifact; corpus-cli
 parses the markdown internally and may project `--json` for interop (no `ir.json`/`plan.json` file,
-per [ADR-0077](../adrs/0077-swarm-cli-reconcile-only-harness.md)).
+per [ADR-0077](../adrs/0077-corpus-cli-reconcile-only-harness.md)).
 
 ## Six steps ↔ nine steps
 
-| Six-step loop | Nine-step lifecycle | Notes |
-|---|---|---|
-| Pull | intake capture | Pull is input capture, not a transformation: the ticket lands as an intake file the lifecycle starts from. |
-| Inventory *(conditional)* | `author` (inventory) | Brownfield prerequisite — map what exists before drawing new boundaries. |
-| Spec | `author` → `lint` → `improve` | Spec collapses three steps: write, check, repair. |
-| Change Plan *(conditional)* | `author` (change plan) | Structural work — how the codebase changes safely, wave by wave. |
-| Task | `lower` → `decompose` | Prepare tasks and split work. |
-| Run | `implement` → `verify` | The agent works, then every verification method runs. |
-| Review | `review` | The review packet and the merge gate. |
-| Close | `promote` (+ status update) | Save findings, update the workboard. |
+| Six-step loop               | Nine-step lifecycle           | Notes                                                                                                      |
+| --------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Pull                        | intake capture                | Pull is input capture, not a transformation: the ticket lands as an intake file the lifecycle starts from. |
+| Inventory _(conditional)_   | `author` (inventory)          | Brownfield prerequisite — map what exists before drawing new boundaries.                                   |
+| Spec                        | `author` → `lint` → `improve` | Spec collapses three steps: write, check, repair.                                                          |
+| Change Plan _(conditional)_ | `author` (change plan)        | Structural work — how the codebase changes safely, wave by wave.                                           |
+| Task                        | `lower` → `decompose`         | Prepare tasks and split work.                                                                              |
+| Run                         | `implement` → `verify`        | The agent works, then every verification method runs.                                                      |
+| Review                      | `review`                      | The review packet and the merge gate.                                                                      |
+| Close                       | `promote` (+ status update)   | Save findings, update the workboard.                                                                       |
 
 The two conditional steps appear only for structural or brownfield work; a feature from a clean
 ticket never sees them.
@@ -77,7 +77,7 @@ ticket never sees them.
 ## Two checkpoints between the steps
 
 Two checkpoints bracket the task-preparation steps. Neither writes anything — each is a question
-asked before advancing, and both are review checklist items today. swarm-cli's `swarm check`
+asked before advancing, and both are review checklist items today. corpus-cli's `corpus check`
 flags part of the first — an open blocking question, a leftover `TBD` at `status: ready`
 (toolable); the unresolved-contradiction and lingering-ambiguity calls stay review judgment, and
 nothing enforces either.
@@ -107,23 +107,23 @@ weakens, or strengthens a requirement — a new actor, a changed trigger, a rela
 an amendment, not an improvement, and routes back through review. This is a checklist rule: the
 reviewer inspects an improved spec's diff for smuggled meaning changes.
 
-| # | Operation | Repairs |
-|---|---|---|
-| 1 | NORMALIZE | Informal or non-canonical phrasing → the standard requirement form, no meaning changed. |
-| 2 | ATOMIZE | One requirement bundling several separable behaviors → one requirement each, with its own ID. |
-| 3 | CONCRETIZE | A vague quality word ("robust", "fast") → observable behavior: actor + action + object. |
-| 4 | QUANTIFY | An unbounded quality → a measurable threshold or named measurable criterion. |
-| 5 | BIND | A requirement with no verification method → a runnable `Verify with:` line. |
-| 6 | SCOPE | Missing non-goals, applicability, or affected areas → stated explicitly. |
-| 7 | CLARIFY | Ambiguity buried in prose → an explicit interpretation, or an open question. |
-| 8 | DECONFLICT | Two requirements that contradict → resolved against the higher-authority source, or raised as an amendment. |
-| 9 | COMPRESS | Noise and redundancy → removed, so every agent reads the text the same way. |
-| 10 | PROMOTE | A durable fact stranded in a task file → moved to a finding, the spec, or a decision record with provenance. |
+| #   | Operation  | Repairs                                                                                                      |
+| --- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| 1   | NORMALIZE  | Informal or non-canonical phrasing → the standard requirement form, no meaning changed.                      |
+| 2   | ATOMIZE    | One requirement bundling several separable behaviors → one requirement each, with its own ID.                |
+| 3   | CONCRETIZE | A vague quality word ("robust", "fast") → observable behavior: actor + action + object.                      |
+| 4   | QUANTIFY   | An unbounded quality → a measurable threshold or named measurable criterion.                                 |
+| 5   | BIND       | A requirement with no verification method → a runnable `Verify with:` line.                                  |
+| 6   | SCOPE      | Missing non-goals, applicability, or affected areas → stated explicitly.                                     |
+| 7   | CLARIFY    | Ambiguity buried in prose → an explicit interpretation, or an open question.                                 |
+| 8   | DECONFLICT | Two requirements that contradict → resolved against the higher-authority source, or raised as an amendment.  |
+| 9   | COMPRESS   | Noise and redundancy → removed, so every agent reads the text the same way.                                  |
+| 10  | PROMOTE    | A durable fact stranded in a task file → moved to a finding, the spec, or a decision record with provenance. |
 
 Two distinctions worth pinning: CONCRETIZE and QUANTIFY answer the same vagueness — the first with
 observable behavior (qualitative), the second with a threshold (quantitative); pick whichever the
 requirement's nature demands. And ATOMIZE is not decomposition: ATOMIZE splits one bundled
-requirement *inside* the spec; splitting the *work* is the `decompose` step.
+requirement _inside_ the spec; splitting the _work_ is the `decompose` step.
 
 Why this discipline earns its place: ambiguous or incomplete task input measurably degrades agent
 code correctness [[ORCHID]](../research/sources.md#ORCHID)
@@ -135,7 +135,7 @@ and the repaired text transfers across models [[CLARIFYGPT]](../research/sources
 acceptance criterion outperforms prose plans as task input (preliminary evidence)
 [[ORACLESWE]](../research/sources.md#ORACLESWE). And preliminary multi-agent evidence places the
 planner→coder handoff as the dominant failure surface
-[[PLANCODER]](../research/sources.md#PLANCODER) — which is why CLARIFY and DECONFLICT run *before*
+[[PLANCODER]](../research/sources.md#PLANCODER) — which is why CLARIFY and DECONFLICT run _before_
 work is split, not after an agent has already guessed.
 
 ## The full review-result model
@@ -144,16 +144,16 @@ The happy-path review results are **Pass, Fail, Unverified, Blocked** — one pe
 row each in the review packet ([reviewing output](../08-reviewing-output.md); format:
 [artifact-formats](artifact-formats.md)). The full model adds three **lifecycle values** that
 annotate a core result rather than replace it. They appear when work spans time, exceptions, or
-disagreement. (The glossary's internal name for a recorded result is a *verdict*.)
+disagreement. (The glossary's internal name for a recorded result is a _verdict_.)
 
 The core results — exactly one per requirement per run:
 
-| Result | Meaning |
-|---|---|
-| Pass | The verification ran and the requirement held. |
-| Fail | The verification ran and the requirement did not hold. |
-| Blocked | The verification could not run — a tool, fixture, or environment was missing. Truth unknown, not false. |
-| Unverified | No verification method was bound, or none was run. |
+| Result     | Meaning                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------- |
+| Pass       | The verification ran and the requirement held.                                                          |
+| Fail       | The verification ran and the requirement did not hold.                                                  |
+| Blocked    | The verification could not run — a tool, fixture, or environment was missing. Truth unknown, not false. |
+| Unverified | No verification method was bound, or none was run.                                                      |
 
 Blocked and Unverified route differently — Blocked is an environment fix, Unverified is a missing
 binding or a skipped run. A reviewer who cannot tell which happened records Unverified, the weaker
@@ -163,11 +163,11 @@ never Pass.
 
 The lifecycle values — each with required fields, without which it cannot be audited:
 
-| Value | Annotates | Meaning | Required fields |
-|---|---|---|---|
-| Waived | Fail or Unverified only | The miss is explicitly accepted as an exception. | who waived it · why · expiry date |
-| Stale | a prior Pass only | The evidence no longer matches the current text or code (drift). | the prior result · what changed |
-| Contradicted | any result | Two pieces of evidence disagree, or the claim disagrees with the requirement. | both conflicting evidence references |
+| Value        | Annotates               | Meaning                                                                       | Required fields                      |
+| ------------ | ----------------------- | ----------------------------------------------------------------------------- | ------------------------------------ |
+| Waived       | Fail or Unverified only | The miss is explicitly accepted as an exception.                              | who waived it · why · expiry date    |
+| Stale        | a prior Pass only       | The evidence no longer matches the current text or code (drift).              | the prior result · what changed      |
+| Contradicted | any result              | Two pieces of evidence disagree, or the claim disagrees with the requirement. | both conflicting evidence references |
 
 Three placement rules follow from the meanings: a Pass is never waived (there is nothing to
 excuse); only a Pass can go Stale (a Fail was never trusted, so it cannot lapse); Contradicted can
@@ -192,7 +192,7 @@ follow-up review row supplies the Pass when the post-merge evidence lands, and t
 lapses. Merged packets are never edited — closure is a new row, not a mutation.
 
 This is a review checklist item today — the reviewer reads the gate off the packet's coverage
-table. It is toolable: a future `swarm review` in swarm-cli could compute it mechanically from the
+table. It is toolable: a future `corpus review` in corpus-cli could compute it mechanically from the
 same table; until then nothing enforces it.
 
 ## When evidence disagrees (Contradicted)
@@ -204,7 +204,7 @@ Contradiction is never resolved silently, and never by picking the more convenie
    makes the disagreement reconcilable later.
 3. **Stronger evidence is the working assumption.** While the contradiction is open, the stronger
    evidence (a runnable check over a narrative judgment; output over a summary) is presumed right —
-   a *working assumption* that keeps review actionable, not a resolution. Equal-strength evidence
+   a _working assumption_ that keeps review actionable, not a resolution. Equal-strength evidence
    sets no assumption; it routes to an independent reviewer or a stronger re-check.
 4. **Reconcile.** Re-run both checks, fix the weaker one, fix the code, or amend the requirement.
    The Contradicted mark comes off only when the evidence agrees — or one side is withdrawn as
@@ -221,7 +221,7 @@ When several agents do run at once, keep one **coordination record** beside the 
 essentials, all convention — nothing enforces them:
 
 - **Worker tracker** — one row per worker: its owned paths (which must be pairwise disjoint across
-  workers — confirm this *before* spawning anyone), the forbidden paths (everyone else's owned
+  workers — confirm this _before_ spawning anyone), the forbidden paths (everyone else's owned
   paths), branch, and status. One worktree per task; never reused.
 - **Hand-off per worker** — objective, expected deliverable, acceptance bar (which requirements
   must reach Pass), and boundaries — recorded as data and carried verbatim into the worker's task
@@ -230,7 +230,7 @@ essentials, all convention — nothing enforces them:
   is stalled; the lead takes one recorded action — re-plan, re-scope, escalate, or abandon — and
   writes down why.
 - **Merge log** — merge order, conflicts, and how each was resolved. A non-trivial conflict
-  resolution must show that *both* sides' intent survived — a green suite alone is necessary but
+  resolution must show that _both_ sides' intent survived — a green suite alone is necessary but
   not sufficient when the suite may not cover the interaction.
 
 ## Drift

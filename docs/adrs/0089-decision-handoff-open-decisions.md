@@ -28,24 +28,24 @@ sources. The findings, in short:
   **algorithm aversion** — the human over-discounts it thereafter
   [[ALGOAVERSION]](../research/sources.md#ALGOAVERSION).
 - **More justification does not fix this** and can worsen it: explanations often persuade rather than
-  help a person evaluate [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW); a *light
-  cognitive forcing function* reduces over-reliance better than explanation alone
+  help a person evaluate [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW); a _light
+  cognitive forcing function_ reduces over-reliance better than explanation alone
   [[OVERTRUST-CFF]](../research/sources.md#OVERTRUST-CFF). The job of the "why" is to make checking
   cheap, not to convince.
 - **Choice overload is not a law of option count** — count alone has a near-zero average effect; harm
-  is conditional on decision *difficulty* and set complexity
-  [[CHOICEOVERLOAD]](../research/sources.md#CHOICEOVERLOAD). So the lever is *comparable, well-structured
-  options*, not a hard cap on how many.
+  is conditional on decision _difficulty_ and set complexity
+  [[CHOICEOVERLOAD]](../research/sources.md#CHOICEOVERLOAD). So the lever is _comparable, well-structured
+  options_, not a hard cap on how many.
 - The "present evidence for and against the options, not a single recommendation" stance comes from a
   position paper [[EVALAI]](../research/sources.md#EVALAI) and is **contested** — a reasoned design
   stance, not a proven result. The 2026 recency check
   [[PERSUASIONPARADOX]](../research/sources.md#PERSUASIONPARADOX) is **mixed and task-dependent** —
-  explanations hurt on visual reasoning but *helped* on language-based logical reasoning (the task class
+  explanations hurt on visual reasoning but _helped_ on language-based logical reasoning (the task class
   closer to a developer's decision) — so it corroborates only weakly and is cited as preliminary, never
   load-bearing.
 
 The review packet already **routes exceptions to human attention** (ADR-0060): unverified rows, scope
-drift, risky files. But an *open decision* is not an exception in the work — it is a fork the human
+drift, risky files. But an _open decision_ is not an exception in the work — it is a fork the human
 must choose. The packet has no home for it: `## Suggested decision` is the reviewer's merge call only.
 This ADR adds that home.
 
@@ -56,31 +56,31 @@ This ADR adds that home.
    concrete home is an optional **`## Open decisions`** section in the review packet (extending
    ADR-0060's section list — the ADR-0076 precedent, which added the optional `Task status` section to
    that same list); the same convention applies to a task's
-   `## Run summary` and to an agent's chat handoff. *Level: convention (ADR-0063) — nothing enforces it;
-   review may inspect it.* It **routes a decision to the human — a fact, never a verdict** (ADR-0077
+   `## Run summary` and to an agent's chat handoff. _Level: convention (ADR-0063) — nothing enforces it;
+   review may inspect it._ It **routes a decision to the human — a fact, never a verdict** (ADR-0077
    Decision 8): the section presents and recommends; the human decides.
 
 2. **The fields are fixed; the content is present only when a decision is open.** Each open decision
    carries: **the decision** (one line) · **2–4 comparable options**, each with its tradeoff (the case
-   **for *and* against**) · **a recommendation + a brief why** · **the context/impact** the agent holds
+   **for _and_ against**) · **a recommendation + a brief why** · **the context/impact** the agent holds
    and the human may not · **what it blocks**. The for-and-against framing guards both failure modes —
    over-trust [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW) and algorithm aversion
    [[ALGOAVERSION]](../research/sources.md#ALGOAVERSION) — by giving the human something to re-engage
    with rather than reflexively accept or reject.
 
 3. **Present only when something is open; no counts ceremony.** When nothing is open, the section is
-   **absent** — that is the default and there is no ritual to perform. Options are *listed*, never
+   **absent** — that is the default and there is no ritual to perform. Options are _listed_, never
    tallied; the 2–4 range is a soft heuristic, not a hard cap, because the lever is decision difficulty,
    not option count [[CHOICEOVERLOAD]](../research/sources.md#CHOICEOVERLOAD). This keeps the convention
    low-ceremony — consistent with the no-counts-ceremony rule.
 
 4. **Short calibration cues over persuasion; the recommendation is skippable.** The "why" is brief and
-   verification-oriented — *how sure · what would change it · what it blocks* — not a persuasive essay,
+   verification-oriented — _how sure · what would change it · what it blocks_ — not a persuasive essay,
    because explanation alone does not cure over-trust and longer explanation can worsen it
    [[OVERTRUST-CFF]](../research/sources.md#OVERTRUST-CFF)
    [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW)
    [[PERSUASIONPARADOX]](../research/sources.md#PERSUASIONPARADOX). "What it blocks" is a lightweight,
-   forcing-function-*inspired* cue — but honestly, a static markdown section **cannot** implement an
+   forcing-function-_inspired_ cue — but honestly, a static markdown section **cannot** implement an
    interaction-level cognitive forcing function (the [[OVERTRUST-CFF]](../research/sources.md#OVERTRUST-CFF)
    mechanisms — decide-before-seeing, withhold-until-requested, a brief wait — need a live interaction).
    So the over-trust mitigation here rests on the **for-and-against framing** (itself contested,
@@ -98,7 +98,7 @@ This ADR adds that home.
    prescription rests substantially on a **contested position paper**
    [[EVALAI]](../research/sources.md#EVALAI) and on adjacent human-AI-decision evidence, not on a
    measured study of agent-orchestration handoffs; interventions of this family **reduce over-reliance
-   but do not reliably produce *appropriate* reliance**
+   but do not reliably produce _appropriate_ reliance**
    [[RELYORNOT]](../research/sources.md#RELYORNOT). The 2026 recency check strengthens the underlying
    over-reliance findings and adds **developer-domain** support
    [[AICODE-INSECURE]](../research/sources.md#AICODE-INSECURE) — but the convention is adopted as a
@@ -106,13 +106,13 @@ This ADR adds that home.
 
 ## Alternatives considered
 
-| Alternative | Why weaker |
-|---|---|
+| Alternative                                                 | Why weaker                                                                                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **End with a terse single recommendation (the status quo)** | A lone recommendation invites over-trust [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW) and is brittle to one error → algorithm aversion [[ALGOAVERSION]](../research/sources.md#ALGOAVERSION); it also forces the context-poor orchestrator to re-derive the fork the agent already understood. |
-| **A required, always-present `## Open decisions` section** | An always-on second opinion induces over-reliance and trades over-trust for under-trust; present-only-when-open keeps it a signal, not boilerplate. |
-| **A hard option-count cap (e.g. "exactly 3")** | Unsupported — option count alone has a near-zero average effect; the lever is decision difficulty and option comparability [[CHOICEOVERLOAD]](../research/sources.md#CHOICEOVERLOAD). Hence a soft 2–4, not a rule. |
-| **Long, persuasive justification prose** | Explanation alone does not cure over-trust and detailed explanation can worsen it [[OVERTRUST-CFF]](../research/sources.md#OVERTRUST-CFF) [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW); the "why" should make checking cheap, so short calibration cues win. |
-| **Mint a check / contract rule now** | No closed-value form to reconcile; premature for a prose convention, and an always-on prompt risks the very over-reliance the evidence warns of. Convention-first (ADR-0088 precedent); a check defers to a measured ADR. |
+| **A required, always-present `## Open decisions` section**  | An always-on second opinion induces over-reliance and trades over-trust for under-trust; present-only-when-open keeps it a signal, not boilerplate.                                                                                                                                                                   |
+| **A hard option-count cap (e.g. "exactly 3")**              | Unsupported — option count alone has a near-zero average effect; the lever is decision difficulty and option comparability [[CHOICEOVERLOAD]](../research/sources.md#CHOICEOVERLOAD). Hence a soft 2–4, not a rule.                                                                                                   |
+| **Long, persuasive justification prose**                    | Explanation alone does not cure over-trust and detailed explanation can worsen it [[OVERTRUST-CFF]](../research/sources.md#OVERTRUST-CFF) [[OVERRELIANCE-REVIEW]](../research/sources.md#OVERRELIANCE-REVIEW); the "why" should make checking cheap, so short calibration cues win.                                   |
+| **Mint a check / contract rule now**                        | No closed-value form to reconcile; premature for a prose convention, and an always-on prompt risks the very over-reliance the evidence warns of. Convention-first (ADR-0088 precedent); a check defers to a measured ADR.                                                                                             |
 
 ## Consequences
 
@@ -130,9 +130,9 @@ agents close a unit of work the same way.
 ## Propagation
 
 `docs/reference/artifact-formats.md` (the `## Open decisions` entry in the review section list + a
-load-bearing bullet) · `../swarm-starter-kit/templates/review.md` (the optional section with authoring
+load-bearing bullet) · `../corpus-starter-kit/templates/review.md` (the optional section with authoring
 guidance) · `docs/research/sources.md` (the eight evidence entries, tiered) ·
-`docs/adrs/README.md` (the index row) · the swarm-hq trail (SPEC/TASK/REVIEW + the persisted research).
-Extends [0060](./0060-swarm-workspace.md); honors [0077](./0077-swarm-cli-reconcile-only-harness.md)
+`docs/adrs/README.md` (the index row) · the corpus-hq trail (SPEC/TASK/REVIEW + the persisted research).
+Extends [0060](./0060-corpus-workspace.md); honors [0077](./0077-corpus-cli-reconcile-only-harness.md)
 Decision 8 and [0063](./0063-honesty-framework-and-tooling-boundary.md); convention-first like
 [0088](./0088-delegation-provenance.md). No contract change, no check.

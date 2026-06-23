@@ -11,7 +11,7 @@ updated: 2026-06-13
 ## Context
 
 Two codex stress runs on a real adopter (Promptly, a browser-extension app) and a kimi hostile
-read produced a corpus of field evidence (in `swarm-hq/specs/adoption-experience/` and
+read produced a corpus of field evidence (in `corpus-hq/specs/adoption-experience/` and
 `specs/dx-remediation/`). CHANGE-adoption-experience cross-referenced every candidate against the
 current framework and, after its own refute-by-default adversarial review (20 findings, all
 confirmed), reduced the genuine, still-open, field-validated gaps to the set below. Two are
@@ -25,7 +25,7 @@ field evidence justified directly.
   and clear boundaries, and that vague briefs cause duplicated work and coverage gaps
   [[ANTHROPIC-MULTIAGENT]](../research/sources.md#ANTHROPIC-MULTIAGENT). Corpus already names the
   task packet as the handoff and the advanced lifecycle carries a per-worker hand-off record, but
-  the *core* task/review artifacts capture no boot proof.
+  the _core_ task/review artifacts capture no boot proof.
 - **Validation evidence and status hygiene drifted.** The runs surfaced: an environment that
   can't run a runtime check vs a real regression (Fail vs Blocked); rare runtime states that need
   a simulation strategy; a check that passes only on an alternate/diagnostic runtime; baseline
@@ -45,21 +45,21 @@ run-summary discipline and docs/06's "too much packet is a cost" both stand).
    gains an **optional Provenance line** for delegated/worker-run tasks: sources read (`AGENTS.md`,
    task, spec, change plan), guide(s) loaded, worker identity, and **isolation mode** (worktree /
    shared tree / patch-only). Lead-run and trivial tasks omit it — the surface scales with
-   delegation risk. It records *boot facts to inspect*, never a trust token, and it stays a digest
-   that cites the Verify pastes, never a second copy of output (ADR-0072). *Level: convention.*
+   delegation risk. It records _boot facts to inspect_, never a trust token, and it stays a digest
+   that cites the Verify pastes, never a second copy of output (ADR-0072). _Level: convention._
 
 2. **Worker vs scout; who records when there is no artifact.** docs/07 distinguishes a **task
    worker** (boots from the packet, owns a write scope, leaves a run summary + provenance) from a
    **scout** (a read/research helper that produces no merge and leaves none). When a delegated
    worker authors no task file, the **lead records the Provenance line on merge-back**, per the
    existing per-worker hand-off model. A worker that produced edits with no task/handoff artifact
-   at all is exactly the review exception in Decision 3. *Level: convention.*
+   at all is exactly the review exception in Decision 3. _Level: convention._
 
 3. **Review exception for missing boot provenance.** The review packet's Human-attention triggers
    gain "missing or unconvincing worker-boot provenance for a delegated task" — explicitly
    including silent guide/skill-activation failure (a worker can lose a guide mid-run) and the
-   no-artifact case. Framed as an exception to *investigate*, not a checkbox that green-lights a
-   worker. *Level: checklist.*
+   no-artifact case. Framed as an exception to _investigate_, not a checkbox that green-lights a
+   worker. _Level: checklist._
 
 4. **Validation evidence — point to the canon, add only the task-creation guidance.** The Fail vs
    Blocked vs Unverified distinction is already canonical in the advanced lifecycle ("Blocked is an
@@ -70,43 +70,43 @@ run-summary discipline and docs/06's "too much packet is a cost" both stand).
    and a check that passes only on a **labeled alternate/diagnostic runtime** is recorded as
    diagnostic evidence with the primary-environment requirement staying Blocked. The existing
    `manual` and `monitor` methods and the post-merge-evidence convention are named, not reinvented.
-   A check a worker's *environment* cannot run is Blocked-at-worker with validation reassigned to,
-   and re-run by, the lead. *Level: convention/checklist.*
+   A check a worker's _environment_ cannot run is Blocked-at-worker with validation reassigned to,
+   and re-run by, the lead. _Level: convention/checklist._
 
 5. **Baseline vs feature in review.** A check failing for reasons outside the change's scope is
    recorded **once** as a Blocked environment-baseline note, not repeated per requirement row, and
-   is distinct from a feature-regression Fail. *Level: checklist.*
+   is distinct from a feature-regression Fail. _Level: checklist._
 
 6. **Closeout status hygiene — board and packet.** The review packet gains a **task-status
    confirmation** checkpoint: the reviewing session confirms the task's board row **and re-syncs
    the task packet's own `status:` frontmatter**, so a worker booting from the packet alone does
    not inherit a stale state. "Implemented and committed, human/runtime validation pending" maps to
    review `needs-human` + task `review-ready` — adopters use the existing states, never invent new
-   ones. *Level: checklist.*
+   ones. _Level: checklist._
 
 7. **Workspace is version-controlled.** The workspace (dedicated repo or co-located folder) must be
-   committed to version control, or code/spec traceability silently drifts. *Level: convention.*
+   committed to version control, or code/spec traceability silently drifts. _Level: convention._
 
 8. **Commit hygiene.** A task packet states whether the worker may run repo-wide auto-fixers; if
    so, the worker lands a **mechanical-only commit before behavior-bearing changes**, so review is
-   not handed a mixed diff. *Level: convention.*
+   not handed a mixed diff. _Level: convention._
 
-9. **Runtime isolation beyond file state.** Worktrees isolate *file* state, not *runtime* state —
+9. **Runtime isolation beyond file state.** Worktrees isolate _file_ state, not _runtime_ state —
    parallel tasks binding the same port, database, cache, or secret can still collide; isolate
    those per task or serialize. (Design rationale — a logical property of worktrees, not an
-   empirical claim; no citation owed.) *Level: convention.*
+   empirical claim; no citation owed.) _Level: convention._
 
-10. **Placeholder hygiene.** An unfilled `{{placeholder}}` left in a *live* `AGENTS.md`/board is a
+10. **Placeholder hygiene.** An unfilled `{{placeholder}}` left in a _live_ `AGENTS.md`/board is a
     workspace-validity **checklist failure** today (sharpening the existing "populated AGENTS.md"
-    convention); a future `swarm init`/`swarm check` *should* enforce it. *Level: checklist;
-    enforcement toolable, not shipped.*
+    convention); a future `corpus init`/`corpus check` _should_ enforce it. _Level: checklist;
+    enforcement toolable, not shipped._
 
 11. **Artifact-fit pointer.** A one-line "choosing the right artifact" pointer, including the
     bug-report-vs-spec choice (a bounded polish fix against an existing spec is a bug report, not a
-    new feature spec). No new template — `advanced/bug.md` already ships. *Level: convention.*
+    new feature spec). No new template — `advanced/bug.md` already ships. _Level: convention._
 
-Recorded but deferred: a future `swarm run` could generate the worker handoff / launch envelope
-from the task packet (*toolable*, its own ADR when built). The provenance bundle, brownfield
+Recorded but deferred: a future `corpus run` could generate the worker handoff / launch envelope
+from the task packet (_toolable_, its own ADR when built). The provenance bundle, brownfield
 example, and skill-risk checklist (kimi market gaps) are additive and held to a separate change
 plan.
 
@@ -133,7 +133,7 @@ footprint and the per-worker hand-off, now cross-linked from the core run path).
 (new terms — worker, scout, provenance, isolation mode — are defined in the glossary and the user
 tier keeps plain language) and ADR-0063 (every rule above carries a level; nothing claims
 enforcement without a shipped tool). The template-shape change propagates in lockstep to the kit,
-the swarm-cli `scaffold/` mirror, and any hq copy. One new `sources.md` entry
+the corpus-cli `scaffold/` mirror, and any hq copy. One new `sources.md` entry
 ([[ANTHROPIC-MULTIAGENT]], first-party, web-verified, never a `MUST`) grounds the subagent-brief
 direction; the runtime-isolation point is design rationale (no citation owed); the EU AI Act
 regulatory rationale and the kimi market statistics are explicitly **not** load-bearing here and
@@ -151,5 +151,5 @@ checks.md (placeholder as checklist failure), future-cli (placeholder gate + han
 note), **checks/checks.yaml v0.4.1** (review `Task status` added to `optional_sections`;
 `trigger-coverage` gains the worker-boot-provenance trigger — the heading-for-heading
 reconciliation duty in checks/README), glossary (worker · scout · provenance · isolation mode),
-research/sources.md (one entry: [[ANTHROPIC-MULTIAGENT]]), swarm-cli scaffold resync + its
+research/sources.md (one entry: [[ANTHROPIC-MULTIAGENT]]), corpus-cli scaffold resync + its
 `AGENTS.md` contract-version reference, ledger row.
