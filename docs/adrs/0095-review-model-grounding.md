@@ -88,3 +88,12 @@ honest tiers) settles five framing questions — and corrects two of the issue's
 definitions in `corpus-agents`, `docs/research/sources.md` (the eight entries above). No review-packet
 _format_ change (ADR-0058/0089 stand); the participation gate is the existing empty-evidence→Unverified
 reconcile, not a new field or check.
+
+## Update (2026-06-24) — refined by [ADR-0099](./0099-review-orchestration-and-role-routing.md)
+
+ADR-0099 refines Decision 3 (the default reviewer count) and sharpens Decision 2's wording. The
+two-reviewers-plus-a-risk-third default stands as the warrant for **human** review ([[RIGBY13]](../research/sources.md#RIGBY13)'s
+~2 is a human-coordination-cost finding). For **agent** reviewers — cheap, as Decision 3 already noted
+— a **review lead orchestrating at least three distinct lenses** is the low-cost default, since the
+marginal cost RIGBY13 weighed is the cost agents do not pay. "Reviewer ≠ author" is sharpened to
+**reviewer ≠ implementer**: the spec/task author may review code they did not implement.
