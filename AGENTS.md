@@ -61,7 +61,7 @@ are given. Accepted framework decisions still land here, in `docs/adrs/`.
 
 ## Pointers
 
-- Decisions: `docs/adrs/README.md` (0001–0107; 0057+ are the current architecture, 0094–0107 the latest)
+- Decisions: `docs/adrs/README.md` (0001–0108; 0057+ are the current architecture, 0094–0108 the latest)
 - Workspace (specs, audits, plans, board): `../corpus-works`
 - The starter kit: `../corpus-starter-kit` (github.com/jcosta33/corpus-starter-kit)
 - Optional guide catalog: `../corpus-skills` (github.com/jcosta33/corpus-skills)
