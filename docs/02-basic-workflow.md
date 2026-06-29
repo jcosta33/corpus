@@ -121,6 +121,7 @@ Do:
 
 - merge, block, or send back for follow-up
 - save durable lessons as findings
+- record any decision worth keeping in `decisions/`
 - update `status.md`
 - link closed work to its review packet while the packet is retained
 
