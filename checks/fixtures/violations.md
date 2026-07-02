@@ -417,7 +417,7 @@ workspace-scope warning; surfaces a fact, never a verdict.
 
 ---
 
-## V22 — a letter-suffixed requirement id (C018 `malformed-requirement-heading`, warning)
+## V22 — a letter-suffixed requirement id (C019 `malformed-requirement-heading`, warning)
 
 A spec heading shaped like a requirement id, but with a letter suffix:
 

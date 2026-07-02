@@ -16,7 +16,7 @@
 #   warning     a checker should flag it; teams may treat any warning as
 #               blocking by policy
 
-version: 0.10.0 # contract version of this file; bump on any rule change
+version: 0.11.0 # contract version of this file; bump on any rule change
 
 # --- Spec form selector -------------------------------------------------------
 # The default spec form is plain structured markdown. A spec opts into the
@@ -30,7 +30,7 @@ spec_form:
 
 # --- Core checks ---------------------------------------------------------------
 # Mirrors the "Core checks" table in docs/reference/checks.md, row for row.
-# C001–C009, C015, and C018 key on the spec (C018: the plain `###` form only); C010–C011 key on the change plan;
+# C001–C009, C015, and C019 key on the spec (C019: the plain `###` form only); C010–C011 key on the change plan;
 # C012 keys on the review packet's coverage table against its source spec;
 # C013 keys on the review packet's structured verify blocks against its source spec;
 # C014 keys the changed files (the worktree diff, or the review packet's Changed files) against the task packet's Do-not-change entries.
@@ -55,7 +55,8 @@ core_checks:
   - { id: C015, name: citation-resolves, severity: warning } # spec: an inline [[KEY]] citation resolves to a matching <a id="KEY"> anchor in the workspace's sources.md; skips when no sources.md is resolvable (no false-flag); v0 = dangling-anchor only (ADR-0087)
   - { id: C016, name: pass-needs-evidence, severity: hard-error } # review packet (GATE path, suspec check <review>): a Pass coverage row with an empty Evidence cell is a structural contradiction — implements the pass-needs-evidence content_rule below. The reconcile path (suspec review) surfaces the same fact advisorily, never blocking (ADR-0077 D8); minted + measured 0-FP in ADR-0097
   - { id: C017, name: orphaned-reference, severity: warning } # workspace: a bundled .agents/skills/<name>/references/<file> not named anywhere in its sibling SKILL.md (orphan direction only — a load-bearing reference the guide forgot to point at); ADR-0097 (#45), measured 0-orphan on the real .agents/skills/ corpus at mint time (ADR-0097)
-  - { id: C018, name: malformed-requirement-heading, severity: warning } # spec: a ### heading shaped like a requirement id but with a letter suffix (AC-004a) — the parser reads it as prose, so the requirement silently vanishes from scope/coverage; the warning makes the disappearance visible (the id shape is `AC-NNN` — digits only, per the format frozen in ADR-0058)
+  # C018 is RESERVED for the oversized-packet signal (ADR-0094/ADR-0097) — do not mint it for anything else.
+  - { id: C019, name: malformed-requirement-heading, severity: warning } # spec: a ### heading shaped like a requirement id but with a lowercase split-suffix (AC-004a) — the parser reads it as prose, so the requirement silently vanishes from scope/coverage; the warning makes the disappearance visible (the id shape is `AC-NNN` — digits only, per the format frozen in ADR-0058; minted in ADR-0125)
   # NOTE: oversized-packet (ADR-0094) is specified-not-shipped — a raw LOC/files band cannot be both useful and low-FP for code task diffs (measured ~15% FP at 600 LOC; ADR-0097). The diff size is surfaced as NEUTRAL INFO in `suspec review` instead, no band asserted.
 
 # --- The task packet -----------------------------------------------------------
