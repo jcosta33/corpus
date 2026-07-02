@@ -83,8 +83,8 @@ Every discovery ends in one state:
 | `quarantined` | suspicious, conflicting, unsupported, or sensitive — reason recorded, never retrieved as active |
 | `rolled-back` | withdrawn with retraction |
 
-(`quarantined` extends the accepted model per ADR-0123, currently `proposed`; `validated` and
-`rolled-back` are advanced-tier states — conventions, nothing enforces them.)
+(`quarantined` extends the accepted model per ADR-0123; `validated` and `rolled-back` are
+advanced-tier states — conventions, nothing enforces them.)
 
 Do not close a task with `pending` discoveries.
 

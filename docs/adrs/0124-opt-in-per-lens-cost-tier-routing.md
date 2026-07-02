@@ -1,9 +1,9 @@
 ---
 type: adr
 id: adr-0124
-status: proposed
+status: accepted
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-07-02
 ---
 
 # ADR-0124 — Model cost-routing: an opt-in per-lens cost-tier convention the runner resolves
@@ -94,7 +94,7 @@ ladder, and corrects the matrix and the metrics.
 
 ## Status
 
-Proposed. **Serves / extends** [ADR-0122](./0122-revolver-review-bounded-panel-strategy.md) (the cost-tier
+Accepted (2026-07-02). **Serves / extends** [ADR-0122](./0122-revolver-review-bounded-panel-strategy.md) (the cost-tier
 map Revolver references) and [ADR-0099](./0099-review-orchestration-and-role-routing.md) (model
 routing/escalation + the measured-cost rule). **Honors**
 [ADR-0063](./0063-honesty-framework-and-tooling-boundary.md) (levels) and

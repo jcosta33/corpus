@@ -414,3 +414,19 @@ _not_ flagged, and the inverse case (a guide naming a reference that does not ex
 Matching is lenient — the bare filename anywhere in the body counts as named — so a guide that does
 point at its references never false-fires (measured 0-orphan across the real skills corpus). A
 workspace-scope warning; surfaces a fact, never a verdict.
+
+## V22 — a letter-suffixed requirement id (C018 `malformed-requirement-heading`, warning)
+
+A spec heading shaped like a requirement id, but with a letter suffix:
+
+```markdown
+### AC-004a — the split half of a requirement
+
+When the token expires, the client must refresh it.
+Verify with: `npm test -- refresh`
+```
+
+**Expected:** flagged — `AC-004a` is not a legal requirement id (ids are digits-only), so the parser
+reads the heading as plain prose: the requirement silently vanishes from scope and coverage, and a
+checker would report "clean" while an AC is invisible. The warning makes the disappearance visible.
+The fix is a digits-only id — a split requirement gets its own number (`AC-007`), not a suffix.

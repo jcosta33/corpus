@@ -66,15 +66,15 @@ once in the registry, and product/reference docs link there instead of re-restat
    **convention + review** ([ADR-0063](./0063-honesty-framework-and-tooling-boundary.md)) until the gate
    ships.
 
-_Level: split — the **registry shipped** (`docs/artifact-registry.md` is the live source docs cite);
-the **linter did not**: no `scripts/lint-artifact-refs.sh` exists in any family repo, so the
-cross-repo reference check remains **toolable — not shipped**, held by convention + review._
+_Level: shipped (2026-07-02) — the **registry** (`docs/artifact-registry.md`, the live source docs
+cite) and the **linter** (`scripts/lint-artifact-refs.sh`, run by `lint-all.sh` and the method-gates
+workflow: retired registry names grepped out of live product/reference prose, with the
+ADR-mandated allowlist for history and redirect stubs)._
 
 > **Correction note (2026-07-02):** an earlier in-place edit claimed the linter had "since shipped
-> (SPEC-method-gates)". An integrity audit found no such script anywhere in the family — the shipped
-> method-gate scripts are `lint-product-citations.sh`, `lint-count-ranges.sh`, and
-> `check-catalog-freshness.sh`, none of which perform the registry-name check this ADR designs. The
-> claim is retracted above; the registry half stands as shipped.
+> (SPEC-method-gates)" while no such script existed — that claim was retracted by an integrity
+> audit. The linter was then actually built the same day (verified: seeded retired name fails
+> exit 1; clean family passes), so the level line above now reads shipped on evidence.
 
 ## Consequences
 
@@ -110,7 +110,7 @@ cross-repo reference check remains **toolable — not shipped**, held by convent
   like [ADR-0043](./0043-checkable-documents.md). Promote to `accepted` only if and when the registry and
   the linter land.
 
-> **Ledger note (2026-07-02):** current disposition — the registry half landed
-> (`docs/artifact-registry.md`), which is why the frontmatter reads `accepted`; the linter half has
-> NOT landed (see the correction note under Decision 3), so the cross-repo check stays toolable,
-> unshipped. Half-accepted is the honest state of this record.
+> **Ledger note (2026-07-02):** current disposition — both halves landed: the registry
+> (`docs/artifact-registry.md`) and, later the same day, the linter
+> (`scripts/lint-artifact-refs.sh`, wired into `lint-all.sh` + the method-gates workflow). The
+> `accepted` frontmatter is now fully earned.

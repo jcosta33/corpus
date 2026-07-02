@@ -39,6 +39,7 @@ This docs repo enforces nothing by itself.
 | C015 | `citation-resolves` | `[[KEY]]` citations resolve to anchors in the named `sources.md`. | warning |
 | C016 | `pass-needs-evidence` | A `Pass` row with empty evidence is invalid. | hard |
 | C017 | `orphaned-reference` | A bundled skill reference file is not named by its sibling `SKILL.md`. | warning |
+| C018 | `malformed-requirement-heading` | A `###` heading shaped like a requirement id but letter-suffixed (`AC-004a`) — it parses as prose and silently vanishes from scope and coverage. | warning |
 
 Notes:
 
@@ -182,7 +183,7 @@ Hard:
 
 Warning:
 
-- C004, C005, C006, C008, C011, C012, C013, C014, C015, C017
+- C004, C005, C006, C008, C011, C012, C013, C014, C015, C017, C018
 - SOL-P050-SOL-P058
 - SOL-V003, SOL-V011
 - SOL-O004, SOL-O006

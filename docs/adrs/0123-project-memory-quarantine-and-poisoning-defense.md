@@ -1,9 +1,9 @@
 ---
 type: adr
 id: adr-0123
-status: proposed
+status: accepted
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-07-02
 ---
 
 # ADR-0123 — Project Memory: a quarantine state and a poisoning-defense framing, extending the accepted memory model
@@ -105,7 +105,7 @@ overclaims.
 
 ## Status
 
-Proposed. **Extends** [ADR-0032](./0032-memory-model.md) and [ADR-0067](./0067-memory-tiering.md) (adds
+Accepted (2026-07-02). **Extends** [ADR-0032](./0032-memory-model.md) and [ADR-0067](./0067-memory-tiering.md) (adds
 the `quarantined` state + the poisoning-defense framing). **Honors**
 [ADR-0063](./0063-honesty-framework-and-tooling-boundary.md) (levels),
 [ADR-0107](./0107-fast-track-staleness-detection.md)/[ADR-0120](./0120-re-baselining-reconcile-drift.md)

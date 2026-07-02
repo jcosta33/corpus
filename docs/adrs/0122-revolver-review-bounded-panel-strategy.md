@@ -1,9 +1,9 @@
 ---
 type: adr
 id: adr-0122
-status: proposed
+status: accepted
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-07-02
 ---
 
 # ADR-0122 — Revolver Review: a bounded, named form of the lead-orchestrated review panel
@@ -102,7 +102,7 @@ lead-orchestrated independent-lens panel — it adds no new review authority.**
 
 ## Status
 
-Proposed. **Refines / extends** [ADR-0099](./0099-review-orchestration-and-role-routing.md) (names and
+Accepted (2026-07-02). **Refines / extends** [ADR-0099](./0099-review-orchestration-and-role-routing.md) (names and
 bounds the panel). **Honors** [ADR-0077](./0077-suspec-cli-reconcile-only-harness.md) D8 and
 [ADR-0086](./0086-deterministic-review-scanning-decision.md) Decision 5 (reconcile-only),
 [ADR-0121](./0121-evidence-gating-load-bearing-mechanic.md) (evidence-gating),

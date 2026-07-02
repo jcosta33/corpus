@@ -1,9 +1,9 @@
 ---
 type: adr
 id: adr-0121
-status: proposed
+status: accepted
 created: 2026-07-01
-updated: 2026-07-01
+updated: 2026-07-02
 ---
 
 # ADR-0121 — Evidence-gating is the load-bearing mechanic: ungrounded model judgment is not a review signal
@@ -86,7 +86,7 @@ toolable edge; the doctrine itself is convention._
 
 ## Status
 
-Proposed. Refines [ADR-0095](./0095-review-model-grounding.md) (participation
+Accepted (2026-07-02). Refines [ADR-0095](./0095-review-model-grounding.md) (participation
 gate) and [ADR-0056](./0056-adversarial-self-review-completion-discipline.md)
 (adversarial self-review); honors
 [ADR-0063](./0063-honesty-framework-and-tooling-boundary.md),
