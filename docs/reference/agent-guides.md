@@ -24,7 +24,7 @@ reruns evidence; worker output is only a claim index.
 
 Revolver provides breadth, Triple-check depth, Bulletproof claim verification, and Demolition
 quarantined advocacy. Settle resolves agent-owned technical ambiguity from evidence. A panel
-preserves independent alternatives when durable deliberation is required. Agents return evidence,
+preserves independent alternatives when a consequential choice needs several perspectives. Agents return evidence,
 findings, assessments, and recommendations. Humans own intent, material tradeoffs, waivers,
 irreversible actions, and acceptance.
 

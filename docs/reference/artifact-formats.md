@@ -26,7 +26,6 @@ Leave, or Promote. Disposition is not frontmatter or lifecycle state.
 | `audit` | `sus-audit` | evidenced present-state risks | `AUDIT-` |
 | `research` | `sus-research` | evidence for one decision-informing question | `RESEARCH-` |
 | `campaign` | `sus-campaign` | one restartable multi-pull-request goal | `CAMPAIGN-` |
-| `panel` | `sus-panel` | independent alternatives and one recommendation | `PANEL-` |
 
 No other `type:` value is a Suspec artifact. Project records such as issues, decision records,
 product documents, and release documentation keep their project-native formats.
@@ -173,29 +172,6 @@ behavior or prescribe a change. Each finding must be independently checkable fro
 Research answers one decision-informing question with source-qualified findings, limitations, and
 open uncertainty. It does not make the decision. Marketing claims, synthetic respondents, and
 anecdotes remain labeled as such.
-
-## Panel
-
-Frontmatter:
-
-```yaml
----
-type: panel
-id: PANEL-checkout-storage
----
-```
-
-Use `Question`, `Options`, and `Recommendation`. Add `Constraints`, `Dissent`, and `Unknowns` only
-when they carry information. No other sections belong in a panel artifact.
-
-Honor a user-specified participant count. Otherwise use the smallest panel that covers every
-material perspective. Give fresh participants one fixed packet and hide peer analyses until every
-initial response lands. Launch the initial analyses concurrently. Use the cheapest capable models
-unless the user requests otherwise.
-
-The orchestrator verifies load-bearing claims, synthesizes the result, and preserves material
-dissent. Agreement is not evidence. Persist no votes, identities, transcripts, or repeated
-rationale. The recommendation advises; it does not decide human-owned intent.
 
 ## Change plan
 

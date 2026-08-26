@@ -6,7 +6,8 @@ Three surfaces enforce different parts:
 
 - The [global policy](../../policy/agent.md) cuts routine chat waste and routes installed context
   tools. Install it explicitly with `suspec setup`; skills alone cannot govern ordinary conversation.
-- `disrespec` compresses supplied prose. It still earns its install when the global policy is active.
+- `debloat` compresses supplied prose. It still earns its install when the global policy is active.
+  It installs from [jcosta33/skills](https://github.com/jcosta33/skills), not from this repository.
 - Artifact writers return only clickable artifact links after successful creation. The artifact owns
   its contents; chat does not perform an encore.
 

@@ -65,7 +65,7 @@ else
         done
     }
     roots="$SUSPEC_ROOT"
-    for name in suspec-cli suspec-mcp suspec-skills; do
+    for name in suspec-cli suspec-mcp; do
         dir=$(repo_dir "$name")
         [ -n "$dir" ] && roots="$roots $dir"
     done

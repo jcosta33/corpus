@@ -17,6 +17,7 @@ Without native memory, let personal scratch die. Route team lessons through issu
 tests, or maintained documentation. Correct or delete memories contradicted by current evidence.
 
 `remember` preserves one lesson. `promote` moves a whole document into a project-owned durable
-channel, repairs references, and never pushes implicitly.
+channel, repairs references, and never pushes implicitly. Both install from
+[jcosta33/skills](https://github.com/jcosta33/skills), not from this repository.
 
 Related: [findings](../09-saving-findings.md) · [distillation](distillation.md)

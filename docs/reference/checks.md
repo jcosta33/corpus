@@ -21,7 +21,7 @@ This docs repo enforces nothing by itself.
 ## Artifact recognition
 
 `type:` is required. `spec`, `task`, `change-plan`, and `campaign` have deterministic checker
-faces. `inventory`, `audit`, `research`, and `panel` are recognized and return
+faces. `inventory`, `audit`, and `research` are recognized and return
 `checked: false`. A missing or unknown type is a blocking usage error. `type: review` is unknown.
 
 Each checked JSON report repeats its checked artifact `type` with `level`, `path`, and

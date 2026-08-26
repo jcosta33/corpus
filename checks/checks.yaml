@@ -19,12 +19,12 @@
 # Severities are expressed at check time — exit codes are the API (0 clean ·
 # 1 warning · 2 blocking); the human owns what blocks a merge.
 
-version: 0.26.0 # contract version of this file
+version: 0.27.0 # contract version of this file
 
 # --- Artifact and frontmatter contract ----------------------------------------
 artifact_types:
   checked: [spec, task, change-plan, campaign]
-  recognized_unchecked: [inventory, audit, research, panel]
+  recognized_unchecked: [inventory, audit, research]
   missing_type: hard-error
   unknown_type: hard-error
 

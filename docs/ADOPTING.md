@@ -5,17 +5,25 @@
 Install globally for your harness (Codex shown):
 
 ```bash
-npx skills add jcosta33/suspec-skills -g -a codex
+npx skills add jcosta33/suspec -g -a codex
 ```
 
-This installs the workflows. Suspec does not annex the repository: its commands, architecture, and
-policy stay in native instructions.
+This installs the artifact authors. Universal working methods install separately from
+[jcosta33/skills](https://github.com/jcosta33/skills):
+
+```bash
+npx skills add jcosta33/skills -g -a codex
+```
+
+Suspec does not annex the repository: its commands, architecture, and policy stay in native
+instructions.
 
 Re-running `npx skills add` updates present entries but does not remove names absent from the source.
 After a catalog removal, delete only obsolete Suspec entries with
 `npx skills remove -g -a <agent> <names...>`, then reinstall. Preserve unrelated skills.
-The 5.0.0 catalog removes `sus-review` and adds `drill`. Remove `sus-review` explicitly, then
-reinstall the family so `drill` lands.
+The catalogs split: the `sus-*` authors moved here and the universal methods moved to
+`jcosta33/skills`. Remove `sus-review`, `sus-panel`, `disrespec`, and `fork-me` explicitly, then
+install both sources so `panel`, `debloat`, `ask-user`, and `drill` land.
 
 ## Add the optional CLI
 

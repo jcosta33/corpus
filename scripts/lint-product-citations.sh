@@ -21,7 +21,7 @@
 # they are reviewed by a human, not linted by this gate.
 #
 # The linted set, per repo (sibling repos under this repository's parent by default):
-#   suspec-skills/skills/<name>/SKILL.md          + that skill's references/*.md
+#   suspec/skills/<name>/SKILL.md                 (one complete file per skill)
 #   top-level product READMEs in the family        (README carve-out: repo/install links allowed)
 #
 # Forbidden patterns (extended regex):
@@ -32,7 +32,7 @@
 #
 # Usage:
 #   scripts/lint-product-citations.sh [REPO_PARENT_DIR]
-#     REPO_PARENT_DIR  directory holding the sibling repos (suspec-skills, suspec-cli, …).
+#     REPO_PARENT_DIR  directory holding the sibling repos (suspec, suspec-cli, …).
 #                      Defaults to this repository's parent. Pass a temp dir to self-test a seed.
 #
 # Exit: 0 when every linted file is clean; 1 on any forbidden citation; 2 on a usage/scope error.
@@ -43,7 +43,7 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 DEV_DIR="${1:-$(CDPATH= cd -- "$SCRIPT_DIR/../.." && pwd)}"
 if [ ! -d "$DEV_DIR" ]; then
     echo "lint-product-citations: not a directory: $DEV_DIR" >&2
-    echo "  Pass the directory that holds the sibling repos (suspec-skills, suspec-cli, …)," >&2
+    echo "  Pass the directory that holds the sibling repos (suspec, suspec-cli, …)," >&2
     echo "  or run with no argument to use this repository's parent directory." >&2
     exit 2
 fi
@@ -77,14 +77,13 @@ repo_dir() {
 }
 
 SUSPEC_MAIN_DIR=$(repo_dir suspec)
-SUSPEC_SKILLS_DIR=$(repo_dir suspec-skills)
 SUSPEC_MCP_DIR=$(repo_dir suspec-mcp)
 SUSPEC_CLI_DIR=$(repo_dir suspec-cli)
 
 body_files=$(
-    # suspec-skills: each skill's SKILL.md + that skill's references/*.md
-    if [ -d "$SUSPEC_SKILLS_DIR/skills" ]; then
-        find "$SUSPEC_SKILLS_DIR/skills" -type f \
+    # suspec: each artifact author's SKILL.md
+    if [ -d "$SUSPEC_MAIN_DIR/skills" ]; then
+        find "$SUSPEC_MAIN_DIR/skills" -type f \
             \( -name 'SKILL.md' -o -path '*/references/*.md' \)
     fi
     :
@@ -95,7 +94,7 @@ readme_files=$(
     # NB: the final command in this $(...) must succeed, or `set -e` would fail the whole assignment.
     for r in \
         "$SUSPEC_MAIN_DIR/README.md" \
-        "$SUSPEC_SKILLS_DIR/README.md" \
+        "$SUSPEC_MAIN_DIR/skills/README.md" \
         "$SUSPEC_MCP_DIR/README.md" \
         "$SUSPEC_CLI_DIR/README.md"
     do
@@ -109,7 +108,7 @@ files=$(printf '%s\n%s\n' "$body_files" "$readme_files" | grep . || true)
 # A scope that matched nothing means the parent dir is wrong — fail loudly, don't pass vacuously.
 if [ -z "$files" ]; then
     echo "lint-product-citations: no in-scope product files found under $DEV_DIR" >&2
-    echo "  Expected sibling repos like $DEV_DIR/suspec-skills and $DEV_DIR/suspec-cli." >&2
+    echo "  Expected sibling repos like $DEV_DIR/suspec and $DEV_DIR/suspec-cli." >&2
     echo "  Check the REPO_PARENT_DIR argument." >&2
     exit 2
 fi

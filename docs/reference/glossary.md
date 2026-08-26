@@ -14,9 +14,9 @@
 | **Change plan** | Safe transformation plan with preservation guarantees, waves, cutover, rollback, and checks. |
 | **Audit** | Evidence-backed record of present-state risks; no intended behavior or prescription. |
 | **Research** | Evidence for one decision-informing question; no decision. |
-| **Panel artifact** | Independent analysis of viable alternatives, compressed into one recommendation, material dissent, and unknowns. |
 | **Campaign artifact** | Restartable multi-pull-request goal contract: stable objective, authorities, operating loop, blockers, and verifiable completion; mutable progress stays in one project-native ledger. |
 | **Inspection method** | A bounded method run over a target. Bulletproof and Demolition stay read-only; Revolver repairs between sequential stances; Triple-check repairs after one parallel review wave. |
+| **Panel** | Independent analysis of viable alternatives, compressed into one recommendation, material dissent, and unknowns. Chat only; it writes no artifact. |
 | **Independent review** | A non-implementer judges the result on a native PR, via Revolver, Triple-check, or Bulletproof. No Suspec review file. |
 | **Finding** | A lesson candidate. It is not a standalone artifact type. |
 | **Native memory** | A harness-provided durable memory surface; used only when supported. |

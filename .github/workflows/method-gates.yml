@@ -11,10 +11,6 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      skills_ref:
-        description: suspec-skills ref for an integration snapshot
-        required: false
-        default: main
       cli_ref:
         description: suspec-cli ref for an integration snapshot
         required: false
@@ -44,13 +40,17 @@ jobs:
           sh scripts/lint-product-citations.sh "$(dirname "$GITHUB_WORKSPACE")"
           SUSPEC_FAMILY_ROOTS="$GITHUB_WORKSPACE" sh scripts/lint-count-ranges.sh
 
+      - name: Artifact-author skills
+        run: |
+          sh scripts/lint-artifact-skills.sh .
+          sh scripts/test-lint-artifact-skills.sh .
+
   method-gates:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       # Check out the selected family under one parent so cross-repo scans share a root.
       - { name: suspec, uses: actions/checkout@v4, with: { path: family/suspec } }
-      - { name: suspec-skills, uses: actions/checkout@v4, with: { repository: jcosta33/suspec-skills, ref: "${{ inputs.skills_ref || 'main' }}", path: family/suspec-skills } }
       - { name: suspec-mcp, uses: actions/checkout@v4, with: { repository: jcosta33/suspec-mcp, ref: "${{ inputs.mcp_ref || 'main' }}", path: family/suspec-mcp } }
       - { name: suspec-cli, uses: actions/checkout@v4, with: { repository: jcosta33/suspec-cli, ref: "${{ inputs.cli_ref || 'main' }}", path: family/suspec-cli } }
 

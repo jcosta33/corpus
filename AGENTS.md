@@ -1,7 +1,8 @@
 # AGENTS.md — Suspec canon
 
 Canon lives here. Runtime does not. This repository owns Suspec's human-readable method and
-machine-readable checks contract; sibling repositories own the skill catalog, CLI, and MCP adapter.
+machine-readable checks contract, and it ships the skills that author Suspec artifacts. Sibling
+repositories own the CLI and the MCP adapter.
 
 ## Authority
 
@@ -10,9 +11,10 @@ machine-readable checks contract; sibling repositories own the skill catalog, CL
 - Machine checks contract: `checks/checks.yaml`.
 - Check explanations: `docs/reference/checks.md`.
 - Empirical sources: `docs/research/sources.md`.
+- Artifact-author skills and their design evidence: `skills/`.
 - Global agent policy and predecessor provenance: `policy/agent.md` and
   `policy/agent-policy-predecessors.txt`.
-- Executable procedures: `suspec-skills`.
+- Executable procedures: `skills/` here; universal working methods in `jcosta33/skills`.
 
 A contract change travels as a unit. Half-updated truth is still wrong.
 
@@ -21,9 +23,8 @@ A contract change travels as a unit. Half-updated truth is still wrong.
 - Present current behavior in fresh-product language. Keep migration history inside ADRs.
 - State delivery control honestly: `advisory`, `deterministic local`, or `isolated authority`.
   Otherwise name the enforcing command or owner.
-- Use current artifact types only: spec, task, inventory, change plan, audit, research,
-  campaign, and panel.
-  Evidence receipts and run notes are untyped sidecars.
+- Use current artifact types only: spec, task, inventory, change plan, audit, research, and
+  campaign. Evidence receipts and run notes are untyped sidecars.
 - Publish no changing catalog, repository, artifact, or ADR totals. Decorative counts rot. Keep
   execution-defining floors, caps, versions, IDs, and exit codes exact.
 - Cite every load-bearing empirical claim with `[[KEY]]` linked to
@@ -35,6 +36,8 @@ A contract change travels as a unit. Half-updated truth is still wrong.
 - `docs/`: guide, reference, adoption, examples, tutorial, decisions, and evidence.
 - `checks/checks.yaml`: contract data.
 - `checks/fixtures/`: checker oracle data.
+- `skills/`: artifact-author skills, their catalog, and their design evidence. Follow
+  [the edit contract](skills/README.md) for every change under it.
 
 ## Command
 

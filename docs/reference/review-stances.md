@@ -35,7 +35,7 @@ floor or ceiling. Run one fresh reviewer at a time and resolve every finding bef
 Complete full rotations; repeat after a productive rotation; stop after a quiet rotation or three
 cycles. It creates no artifact.
 
-Executable procedure: [Revolver](https://github.com/jcosta33/suspec-skills/tree/main/skills/revolver).
+Executable procedure: [Revolver](https://github.com/jcosta33/skills/tree/main/skills/revolver).
 
 ## Triple-check
 
@@ -45,7 +45,7 @@ prose. Wait for all three, reconcile and verify their findings, apply supported 
 final proof. It creates no artifact.
 
 Executable procedure:
-[Triple-check](https://github.com/jcosta33/suspec-skills/tree/main/skills/triple-check).
+[Triple-check](https://github.com/jcosta33/skills/tree/main/skills/triple-check).
 
 Different model names are not a scientific control. Model variety may reduce correlated framing but
 proves no independence. Judge surfaced defects and rerun evidence, not model labels.

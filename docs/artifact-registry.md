@@ -2,7 +2,7 @@
 
 | Surface                                  | Authority                                                                                                          |
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| Method procedures and artifact authoring | each `SKILL.md` in [suspec-skills](https://github.com/jcosta33/suspec-skills)                                      |
+| Artifact authoring procedures            | each `SKILL.md` under [`skills/`](../skills/README.md)                                                             |
 | Deterministic checking                   | `suspec check` in [suspec-cli](https://github.com/jcosta33/suspec-cli)                                             |
 | Global agent policy                       | `policy/agent.md`; predecessor provenance in `policy/agent-policy-predecessors.txt`; installed by `suspec setup` in [suspec-cli](https://github.com/jcosta33/suspec-cli) |
 | Shell-less checking                      | `suspec_check`, `suspec_get_checks`, and `suspec://checks` in [suspec-mcp](https://github.com/jcosta33/suspec-mcp) |

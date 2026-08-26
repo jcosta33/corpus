@@ -10,14 +10,18 @@ Skills install independently. Use the one the work needs.
 
 ## Install
 
-Install the skill family for your harness (Codex shown):
+Install the artifact-authoring skills for your harness (Codex shown):
 
 ```bash
-npx skills add jcosta33/suspec-skills -g -a codex
+npx skills add jcosta33/suspec -g -a codex
 ```
 
-Re-running `add` does not prune. After 5.0.0, remove leftover `sus-review`, then re-add the family
-so `drill` installs. Cutover detail: [adoption](docs/ADOPTING.md).
+That installs the [artifact authors](skills/README.md). Universal working methods — verification,
+review, deliberation, sequencing, compression, memory — install separately from
+[jcosta33/skills](https://github.com/jcosta33/skills).
+
+Re-running `add` does not prune. Remove leftover `sus-review`, `sus-panel`, `disrespec`, and
+`fork-me` before re-adding. Cutover detail: [adoption](docs/ADOPTING.md).
 
 Skills install the workflows. Add [suspec-cli](https://github.com/jcosta33/suspec-cli) for
 deterministic checks and the optional global agent policy:
@@ -94,12 +98,12 @@ accept their own work.
 
 ## Repositories
 
-| Need                                            | Owner                                                      |
-| ----------------------------------------------- | ---------------------------------------------------------- |
-| Install the skills                              | [suspec-skills](https://github.com/jcosta33/suspec-skills) |
-| Run checks or install global agent rules        | [suspec-cli](https://github.com/jcosta33/suspec-cli)       |
-| Give shell-less clients the checker             | [suspec-mcp](https://github.com/jcosta33/suspec-mcp)       |
-| Read formats, checks, and decisions             | this repository                                            |
+| Need                                            | Owner                                                |
+| ----------------------------------------------- | ---------------------------------------------------- |
+| Install the method, read formats and decisions  | this repository                                      |
+| Install the universal methods                   | [skills](https://github.com/jcosta33/skills)         |
+| Run checks or install global agent rules        | [suspec-cli](https://github.com/jcosta33/suspec-cli) |
+| Give shell-less clients the checker             | [suspec-mcp](https://github.com/jcosta33/suspec-mcp) |
 
 Start with [the basic workflow](docs/02-basic-workflow.md), [adoption](docs/ADOPTING.md), or the
 [tutorial](docs/tutorial/README.md). Exact formats and contracts live under
