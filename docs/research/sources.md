@@ -250,6 +250,12 @@
 <a id="ZCODE"></a>
 **[ZCODE] ZCode Agent instructions.** ZCode docs, 2026. Defines `~/.zcode/AGENTS.md` as the user-global instruction file and workspace `AGENTS.md` as the project source. <https://zcode.z.ai/en/docs/agents> - *authoritative product contract.*
 
+<a id="CURSORRULES"></a>
+**[CURSORRULES] Cursor rules storage.** Cursor help, 2026. Defines project rules in `.cursor/rules/`, account-synced User Rules in Settings, and machine-local user rule files in `~/.cursor/rules`. <https://cursor.com/help/customization/rules> - *authoritative product contract.*
+
+<a id="ANTIGRAVITYRULES"></a>
+**[ANTIGRAVITYRULES] Antigravity global rules.** Google Antigravity docs, 2026. Defines global rules at `~/.gemini/GEMINI.md` and workspace rules under `.agents/rules`. <https://www.antigravity.google/docs/ide/rules/> - *authoritative product contract.*
+
 <a id="RTKHOOKS"></a>
 **[RTKHOOKS] RTK agent hooks.** RTK source documentation, 2026. Defines shell-command rewriting, MCP and native-read bypass, already-prefixed passthrough, and agent-specific hook limits. <https://github.com/rtk-ai/rtk/blob/master/hooks/README.md> - *authoritative implementation contract.*
 

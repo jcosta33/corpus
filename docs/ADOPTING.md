@@ -45,9 +45,9 @@ configuration. Exact behavior: [CLI reference](reference/cli.md).
 Preview the exact user-level changes, then apply only the approved harnesses:
 
 ```bash
-suspec setup codex claude-code kimi-code zcode opencode
-suspec setup codex claude-code kimi-code zcode opencode --yes
-suspec setup codex claude-code kimi-code zcode opencode --check
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --yes
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --check
 ```
 
 The policy cuts narration and repetition, keeps durable findings in the work, and routes context
@@ -56,8 +56,8 @@ evidence, and failed verification. Setup adds one neutral inline block to each h
 instruction file and writes nowhere else. Remove it reversibly:
 
 ```bash
-suspec setup codex claude-code kimi-code zcode opencode --remove
-suspec setup codex claude-code kimi-code zcode opencode --remove --yes
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --remove
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --remove --yes
 ```
 
 `npx skills` installs workflows. `suspec setup` installs global interaction rules. Neither substitutes

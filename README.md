@@ -23,8 +23,8 @@ Skills install the workflows. Add [suspec-cli](https://github.com/jcosta33/suspe
 deterministic checks and the optional global agent policy:
 
 ```bash
-suspec setup codex claude-code kimi-code zcode opencode
-suspec setup codex claude-code kimi-code zcode opencode --yes
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity
+suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --yes
 ```
 
 The first command previews. The second applies the approved user-level change. Neither touches a
