@@ -48,8 +48,7 @@ Each requirement:
 
 Resolve discoverable facts and reversible conventions. Put unresolved material decisions under
 `Open questions`, keep the spec `draft`, and block dependent work. `ready` is a claim: no blocking
-decision or unresolved marker remains. C007 enforces that floor; C021 rejects a missing or empty
-`Intent`.
+decision or unresolved marker remains.
 
 Exact frontmatter and optional sections: [artifact formats](reference/artifact-formats.md).
 

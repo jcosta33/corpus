@@ -11,13 +11,8 @@ Start here. Reading the reference front to back is legal but suspicious:
 7. [Execution](07-running-agents.md)
 8. [Review](08-reviewing-output.md)
 9. [Findings and memory](09-saving-findings.md)
-10. [Integrations](10-integrations.md)
 
 Reach for the rest when the work earns it:
 
-- [Adoption](ADOPTING.md) for installation and first use.
-- [Tutorial](tutorial/README.md) for one complete run.
-- [Examples](examples/README.md) for proportioned workflows.
-- [Reference](reference/) for exact formats, checks, and terminology.
-- [Surface ownership](artifact-registry.md) for repository authority.
+- [Reference](reference/) for exact formats and terminology.
 - [ADR ledger](adrs/README.md) for decision history.

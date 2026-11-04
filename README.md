@@ -1,16 +1,12 @@
 # Suspec
 
-**Put coding agents on rails. Keep humans on the decisions.**
+**Standalone skills that write durable, evidence-bound working artifacts for agent work.**
 
-Suspec ships as standalone skills: explicit intent in, evidence out, human decisions where they
-matter. A deterministic CLI catches structural holes without a model. Your harness writes the code.
-Plain Markdown keeps the work portable and the repository clean.
-
-Skills install independently. Use the one the work needs.
+Agents get the mechanical work; humans keep intent, material decisions, and acceptance. Each skill
+installs on its own and writes one plain-Markdown artifact outside your repository. Your harness
+writes the code.
 
 ## Install
-
-Install the artifact-authoring skills for your harness (Codex shown):
 
 ```bash
 npx skills add jcosta33/suspec -g -a codex
@@ -21,18 +17,7 @@ review, deliberation, sequencing, compression, memory — install separately fro
 [jcosta33/skills](https://github.com/jcosta33/skills).
 
 Re-running `add` does not prune. Remove leftover `sus-review`, `sus-panel`, `disrespec`, and
-`fork-me` before re-adding. Cutover detail: [adoption](docs/ADOPTING.md).
-
-Skills install the workflows. Add [suspec-cli](https://github.com/jcosta33/suspec-cli) for
-deterministic checks and the optional global agent policy:
-
-```bash
-suspec setup codex claude-code kimi-code zcode opencode cursor antigravity
-suspec setup codex claude-code kimi-code zcode opencode cursor antigravity --yes
-```
-
-The first command previews. The second applies the approved user-level change. Neither touches a
-repository.
+`fork-me` before re-adding.
 
 ## Use the least structure that pays
 
@@ -43,9 +28,9 @@ Fix: expired refresh tokens must redirect to /login, not 500.
 Verify with: pnpm test:run auth-refresh-expired-token
 ```
 
-Implement it, run the command, and preserve the output.
-Close it through direct non-implementer review of the final diff and output in the project's native
-PR, CI, or conversation surface. No artifact needed.
+Implement it, run the command, and preserve the output. Close it through direct non-implementer
+review of the final diff and output in the project's native PR, CI, or conversation surface. No
+artifact needed.
 
 When intent needs a structured working contract, `sus-spec` writes a spec with observable
 requirements:
@@ -57,18 +42,8 @@ requirements:
 - Verify with: `pnpm test:run export-date-range-filter`
 ```
 
-Ordinary artifacts live outside the repository under
-`~/.agents/artifacts/<workspace>/` and move by absolute path. See
-[where files live](docs/03-where-files-live.md).
-
-## Check
-
-```bash
-suspec check <path>
-```
-
-The checker reports deterministic facts; it does not bless the work. See the [CLI
-contract](docs/reference/cli.md) for companions, checks, and exits.
+Ordinary artifacts live outside the repository under `~/.agents/artifacts/<workspace>/` and move
+by absolute path. See [where files live](docs/03-where-files-live.md).
 
 ## Method
 
@@ -78,8 +53,9 @@ itself:
 - a spec when one precise sentence cannot govern the work;
 - a task when one spec must split into separately dispatchable slices;
 - an inventory when present behavior or ownership is unclear;
-- `drill` when one seam must lock language, obligation, place, then slice;
 - a change plan when structural work must preserve behavior across stages;
+- an audit when present-state risk needs evidence;
+- research when a decision needs evidence it does not yet have;
 - a campaign artifact when one durable goal spans several pull requests.
 
 Suspec does not replace native plan mode, project guidance, issue trackers, PRs, CI, tests, or human
@@ -92,19 +68,8 @@ Use Suspec when a change outgrows direct attention, several workers share it, or
 reconstruct intent and proof. Skip it when native planning, project instructions, tests, and direct
 review already make the work obvious.
 
-Its distinct mechanism is deterministic reconciliation keyed to requirement IDs. Agents assess and
-recommend. Humans own intent, waivers, irreversible actions, and acceptance. The implementer cannot
-accept their own work.
+Agents assess and recommend. Humans own intent, waivers, irreversible actions, and acceptance. The
+implementer cannot accept their own work.
 
-## Repositories
-
-| Need                                            | Owner                                                |
-| ----------------------------------------------- | ---------------------------------------------------- |
-| Install the method, read formats and decisions  | this repository                                      |
-| Install the universal methods                   | [skills](https://github.com/jcosta33/skills)         |
-| Run checks or install global agent rules        | [suspec-cli](https://github.com/jcosta33/suspec-cli) |
-| Give shell-less clients the checker             | [suspec-mcp](https://github.com/jcosta33/suspec-mcp) |
-
-Start with [the basic workflow](docs/02-basic-workflow.md), [adoption](docs/ADOPTING.md), or the
-[tutorial](docs/tutorial/README.md). Exact formats and contracts live under
+Start with [the basic workflow](docs/02-basic-workflow.md). Exact formats live under
 [reference](docs/reference/). Decision history lives in the [ADR ledger](docs/adrs/README.md).

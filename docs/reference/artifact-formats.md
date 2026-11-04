@@ -100,8 +100,7 @@ Add `Self-review` when it carries useful pre-handoff checks.
 
 Every verify item names a requirement id.
 
-Checking a task requires its ready source spec through `--spec <spec-path>`. The task's `source:`
-must name that spec. Several task paths may share one companion only when they share that source.
+The task's `source:` names its ready source spec.
 
 `status` is one of:
 
@@ -234,9 +233,24 @@ or resource authority.
 - Cross-spec references use `SPEC-id#AC-NNN`.
 - During live work, code can falsify a working spec; reconcile the intent before close.
 
+## Writing watchlist
+
+These words are allowed only when the same line makes them checkable.
+
+| Family | Examples | Better form |
+| --- | --- | --- |
+| subjective | robust, clean, simple, intuitive | state observable behavior |
+| quality without measure | fast, secure, reliable | give threshold or named test |
+| vague verbs | handle, support, improve | name actor, action, object |
+| loopholes | where feasible, if practical | make it required or remove it |
+| ambiguous qualifiers | significant, minimal | quantify |
+| comparatives | better, faster | name baseline and margin |
+| broad quantifiers | all, any, every, some | name the exact set |
+| bundling | and, or, and/or | split requirements |
+| vague references | it, this, above | name the thing |
+
 ## Related
 
-- [Checks](checks.md)
 - [Basic workflow](../02-basic-workflow.md)
 - [Where files live](../03-where-files-live.md)
 - [Reviewing output](../08-reviewing-output.md)

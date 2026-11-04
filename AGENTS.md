@@ -1,20 +1,15 @@
 # AGENTS.md — Suspec canon
 
-Canon lives here. Runtime does not. This repository owns Suspec's human-readable method and
-machine-readable checks contract, and it ships the skills that author Suspec artifacts. Sibling
-repositories own the CLI and the MCP adapter.
+This repository owns Suspec's method, its decision history, and the skills that write Suspec
+artifacts. It holds no runtime.
 
 ## Authority
 
 - Accepted decisions: `docs/adrs/`. Never rewrite historical ADR bodies.
 - Human artifact shapes: `docs/reference/artifact-formats.md`.
-- Machine checks contract: `checks/checks.yaml`.
-- Check explanations: `docs/reference/checks.md`.
 - Empirical sources: `docs/research/sources.md`.
 - Artifact-author skills and their design evidence: `skills/`.
-- Global agent policy and predecessor provenance: `policy/agent.md` and
-  `policy/agent-policy-predecessors.txt`.
-- Executable procedures: `skills/` here; universal working methods in `jcosta33/skills`.
+- Universal working methods: `jcosta33/skills`.
 
 A contract change travels as a unit. Half-updated truth is still wrong.
 
@@ -33,11 +28,10 @@ A contract change travels as a unit. Half-updated truth is still wrong.
 
 ## Layout
 
-- `docs/`: guide, reference, adoption, examples, tutorial, decisions, and evidence.
-- `checks/checks.yaml`: contract data.
-- `checks/fixtures/`: checker oracle data.
+- `docs/`: guide, reference, decisions, and evidence.
 - `skills/`: artifact-author skills, their catalog, and their design evidence. Follow
   [the edit contract](skills/README.md) for every change under it.
+- `scripts/`: the ADR seal and the skill gate, run together by `lint-all.sh`.
 
 ## Command
 

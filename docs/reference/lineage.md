@@ -15,11 +15,10 @@ request/source -> working spec -> implementation -> review -> findings decision
 IDs reconcile live work; they do not summon a registry. Requirement IDs are spec-scoped. Cross-spec
 references use `SPEC-id#AC-NNN`.
 
-Every producer reports an absolute path. Every consumer receives it. The checker performs only
-explicit and documented artifact-relative reads.
+Every producer reports an absolute path. Every consumer receives it.
 
 After close, code, tests, decisions, issues, PRs, maintained documentation, and supported memory hold
 durable lineage. Promotion moves a whole artifact into a project-owned destination by default. It
 retains a transient copy only when the human explicitly selects that exception. It creates no registry.
 
-Related: [artifact location](../03-where-files-live.md) · [CLI](cli.md)
+Related: [artifact location](../03-where-files-live.md)

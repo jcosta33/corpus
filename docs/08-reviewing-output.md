@@ -34,21 +34,6 @@ Keep short decisive output once. Move dominating raw output into an adjacent
 [evidence receipt](reference/artifact-formats.md#evidence-receipt) and link its stable anchor beside a
 verbatim excerpt.
 
-A structured `verify` fence may bind a command on a spec or task. Its info string records
-consistency; it does not prove the body or issue a verdict.
-
-## Check
-
-```bash
-suspec check <spec-path>
-suspec check <task-path> --spec <spec-path>
-suspec check <change-plan-path>
-suspec check <campaign-path>
-```
-
-The checker reports shape, references, evidence presence on tasks, and severity. It never accepts
-work. It has no such authority.
-
 ## Human decision
 
 After assessment, the human selects:

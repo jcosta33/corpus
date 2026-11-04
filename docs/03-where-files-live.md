@@ -36,14 +36,7 @@ Never fall back to vendor storage, the repository, or an OS temporary directory.
 
 Writers resolve and report absolute paths. Dispatch prompts name every input path and next consumer.
 When no consumer remains, the current consumer is final and presents close. The human owns the
-disposition. The CLI reads only the
-primary artifacts and companions it receives.
-
-Artifact-relative checks remain bounded:
-
-- source and citation paths resolve from the checked spec's directory;
-- change-plan `SPEC-id#AC-NNN` references scan `spec.md` in the plan directory and immediate sibling
-  directories only.
+disposition.
 
 No tool lists, discovers, or resumes work. Lost the handoff? Find it manually under the known
 workspace and pass the absolute path again.

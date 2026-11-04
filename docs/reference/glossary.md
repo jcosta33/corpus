@@ -4,7 +4,7 @@
 | --- | --- |
 | **Intent** | What the change must make true. At minimum weight, one inline sentence. |
 | **Key** | A moment present on virtually every change: intent, review, and findings. |
-| **Scaffold** | Structure pulled in when work earns it: spec, task split, inventory, drill, change plan, campaign, checker. |
+| **Scaffold** | Structure pulled in when work earns it: spec, task split, inventory, drill, change plan, campaign. |
 | **Spec** | Working structured intent: intent and verifiable requirements, plus only the optional sections that carry information. |
 | **Requirement / AC** | One condition, one observable obligation, exactly one binding word, and one verification method under a stable spec-local ID. |
 | **Task packet** | A scoped slice cut when a source must be decomposed across workers or waves. |
@@ -26,7 +26,6 @@
 | **Decision gate** | Structured human selection for material or irreversible choices. |
 | **Settle** | Evidence-driven resolution of agent-owned technical or procedural ambiguity. |
 | **Artifact disposition** | Human close choice for a complete transient artifact set: Delete, Leave, or Promote. `Other` is the picker escape hatch, not a disposition. |
-| **Checker** | `suspec check`: read-only facts and severity levels over explicit artifact paths. |
 | **Revolver** | Purpose-agnostic breadth inspection through every materially distinct target-derived stance, resolved sequentially. |
 | **Triple-check** | Exactly three fresh top-tier reviewers attacking one frozen target concurrently. |
 | **Campaign** | Large delivery governed by a campaign artifact and admitted only after project-native lane, proof, resource, review, merge, and cleanup controls are proven. |

@@ -9,7 +9,6 @@
 | structural work must preserve behavior across stages; not a single-seam write | change plan   |
 | one durable goal spans several pull requests          | campaign      |
 | risk exceeds implementer inspection                  | native independent review |
-| review needs deterministic structure                 | checker       |
 | behavior is defective or consequential               | executable oracle |
 | several risk surfaces need breadth                   | Revolver      |
 | one high-consequence surface needs depth             | Triple-check  |

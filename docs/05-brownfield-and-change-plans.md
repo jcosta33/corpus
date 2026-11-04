@@ -22,8 +22,7 @@ unclear. Record:
 - unknowns;
 - file or line evidence for every structural claim.
 
-Inventory observes. It does not pitch a redesign. The CLI recognizes inventory but does not check it;
-review it by hand.
+Inventory observes. It does not pitch a redesign. Review it by hand.
 
 ## Change plan
 
@@ -54,8 +53,6 @@ project decisions.
 
 Each wave must leave the codebase usable and verifiable. When a wave becomes a task, that task still
 names the source spec and its scoped requirement IDs.
-
-`suspec check <path>` validates preservation references and wave structure.
 
 ## Live drift
 

@@ -12,9 +12,6 @@ npx skills add jcosta33/suspec -g -a claude-code
 npx skills add jcosta33/suspec --skill sus-spec -g -a codex
 ```
 
-Installing these adds the workflows, not the deterministic checks or the optional global agent
-policy. [suspec-cli](https://github.com/jcosta33/suspec-cli) owns those.
-
 ## Catalog
 
 | Skill                                            | Artifact                                   |
@@ -42,8 +39,7 @@ Promote. Universal working methods that create no artifact live in
 - Use untitled inline Markdown links with simple destinations. Reference-style, angle-wrapped,
   fragmented, and nested-parenthesis destinations are rejected.
 - Own exactly one artifact type and ID prefix; keep the declared shape aligned with
-  [artifact formats](../docs/reference/artifact-formats.md) and
-  [`checks/checks.yaml`](../checks/checks.yaml).
+  [artifact formats](../docs/reference/artifact-formats.md).
 - Carry the placement, handoff, and close contract in every author: neutral root, absolute handoff
   paths, relative local source references, blocked-write handling, and one human disposition.
 - Update the catalog row above with every skill addition or removal.

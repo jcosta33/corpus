@@ -20,9 +20,7 @@ A task must:
 - start only from a source spec with exactly `status: ready`.
 
 `sus-task` writes the packet under the [agent-neutral artifact location](03-where-files-live.md).
-Dispatch names the task and ready source spec by absolute path. `suspec check <task-path> --spec
-<spec-path>` validates source binding, shape, dependency handoff, evidence, and closed-state
-blockers.
+Dispatch names the task and ready source spec by absolute path.
 
 Exact shape: [artifact formats](reference/artifact-formats.md).
 Add `## Self-review` only when it carries useful checks.

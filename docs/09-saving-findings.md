@@ -46,4 +46,4 @@ Retrieval belongs to the harness. Use its documented API and terms future reader
 After routing findings, close the working artifacts through
 [Delete, Leave, or Promote](03-where-files-live.md#close).
 
-Next: [integrations](10-integrations.md). Previous: [review](08-reviewing-output.md).
+Previous: [review](08-reviewing-output.md).

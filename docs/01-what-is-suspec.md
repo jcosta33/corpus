@@ -13,8 +13,7 @@ It provides:
 - inventories and change plans for structural work;
 - `drill` to lock language, obligation, place, then slice before one write;
 - independent review on the native PR, via Revolver, Triple-check, or Bulletproof;
-- durable-lesson routing to native memory or project records;
-- deterministic checks over recorded structure.
+- durable-lesson routing to native memory or project records.
 
 It does not replace plan mode, project instructions, issue trackers, PRs, CI, tests, or human
 acceptance. It does not write a review file.
@@ -30,7 +29,7 @@ Use the least structure that changes execution or review:
 
 The keys remain intent, review, and findings. Everything else must justify its cost.
 
-The six-step sequence (`intent -> spec -> implement -> review -> check -> findings`) is the path for
+The five-step sequence (`intent -> spec -> implement -> review -> findings`) is the path for
 spec-governed work, not the product.
 
 ## Boundaries
@@ -39,7 +38,6 @@ Transient means transient. Suspec artifacts are working scaffold, not a second p
 tests, decisions, issues, PRs, maintained documentation, and supported native memory hold durable
 truth. Suspec neither intercepts native plans nor creates a repository-local store.
 
-The CLI checks shape, not truth. It does not prove recorded evidence or render a review decision.
 Independent review judges evidence; humans accept, waive, defer, or request changes.
 
 Next: [workflow](02-basic-workflow.md).

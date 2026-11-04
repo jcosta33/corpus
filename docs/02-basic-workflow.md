@@ -22,7 +22,7 @@ process happened.
 ## Spec-governed work
 
 ```text
-intent -> spec -> implement -> review -> check -> findings
+intent -> spec -> implement -> review -> findings
 ```
 
 1. **Spec:** `sus-spec` writes intent and requirements with stable IDs and `Verify with:` lines.
@@ -31,14 +31,11 @@ intent -> spec -> implement -> review -> check -> findings
    and records real output under `## Execution`.
 3. **Review:** a non-implementer judges the result on the native PR, via Revolver, Triple-check, or
    Bulletproof. No Suspec review file.
-4. **Check:** use `suspec check` when deterministic coverage of a spec, task, change plan, or campaign
-   pays for itself.
-5. **Findings:** discard transient observations; route verified durable lessons through
+4. **Findings:** discard transient observations; route verified durable lessons through
    [memory or project records](09-saving-findings.md).
 
-Every step has a by-hand path. The implementer may not call self-review independent. Work that earns
-independent review stays blocked until a non-implementer can judge it. The CLI backs the method; it
-never gets custody of it.
+The implementer may not call self-review independent. Work that earns independent review stays
+blocked until a non-implementer can judge it.
 
 ## Escalation
 
