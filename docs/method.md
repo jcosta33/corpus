@@ -220,7 +220,7 @@ authority.
 ## Universal methods
 
 Methods that write no artifact install from [jcosta33/skills](https://github.com/jcosta33/skills):
-`ask-user`, `bulletproof`, `debloat`, `dissect`, `drill`, `panel`, and `revolver`. Corpus states where
+`bulletproof`, `debloat`, `dissect`, `drill`, `panel`, `revolver`, and `settle`. Corpus states where
 they are and asserts nothing about their contents.
 
 ## Principles

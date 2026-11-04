@@ -22,7 +22,7 @@
 | **Finding** | A lesson candidate. It is not an artifact type. |
 | **Native memory** | A harness-provided durable memory surface, used only when supported. |
 | **Artifact disposition** | The human close choice for a complete artifact set: Delete, Leave, or Promote. |
-| **Universal methods** | Skills that write no artifact (`ask-user`, `bulletproof`, `debloat`, `dissect`, `drill`, `panel`, `revolver`); they install from `jcosta33/skills`. |
+| **Universal methods** | Skills that write no artifact (`bulletproof`, `debloat`, `dissect`, `drill`, `panel`, `revolver`, `settle`); they install from `jcosta33/skills`. |
 
 Working artifacts direct live work. After close, code, tests, maintained project records, and
 supported native memory carry durable truth.
