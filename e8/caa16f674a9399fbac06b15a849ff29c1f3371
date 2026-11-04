@@ -1,0 +1,63 @@
+docs/adrs/0187-retire-checker-mcp-website-and-setup-policy.md
+  s_f5b7135506ff1e::t_6a7e7e31cec0fb 1-34,36-132
+  s_f5b7135506ff1e::t_4a91b24d7505f8 35,133
+docs/02-basic-workflow.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 25,34,37-38
+README.md
+  s_f5b7135506ff1e::t_df758662a9b704 3,5-7,20,31-33,45-46,57-58,71-72,74
+docs/adrs/README.md
+  s_f5b7135506ff1e::t_2c3b964dc3986a 241
+  s_f5b7135506ff1e::t_039e191a1b6ec7 96-97,100,104,108,111-115,117-122,124-125,128,130-131,141,144,147,150,159-164,168,170-172,174-175,177-179,186-188,191-193,198-200,205-212,215,218-221
+docs/03-where-files-live.md
+  s_f5b7135506ff1e::t_cf253961eb886f 39
+docs/05-brownfield-and-change-plans.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 25
+docs/01-what-is-suspec.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 16,32
+docs/09-saving-findings.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 49
+docs/04-writing-specs.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 51
+docs/06-creating-tasks.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 23
+docs/reference/drift.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 11,17
+scripts/lint-accepted-adrs.sh
+  s_f5b7135506ff1e::t_812f4c37448aeb 5-6
+docs/README.md
+  s_f5b7135506ff1e::t_e2b1a1f1055aec 17
+AGENTS.md
+  s_f5b7135506ff1e::t_e2b1a1f1055aec 3-4,12,31,34
+scripts/lint-artifact-skills.sh
+  s_f5b7135506ff1e::t_801a7dc5a78363 245
+  s_f5b7135506ff1e::t_ea2f1560611a2d 246,251,254-262
+scripts/lint-all.sh
+  s_f5b7135506ff1e::t_a3dbaeefca3c19 2,4-6,10,12-15,18-27,29,31
+docs/reference/glossary.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 7
+docs/reference/artifact-formats.md
+  s_f5b7135506ff1e::t_df758662a9b704 236-251
+  s_f5b7135506ff1e::t_cf253961eb886f 103
+skills/README.md
+  s_f5b7135506ff1e::t_e2b1a1f1055aec 42
+docs/reference/lineage.md
+  s_f5b7135506ff1e::t_671bbce0ad9c9d 18,24
+.github/workflows/method-gates.yml
+  s_f5b7135506ff1e::t_a3dbaeefca3c19 12,17,20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e8caa16f674a9399fbac06b15a849ff29c1f3371",
+  "prompts": {},
+  "sessions": {
+    "s_f5b7135506ff1e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f206df02-3793-452b-be4f-eaed5840e469",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "José Costa <josecosta@mac-mini-1.home>"
+    }
+  }
+}
