@@ -9,13 +9,10 @@ ROOT=${1:-$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)}
 ROOT=$(CDPATH= cd -- "$ROOT" && pwd)
 test -d "$ROOT/skills" || { echo "artifact-author catalog not found: $ROOT/skills" >&2; exit 1; }
 
-expected='sus-audit
-sus-campaign
-sus-change-plan
-sus-inventory
-sus-research
-sus-spec
-sus-task'
+expected='corpus-audit
+corpus-campaign
+corpus-research
+corpus-spec'
 
 require_regex() {
   file=$1
@@ -272,7 +269,7 @@ for document in "$ROOT/skills/README.md" "$ROOT/skills/sources.md"; do
   done
 done
 
-writer_types='sus-spec:spec:SPEC- sus-task:task:TASK- sus-inventory:inventory:INV- sus-change-plan:change-plan:CHANGE- sus-audit:audit:AUDIT- sus-research:research:RESEARCH- sus-campaign:campaign:CAMPAIGN-'
+writer_types='corpus-spec:spec:SPEC- corpus-audit:audit:AUDIT- corpus-research:research:RESEARCH- corpus-campaign:campaign:CAMPAIGN-'
 for pair in $writer_types; do
   writer=${pair%%:*}
   declaration=${pair#*:}

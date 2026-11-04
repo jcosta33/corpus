@@ -3,7 +3,7 @@
 Design evidence for the skills under `skills/`. Primary and official sources outrank summaries. A
 source supports only claims inside its competence.
 
-This ledger grounds how the artifact authors are written. Load-bearing empirical claims in Suspec's
+This ledger grounds how the artifact authors are written. Load-bearing empirical claims in Corpus's
 prose cite [the product bibliography](../docs/research/sources.md) instead.
 
 ## Maintenance
