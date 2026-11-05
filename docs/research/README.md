@@ -21,5 +21,5 @@ Corpus's evidence lives in two kinds of documents.
 ## Elsewhere
 
 Research on general method skills, instruction craft, and language and meaning in agent work belongs
-to the universal methods. It is kept with them in [jcosta33/skills](https://github.com/jcosta33/skills)
-and is not copied here.
+to the universal methods. It is kept with them and is not copied here: see the
+[jcosta33/skills research index](https://github.com/jcosta33/skills/blob/main/docs/research/README.md).
