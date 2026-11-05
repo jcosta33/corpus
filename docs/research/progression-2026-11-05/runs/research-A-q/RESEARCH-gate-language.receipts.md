@@ -102,7 +102,7 @@ ae6d2e8: lint-accepted-adrs: OK
 
 A search of commit subjects and bodies touching `scripts/` and `.github/` for
 `portab|bsd|gnu|mawk|gawk|macos|dash|posix|locale|LC_ALL|ubuntu|linux` found one hit. It was about
-hard-coded `/Users/josecosta` paths, not tool dialects.
+hard-coded home-directory paths, not tool dialects.
 
 ## E-5 Mutation exercises, `sh` (bash 3.2 in POSIX mode) against `dash`
 

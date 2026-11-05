@@ -6,6 +6,9 @@ source supports only claims inside its competence.
 This ledger grounds how the artifact authors are written. Load-bearing empirical claims in Corpus's
 prose cite [the product bibliography](../docs/research/sources.md) instead.
 
+The dated research behind these rules, including the ecosystem review and the progression test,
+is indexed in [the research records](../docs/research/README.md).
+
 ## Maintenance
 
 - Update this file in the same change as any externally grounded skill or design rule.
