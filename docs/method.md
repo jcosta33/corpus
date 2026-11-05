@@ -18,7 +18,6 @@ intent, review, and what it taught. Everything else must earn its cost.
 | intent fits one precise sentence | state it inline with its verification; write no file |
 | intent exceeds one precise sentence | `corpus-spec` |
 | structural work must preserve behavior across stages | `corpus-spec` with Baseline, Waves, and Cutover |
-| independent workers implement one spec in parallel | `corpus-spec` with a Split |
 | present behavior, ownership, or risk is unclear | `corpus-audit` |
 | a decision needs evidence it does not have | `corpus-research` |
 | one durable goal spans several pull requests | `corpus-campaign` |
@@ -49,8 +48,8 @@ intent -> spec -> implement -> review -> findings
 
 1. **Spec:** `corpus-spec` writes intent and requirements with stable IDs and `Verify with:` lines.
    Set `status: ready` before dispatch or review.
-2. **Implement:** a native worker or human follows the spec by absolute path, runs every
-   verification, and records real output under `## Execution`.
+2. **Implement:** a native worker or human follows the spec by absolute path or filed issue, runs
+   every verification, and records real output on the native pull request.
 3. **Review:** a non-implementer judges the result on the native pull request.
 4. **Findings:** discard transient observations; route verified durable lessons to native memory or
    project records.
@@ -163,12 +162,15 @@ through every handoff; no tool lists, discovers, or resumes work.
 
 The location is agent-neutral: plan mode, vendor plans, native memory, source code, and harness state
 stay with their owners. It is a directory, not a database. Corpus creates no registry, resolver,
-configuration, lifecycle state, symlink, or background process, and adopter repositories receive no
+configuration, lifecycle state, symlink, or background process, and repositories receive no
 Corpus directory, configuration, or gitignore entry.
 
 Never overwrite unrelated work; a collision is a decision. If the root is unwritable, offer grant and
 retry, another agent-neutral user directory, or cancel. Never fall back to vendor storage, the
 repository, or a temporary directory.
+
+When the project's tracker has a form for a spec, the filed issue is the spec and the file is its
+draft.
 
 ## Close
 
@@ -180,7 +182,8 @@ consumer asks the human once for the complete artifact and sidecar set:
 - **Promote:** sanitize it, move it into a project-owned durable destination, repair references,
   and validate. Promotion never pushes and never creates Corpus storage.
 
-Do not ask at creation or after each revision. Silence is not Leave.
+Do not ask at creation or after each revision. Silence is not Leave. Once a draft is filed into the
+project's tracker, Delete is the default.
 
 ## Durable value
 

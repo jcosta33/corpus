@@ -50,7 +50,7 @@ Every change states intent, receives review, and decides what it taught. Extra s
 for itself:
 
 - a spec when one precise sentence cannot govern the work, staged when structural work must
-  preserve behavior and split when parallel workers share it;
+  preserve behavior;
 - an audit when present behavior, ownership, or risk needs evidence;
 - research when a decision needs evidence it does not yet have;
 - a campaign when one durable goal spans several pull requests.

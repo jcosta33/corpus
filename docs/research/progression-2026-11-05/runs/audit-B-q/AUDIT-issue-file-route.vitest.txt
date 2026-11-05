@@ -1,0 +1,56 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - import "./scripts/e2eServerIdentity" without a file extension (vite.config.ts:12:74). Add the file extension
+  - import "./scripts/e2eUncachedResponses" without a file extension (vite.config.ts:13:51). Add the file extension
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+ RUN  v5.0.2 /Volumes/Development/sourdaw
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseIssueForm > marks only Features-specific forms for native project routing 6ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseIssueForm > keeps markdown blocks out of fillable fields 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseIssueForm > captures Campaign operating-loop default 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > emits GitHub form headings and skips instruction markdown 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > uses the Campaign operating-loop default when omitted 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > accepts the Bug scope token without the parenthetical 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > accepts the Bug ai token against ai / airuntime 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > accepts slash aliases after the first scope token 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission > rejects a missing required field 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > composeIssueTitle > does not double the form prefix 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > composeIssueTitle > keeps an already conventional title 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > composeIssueTitle > does not double prefix when scope contains parentheses 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > composeIssueTitle > interpolates the selected scope into the prefix 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > resolveTemplatePath > maps aliases onto form files 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > resolveTemplatePath > returns the canonical form path for supported case variants 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > readFields > parses inline JSON and coerces numbers 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > readFields > reads a JSON file path 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission title > rejects a blank title 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission title > rejects a type(scope) prefix with no subject 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > renderIssueSubmission title > rejects an invalid dropdown value 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > research options field > does not treat Options comparison as a dropdown 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > passes title, body, and each label 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > adds nothing when neither milestone nor project is given 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > adds nothing for empty metadata values 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > appends the milestone alone 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > appends the project alone 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > ghIssueCreateArgs > orders labels, then milestone, then project 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > leaves milestone and project unset when the flags are absent 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > stays a dry run without --create 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > reads a milestone title 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > reads a project title and trims it 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > reads both flags alongside --create 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects a milestone with no value 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects a project with no value 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects an option where a value belongs 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects a repeated milestone 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects a repeated project 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > parseCliArgs > rejects a comma-separated project list before gh can attach both projects 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > leaves a generic Task unclassified without an explicit project 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > routes a generic Task to Features in both preview and create arguments 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > suppresses a Feature form route when Bugs or Refactors is selected 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > refuses Bug and Change plan forms targeting Features before an issue is created 1ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > refuses CSV project syntax on a Bug form before invoking gh 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > hands the parsed milestone and project to gh 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > reaches gh only with --create 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > says the issue may exist when a project attach fails 0ms
+ ✓ scripts/__tests__/fileTrackerIssue.spec.ts > runCli > does not hedge on a failure with no project to attach 0ms
+ Test Files  1 passed (1)
+      Tests  47 passed (47)
+   Start at  10:09:47
+   Duration  1.99s (environment 71%, setup 15%, transform 12%, tests 1%)

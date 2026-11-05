@@ -22,7 +22,7 @@ npx skills remove -g sus-spec sus-task sus-inventory sus-change-plan sus-audit s
 
 | Skill | Artifact |
 | --- | --- |
-| [`corpus-spec`](./corpus-spec/SKILL.md) | intent and verifiable requirements, optionally staged or split |
+| [`corpus-spec`](./corpus-spec/SKILL.md) | intent and verifiable requirements, optionally staged |
 | [`corpus-audit`](./corpus-audit/SKILL.md) | evidenced map of present state, optionally graded for risk |
 | [`corpus-research`](./corpus-research/SKILL.md) | decision-informing evidence |
 | [`corpus-campaign`](./corpus-campaign/SKILL.md) | restartable multi-pull-request goal |
@@ -39,6 +39,8 @@ or Promote. Universal working methods that create no artifact live in
 - Preserve standalone operation and Markdown-only payloads. Depend on no sibling skill, decision
   record, shared boilerplate, or repository file.
 - Keep the body under 500 lines.
+- Write the plain procedure. Name no philosopher, thinker, or named method in a description or
+  body; credit sources in [`sources.md`](./sources.md) or the ADR ledger.
 - Use untitled inline Markdown links with simple destinations. Reference-style, angle-wrapped,
   fragmented, and nested-parenthesis destinations are rejected.
 - Own exactly one artifact type and ID prefix. Keep the declared shape aligned with

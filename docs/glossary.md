@@ -7,8 +7,6 @@
 | **Spec** | Working structured intent: intent and verifiable requirements, plus only the optional sections that carry information. |
 | **Requirement / AC** | One condition, one observable obligation with exactly one binding word, and one verification method, under a stable spec-local ID. |
 | **Baseline, waves, cutover** | The spec sections for structural change: proven current state, ordered green steps with rollback points, and the switch-over conditions. |
-| **Split** | A spec table assigning requirement IDs and write-disjoint paths to parallel workers. |
-| **Execution notes** | Changed files, verification output, scope drift, and blockers for the current run. |
 | **Audit** | An evidence-backed map of present state, optionally graded for risk; no prescriptions. |
 | **Research** | Evidence for one decision-informing question; no decision. |
 | **Campaign** | A restartable multi-pull-request goal contract. Mutable progress stays in one project-native ledger. |

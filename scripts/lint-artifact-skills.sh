@@ -219,6 +219,9 @@ for file in "$ROOT"/skills/*/SKILL.md; do
     if grep -nE 'SPINE-(START|END)|ADR-[0-9]+|lint-[a-z-]+|this catalog|sibling skill|if installed|catalog topology' "$document"; then
       echo "internal or dependency vocabulary in $name: $document" >&2; exit 1
     fi
+    if grep -niwE 'philosophers?|philosoph(y|ies|ical)|thinkers?|plato(nic)?|kant(ian)?|popper(ian)?|peirce|mill|hume|stoics?|stoicism|socrat(es|ic)|aristotle|disputatio|dialectics?|dialectical|pre-?mortems?|steel-?man(ning)?' "$document"; then
+      echo "thinker or named-method vocabulary in $name: write the plain procedure ($document)" >&2; exit 1
+    fi
     if grep -nE '\.\./[^/]+/SKILL\.md' "$document"; then
       echo "external skill dependency in $name: $document" >&2; exit 1
     fi

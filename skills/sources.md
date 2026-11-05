@@ -16,6 +16,35 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   portable guarantee.
 - Remove a source when its claim leaves or the source no longer supports it.
 
+## Skill Economy
+
+- **SWE-Skills-Bench.** arXiv:2603.15401, v2 October 2026. Skills raised the average pass ratio only
+  from 76.6% to 76.9%; 92 of 98 had no significant effect; harmful skills anchored agents on their
+  own templates. Benchmark of coding tasks; grounds cutting rules a strong model already follows.
+  <https://arxiv.org/abs/2603.15401>
+- **Agent instruction bloat, Thoughtworks Technology Radar Vol 35 (Caution, November 2026).**
+  Convert instructions into deterministic checks where possible and re-test the rest against each
+  new model. Expert panel judgement, not a measurement.
+  <https://www.thoughtworks.com/radar/techniques/agent-instruction-bloat>
+
+## Spec Structural Change
+
+- **to-tickets, mattpocock/skills.** Sequences a wide refactor as expand, migrate call sites in
+  batches, then contract once no caller remains. Practitioner skill, not a measurement.
+  <https://github.com/mattpocock/skills/blob/main/skills/engineering/to-tickets/SKILL.md>
+- **BMAD deletion check.** Asks whether removed code carried behavior or a contract the change
+  neither re-established nor intentionally retired. Practitioner framework.
+  <https://github.com/bmad-code-org/BMAD-METHOD/blob/main/skills/bmad-build/references/deletion-check.md>
+- **Augmented coding: beyond the vibes, Kent Beck, June 2025.** First-hand report of agents deleting
+  or disabling tests to make them pass. One practitioner's experience; grounds the never-weaken-tests
+  rule, not its prevalence. <https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes>
+
+## Audit Mapping
+
+- **audit-context-building, Trail of Bits.** Records for each function what it takes on faith and
+  what makes that true, marking unenforced assumptions `nothing found`. Practitioner skill.
+  <https://github.com/trailofbits/skills/blob/main/plugins/audit-context-building/skills/audit-context-building/SKILL.md>
+
 ## Campaign Coordination
 
 - **Follow a goal, OpenAI.** Defines a durable coding goal by one objective, a verifiable stopping
@@ -35,28 +64,9 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   cleaning, and branch-in-use safeguards. <https://git-scm.com/docs/git-worktree>
 - **Git switch documentation.** Defines branch creation, detached checkout, and dirty-state behavior.
   <https://git-scm.com/docs/git-switch>
-- **About pull request reviews, GitHub.** Defines review comments, approvals, change requests,
-  conversation resolution, and protected-branch integration.
-  <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews>
-- **Commenting on a pull request, GitHub.** Defines line comments, replies, suggestions, and
-  conversation resolution.
-  <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/commenting-on-a-pull-request>
-- **Small CLs, Google Engineering Practices.** Supports one self-contained change, early splitting,
-  reviewable size, and separate refactors while rejecting a universal numeric limit.
-  <https://google.github.io/eng-practices/review/developer/small-cls.html>
-- **The Promise and Reality of Continuous Integration Caching.** Ghaleb, da Costa, and Zou,
-  arXiv:2601.19146. Preliminary CI evidence: caching can cut build time, but stale artifacts remain
-  common. It does not directly measure local worktree dependencies. <https://arxiv.org/abs/2601.19146>
-- **About pull requests, GitHub.** Defines draft and ready-for-review states.
-  <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests>
-- **Pull-request review summary update, GitHub.** A request-changes review needs no summary when its
-  inline comments already carry the findings.
-  <https://github.blog/changelog/2026-02-19-access-all-pull-request-comments-without-leaving-the-new-files-changed-page/>
 - **About protected branches, GitHub.** Defines required review, stale-approval dismissal,
   conversation resolution, and merge queues.
   <https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches>
-- **Approving a pull request with required reviews, GitHub.** Defines approval and change-request
-  clearance. <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews>
 - **Pull requests REST API, GitHub.** Defines expected-head validation for merge requests and the
   write permission required to merge; hard separation therefore requires a credential boundary.
   <https://docs.github.com/en/rest/pulls/pulls>
@@ -64,21 +74,18 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   issue and pull-request progress.
   <https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues>
   <https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/about-milestones>
-- **Realizing quality improvement through test driven development.** Nagappan et al., Empirical
-  Software Engineering 2008. Four industrial teams reported lower defect density with higher initial
-  development time; small observational cases do not establish a universal procedure.
-  <https://www.microsoft.com/en-us/research/wp-content/uploads/2009/10/Realizing-Quality-Improvement-Through-Test-Driven-Development-Results-and-Experiences-of-Four-Industrial-Teams-nagappan_tdd.pdf>
-- **SWT-Bench.** Mündler et al., NeurIPS 2024. Distinguishes fail-before/pass-after bug reproduction
-  tests from irrelevant or merely covering generated tests.
-  <https://proceedings.neurips.cc/paper_files/paper/2024/hash/94f093b41fc2666376fb1f667fe282f3-Abstract-Conference.html>
-- **TDFlow.** Han et al., EACL 2026. Reports 94.3% on SWE-Bench Verified with human-written tests and
-  68.0% with generated tests; oracle generation, not test execution, was the bottleneck. The setup
-  exposes tests unavailable in ordinary issue resolution.
-  <https://aclanthology.org/2026.eacl-long.70/>
-- **Rethinking the Value of Agent-Generated Tests.** Chen et al., arXiv:2602.07900. A six-model
-  observational study and four-model prompt intervention found more generated tests did not
-  significantly change final outcomes. Preliminary.
-  <https://arxiv.org/abs/2602.07900>
+
+- **Keep Claude working toward a goal, Anthropic.** A small fast model judges a goal condition of
+  up to 4,000 characters after each turn, from the conversation alone; good conditions name one
+  measurable end state, a stated check, and constraints. Grounds the completion-contract form.
+  <https://code.claude.com/docs/en/goal>
+- **Using goals in Codex, OpenAI.** Template "desired end state verified by specific evidence while
+  preserving constraints"; a goal is not complete because the model believes it is probably done.
+  <https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex>
+- **Agent OS changelog, v3.0.0.** Retired its implementation and orchestration phases because
+  frontier models handle them unaided. Practitioner framework decision, not a measurement; grounds
+  leaving generic delivery method to the project and the model.
+  <https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md>
 
 ## Research Method
 
@@ -89,21 +96,18 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   <https://pmc.ncbi.nlm.nih.gov/articles/PMC2335261/>
 - **PRISMA 2020 statement.** Page et al., BMJ 2021. Defines transparent reporting for systematic
   evidence searches and synthesis. <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8005924/>
-- **ICC/ESOMAR International Code on Market, Opinion and Social Research and Data Analytics.**
-  Professional requirements for legality, transparency, privacy, method disclosure, and human
-  oversight. <https://iccwbo.org/news-publications/business-solutions/iccesomar-international-code-market-opinion-social-research-data-analytics/>
 - **AAPOR Disclosure Standards.** Requires population, sample, mode, dates, weighting, quality
   checks, precision limits, and limitations for survey evidence.
   <https://aapor.org/standards-and-ethics/disclosure-standards/>
-- **Using LLMs for Market Research.** Brand, Israeli, and Ngwe. Tests synthetic consumer responses
-  and records failures to generalize across categories and segments.
-  <https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4395751>
-- **Large Language Models for Market Research: A Data-Augmentation Approach.** Wang, Zhang, and
-  Zhang, Marketing Science 2026. Reports benefits from calibrated augmentation and bias from naive
-  substitution. <https://doi.org/10.1287/mksc.2025.0009>
-- **Using large language models to generate silicon samples in consumer and marketing research.**
-  Sarstedt et al., Psychology & Marketing 2024. Reviews domain-dependent strengths and limits of
-  synthetic samples. <https://doi.org/10.1002/mar.21982>
+
+- **Cited but Not Verified.** Onweller et al., arXiv:2605.06635, May 2026. Deep-research agents
+  kept links above 94% valid and relevance above 80%, but factual accuracy was 39–77% and fell about
+  42% as tool calls rose from 2 to 150. Grounds passage-level support and bounded search breadth.
+  Benchmark on named frontier models. <https://arxiv.org/abs/2605.06635>
+- **BMAD deep-recon verification reference.** Defines per-claim verified, disputed, unverified, and
+  overturned outcomes; disputed figures are both reported and never averaged; independence means a
+  different publisher with different underlying data. Practitioner framework, not a measurement.
+  <https://github.com/bmad-code-org/BMAD-METHOD/blob/main/skills/bmad-deep-recon/references/verification.md>
 
 ## Citation Discipline
 

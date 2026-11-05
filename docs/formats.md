@@ -6,7 +6,7 @@ read from the file name or location. Each artifact lives at `~/.agents/artifacts
 
 | Type | Writer | Carries | ID prefix |
 | --- | --- | --- | --- |
-| `spec` | `corpus-spec` | intent and verifiable requirements, optionally staged or split | `SPEC-` |
+| `spec` | `corpus-spec` | intent and verifiable requirements, optionally staged | `SPEC-` |
 | `audit` | `corpus-audit` | an evidenced map of present state, optionally graded for risk | `AUDIT-` |
 | `research` | `corpus-research` | evidence for one decision-informing question | `RESEARCH-` |
 | `campaign` | `corpus-campaign` | one restartable multi-pull-request goal | `CAMPAIGN-` |
@@ -33,8 +33,13 @@ sources:
 blocking decision keeps it `draft`. `sources` is a list: local paths resolve relative to the spec,
 and tracker or decision IDs stay bare.
 
-Required: `# Title`, a non-empty `## Intent`, and `## Requirements`. Add `## Non-goals`,
-`## Open questions`, `## Affected areas`, or `## Execution` only when they carry information.
+Required: `# Title`, a non-empty `## Intent` (what must become true, for whom, and where it stops),
+and `## Requirements`. Add `## Boundary` only when Intent does not bound the work, and
+`## Open questions` only while `draft`.
+
+When the project's tracker has a spec form, the filed issue is the spec and the local file is a
+draft: its sections map onto the form's fields, and once filed the draft's default disposition is
+Delete.
 
 Each requirement:
 
@@ -45,7 +50,8 @@ Each requirement:
 - Verify with: `npm run test:integration -- expired-session`
 ```
 
-- one stable `### AC-NNN` heading; IDs are digits only and unique within the spec;
+- one stable `### AC-NNN` heading, optionally followed by ` - short name`; IDs are digits only and
+  unique within the spec;
 - exactly one non-empty `When`, `Then`, and `Verify with`, in that order, and no other line;
 - `When: always` only for an unconditional invariant;
 - exactly one of `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, or `MAY` in `Then`;
@@ -55,15 +61,12 @@ A named `Verify with` method that does not exist yet is not a spec defect; the r
 unverified until evidence exists.
 
 **Structural change** adds `## Baseline` (current state with evidence), preserved behavior as
-`When: always` requirements verified by checks that fail on drift, `## Waves` (each green, with
-verification and a rollback point), and `## Cutover` (entry, completion, abort, restore).
+`When: always` requirements verified by checks that fail on drift, `## Waves` (expand, migrate in
+batches, contract; each green, with verification and a rollback point), and `## Cutover` (entry,
+completion, abort, restore). Every removed behavior is named as retired or re-established, and no
+step weakens, skips, or deletes a test to turn green.
 
-**Split** adds `## Split`, one row per parallel slice: requirement IDs, permitted write paths,
-excluded paths, `Starts after`, and `May run with`. Each requirement belongs to exactly one slice.
-Slices run in parallel only when write-disjoint.
-
-`## Execution` holds changed files, verification commands with exit status and decisive output,
-scope drift, and blocked questions for the live run. It is review input, not an append-only history.
+Verification output, scope drift, and review live on the native pull request, not in the spec.
 
 ## Audit
 
@@ -74,10 +77,13 @@ id: AUDIT-checkout-sessions
 ---
 ```
 
-Sections: `## Scope` (with the frozen commit or tree), `## Map`, `## Risks` (only when assessed), and
-`## Unknowns`. Every claim cites `file:line`, a search, or pasted output. A risk states evidence,
-failure mode, firing condition, blast radius, and a Blocker, Major, or Minor grade. No
-prescriptions.
+Sections: `## Scope` (frozen commit, goal, and exclusions), then `## Map` for a current-state map,
+`## Findings` for assessed risks, or both, then `## Unverified` (areas not checked and the missing
+evidence, or `None found. Boundary checked:` with the boundary). Every claim cites `file:line`, a
+search, or pasted output. The map records what each component takes on faith and what enforces it,
+or `nothing found`. Each finding has a stable `F-NNN` and states evidence, failure mode, firing
+condition, blast radius, and a Blocker, Major, or Minor grade; with none, write `None observed in
+scope`. No prescriptions.
 
 ## Research
 
@@ -89,8 +95,9 @@ id: RESEARCH-payment-provider
 ```
 
 Sections that carry payload: Question and scope, Method and coverage, Findings, Options, Open
-questions, Recommendation. Each finding has a stable `R-NNN`, one claim, exact evidence, a confidence
-of `High`, `Moderate`, `Low`, or `Very low`, and decision relevance. The recommendation cites
+questions, Recommendation. Each finding has a stable `R-NNN`, one claim, exact evidence with the
+supporting passage, one outcome (`Verified`, `Disputed`, `Unverified`, or `Overturned`), and decision
+relevance. A disputed finding shows each figure with its source and never an average. The recommendation cites
 finding IDs and never makes the decision.
 
 ## Campaign
@@ -109,6 +116,10 @@ sources:
 Required, each exactly once: `## Objective`, `## Completion contract`, `## Authorities`,
 `## Operating loop`, and `## Stops`. Optional: `## Constraints`, `## Non-goals`, `## Workstreams`
 (stable ledger IDs only).
+
+The completion contract is one end state, verified by named evidence, while preserving named
+constraints. The working session's own output can demonstrate it, and it fits a native goal
+condition of 4,000 characters.
 
 One project-native ledger owns work items, dependencies, assignments, pull requests, and status. The
 campaign points to it and contains no task-list checkboxes, counts, SHAs, or snapshots. `status:

@@ -9,18 +9,15 @@ Observe. Prove. Prescribe nothing.
 
 ## Method
 
-1. Lock the goal, surface, and exclusions. Ask the human when scope is materially ambiguous:
-   recommendation first, two or three real options, each with its cost.
+1. Lock the goal, surface, and exclusions. Ask the human when scope is materially ambiguous.
 2. Freeze the repository state and record its commit or tree ID.
-3. Map what exists:
-   - modules and their observed responsibilities;
-   - interfaces, with direct and dynamic callers;
-   - externally visible behavior;
-   - data, state, side effects, configuration, generated surfaces, and external consumers;
-   - tests, and the behavior each one actually controls.
+3. Map what exists: modules and their observed responsibilities; interfaces with direct and
+   dynamic callers; visible behavior; data, state, side effects, configuration, generated surfaces,
+   and external consumers; tests and the behavior each controls; and what each component takes on
+   faith, with what enforces it or `nothing found`.
 4. Assess only when asked. State each risk as evidence, failure mode, firing condition, and blast
    radius. Grade it Blocker, Major, or Minor by impact and reach.
-5. List unknowns, with the search boundary and the missing evidence.
+5. List what stays unverified, with the search boundary and the missing evidence.
 
 Anchor every claim to `file:line`, a search result, or pasted output. A negative claim, such as
 zero callers or no match, needs the whole-scope command and its result. Dynamic behavior, such as
@@ -37,23 +34,18 @@ id: AUDIT-{{slug}}
 ---
 ```
 
-Use the sections `## Scope` (with the frozen state), `## Map`, `## Risks` (only when assessed), and
-`## Unknowns`.
+Use `## Scope` (frozen commit, goal, and exclusions), then `## Map` for a current-state map,
+`## Findings` for assessed risks (one `F-NNN` each), or both, then `## Unverified` (areas not
+checked and the missing evidence, or `None found. Boundary checked:` with the boundary).
 
 ## Artifact
 
-Write `~/.agents/artifacts/<workspace>/<ID>.md` with `~` expanded. `<workspace>` is the repository
-or working-directory basename. Put sidecars, such as evidence receipts and run notes, beside it and
-link them. Never overwrite; on a collision, ask for a name. If the directory is unwritable, offer
-grant and retry, another user directory, or cancel. Never fall back to the repository, a vendor
-directory, or a temporary path. Write local source references relative to the artifact; hand off
-absolute paths.
-
-## Output
-
-Return only clickable links to the artifact and its sidecars, labelled `~/.agents/...`, with
-absolute destinations. Explain only a blocker, a failed write, incomplete verification, or an
-irreversible-action confirmation.
+Write `~/.agents/artifacts/<workspace>/<ID>.md` with `~` expanded; `<workspace>` is the repository
+or working-directory basename. Keep sidecars, such as evidence receipts and run notes, beside it and
+link them. On a collision or an unwritable directory, ask the human; never overwrite, and never fall
+back to the repository, a vendor directory, or a temporary path. Write local references relative to
+the artifact. Return only clickable `~/.agents/...` links with absolute destinations, and explain
+only a blocker, a failed write, incomplete verification, or an irreversible-action confirmation.
 
 ## Close
 
