@@ -8,10 +8,31 @@ review around it.
 It does not replace plan mode, project instructions, issue trackers, pull requests, CI, tests, or
 human acceptance, and it writes no review file.
 
+## Invocation
+
+Corpus skills never start themselves. The human invokes one by name, usually in response to a
+failure: work that went wrong or stalled because intent, present state, evidence, or a multi-pull-
+request thread was missing. A skill is a repair, not a precaution, and an agent never invokes one
+on its own initiative.
+
+Control strength differs by harness:
+
+- **Deterministic local** in Claude Code and Codex. Each skill sets `disable-model-invocation: true`,
+  which keeps it and its description out of Claude's context until `/name` runs, and ships
+  `agents/openai.yaml` with `allow_implicit_invocation: false`, which stops Codex from selecting it
+  while explicit `$name` still works.
+- **Advisory** in every other harness. The description says to use the skill only when the user
+  explicitly asks; nothing else enforces it.
+
+`sh scripts/lint-artifact-skills.sh` rejects a skill missing either control or the description
+wording.
+
 ## Proportional rigor
 
 Use the least structure that changes execution or review. Every change keeps three moments:
 intent, review, and what it taught. Everything else must earn its cost.
+
+The signals below tell the human which artifact to invoke once one is needed.
 
 | Signal | Reach for |
 | --- | --- |

@@ -1,6 +1,7 @@
 ---
 name: corpus-research
-description: Research a decision until evidence can carry it. Use when comparing options, evaluating APIs, libraries, products, or licenses, or establishing how a standard, platform, or product behaves. Do not use for checking one settled claim, assessing present code, or writing requirements.
+description: Research a decision until evidence can carry it. Use only when the user explicitly asks for research, usually after a decision went wrong or stalled for lack of evidence. It covers comparing options, evaluating APIs, libraries, products, or licenses, and establishing how a standard, platform, or product behaves, not checking one settled claim, assessing present code, or writing requirements. Never invoke on your own initiative.
+disable-model-invocation: true
 ---
 
 # Corpus Research

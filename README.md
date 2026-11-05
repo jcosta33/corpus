@@ -45,7 +45,8 @@ absolute path. See [where artifacts live](docs/method.md#where-artifacts-live).
 ## Method
 
 Every change states intent, receives review, and decides what it taught. Extra structure must pay
-for itself:
+for itself, and you invoke it by name, usually after work failed for lack of it. The skills never
+start themselves:
 
 - a spec when one precise sentence cannot govern the work, staged when structural work must
   preserve behavior;

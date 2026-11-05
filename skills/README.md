@@ -20,10 +20,21 @@ or Promote. Universal working methods that create no artifact live in
 
 ## Edit contract
 
-- Keep each skill complete in `skills/<name>/SKILL.md`. Ship no appendix payloads.
-- Keep frontmatter `name` and a directive `description` that names the work, never the skill.
-- Preserve standalone operation and Markdown-only payloads. Depend on no sibling skill, decision
-  record, shared boilerplate, or repository file.
+- Keep each skill complete in `skills/<name>/SKILL.md`. Ship no appendix payloads. The one other
+  file is `skills/<name>/agents/openai.yaml`, exactly:
+
+  ```yaml
+  policy:
+    allow_implicit_invocation: false
+  ```
+
+- Keep frontmatter `name`, a directive `description` that names the work, never the skill, and
+  `disable-model-invocation: true`.
+- Keep every skill manual-only. The description contains `Use only when the user explicitly asks
+  for` and ends `Never invoke on your own initiative.` Frame it as a response to a failure, not a
+  precaution. The [method](../docs/method.md) states each harness's control strength.
+- Preserve standalone operation and Markdown-only skill content. Depend on no sibling skill,
+  decision record, shared boilerplate, or repository file.
 - Keep the body under 500 lines.
 - Write the plain procedure. Name no philosopher, thinker, or named method in a description or
   body; credit sources in [`sources.md`](./sources.md) or the ADR ledger.

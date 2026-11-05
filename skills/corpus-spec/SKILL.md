@@ -1,6 +1,7 @@
 ---
 name: corpus-spec
-description: Write, revise, or check a verifiable change contract before implementation. Use when intent or consequential behavior must become requirements with acceptance checks, or when a refactor, migration, rewrite, upgrade, or schema or performance change must preserve behavior through staged waves and rollback. Do not use for small clear fixes, direct implementation, or factual verification.
+description: Write, revise, or check a verifiable change contract. Use only when the user explicitly asks for a spec, usually after work failed because intent, consequential behavior, or preserved behavior was never pinned down. It covers requirements with acceptance checks, and refactors, migrations, rewrites, upgrades, or schema or performance changes staged with rollback. Never invoke on your own initiative.
+disable-model-invocation: true
 ---
 
 # Corpus Spec

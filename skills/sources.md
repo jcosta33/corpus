@@ -19,6 +19,17 @@ is indexed in [the research records](../docs/research/README.md).
   portable guarantee.
 - Remove a source when its claim leaves or the source no longer supports it.
 
+## Invocation Control
+
+- **Extend Claude with skills, Anthropic.** `disable-model-invocation: true` prevents Claude from
+  loading a skill automatically, keeps its description out of context, and leaves `/name`
+  invocation working. Vendor documentation, read 2026-11-05; Claude Code only.
+  <https://code.claude.com/docs/en/skills>
+- **Build skills, OpenAI.** `agents/openai.yaml` with `policy.allow_implicit_invocation: false`
+  stops Codex from selecting a skill from the prompt; explicit `$skill` invocation still works;
+  the default is `true`. Vendor documentation, read 2026-11-05; Codex only.
+  <https://learn.chatgpt.com/docs/build-skills>
+
 ## Skill Economy
 
 - **SWE-Skills-Bench.** arXiv:2603.15401, v2 October 2026. Skills raised the average pass ratio only

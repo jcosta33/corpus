@@ -1,6 +1,7 @@
 ---
 name: corpus-campaign
-description: Write or revise a restartable goal contract for one delivery campaign that spans several pull requests. Use when one durable objective needs dependency-aware, write-disjoint streams, a project-native progress ledger, and named delivery authorities. Do not use when the goal fits one pull request or only a plan is wanted.
+description: Write or revise a restartable goal contract for one delivery campaign that spans several pull requests. Use only when the user explicitly asks for a campaign, usually after a multi-pull-request goal lost its thread across sessions or workers. It needs dependency-aware, write-disjoint streams, a project-native progress ledger, and named delivery authorities, not a goal that fits one pull request or a plan alone. Never invoke on your own initiative.
+disable-model-invocation: true
 ---
 
 # Corpus Campaign

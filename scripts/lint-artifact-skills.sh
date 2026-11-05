@@ -94,9 +94,10 @@ validate_skill_frontmatter() {
         descriptions += 1
         next
       }
+      if ($0 == "disable-model-invocation: true") { manual += 1; next }
       exit 1
     }
-    END { if (!closed || names != 1 || descriptions != 1) exit 1 }
+    END { if (!closed || names != 1 || descriptions != 1 || manual != 1) exit 1 }
   ' "$1"
 }
 
@@ -172,9 +173,13 @@ expected_catalog_rows=$(printf '%s\n' "$expected" | awk '{ print $0 ":" $0 }')
 catalog_rows=$(sed -nE 's#^\| \[`([^`]+)`\]\(\./([^/]+)/SKILL\.md\).*$#\1:\2#p' "$ROOT/skills/README.md" | sort)
 test "$catalog_rows" = "$expected_catalog_rows" || { echo "catalog label and target drift" >&2; exit 1; }
 
-if find "$ROOT/skills" -type f ! -name '*.md' | grep -q .; then
+if find "$ROOT/skills" -type f ! -name '*.md' ! -path "$ROOT/skills/*/agents/openai.yaml" | grep -q .; then
   echo "skill payload contains a non-Markdown file" >&2; exit 1
 fi
+codex_policy='policy:
+  allow_implicit_invocation: false'
+manual_only='Use only when the user explicitly asks for'
+manual_close='Never invoke on your own initiative.'
 if find "$ROOT/skills" -type l | grep -q .; then
   echo "skill payload contains a symlink" >&2; exit 1
 fi
@@ -187,16 +192,23 @@ for file in "$ROOT"/skills/*/SKILL.md; do
   if printf '%s\n' "$description" | grep -Eqi "(^|[^[:alnum:]-])$name([^[:alnum:]-]|$)"; then
     echo "skill description names itself: $name" >&2; exit 1
   fi
+  case "$description" in
+    *"$manual_only"*"$manual_close") ;;
+    *) echo "skill description must state manual-only invocation: $name" >&2; exit 1 ;;
+  esac
+  test -f "$folder/agents/openai.yaml" && test "$(cat "$folder/agents/openai.yaml")" = "$codex_policy" || {
+    echo "Codex manual-only policy missing or altered: $name/agents/openai.yaml" >&2; exit 1
+  }
   lines=$(wc -l < "$file" | tr -d '[:space:]')
   if [ "$lines" -gt 500 ]; then echo "skill body exceeds 500 lines: $name" >&2; exit 1; fi
 
-  if find "$folder" -mindepth 1 -type d -print | grep -q .; then
+  if find "$folder" -mindepth 1 -type d ! -path "$folder/agents" -print | grep -q .; then
     echo "appendix payload directory in $name" >&2; exit 1
   fi
   find "$folder" -mindepth 1 -type f -print | while IFS= read -r path; do
     relative=${path#"$folder"/}
     case "$relative" in
-      SKILL.md) ;;
+      SKILL.md|agents/openai.yaml) ;;
       *) echo "unexpected skill payload file: $path" >&2; exit 1 ;;
     esac
   done

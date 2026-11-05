@@ -1,6 +1,7 @@
 ---
 name: corpus-audit
-description: Map or assess present code from direct evidence. Use for a current-state map before wide change, debt surveys, cleanup or quality assessments, single-implementation benchmarks, or fresh passes over prior audits. Do not use for conformance review against a spec, tracing one narrow path, adversarial review, or option research.
+description: Map or assess present code from direct evidence. Use only when the user explicitly asks for an audit, usually after a change broke because present behavior, ownership, or risk was misread. It covers current-state maps, debt surveys, cleanup or quality assessments, single-implementation benchmarks, and fresh passes over prior audits, not conformance review against a spec, tracing one narrow path, adversarial review, or option research. Never invoke on your own initiative.
+disable-model-invocation: true
 ---
 
 # Corpus Audit
