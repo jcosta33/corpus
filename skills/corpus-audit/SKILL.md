@@ -14,7 +14,8 @@ Observe. Prove. Prescribe nothing.
 3. Map what exists: modules and their observed responsibilities; interfaces with direct and
    dynamic callers; visible behavior; data, state, side effects, configuration, generated surfaces,
    and external consumers; tests and the behavior each controls; and what each component takes on
-   faith, with what enforces it or `nothing found`.
+   faith, with what enforces it or `nothing found`. Before a planned change, phrase each question
+   without the change, so the map shows what is, not what the change wants.
 4. Assess only when asked. State each risk as evidence, failure mode, firing condition, and blast
    radius. Grade it Blocker, Major, or Minor by impact and reach.
 5. List what stays unverified, with the search boundary and the missing evidence.

@@ -4,20 +4,6 @@ These skills write Corpus artifacts and ship with the method that defines them. 
 this directory is an independently installable Markdown skill. A skill that works only beside its
 siblings is broken.
 
-## Install
-
-```bash
-npx skills add jcosta33/corpus -g -a codex
-npx skills add jcosta33/corpus -g -a claude-code
-npx skills add jcosta33/corpus --skill corpus-spec -g -a codex
-```
-
-Installing does not remove the earlier `sus-*` names. Remove them by name first:
-
-```bash
-npx skills remove -g sus-spec sus-task sus-inventory sus-change-plan sus-audit sus-research sus-campaign
-```
-
 ## Catalog
 
 | Skill | Artifact |

@@ -9,14 +9,12 @@ writes the code.
 ## Install
 
 ```bash
-npx skills add jcosta33/corpus -g -a codex
+npx skills add jcosta33/corpus -g
 ```
 
 That installs the [artifact authors](skills/README.md). Universal working methods such as
 verification, review, deliberation, sequencing, and compression install separately from
 [jcosta33/skills](https://github.com/jcosta33/skills).
-
-Re-running `add` does not prune. Remove any earlier `sus-*` skills by name before adding.
 
 ## Use the least structure that pays
 
@@ -58,15 +56,6 @@ for itself:
 Corpus does not replace native plan mode, project guidance, issue trackers, PRs, CI, tests, or human
 acceptance. Skills install globally; repository commands, architecture, and policy stay in the
 repository that owns them.
-
-## Fit
-
-Use Corpus when a change outgrows direct attention, several workers share it, or someone must later
-reconstruct intent and proof. Skip it when native planning, project instructions, tests, and direct
-review already make the work obvious.
-
-Agents assess and recommend. Humans own intent, waivers, irreversible actions, and acceptance. The
-implementer cannot accept their own work.
 
 Start with [the method](docs/method.md). Exact shapes live in [formats](docs/formats.md) and terms in
 the [glossary](docs/glossary.md). Decision history lives in the [ADR ledger](docs/adrs/README.md).

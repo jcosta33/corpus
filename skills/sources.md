@@ -20,7 +20,8 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
 
 - **SWE-Skills-Bench.** arXiv:2603.15401, v2 October 2026. Skills raised the average pass ratio only
   from 76.6% to 76.9%; 92 of 98 had no significant effect; harmful skills anchored agents on their
-  own templates. Benchmark of coding tasks; grounds cutting rules a strong model already follows.
+  own templates and overrode the task's instructions. Benchmark of coding tasks; grounds cutting
+  rules a strong model already follows and ranking the task's instructions above a skill's shape.
   <https://arxiv.org/abs/2603.15401>
 - **Agent instruction bloat, Thoughtworks Technology Radar Vol 35 (Caution, November 2026).**
   Convert instructions into deterministic checks where possible and re-test the rest against each
@@ -39,11 +40,22 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   or disabling tests to make them pass. One practitioner's experience; grounds the never-weaken-tests
   rule, not its prevalence. <https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes>
 
+- **Bugfix specs, Kiro.** States current, expected, and unchanged behavior, with checks that the
+  bug reproduces, the fix holds, and unchanged behavior survives. Vendor documentation, updated
+  August 2026. <https://kiro.dev/docs/specs/bugfix-specs/>
+
 ## Audit Mapping
 
 - **audit-context-building, Trail of Bits.** Records for each function what it takes on faith and
   what makes that true, marking unenforced assumptions `nothing found`. Practitioner skill.
   <https://github.com/trailofbits/skills/blob/main/plugins/audit-context-building/skills/audit-context-building/SKILL.md>
+
+- **create-research, HumanLayer.** Codebase researchers get factual questions that never state the
+  intended change. Practitioner skill.
+  <https://github.com/humanlayer/humanlayer/blob/main/apps/riptide-pi-extension/skills/create-research/SKILL.md>
+- **BMAD deep-recon codebase reference.** "A researcher who knows what is being built reports what
+  should be instead of what is." Practitioner framework.
+  <https://github.com/bmad-code-org/BMAD-METHOD/blob/main/skills/bmad-deep-recon/references/codebase.md>
 
 ## Campaign Coordination
 
@@ -86,6 +98,10 @@ prose cite [the product bibliography](../docs/research/sources.md) instead.
   frontier models handle them unaided. Practitioner framework decision, not a measurement; grounds
   leaving generic delivery method to the project and the model.
   <https://github.com/buildermethods/agent-os/blob/main/CHANGELOG.md>
+
+- **Superpowers issue 2587.** Every per-task review passed while a broad review found nine
+  structural defects; a design review before handoff caught seven blockers. One first-hand report
+  with measurements, Claude Code, October 2026. <https://github.com/obra/superpowers/issues/2587>
 
 ## Research Method
 

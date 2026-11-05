@@ -9,12 +9,12 @@ A spec is decided intent under test. Nothing else belongs.
 
 ## Method
 
-1. Read project rules, current code, tests, related decisions, open issues, and the project's spec
-   form if its tracker has one.
-2. Settle discoverable facts and reversible conventions yourself. Ask the human only about
+1. If one precise sentence governs the work, state it inline with its verification. Write no file.
+2. Read project rules, current code, tests, related decisions, open issues, and the project's spec
+   form if its tracker has one. The task's instructions and that form outrank the shape below.
+3. Settle discoverable facts and reversible conventions yourself. Ask the human only about
    material behavior, public contracts, security, cost, or irreversible choices.
-3. If one precise sentence governs the work, state it inline with its verification. Write no file.
-4. Otherwise write the spec. Any unresolved blocking choice keeps `status: draft` and blocks
+4. Write the spec. Any unresolved blocking choice keeps `status: draft` and blocks
    dependent work.
 5. Verification output and review belong on the native pull request. The implementer cannot accept
    their own work.
@@ -46,7 +46,8 @@ work, and `## Open questions` only while `draft`.
 A short name may follow the ID. Use exactly those three items, in that order, and nothing else under
 the heading. Use exactly one of `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, or `MAY` in `Then`.
 Split obligations that fail independently. Name a mechanism only when a public contract makes it
-observable.
+observable. For a defect, pair the repaired behavior with `When: always` requirements for what must
+stay unchanged, each verified by a check that fails on the original state.
 
 ## Structural change
 

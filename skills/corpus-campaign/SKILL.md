@@ -44,7 +44,8 @@ Whatever the project rules say, three bans hold:
 - Bind each merge to the expected head. Drift resets the affected checks and review.
 
 Dispatch only dependency-ready, write-disjoint work. Sequence shared contracts, generated surfaces,
-unknown scope, and overlapping files.
+unknown scope, and overlapping files. Review the whole design before dispatching parallel streams,
+and review the combined result after they merge; per-stream review misses cross-stream defects.
 
 Humans own intent, material decisions, waivers, irreversible authority, and acceptance. They may
 delegate execution to a named orchestrator or project mechanism. Keep the campaign `draft` until

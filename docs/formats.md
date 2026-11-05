@@ -57,6 +57,9 @@ Each requirement:
 - exactly one of `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, or `MAY` in `Then`;
 - no `TBD`, `TODO`, `???`, or blocking open question once `status: ready`.
 
+A defect fix pairs the repaired behavior with `When: always` requirements for what must stay
+unchanged, each verified by a check that fails on the original state.
+
 A named `Verify with` method that does not exist yet is not a spec defect; the requirement stays
 unverified until evidence exists.
 
@@ -126,6 +129,8 @@ campaign points to it and contains no task-list checkboxes, counts, SHAs, or sna
 ready` means every authority is reachable and every intended operation names an owner, an honest
 control strength (advisory, deterministic local, or isolated authority), a mechanism, and failure
 behavior. A named stop may guard a later unavailable transition without blocking independent work.
+
+Parallel streams get a whole-design review before dispatch and a combined review after merge.
 
 Every pickup rereads the campaign and its authorities, reconciles live state, repairs ledger drift,
 selects the highest-priority dependency-ready work, runs project gates, records durable progress,
