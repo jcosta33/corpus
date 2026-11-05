@@ -1,0 +1,57 @@
+docs/adrs/README.md
+  s_8d7c914c5d23a3::t_7a9850b9f3d8dd 223-225
+docs/research/progression-2026-11-05/runs/research-A-q/RESEARCH-gate-language.receipts.md
+  s_8d7c914c5d23a3::t_2be2eb39110572 105
+docs/research/corpus-study-2026-11-05/adrs-0121-0186.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-507
+docs/research/corpus-ecosystem-2026-11-05.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-2,9-11,15-62,66-68,70-283,285-320
+  s_8d7c914c5d23a3::t_8de061ae9cb8fc 64
+  s_8d7c914c5d23a3::t_8f561614933fe0 3-8,12-14,63,65,69,284
+docs/research/corpus-ecosystem-2026-11-05/first-party.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-482
+docs/research/corpus-study-2026-11-05/adrs-0001-0060.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-285
+docs/research/corpus-study-2026-11-05/history.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-191
+docs/research/corpus-study-2026-11-05/adr-0187-classification.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-115
+scripts/lint-accepted-adrs.sh
+  s_8d7c914c5d23a3::t_20956b18ced3fc 5-6
+docs/adrs/0191-author-refinements-and-adoption-residue.md
+  s_8d7c914c5d23a3::t_751e696361a5b5 1-61
+docs/research/sources.md
+  s_8d7c914c5d23a3::t_1fa7814cdf2150 3
+docs/research/corpus-ecosystem-2026-11-05/practice.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-377
+docs/research/corpus-study-2026-11-05.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 18-72,74-145,147-217,219-280,282-304,306-308,310-318
+  s_8d7c914c5d23a3::t_7e0813aa0bc170 1-17,73,146,218,281,305,309
+skills/sources.md
+  s_8d7c914c5d23a3::t_1fa7814cdf2150 9-11
+docs/research/README.md
+  s_8d7c914c5d23a3::t_d31b0a211e5283 1-25
+docs/research/corpus-ecosystem-2026-11-05/community.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-152
+docs/research/corpus-study-2026-11-05/adrs-0061-0120.md
+  s_8d7c914c5d23a3::t_476884ebc4d231 1-400
+docs/research/corpus-shape-2026-11-05.md
+  s_8d7c914c5d23a3::t_7e0813aa0bc170 1-10,78,196,734,736
+  s_8d7c914c5d23a3::t_476884ebc4d231 11-77,79-195,197-733,735,737-752
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fa9993128816de8f2d3d77a354f46e9226e128e0",
+  "prompts": {},
+  "sessions": {
+    "s_8d7c914c5d23a3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6fd7cc34-70d0-4cef-8a70-4351ac0359b0",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "José Costa <josecosta@mac-mini-1.home>"
+    }
+  }
+}
