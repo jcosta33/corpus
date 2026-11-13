@@ -1,0 +1,43 @@
+docs/method.md
+  s_fe3af0244d3f5a::t_129b2770b5b8f1 177,180-188
+  s_fe3af0244d3f5a::t_e299ec6d6ae7ce 196-197
+docs/adrs/README.md
+  s_fe3af0244d3f5a::t_efdd3949d8b9cd 182
+  s_fe3af0244d3f5a::t_042cca261b294c 227
+docs/formats.md
+  s_fe3af0244d3f5a::t_8a503d6809d95c 4-5
+skills/corpus-spec/SKILL.md
+  s_fe3af0244d3f5a::t_52a3a0e99e77a7 83-91
+README.md
+  s_fe3af0244d3f5a::t_e85593934f47cc 42-43
+docs/adrs/0193-artifacts-on-the-repository-volume.md
+  s_fe3af0244d3f5a::t_c6f3720d714be7 1-55
+skills/corpus-research/SKILL.md
+  s_fe3af0244d3f5a::t_97cd6ad2ae5b5d 67-75
+skills/corpus-audit/SKILL.md
+  s_fe3af0244d3f5a::t_bc034ef29b2689 45-53
+skills/README.md
+  s_fe3af0244d3f5a::t_a9bad002a7192e 16
+scripts/lint-artifact-skills.sh
+  s_fe3af0244d3f5a::t_e0efeb2bcd0dc2 256-257
+scripts/lint-accepted-adrs.sh
+  s_fe3af0244d3f5a::t_8cc5fcedd88bf9 5-6
+skills/corpus-campaign/SKILL.md
+  s_fe3af0244d3f5a::t_32af7906541d95 85-93
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7f94331a95a0a31f37c15d5d9d20b7311c775969",
+  "prompts": {},
+  "sessions": {
+    "s_fe3af0244d3f5a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "58f5b5af-3d9a-4e2b-9177-d98cbd676139",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "José Costa <j.costa.3394@gmail.com>"
+    }
+  }
+}
