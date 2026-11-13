@@ -13,7 +13,7 @@ siblings is broken.
 | [`corpus-research`](./corpus-research/SKILL.md) | decision-informing evidence |
 | [`corpus-campaign`](./corpus-campaign/SKILL.md) | restartable multi-pull-request goal |
 
-Only these skills create Corpus artifacts. They write `~/.agents/artifacts/<workspace>/<ID>.md`,
+Only these skills create Corpus artifacts. They write `<root>/.agents/artifacts/<workspace>/<ID>.md` on the repository's volume,
 hand off clickable links with absolute destinations, and close exhausted sets through Delete, Leave,
 or Promote. Universal working methods that create no artifact live in
 [jcosta33/skills](https://github.com/jcosta33/skills).

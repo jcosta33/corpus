@@ -1,8 +1,8 @@
 # Formats
 
 Every Corpus artifact is Markdown with frontmatter. The `type:` field identifies it; kind is never
-read from the file name or location. Each artifact lives at `~/.agents/artifacts/<workspace>/<ID>.md`
-([method](method.md#where-artifacts-live)).
+read from the file name or location. Each artifact lives at `<root>/.agents/artifacts/<workspace>/<ID>.md`
+on the repository's volume ([method](method.md#where-artifacts-live)).
 
 | Type | Writer | Carries | ID prefix |
 | --- | --- | --- | --- |

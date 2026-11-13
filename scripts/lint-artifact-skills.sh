@@ -253,8 +253,8 @@ for file in "$ROOT"/skills/*/SKILL.md; do
   for heading in '## Artifact' '## Close'; do
     require_literal "$file" "$heading" "incomplete artifact contract in $name"
   done
-  require_literal "$file" '~/.agents/artifacts/<workspace>/' "neutral root missing in $name"
-  for word in absolute repository vendor temporary collision '(unwritable|blocked write)' 'return only' 'relative to the artifact'; do
+  require_literal "$file" '<root>/.agents/artifacts/<workspace>/' "neutral root missing in $name"
+  for word in absolute repository vendor temporary collision '(unwritable|blocked write)' 'return only' 'relative to the artifact' 'same volume' 'another volume' 'df -P'; do
     require_regex "$file" "$word" "incomplete artifact placement or handoff in $name"
   done
   find "$folder" -type f -name '*.md' | while IFS= read -r payload; do

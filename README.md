@@ -39,8 +39,8 @@ requirements:
 - Verify with: `pnpm test:run export-date-range-filter`
 ```
 
-Artifacts live outside the repository at `~/.agents/artifacts/<workspace>/<ID>.md` and move by
-absolute path. See [where artifacts live](docs/method.md#where-artifacts-live).
+Artifacts live outside the repository but on its volume, at
+`<root>/.agents/artifacts/<workspace>/<ID>.md`, and move by absolute path. See [where artifacts live](docs/method.md#where-artifacts-live).
 
 ## Method
 

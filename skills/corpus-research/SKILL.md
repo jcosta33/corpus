@@ -64,11 +64,15 @@ the test that would. The decision stays human.
 
 ## Artifact
 
-Write `~/.agents/artifacts/<workspace>/<ID>.md` with `~` expanded; `<workspace>` is the repository
-or working-directory basename. Keep sidecars, such as evidence receipts and run notes, beside it and
-link them. On a collision or an unwritable directory, ask the human; never overwrite, and never fall
-back to the repository, a vendor directory, or a temporary path. Write local references relative to
-the artifact. Return only clickable `~/.agents/...` links with absolute destinations, and explain
+Write `<root>/.agents/artifacts/<workspace>/<ID>.md` on the same volume (drive) as the repository,
+outside it. Run `df -P` on the repository and on the home directory; the last field is the mount
+point. If the two match, `<root>` is the home directory; otherwise `<root>` is the repository's
+mount point. Outside a repository, use the working directory in its place. `<workspace>` is the
+repository or working-directory basename. Keep sidecars, such as evidence receipts and run notes,
+beside it and link them. On a collision or an unwritable directory, ask the human; never overwrite,
+and never fall back to the repository, a vendor directory, a temporary path, or another volume.
+Write local references relative to the artifact. Return only clickable links with absolute
+destinations, and explain
 only a blocker, a failed write, incomplete verification, or an irreversible-action confirmation.
 
 ## Close

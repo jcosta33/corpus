@@ -174,12 +174,18 @@ supports only what it directly establishes, with its date, population, method, a
 ## Where artifacts live
 
 ```text
-~/.agents/artifacts/<workspace>/<ID>.md
+<root>/.agents/artifacts/<workspace>/<ID>.md
 ```
 
-Resolve `~` to the absolute home path. `<workspace>` is the repository basename, or the working
-directory basename outside a repository. Name the file for its artifact ID. Carry the absolute path
-through every handoff; no tool lists, discovers, or resumes work.
+Artifacts stay on the same volume (drive) as the repository they describe, outside the repository
+([ADR-0193](adrs/0193-artifacts-on-the-repository-volume.md)). Run `df -P` on the repository and on
+the home directory; the last field is the mount point. If the two match, `<root>` is the absolute
+home path; otherwise `<root>` is the repository's mount point. A repository at
+`/Volumes/Development/sourdaw` writes to `/Volumes/Development/.agents/artifacts/sourdaw/`; one under
+the home directory writes to `~/.agents/artifacts/<workspace>/` with `~` expanded. Outside a
+repository, the working directory takes its place. `<workspace>` is the repository basename, or the
+working directory basename outside a repository. Name the file for its artifact ID. Carry the
+absolute path through every handoff; no tool lists, discovers, or resumes work.
 
 The location is agent-neutral: plan mode, vendor plans, native memory, source code, and harness state
 stay with their owners. It is a directory, not a database. Corpus creates no registry, resolver,
@@ -187,8 +193,8 @@ configuration, lifecycle state, symlink, or background process, and repositories
 Corpus directory, configuration, or gitignore entry.
 
 Never overwrite unrelated work; a collision is a decision. If the root is unwritable, offer grant and
-retry, another agent-neutral user directory, or cancel. Never fall back to vendor storage, the
-repository, or a temporary directory.
+retry, another agent-neutral directory on the same volume, or cancel. Never fall back to vendor
+storage, the repository, a temporary directory, or another volume.
 
 When the project's tracker has a form for a spec, the filed issue is the spec and the file is its
 draft.
